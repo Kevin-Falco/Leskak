@@ -1,0 +1,145 @@
+package lib;
+
+import config.Direction;
+import config.Key;
+import config.KeyboardConfig;
+import config.Sprite;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
+import javafx.util.Pair;
+
+public class Movement {
+    private static Map map = new Map();
+    private static ImageView lastSprite;
+
+    public static void configPlayerEventHandler(Scene scene) {
+        KeyboardConfig k = KeyboardConfig.ENTER;
+        Player player = Player.getINSTANCE();
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+            boolean isTransitionCell = false;
+            TransitionCell transitionCell = null;
+            if(isTransitionCell(player.getPosition().getKey(), player.getPosition().getValue())){
+                isTransitionCell = true;
+                transitionCell = (TransitionCell) getCell(player.getPosition().getKey(), player.getPosition().getValue());
+            }
+            if (lastSprite != null){
+                System.out.println("ok1");
+                GridPane.setConstraints(lastSprite, player.getPosition().getKey(), player.getPosition().getValue());
+            }
+            else{
+                //System.out.println("oups1");
+            }
+            if (key.getCode() == Key.UP.getKeyCode()) {
+                player.setPosition(new Pair<>(
+                        player.getPosition().getKey(),
+                        ((player.getPosition().getValue() == 0
+                                || !isAccessibleCell(player.getPosition().getKey(), player.getPosition().getValue() -1)) ?
+                                player.getPosition().getValue() :  player.getPosition().getValue() - 1)));
+                player.setSprite(Sprite.UP);
+                player.setDirection(Direction.UP);
+            }
+            if (key.getCode() == Key.DOWN.getKeyCode()) {
+                player.setPosition(new Pair<>(
+                        player.getPosition().getKey(),
+                        player.getPosition().getValue() == GameLayout.getINSTANCE().getNbRows() - 1
+                                || !isAccessibleCell(player.getPosition().getKey(), player.getPosition().getValue() +1) ?
+                                player.getPosition().getValue() :  player.getPosition().getValue() + 1));
+                player.setSprite(Sprite.DOWN);
+                player.setDirection(Direction.DOWN);
+            }
+            if (key.getCode() == Key.RIGHT.getKeyCode()) {
+                player.setPosition(new Pair<>(
+                        player.getPosition().getKey() == GameLayout.getINSTANCE().getNbColumns() - 1
+                                || !isAccessibleCell(player.getPosition().getKey() +1, player.getPosition().getValue()) ?
+                                player.getPosition().getKey() :  player.getPosition().getKey() + 1,
+                        player.getPosition().getValue()));
+                player.setSprite(Sprite.RIGHT);
+                player.setDirection(Direction.RIGHT);
+            }
+            if (key.getCode() == Key.LEFT.getKeyCode()) {
+                player.setPosition(new Pair<>(
+                        player.getPosition().getKey() == 0
+                                || !isAccessibleCell(player.getPosition().getKey() -1, player.getPosition().getValue()) ?
+                                player.getPosition().getKey() :  player.getPosition().getKey() - 1,
+                        player.getPosition().getValue()));
+              player.setSprite(Sprite.LEFT);
+                player.setDirection(Direction.LEFT);
+            }
+
+            lastSprite = Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue());
+
+            if (lastSprite != null){
+                System.out.println("ok2");
+                GridPane.setColumnIndex(lastSprite, 32);
+                GridPane.setRowIndex(lastSprite, 0);
+                GridPane.setConstraints(lastSprite, 32, 0 );
+            }
+            else{
+                //System.out.println("oups2");
+            }
+            ImageView imageView = (ImageView) Movement.map.getGridPane().getChildren().get(1);
+            imageView.setImage(new Image(player.getSprite().getSpritePath()));
+            GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
+
+            if(isTransitionCell && transitionCell.getDirection().equals(player.getDirection())){
+                GameLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, transitionCell.getEventHandler());
+                if (lastSprite != null){
+                    lastSprite = null;
+                }
+            }
+        });
+    }
+
+    private static boolean isAccessibleCell(Integer col, Integer row){
+        while(Movement.map.getBlockingCellIterator().hasNext()){
+            BlockingCell blockingCell = Movement.map.getBlockingCellIterator().next();
+            if(blockingCell.getPosition().getKey().equals(col) && blockingCell.getPosition().getValue().equals(row)){
+                Movement.map.getBlockingCellIterator().reset();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean isTransitionCell(Integer col, Integer row){
+        while(Movement.map.getTransitionCellIterator().hasNext()){
+            TransitionCell transitionCell = Movement.map.getTransitionCellIterator().next();
+            if(transitionCell.getPosition().getKey().equals(col) && transitionCell.getPosition().getValue().equals(row)){
+                Movement.map.getTransitionCellIterator().reset();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static ImageView getSprite(Integer col, Integer row){
+        for (Cell cell : Movement.map
+             ) {
+            if(cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){
+                return cell.getSprite();
+            }
+        }
+        return null;
+    }
+
+    private static Cell getCell(Integer col, Integer row){
+        for (Cell cell : Movement.map
+        ) {
+            if(cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){
+                return cell;
+            }
+        }
+        return null;
+    }
+
+    public static Map getMap() {
+        return map;
+    }
+
+    public static void setMap(Map map) {
+        Movement.map = map;
+    }
+}
