@@ -17,7 +17,7 @@ Koryo-RPG is a non-profit game which is in the course of creation by four studen
 * **Kévin Falco** - kevin.falco@etu.univ-amu.fr - [My Profile](https://github.com/Kevin-Falco/)
 * **Hugo Desuert** - hugo.desuert@etu.univ-amu.fr - [My Profile](https://github.com/HUGEEEEE/)
 * **Antoine Hourdeau** - antoine.hourdeau@etu.univ-amu.fr - [My Profile](https://github.com/Antoine_Hourdeau/)
-* **Benjamin Guerin** - benjamin.guerin@etu.univ-amu.fr - [My Profile](https://github.com/Benjamin-Guerin/)
+* **Benjamin Guerin** - benjamin.guerin@etu.univ-amu.fr - [My Profile](https://github.com/JahExodus/)
 
 See also the list of [contributors](https://github.com/Kevin-Falco/Leskak/contributors) who participated in this project.
 
