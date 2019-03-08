@@ -14,35 +14,35 @@ public class TransitionCell extends Cell {
         super(sprite, position);
         this.direction = direction;
         this.eventHandler = (EventHandler<KeyEvent>) event -> {
-            System.out.println("HEY");
             if(event.getCode() == this.direction.getKey().getKeyCode()){
-                System.out.println("LISTEN");
                 int i = 0;
-                MapConfig nextMap = null;
+                int nextMap = 0;
                 Pair<Integer, Integer> nextPosition = null;
-                for(MapConfig m : MapConfig.values()){
-                    if(m.getMap().equals(Movement.getMap())){
+                for(Map m : MapConfig.getINSTANCE().getMaps()){
+                    if(m.equals(Movement.getMap())){
                         switch(this.direction){
                             case UP :
-                                nextMap = MapConfig.values()[MapArrangement.values()[i].getUp() - 1];
+                                //nextMap = MapConfig.getINSTANCE().getMaps().get(MapArrangement.values()[i].getUp() - 1);
+                                nextMap = MapArrangement.values()[i].getUp() - 1;
                                 nextPosition = new Pair<>(Player.getINSTANCE().getPosition().getKey(),
                                         GameLayout.getINSTANCE().getNbRows() - 1);
                                 break;
                             case DOWN :
-                                nextMap = MapConfig.values()[MapArrangement.values()[i].getDown() - 1];
+                                nextMap = MapArrangement.values()[i].getDown() - 1;
                                 nextPosition = new Pair<>(Player.getINSTANCE().getPosition().getKey(), 0);
                                 break;
                             case RIGHT :
-                                nextMap = MapConfig.values()[MapArrangement.values()[i].getRight() - 1];
+                                nextMap = MapArrangement.values()[i].getRight() - 1;
                                 nextPosition = new Pair<>(0, Player.getINSTANCE().getPosition().getValue());
                                 break;
                             case LEFT :
-                                nextMap = MapConfig.values()[MapArrangement.values()[i].getLeft() - 1];
+                                nextMap = MapArrangement.values()[i].getLeft() - 1;
                                 nextPosition = new Pair<>(GameLayout.getINSTANCE().getNbColumns() - 1,
                                         Player.getINSTANCE().getPosition().getValue());
                                 break;
                         }
-                        nextMap.setupMap(new Pair<>(nextPosition.getKey(),nextPosition.getValue()),Player.getINSTANCE().getSprite());
+                        MapConfig.getINSTANCE().configMap(nextMap, new Pair<>(nextPosition.getKey(),nextPosition.getValue()), Player.getINSTANCE().getSprite());
+                        //nextMap.setupMap(new Pair<>(nextPosition.getKey(),nextPosition.getValue()),Player.getINSTANCE().getSprite());
                         break;
                     }
                     ++i;

@@ -34,7 +34,7 @@ public class Map implements  Iterable<Cell> {
 
     public void add(Cell cell){
         this.cells.add(cell);
-        this.getGridPane().getChildren().add(cell.getSprite());
+        this.getGridPane().getChildren().add(this.cells.get(this.cells.size() - 1).getSprite());
     }
 
     @Override

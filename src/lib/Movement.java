@@ -4,11 +4,13 @@ import config.Direction;
 import config.Key;
 import config.KeyboardConfig;
 import config.Sprite;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Line;
 import javafx.util.Pair;
 
 public class Movement {
@@ -26,8 +28,9 @@ public class Movement {
                 transitionCell = (TransitionCell) getCell(player.getPosition().getKey(), player.getPosition().getValue());
             }
             if (lastSprite != null){
-                System.out.println("ok1");
-                GridPane.setConstraints(lastSprite, player.getPosition().getKey(), player.getPosition().getValue());
+                System.out.println("sprite remis en place");
+                //if(!isTransitionCell)
+                    GridPane.setConstraints(lastSprite, player.getPosition().getKey(), player.getPosition().getValue());
             }
             else{
                 //System.out.println("oups1");
@@ -72,7 +75,7 @@ public class Movement {
             lastSprite = Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue());
 
             if (lastSprite != null){
-                System.out.println("ok2");
+                System.out.println("sprite remplacé par pnj");
                 GridPane.setColumnIndex(lastSprite, 32);
                 GridPane.setRowIndex(lastSprite, 0);
                 GridPane.setConstraints(lastSprite, 32, 0 );
@@ -80,7 +83,18 @@ public class Movement {
             else{
                 //System.out.println("oups2");
             }
-            ImageView imageView = (ImageView) Movement.map.getGridPane().getChildren().get(1);
+            ImageView imageView = null;
+            if(Movement.getMap().getGridPane().getChildren().get(0) instanceof Group){
+                Group g = (Group) Movement.getMap().getGridPane().getChildren().get(0);
+                Line line = (Line) g.getChildren().get(0);
+                //System.out.println((line.toString()));
+                imageView = (ImageView) Movement.map.getGridPane().getChildren().get(1);
+            }
+            else {
+                //System.out.println(Movement.getMap().getGridPane().getChildren().get(0));
+                imageView = (ImageView) Movement.map.getGridPane().getChildren().get(0);
+            }
+            imageView = (ImageView) Movement.map.getGridPane().getChildren().get(Movement.map.getGridPane().getChildren().size() -1);
             imageView.setImage(new Image(player.getSprite().getSpritePath()));
             GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
 
@@ -115,7 +129,7 @@ public class Movement {
         return false;
     }
 
-    private static ImageView getSprite(Integer col, Integer row){
+    public static ImageView getSprite(Integer col, Integer row){
         for (Cell cell : Movement.map
              ) {
             if(cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){

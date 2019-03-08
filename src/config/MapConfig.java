@@ -7,43 +7,55 @@ import javafx.scene.layout.RowConstraints;
 import javafx.util.Pair;
 import lib.*;
 
-public enum MapConfig {
-    MAP1(),
-    MAP2(),
-    MAP3();
+import java.util.ArrayList;
 
-    private Map map;
+public class MapConfig {
+    private static final MapConfig INSTANCE = new MapConfig();
 
-    MapConfig() {
-        this.map = new Map();
-        for(int i = 0; i < GameLayout.getINSTANCE().getNbColumns(); ++i){
-            map.getGridPane().getColumnConstraints()
-                    .add(new ColumnConstraints((float)GameLayout.getWIDTH()/GameLayout.getINSTANCE().getNbColumns()));
+    private ArrayList<Map> maps;
+
+    private MapConfig() {
+        this.maps = new ArrayList<>();
+        for(int nbMap = 0; nbMap < 3; ++nbMap){
+            Map newMap = new Map();
+            for(int i = 0; i < GameLayout.getINSTANCE().getNbColumns(); ++i){
+                newMap.getGridPane().getColumnConstraints()
+                        .add(new ColumnConstraints((float)GameLayout.getWIDTH()/GameLayout.getINSTANCE().getNbColumns()));
+            }
+            for(int i = 0 ; i < GameLayout.getINSTANCE().getNbRows(); ++i){
+                newMap.getGridPane().getRowConstraints()
+                        .add(new RowConstraints(  (float)GameLayout.getHEIGHT()*2/3/GameLayout.getINSTANCE().getNbRows()));
+            }
+            this.maps.add(newMap);
+            setupMap(nbMap);
         }
-        for(int i = 0 ; i < GameLayout.getINSTANCE().getNbRows(); ++i){
-            map.getGridPane().getRowConstraints()
-                    .add(new RowConstraints(  (float)GameLayout.getHEIGHT()*2/3/GameLayout.getINSTANCE().getNbRows()));
-        }
+        this.configMap(0, new Pair<>(6,5), Sprite.DOWN);
     }
 
-    public Map getMap() {
-        return map;
+    public ArrayList<Map> getMaps() {
+        return maps;
     }
 
-    private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position, Interaction interaction){
+    public static MapConfig getINSTANCE() {
+        return INSTANCE;
+    }
+
+    private BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position, Interaction interaction){
         BlockingCell pnj = new BlockingCell(new ImageView( sprite.getSpritePath()), position, interaction);
         GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
         return pnj;
     }
 
-    private static TransitionCell addTransitionCell(Sprite sprite, Pair<Integer, Integer> position, Direction direction){
+    private TransitionCell addTransitionCell(Sprite sprite, Pair<Integer, Integer> position, Direction direction){
         TransitionCell pnj = new TransitionCell(new ImageView( sprite.getSpritePath()), position, direction);
         GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
         return pnj;
     }
 
-    public static void configMap(Map map,Pair<Integer, Integer> position, Sprite sprite){
-        Movement.setMap(map);
+    public void configMap(int nbMap,Pair<Integer, Integer> position, Sprite sprite){
+        //System.out.println( this.maps.get(0).getGridPane().getChildren().size());
+
+        Movement.setMap(this.maps.get(nbMap));
         Player player = Player.getINSTANCE();
         player.setPosition(position);
         player.setSprite(sprite);
@@ -51,58 +63,60 @@ public enum MapConfig {
         ImageView imageView = new ImageView(player.getSprite().getSpritePath());
         imageView.setPreserveRatio(true);
         imageView.setFitWidth(50);
-        map.getGridPane().setGridLinesVisible(true);
+        this.maps.get(nbMap).getGridPane().setGridLinesVisible(true);
 
         GridPane.setConstraints(imageView, position.getKey(),position.getValue());
 
-        map.getGridPane().getChildren().add(imageView);
+        this.maps.get(nbMap).getGridPane().getChildren().add(imageView);
 
-        GameLayout.getINSTANCE().setGridPane(map.getGridPane());
+        GameLayout.getINSTANCE().setGridPane(this.maps.get(nbMap).getGridPane());
     }
 
-    public void setupMap( ){
-        if(this.equals(MAP1)){
-            setupMap(new Pair<>(5,5), Sprite.DOWN);
+    public void setupMap(int nbMap){
+        if(nbMap == 0){
+            setupMap(nbMap, new Pair<>(6,7), Sprite.DOWN);
         }
-        else if(this.equals(MAP2)){
-            setupMap(new Pair<>(10,5), Sprite.DOWN);
+        else if(nbMap == 1){
+            setupMap(nbMap, new Pair<>(10,5), Sprite.DOWN);
         }
-
+        else if(nbMap == 2){
+            setupMap(nbMap, new Pair<>(15,5), Sprite.DOWN);
+        }
     }
 
-    public void setupMap(Pair<Integer, Integer> position, Sprite sprite){
-        if(this.equals(MAP1)){
-            MapConfig.configMap(this.map, position, sprite);
+    public void setupMap(int nbMap, Pair<Integer, Integer> position, Sprite sprite){
+        if(nbMap == 0){
+            //MapConfig.configMap(this.map, position, sprite);
             for (int i = 0; i < 10; ++i){
                 if(i%2 == 0)
-                    map.add(MapConfig.addBlockingCell(Sprite.PNJ1, new Pair<>(i, i), Interaction.PNJ));
+                    this.maps.get(0).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>(i, i), Interaction.PNJ));
                 else
-                    map.add(MapConfig.addBlockingCell(Sprite.PNJ1, new Pair<>(i, i), Interaction.PNJ2));
+                    this.maps.get(0).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>(i, i), Interaction.PNJ2));
             }
-            map.add(MapConfig.addTransitionCell(Sprite.RIGHT_ARROW, new Pair<>(31, 5), Direction.RIGHT));
-            map.add(MapConfig.addTransitionCell(Sprite.UP_ARROW, new Pair<>(4, 0), Direction.UP));
+            //if(Movement.getSprite(31, 5) != null)
+            this.maps.get(0).add(this.addTransitionCell(Sprite.RIGHT_ARROW, new Pair<>(31, 5), Direction.RIGHT));
+            //if(Movement.getSprite(4, 0) == null)
+            this.maps.get(0).add(this.addTransitionCell(Sprite.UP_ARROW, new Pair<>(4, 0), Direction.UP));
         }
-        else if(this.equals(MAP2)){
-            MapConfig.configMap(this.map, position, sprite);
+        else if(nbMap == 1){
+            //MapConfig.configMap(this.map, position, sprite);
             for (int i = 0; i < 10; ++i){
                 if(i%2 == 0)
-                    map.add(MapConfig.addBlockingCell(Sprite.PNJ1, new Pair<>(32 - i, i), Interaction.PNJ2));
+                    this.maps.get(1).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>(32 - i, i), Interaction.PNJ2));
                 else
-                    map.add(MapConfig.addBlockingCell(Sprite.PNJ1, new Pair<>( 32 - i, i), Interaction.PNJ));
+                    this.maps.get(1).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>( 32 - i, i), Interaction.PNJ));
             }
-            map.add(MapConfig.addTransitionCell(Sprite.LEFT_ARROW, new Pair<>(0, 2), Direction.LEFT));
+            this.maps.get(1).add(this.addTransitionCell(Sprite.LEFT_ARROW, new Pair<>(0, 2), Direction.LEFT));
         }
-        else if(this.equals(MAP3)){
-            MapConfig.configMap(this.map, position, sprite);
+        else if(nbMap == 2){
+            //MapConfig.configMap(this.map, position, sprite);
             for (int i = 0; i < 10; ++i){
                 if(i%2 == 0)
-                    map.add(MapConfig.addBlockingCell(Sprite.PNJ1, new Pair<>(i+5, 0), Interaction.PNJ2));
+                    this.maps.get(2).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>(i+5, 0), Interaction.PNJ2));
                 else
-                    map.add(MapConfig.addBlockingCell(Sprite.PNJ1, new Pair<>( i+5, 1), Interaction.PNJ));
+                    this.maps.get(2).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>( i+5, 1), Interaction.PNJ));
             }
-            map.add(MapConfig.addTransitionCell(Sprite.DOWN_ARROW, new Pair<>(4, 11), Direction.DOWN));
+            this.maps.get(2).add(this.addTransitionCell(Sprite.DOWN_ARROW, new Pair<>(4, 11), Direction.DOWN));
         }
-
-
     }
 }

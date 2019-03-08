@@ -69,11 +69,9 @@ public class GameLayout {
 
     public void setGridPane(GridPane gridPane) {
         this.pane.getChildren().remove(this.gridPane);
-        if(this.gridPane.getChildren().size() > 0)
-            this.gridPane.getChildren().remove(1, this.gridPane.getChildren().size());
-        System.out.println( this.gridPane.getChildren().size());
+       //if(this.gridPane.getChildren().size() > 0)
+       //    this.gridPane.getChildren().remove(1, this.gridPane.getChildren().size());
         this.gridPane = gridPane;
-        System.out.println( this.gridPane.getChildren().size());
         this.pane.getChildren().add(this.gridPane);
     }
 
