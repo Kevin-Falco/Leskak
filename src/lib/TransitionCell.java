@@ -2,8 +2,10 @@ package lib;
 
 import config.*;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 
 public class TransitionCell extends Cell {
@@ -41,8 +43,23 @@ public class TransitionCell extends Cell {
                                         Player.getINSTANCE().getPosition().getValue());
                                 break;
                         }
+
+                        Movement.getMap().getGridPane().getChildren().remove(Movement.getMap().getGridPane().getChildren().size() - 1);
                         MapConfig.getINSTANCE().configMap(nextMap, new Pair<>(nextPosition.getKey(),nextPosition.getValue()), Player.getINSTANCE().getSprite());
-                        //nextMap.setupMap(new Pair<>(nextPosition.getKey(),nextPosition.getValue()),Player.getINSTANCE().getSprite());
+
+                        Player player = Player.getINSTANCE();
+                        Movement.setLastSprite(Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue()));
+                        ImageView lastSprite = Movement.getLastSprite();
+                        System.out.println(player.getPosition().getKey() + ":" + player.getPosition().getValue());
+                        if (lastSprite != null){
+                            System.out.println("sprite remplacé par pnj IN THREAD " + lastSprite.getImage().getUrl());
+                            lastSprite.setVisible(false);
+                        }
+
+                        ImageView imageView = (ImageView) Movement.getMap().getGridPane().getChildren().get(Movement.getMap().getGridPane().getChildren().size() -1);
+                        imageView.setImage(new Image(player.getSprite().getSpritePath()));
+                        GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
+
                         break;
                     }
                     ++i;

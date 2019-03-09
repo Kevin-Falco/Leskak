@@ -102,9 +102,9 @@ public class MapConfig {
             //MapConfig.configMap(this.map, position, sprite);
             for (int i = 0; i < 10; ++i){
                 if(i%2 == 0)
-                    this.maps.get(1).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>(32 - i, i), Interaction.PNJ2));
+                    this.maps.get(1).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>(31 - i, i), Interaction.PNJ2));
                 else
-                    this.maps.get(1).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>( 32 - i, i), Interaction.PNJ));
+                    this.maps.get(1).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>( 31 - i, i), Interaction.PNJ));
             }
             this.maps.get(1).add(this.addTransitionCell(Sprite.LEFT_ARROW, new Pair<>(0, 2), Direction.LEFT));
         }

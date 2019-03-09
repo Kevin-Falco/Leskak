@@ -16,6 +16,7 @@ import javafx.util.Pair;
 public class Movement {
     private static Map map = new Map();
     private static ImageView lastSprite;
+    private static int nb = 0;
 
     public static void configPlayerEventHandler(Scene scene) {
         KeyboardConfig k = KeyboardConfig.ENTER;
@@ -28,9 +29,9 @@ public class Movement {
                 transitionCell = (TransitionCell) getCell(player.getPosition().getKey(), player.getPosition().getValue());
             }
             if (lastSprite != null){
-                System.out.println("sprite remis en place");
-                //if(!isTransitionCell)
-                    GridPane.setConstraints(lastSprite, player.getPosition().getKey(), player.getPosition().getValue());
+                System.out.println("sprite remis en place " + lastSprite.getImage().getUrl());
+                //GridPane.setConstraints(lastSprite, player.getPosition().getKey(), player.getPosition().getValue());
+                lastSprite.setVisible(true);
             }
             else{
                 //System.out.println("oups1");
@@ -72,38 +73,24 @@ public class Movement {
                 player.setDirection(Direction.LEFT);
             }
 
-            lastSprite = Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue());
-
-            if (lastSprite != null){
-                System.out.println("sprite remplacé par pnj");
-                GridPane.setColumnIndex(lastSprite, 32);
-                GridPane.setRowIndex(lastSprite, 0);
-                GridPane.setConstraints(lastSprite, 32, 0 );
-            }
-            else{
-                //System.out.println("oups2");
-            }
-            ImageView imageView = null;
-            if(Movement.getMap().getGridPane().getChildren().get(0) instanceof Group){
-                Group g = (Group) Movement.getMap().getGridPane().getChildren().get(0);
-                Line line = (Line) g.getChildren().get(0);
-                //System.out.println((line.toString()));
-                imageView = (ImageView) Movement.map.getGridPane().getChildren().get(1);
-            }
-            else {
-                //System.out.println(Movement.getMap().getGridPane().getChildren().get(0));
-                imageView = (ImageView) Movement.map.getGridPane().getChildren().get(0);
-            }
-            imageView = (ImageView) Movement.map.getGridPane().getChildren().get(Movement.map.getGridPane().getChildren().size() -1);
-            imageView.setImage(new Image(player.getSprite().getSpritePath()));
-            GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
-
             if(isTransitionCell && transitionCell.getDirection().equals(player.getDirection())){
                 GameLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, transitionCell.getEventHandler());
-                if (lastSprite != null){
-                    lastSprite = null;
-                }
+                System.out.println("Changement de map");
             }
+            else{
+                lastSprite = Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue());
+                System.out.println(player.getPosition().getKey() + ":" + player.getPosition().getValue());
+
+                if (lastSprite != null){
+                    lastSprite.setVisible(false);
+                }
+
+                ImageView imageView = (ImageView) Movement.map.getGridPane().getChildren().get(Movement.map.getGridPane().getChildren().size() -1);
+                imageView.setImage(new Image(player.getSprite().getSpritePath()));
+                GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
+            }
+
+
         });
     }
 
@@ -147,6 +134,14 @@ public class Movement {
             }
         }
         return null;
+    }
+
+    public static ImageView getLastSprite() {
+        return lastSprite;
+    }
+
+    public static void setLastSprite(ImageView lastSprite) {
+        Movement.lastSprite = lastSprite;
     }
 
     public static Map getMap() {
