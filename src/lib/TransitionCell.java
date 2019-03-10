@@ -52,7 +52,6 @@ public class TransitionCell extends Cell {
                         ImageView lastSprite = Movement.getLastSprite();
                         System.out.println(player.getPosition().getKey() + ":" + player.getPosition().getValue());
                         if (lastSprite != null){
-                            System.out.println("sprite remplacé par pnj IN THREAD " + lastSprite.getImage().getUrl());
                             lastSprite.setVisible(false);
                         }
 

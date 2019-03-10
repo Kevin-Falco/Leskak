@@ -3,7 +3,9 @@ package config;
 public enum MapArrangement {
     MAP1(3,0,2,0),
     MAP2(0,0,0,1),
-    MAP3(0,1,0,0);
+    MAP3(0,1,0,0),
+    MAP4(0,0,0,0),
+    ;
 
     private int up;
     private int down;

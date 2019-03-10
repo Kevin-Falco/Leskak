@@ -12,8 +12,8 @@ public class GameLayout {
     private GridPane gridPane;
     private Pane pane;
 
-    private static final Integer WIDTH= 1600;
-    private static final Integer HEIGHT = 900;
+    private static final Integer WIDTH= 1200;//1600;
+    private static final Integer HEIGHT = 675;//900;
     private static final Scene SCENE= new Scene(new Parent(){}, GameLayout.WIDTH, GameLayout.HEIGHT);
     private static final GameLayout INSTANCE = new GameLayout();
 

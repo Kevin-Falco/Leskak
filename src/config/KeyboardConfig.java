@@ -17,7 +17,8 @@ public enum KeyboardConfig {
                     (player.getDirection() == Direction.UP ? player.getPosition().getValue() - 1 : player.getPosition().getValue());
             while(Movement.getMap().getBlockingCellIterator().hasNext()){
                 BlockingCell blockingCell = Movement.getMap().getBlockingCellIterator().next();
-                if(blockingCell.getPosition().getKey().equals(col) && blockingCell.getPosition().getValue().equals(row) ){
+                if(blockingCell.getPosition().getKey().equals(col) && blockingCell.getPosition().getValue().equals(row)
+                        && blockingCell.getInteraction() != null ){
                     Movement.getMap().getBlockingCellIterator().reset();
                     isAPNJ = true;
                     blockingCellInteract = blockingCell;
@@ -28,7 +29,7 @@ public enum KeyboardConfig {
                 GameLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, blockingCellInteract.getInteraction().getEventHandler());
             }
             else{
-                DialogLayout.getINSTANCE().setText("YOUPIIWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWI");
+                DialogLayout.getINSTANCE().setText("YOUPIIWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWI");
                 System.out.println("YOUPI");
             }
         }

@@ -16,7 +16,7 @@ import javafx.util.Pair;
 public class Movement {
     private static Map map = new Map();
     private static ImageView lastSprite;
-    private static int nb = 0;
+    private static boolean mooved = false;
 
     public static void configPlayerEventHandler(Scene scene) {
         KeyboardConfig k = KeyboardConfig.ENTER;
@@ -29,12 +29,7 @@ public class Movement {
                 transitionCell = (TransitionCell) getCell(player.getPosition().getKey(), player.getPosition().getValue());
             }
             if (lastSprite != null){
-                System.out.println("sprite remis en place " + lastSprite.getImage().getUrl());
-                //GridPane.setConstraints(lastSprite, player.getPosition().getKey(), player.getPosition().getValue());
                 lastSprite.setVisible(true);
-            }
-            else{
-                //System.out.println("oups1");
             }
             if (key.getCode() == Key.UP.getKeyCode()) {
                 player.setPosition(new Pair<>(
@@ -44,6 +39,7 @@ public class Movement {
                                 player.getPosition().getValue() :  player.getPosition().getValue() - 1)));
                 player.setSprite(Sprite.UP);
                 player.setDirection(Direction.UP);
+                Movement.mooved = true;
             }
             if (key.getCode() == Key.DOWN.getKeyCode()) {
                 player.setPosition(new Pair<>(
@@ -53,6 +49,7 @@ public class Movement {
                                 player.getPosition().getValue() :  player.getPosition().getValue() + 1));
                 player.setSprite(Sprite.DOWN);
                 player.setDirection(Direction.DOWN);
+                Movement.mooved = true;
             }
             if (key.getCode() == Key.RIGHT.getKeyCode()) {
                 player.setPosition(new Pair<>(
@@ -62,6 +59,7 @@ public class Movement {
                         player.getPosition().getValue()));
                 player.setSprite(Sprite.RIGHT);
                 player.setDirection(Direction.RIGHT);
+                Movement.mooved = true;
             }
             if (key.getCode() == Key.LEFT.getKeyCode()) {
                 player.setPosition(new Pair<>(
@@ -71,15 +69,17 @@ public class Movement {
                         player.getPosition().getValue()));
               player.setSprite(Sprite.LEFT);
                 player.setDirection(Direction.LEFT);
+                Movement.mooved = true;
+            }
+            if(key.getCode() != Key.ENTER.getKeyCode()){
+                DialogLayout.getINSTANCE().removeContent();
             }
 
             if(isTransitionCell && transitionCell.getDirection().equals(player.getDirection())){
                 GameLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, transitionCell.getEventHandler());
-                System.out.println("Changement de map");
             }
             else{
                 lastSprite = Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue());
-                System.out.println(player.getPosition().getKey() + ":" + player.getPosition().getValue());
 
                 if (lastSprite != null){
                     lastSprite.setVisible(false);
@@ -89,8 +89,6 @@ public class Movement {
                 imageView.setImage(new Image(player.getSprite().getSpritePath()));
                 GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
             }
-
-
         });
     }
 
@@ -150,5 +148,13 @@ public class Movement {
 
     public static void setMap(Map map) {
         Movement.map = map;
+    }
+
+    public static boolean isMooved() {
+        return mooved;
+    }
+
+    public static void setMooved(boolean mooved) {
+        Movement.mooved = mooved;
     }
 }
