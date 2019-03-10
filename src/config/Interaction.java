@@ -17,10 +17,9 @@ public enum Interaction {
         PNJ.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMooved()){
                 Movement.setMooved(false);
-                DialogLayout.getINSTANCE().setText("I'M A PNJ");
+                DialogLayout.getINSTANCE().setText("V'la des sous. Enjoy");
                 System.out.println("I'M A PNJ");
-                InventoryConfig inventoryConfig = InventoryConfig.OBJ1;
-                Inventory.getINSTANCE().add(inventoryConfig);
+                DialogLayout.getINSTANCE().addMoney(50);
             }
             GameLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PNJ.getEventHandler());
         });

@@ -96,7 +96,7 @@ public class MapConfig {
             this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ2, new Pair<>(8, 9), Interaction.PNJ1));
             for (int i = 0; i < 10; ++i){
                 if(i%2 == 0)
-                    this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>(i, i)));
+                    this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>(i, i), Interaction.PNJ));
                 else
                     this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>(i, i)));
             }
@@ -104,7 +104,6 @@ public class MapConfig {
             this.maps.get(nbMap).add(this.addTransitionCell(Sprite.UP_ARROW, new Pair<>(4, 0), Direction.UP));
             this.maps.get(nbMap).add(this.addBlockingCell(Sprite.ROCKET1, new Pair<>(15, 5), Interaction.ROCKET));
             this.maps.get(nbMap).add(this.addBlockingCell(Sprite.ROCKET2, new Pair<>(15, 6), Interaction.ROCKET));
-
         }
         else if(nbMap == 1){
             this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ3, new Pair<>(29, 6), Interaction.PNJ2));

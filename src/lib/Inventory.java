@@ -2,15 +2,18 @@ package lib;
 
 import config.InventoryConfig;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 
 public class Inventory {
     private GridPane gridPane;
+
 
     private static final Inventory INSTANCE = new Inventory();
 
@@ -23,11 +26,11 @@ public class Inventory {
         this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)GameLayout.getWIDTH()/9));
         this.gridPane.getRowConstraints().add(new RowConstraints(  (float)GameLayout.getHEIGHT()/6));
         this.gridPane.getRowConstraints().add(new RowConstraints(  (float)GameLayout.getHEIGHT()/6));
-
     }
 
     public GridPane getGridPane() {
-        return gridPane;
+
+        return this.gridPane;
     }
 
     public static Inventory getINSTANCE() {
@@ -50,4 +53,6 @@ public class Inventory {
     public void remove(ImageView imageView){
         this.getGridPane().getChildren().remove(imageView);
     }
+
+
 }

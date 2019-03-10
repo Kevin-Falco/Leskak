@@ -67,7 +67,7 @@ public enum Action {
 
     private EventHandler eventHandler;
 
-    Action() { }
+    Action() {}
 
     public EventHandler getEventHandler() {
         return eventHandler;
