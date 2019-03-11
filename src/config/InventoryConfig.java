@@ -5,12 +5,12 @@ import javafx.util.Pair;
 
 
 public enum InventoryConfig {
-    OBJ1("Plaque de tôle", new ImageView("sprite/sprite.jpg"), new Pair<>(0,0)),
-    OBJ2("Panneau de commande", new ImageView("sprite/bas.jpg"), new Pair<>(1,0)),
-    OBJ3("Dynamite", new ImageView("sprite/haut.png"), new Pair<>(2,0)),
-    OBJ4("Réacteurs", new ImageView("sprite/pikachu.PNG"), new Pair<>(0,1)),
-    OBJ5("Rayon laser", new ImageView("sprite/dracaufeu.PNG"), new Pair<>(1,1)),
-    OBJ6("Bague de Rokanh", new ImageView("sprite/ectoplasma.PNG"), new Pair<>(2,1));
+    OBJ1("Plaque de tôle", new ImageView("sprite/player_up_p1.png"), new Pair<>(0,0)),
+    OBJ2("Panneau de commande", new ImageView("sprite/player_down_p1.png"), new Pair<>(1,0)),
+    OBJ3("Dynamite", new ImageView("sprite/player_right_p1.png"), new Pair<>(2,0)),
+    OBJ4("Réacteurs", new ImageView("sprite/player_left_p1.png"), new Pair<>(0,1)),
+    OBJ5("Rayon laser", new ImageView("sprite/grass.png"), new Pair<>(1,1)),
+    OBJ6("Bague de Rokanh", new ImageView("sprite/tree.png"), new Pair<>(2,1));
 
     private String name;
     private ImageView imageView;
