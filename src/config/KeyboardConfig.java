@@ -29,7 +29,7 @@ public enum KeyboardConfig {
                 GameLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, blockingCellInteract.getInteraction().getEventHandler());
             }
             else{
-                DialogLayout.getINSTANCE().setText("YOUPIIWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWI");
+                DialogLayout.getINSTANCE().setText("YOUPI");
                 System.out.println("YOUPI");
             }
         }

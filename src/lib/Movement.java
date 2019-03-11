@@ -4,19 +4,17 @@ import config.Direction;
 import config.Key;
 import config.KeyboardConfig;
 import config.Sprite;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Line;
 import javafx.util.Pair;
 
 public class Movement {
     private static Map map = new Map();
     private static ImageView lastSprite;
-    private static boolean mooved = false;
+    private static boolean moved = false;
 
     public static void configPlayerEventHandler(Scene scene) {
         KeyboardConfig k = KeyboardConfig.ENTER;
@@ -39,7 +37,7 @@ public class Movement {
                                 player.getPosition().getValue() :  player.getPosition().getValue() - 1)));
                 player.setSprite(Sprite.UP);
                 player.setDirection(Direction.UP);
-                Movement.mooved = true;
+                Movement.moved = true;
             }
             if (key.getCode() == Key.DOWN.getKeyCode()) {
                 player.setPosition(new Pair<>(
@@ -49,7 +47,7 @@ public class Movement {
                                 player.getPosition().getValue() :  player.getPosition().getValue() + 1));
                 player.setSprite(Sprite.DOWN);
                 player.setDirection(Direction.DOWN);
-                Movement.mooved = true;
+                Movement.moved = true;
             }
             if (key.getCode() == Key.RIGHT.getKeyCode()) {
                 player.setPosition(new Pair<>(
@@ -59,7 +57,7 @@ public class Movement {
                         player.getPosition().getValue()));
                 player.setSprite(Sprite.RIGHT);
                 player.setDirection(Direction.RIGHT);
-                Movement.mooved = true;
+                Movement.moved = true;
             }
             if (key.getCode() == Key.LEFT.getKeyCode()) {
                 player.setPosition(new Pair<>(
@@ -69,7 +67,7 @@ public class Movement {
                         player.getPosition().getValue()));
               player.setSprite(Sprite.LEFT);
                 player.setDirection(Direction.LEFT);
-                Movement.mooved = true;
+                Movement.moved = true;
             }
             if(key.getCode() != Key.ENTER.getKeyCode()){
                 DialogLayout.getINSTANCE().removeContent();
@@ -150,11 +148,11 @@ public class Movement {
         Movement.map = map;
     }
 
-    public static boolean isMooved() {
-        return mooved;
+    public static boolean isMoved() {
+        return moved;
     }
 
-    public static void setMooved(boolean mooved) {
-        Movement.mooved = mooved;
+    public static void setMoved(boolean moved) {
+        Movement.moved = moved;
     }
 }
