@@ -117,13 +117,21 @@ public class MapConfig {
             Map m = maps.get(0);
 
             for (int i = 12; i <= 14; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 0), Direction.UP));
-            for (int i = 3; i <= 5; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(31, i), Direction.RIGHT));
+            for (int i = 2; i <= 4; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(31, i), Direction.RIGHT));
         }
 
         private static void setupMap1(){
             Map m = maps.get(1);
 
-            for (int i = 3; i <= 5; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(0, i), Direction.LEFT));
+            /*LIGNE 1*/
+            for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 0)));
+            /*LIGNE 2*/
+            for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
+            /*LIGNE 3*/
+            for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 2), Direction.LEFT));
+            for (int i = 1; i <= 1; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 2)));
+            for (int i = 2; i <= 31; ++i) m.add(addCell(Sprite.TREE, new Pair<>(i, 2)));
+
         }
 
         private static void setupMap2(){
@@ -216,8 +224,8 @@ public class MapConfig {
             /*LIGNE 12*/
             for (int i = 0; i <= 11; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
             for (int i = 12; i <= 14; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 11), Direction.DOWN));
-            for (int i = 15; i <= 22; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
-            for (int i = 23; i <= 24; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 11)));
+            for (int i = 15; i <= 21; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
+            for (int i = 22; i <= 24; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 11)));
             for (int i = 25; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
         }
     }
