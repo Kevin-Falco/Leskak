@@ -2,10 +2,10 @@ package config;
 
 public enum Sprite {
 
-    UP("sprite/player_up_p1"),
-    DOWN("sprite/player_down_p1"),
-    RIGHT("sprite/player_right_p1"),
-    LEFT("sprite/player_left_p1"),
+    UP("sprite/player_up_p1.png"),
+    DOWN("sprite/player_down_p1.png"),
+    RIGHT("sprite/player_right_p1.png"),
+    LEFT("sprite/player_left_p1.png"),
 
     GRASS("sprite/grass.png"),
     BUSH("sprite/bush.png"),
