@@ -9,8 +9,14 @@ public enum Sprite {
 
     GRASS("sprite/grass.png"),
     BUSH("sprite/bush.png"),
-    WATER("sprite/water.png"),
     TREE("sprite/tree.png"),
+    WATER("sprite/water.png"),
+
+    HOUSE_TOP_LEFT("sprite/house_top_left.png"),
+    HOUSE_TOP_RIGHT("sprite/house_top_right.png"),
+    HOUSE_BOTTOM_LEFT("sprite/house_bottom_left.png"),
+    HOUSE_BOTTOM_RIGHT("sprite/house_bottom_right.png"),
+
     CINEMATIC("sprite/eevee_evolution.jpg"),
     ;
 
