@@ -130,8 +130,24 @@ public class MapConfig {
             /*LIGNE 3*/
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 2), Direction.LEFT));
             for (int i = 1; i <= 1; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 2)));
-            for (int i = 2; i <= 31; ++i) m.add(addCell(Sprite.TREE, new Pair<>(i, 2)));
+            for (int i = 2; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
+            /*LIGNE 4*/
+            for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 3), Direction.LEFT));
+            for (int i = 1; i <= 2; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 3)));
+            for (int i = 3; i <= 11; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
+            for (int i = 12; i <= 16; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 3)));
+            for (int i = 17; i <= 26; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
+            for (int i = 27; i <= 29; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 3)));
+            for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
 
+            /*LIGNE 5*/
+            for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 4), Direction.LEFT));
+            for (int i = 1; i <= 4; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 4)));
+            for (int i = 5; i <= 10; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 4)));
+            for (int i = 11; i <= 17; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 4)));
+            for (int i = 18; i <= 25; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 4)));
+            for (int i = 26; i <= 30; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 4)));
+            for (int i = 31; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 4)));
         }
 
         private static void setupMap2(){
