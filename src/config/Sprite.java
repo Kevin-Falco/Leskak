@@ -16,6 +16,9 @@ public enum Sprite {
     LEFT_ARROW("sprite/gauche.png"),
     ROCKET1("sprite/fusee1.png"),
     ROCKET2("sprite/fusee.png"),
+    GRASS("sprite/grass.png"),
+    WATER("sprite/water.jpeg"),
+    BUSH("sprite/bush.jpg")
     ;
 
     private String spritePath;
