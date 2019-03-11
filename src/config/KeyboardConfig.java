@@ -30,7 +30,6 @@ public enum KeyboardConfig {
             }
             else{
                 DialogLayout.getINSTANCE().setText("YOUPI");
-                System.out.println("YOUPI");
             }
         }
     });
@@ -51,9 +50,6 @@ public enum KeyboardConfig {
     public void setKey(Key key) {
         this.key = key;
         this.eventHandler = (EventHandler<KeyEvent>) event -> {
-            if(event.getCode() == key.getKeyCode()){
-                System.out.println("YOUPI");
-            }
         };
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, this.eventHandler);
     }
