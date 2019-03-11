@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         primaryStage.setTitle("LESKAK");
-        Scene scene = GameLayout.getSCENE();
+        Scene scene = MainLayout.getSCENE();
         scene.setRoot(MainLayout.getINSTANCE().getGridPane());
         Movement.configPlayerEventHandler(scene);
         MapConfig.getINSTANCE();

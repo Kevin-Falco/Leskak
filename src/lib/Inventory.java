@@ -21,11 +21,11 @@ public class Inventory {
         this.gridPane = new GridPane();
         this.gridPane.setGridLinesVisible(true);
 
-        this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)GameLayout.getWIDTH()/9));
-        this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)GameLayout.getWIDTH()/9));
-        this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)GameLayout.getWIDTH()/9));
-        this.gridPane.getRowConstraints().add(new RowConstraints(  (float)GameLayout.getHEIGHT()/6));
-        this.gridPane.getRowConstraints().add(new RowConstraints(  (float)GameLayout.getHEIGHT()/6));
+        this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)MainLayout.getWIDTH()/9));
+        this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)MainLayout.getWIDTH()/9));
+        this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)MainLayout.getWIDTH()/9));
+        this.gridPane.getRowConstraints().add(new RowConstraints(  (float)MainLayout.getHEIGHT()/6));
+        this.gridPane.getRowConstraints().add(new RowConstraints(  (float)MainLayout.getHEIGHT()/6));
     }
 
     public GridPane getGridPane() {

@@ -74,7 +74,7 @@ public class Movement {
             }
 
             if(isTransitionCell && transitionCell.getDirection().equals(player.getDirection())){
-                GameLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, transitionCell.getEventHandler());
+                MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, transitionCell.getEventHandler());
             }
             else{
                 lastSprite = Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue());

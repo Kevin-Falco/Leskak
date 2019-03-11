@@ -7,7 +7,9 @@ public enum Key {
     DOWN(KeyCode.DOWN),
     RIGHT(KeyCode.RIGHT),
     LEFT(KeyCode.LEFT),
-    ENTER(KeyCode.ENTER);
+    ENTER(KeyCode.ENTER),
+    SPACE(KeyCode.SPACE),
+    ;
 
     private KeyCode keyCode;
 

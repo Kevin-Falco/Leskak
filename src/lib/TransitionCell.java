@@ -64,7 +64,7 @@ public class TransitionCell extends Cell {
                     ++i;
                 }
             }
-            GameLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, this.getEventHandler());
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, this.getEventHandler());
         };
     }
 

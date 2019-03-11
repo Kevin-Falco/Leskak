@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class MapConfig {
     private static final MapConfig INSTANCE = new MapConfig();
 
-    private ArrayList<Map> maps;
+    private static ArrayList<Map> maps;
 
     private MapConfig() {
         this.maps = new ArrayList<>();
@@ -21,11 +21,11 @@ public class MapConfig {
             Map newMap = new Map();
             for(int i = 0; i < GameLayout.getINSTANCE().getNbColumns(); ++i){
                 newMap.getGridPane().getColumnConstraints()
-                        .add(new ColumnConstraints((float)GameLayout.getWIDTH()/GameLayout.getINSTANCE().getNbColumns()));
+                        .add(new ColumnConstraints((float)MainLayout.getWIDTH()/GameLayout.getINSTANCE().getNbColumns()));
             }
             for(int i = 0 ; i < GameLayout.getINSTANCE().getNbRows(); ++i){
                 newMap.getGridPane().getRowConstraints()
-                        .add(new RowConstraints(  (float)GameLayout.getHEIGHT()*2/3/GameLayout.getINSTANCE().getNbRows()));
+                        .add(new RowConstraints(  (float)MainLayout.getHEIGHT()*2/3/GameLayout.getINSTANCE().getNbRows()));
             }
             this.maps.add(newMap);
             setupMap(nbMap);
@@ -41,29 +41,7 @@ public class MapConfig {
         return INSTANCE;
     }
 
-    private BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position){
-        BlockingCell pnj = new BlockingCell(new ImageView( sprite.getSpritePath()), position);
-        GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
-        return pnj;
-    }
 
-    private BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position, Interaction interaction){
-        BlockingCell pnj = new BlockingCell(new ImageView( sprite.getSpritePath()), position, interaction);
-        GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
-        return pnj;
-    }
-
-    private TransitionCell addTransitionCell(Sprite sprite, Pair<Integer, Integer> position, Direction direction){
-        TransitionCell pnj = new TransitionCell(new ImageView( sprite.getSpritePath()), position, direction);
-        GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
-        return pnj;
-    }
-
-    private Cell addCell(Sprite sprite, Pair<Integer, Integer> position){
-        Cell pnj = new Cell(new ImageView( sprite.getSpritePath()), position);
-        GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
-        return pnj;
-    }
 
     public void configMap(int nbMap){
         if(nbMap == 0){
@@ -88,66 +66,75 @@ public class MapConfig {
 
         ImageView imageView = new ImageView(player.getSprite().getSpritePath());
         imageView.setPreserveRatio(true);
-        imageView.setFitWidth(37);//(50);
-        this.maps.get(nbMap).getGridPane().setGridLinesVisible(true);
+        imageView.setFitWidth(50);//(37);
+
+        //MapConfig.maps.get(nbMap).getGridPane().setGridLinesVisible(true);
 
         GridPane.setConstraints(imageView, position.getKey(),position.getValue());
 
-        this.maps.get(nbMap).getGridPane().getChildren().add(imageView);
+        MapConfig.maps.get(nbMap).getGridPane().getChildren().add(imageView);
 
-        GameLayout.getINSTANCE().setGridPane(this.maps.get(nbMap).getGridPane());
+        GameLayout.getINSTANCE().setGridPane(MapConfig.maps.get(nbMap).getGridPane());
     }
 
     public void setupMap(int nbMap){
         if(nbMap == 0){
-            Map m = this.maps.get(nbMap);
+            MapSetup.setupMap0();
+        }
+    }
+
+    private static class MapSetup{
+
+        private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position){
+            BlockingCell pnj = new BlockingCell(new ImageView( sprite.getSpritePath()), position);
+            GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
+            return pnj;
+        }
+
+        private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position, Interaction interaction){
+            BlockingCell pnj = new BlockingCell(new ImageView( sprite.getSpritePath()), position, interaction);
+            GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
+            return pnj;
+        }
+
+        private static TransitionCell addTransitionCell(Sprite sprite, Pair<Integer, Integer> position, Direction direction){
+            TransitionCell pnj = new TransitionCell(new ImageView( sprite.getSpritePath()), position, direction);
+            GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
+            return pnj;
+        }
+
+        private static Cell addCell(Sprite sprite, Pair<Integer, Integer> position){
+            Cell pnj = new Cell(new ImageView( sprite.getSpritePath()), position);
+            GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
+            return pnj;
+        }
+
+        public static void setupMap0(){
+            Map m = maps.get(0);
 
             /*LIGNE 1*/
-            for (int i = 0; i <= 27; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 0)));
-            for (int i = 28; i <= 31; ++i) m.add(this.addBlockingCell(Sprite.WATER, new Pair<>(i, 0)));
+            for (int i = 0; i <= 27; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 0)));
+            for (int i = 28; i <= 31; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 0)));
             /*LIGNE 2*/
-            for (int i = 0; i <= 9; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
-            for (int i = 10; i <= 16; ++i) m.add(this.addCell(Sprite.GRASS, new Pair<>(i, 1)));
-            for (int i = 17; i <= 25; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
-            for (int i = 25; i <= 29; ++i) m.add(this.addBlockingCell(Sprite.WATER, new Pair<>(i, 1)));
-            for (int i = 30; i <= 31; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
+            for (int i = 0; i <= 9; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
+            for (int i = 10; i <= 16; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 1)));
+            for (int i = 17; i <= 25; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
+            for (int i = 25; i <= 29; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 1)));
+            for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
             /*LIGNE 3*/
-            for (int i = 0; i <= 6; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
-            for (int i = 7; i <= 15; ++i) m.add(this.addCell(Sprite.GRASS, new Pair<>(i, 2)));
-            for (int i = 16; i <= 16; ++i) m.add(this.addBlockingCell(Sprite.BUSH, new Pair<>(i, 2)));
-            for (int i = 17; i <= 19; ++i) m.add(this.addCell(Sprite.GRASS, new Pair<>(i, 2)));
-            for (int i = 20; i <= 25; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
-            for (int i = 25; i <= 29; ++i) m.add(this.addBlockingCell(Sprite.WATER, new Pair<>(i, 2)));
-            for (int i = 30; i <= 31; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
+            for (int i = 0; i <= 6; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
+            for (int i = 7; i <= 15; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 2)));
+            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.BUSH, new Pair<>(i, 2), Interaction.PNJ2));
+            for (int i = 17; i <= 19; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 2)));
+            for (int i = 20; i <= 25; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
+            for (int i = 25; i <= 29; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 2)));
+            for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
             /*LIGNE 4*/
-            for (int i = 0; i <= 5; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
-            for (int i = 6; i <= 20; ++i) m.add(this.addCell(Sprite.GRASS, new Pair<>(i, 3)));
-            for (int i = 21; i <= 23; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
-            for (int i = 24; i <= 27; ++i) m.add(this.addBlockingCell(Sprite.WATER, new Pair<>(i, 3)));
-            for (int i = 28; i <= 31; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
-        }
-        else if(nbMap == 1){
-            this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ3, new Pair<>(29, 6), Interaction.PNJ2));
-            for (int i = 0; i < 10; ++i){
-                if(i%2 == 0)
-                    this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>(31 - i, i)));
-                else
-                    this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>( 31 - i, i)));
-            }
-            this.maps.get(nbMap).add(this.addTransitionCell(Sprite.LEFT_ARROW, new Pair<>(0, 2), Direction.LEFT));
-        }
-        else if(nbMap == 2){
-            this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ4, new Pair<>(30, 3), Interaction.PNJ3));
-            for (int i = 0; i < 10; ++i){
-                if(i%2 == 0)
-                    this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>(i+5, 0)));
-                else
-                    this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>( i+5, 1)));
-            }
-            this.maps.get(nbMap).add(this.addTransitionCell(Sprite.DOWN_ARROW, new Pair<>(4, 11), Direction.DOWN));
-        }
-        else if(nbMap == 3){
-            this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ1, new Pair<>(16, 0), Interaction.MASTER));
+            for (int i = 0; i <= 5; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
+            for (int i = 6; i <= 20; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 3)));
+            for (int i = 21; i <= 23; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
+            for (int i = 24; i <= 27; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 3)));
+            for (int i = 28; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
         }
     }
 }

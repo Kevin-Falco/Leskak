@@ -26,7 +26,7 @@ public enum KeyboardConfig {
                 }
             }
             if(isAPNJ){
-                GameLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, blockingCellInteract.getInteraction().getEventHandler());
+                MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, blockingCellInteract.getInteraction().getEventHandler());
             }
             else{
                 DialogLayout.getINSTANCE().setText("YOUPI");
@@ -41,7 +41,7 @@ public enum KeyboardConfig {
     KeyboardConfig(Key key, EventHandler eventHandler) {
         this.key = key;
         this.eventHandler = eventHandler;
-        GameLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, this.eventHandler);
+        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, this.eventHandler);
     }
 
     public Key getKey() {
@@ -55,6 +55,6 @@ public enum KeyboardConfig {
                 System.out.println("YOUPI");
             }
         };
-        GameLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, this.eventHandler);
+        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, this.eventHandler);
     }
 }

@@ -2,7 +2,9 @@ package config;
 
 
 import javafx.event.EventHandler;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import lib.*;
 
 public enum Interaction {
@@ -11,7 +13,8 @@ public enum Interaction {
     PNJ2,
     PNJ3,
     MASTER,
-    ROCKET;
+    ROCKET,
+    RETURN_GAME;
 
     static {
         PNJ.eventHandler = ((EventHandler<KeyEvent>) event -> {
@@ -21,7 +24,7 @@ public enum Interaction {
                 System.out.println("I'M A PNJ");
                 DialogLayout.getINSTANCE().addMoney(50);
             }
-            GameLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PNJ.getEventHandler());
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PNJ.getEventHandler());
         });
         PNJ1.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
@@ -30,7 +33,7 @@ public enum Interaction {
                 if(!Inventory.getINSTANCE().getGridPane().getChildren().contains(InventoryConfig.OBJ4.getImageView()))
                     DialogLayout.getINSTANCE().addButton("Prendre la statue", Action.GIVE_OBJECT4.getEventHandler());
             }
-            GameLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PNJ1.getEventHandler());
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PNJ1.getEventHandler());
         });
         PNJ2.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
@@ -39,7 +42,7 @@ public enum Interaction {
                 if(!Inventory.getINSTANCE().getGridPane().getChildren().contains(InventoryConfig.OBJ5.getImageView()))
                     DialogLayout.getINSTANCE().addButton("Prendre la statue", Action.GIVE_OBJECT5.getEventHandler());
             }
-            GameLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PNJ2.getEventHandler());
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PNJ2.getEventHandler());
         });
         PNJ3.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
@@ -48,14 +51,22 @@ public enum Interaction {
                 if(!Inventory.getINSTANCE().getGridPane().getChildren().contains(InventoryConfig.OBJ6.getImageView()))
                     DialogLayout.getINSTANCE().addButton("Prendre la statue", Action.GIVE_OBJECT6.getEventHandler());
             }
-            GameLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PNJ3.getEventHandler());
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PNJ3.getEventHandler());
         });
         MASTER.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
                 DialogLayout.getINSTANCE().setText("Coucou je suis le maitre. Et t'es bloqué ici. Lol.");
+                Pane pane = new Pane();
+                ImageView imageView = new ImageView(Sprite.CINEMATIC.getSpritePath());
+                imageView.setPreserveRatio(true);
+                imageView.setFitWidth(MainLayout.getWIDTH());
+                pane.getChildren().add(imageView);
+                MainLayout.getSCENE().setRoot(pane);
+                MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Interaction.RETURN_GAME.getEventHandler() );
+
             }
-            GameLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.MASTER.getEventHandler());
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.MASTER.getEventHandler());
         });
         ROCKET.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
@@ -71,7 +82,12 @@ public enum Interaction {
                 }
                 System.out.println("I'M A ROCKET");
             }
-            GameLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());
+        });
+        RETURN_GAME.eventHandler = ((EventHandler<KeyEvent>) event -> {
+            if(event.getCode() == Key.SPACE.getKeyCode()){
+                MainLayout.getSCENE().setRoot(MainLayout.getINSTANCE().getGridPane());
+            }
         });
     }
 

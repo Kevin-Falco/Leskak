@@ -11,7 +11,7 @@ public class Cell {
         this.sprite = sprite;
         this.position = position;
         this.sprite.setPreserveRatio(true);
-        this.sprite.setFitWidth(37);//(50);
+        this.sprite.setFitWidth(50);//(37);
     }
 
     public ImageView getSprite() {

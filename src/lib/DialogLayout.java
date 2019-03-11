@@ -21,7 +21,7 @@ public class DialogLayout {
 
     private DialogLayout() {
         this.text = new Text();
-        this.text.setWrappingWidth((float) (GameLayout.getWIDTH()*2/3)*2/3);
+        this.text.setWrappingWidth((float) (MainLayout.getWIDTH()*2/3)*2/3);
         GridPane.setConstraints(this.text, 0, 0);
 
         this.money = 0;
@@ -36,10 +36,10 @@ public class DialogLayout {
         this.gridPane.getChildren().add(text);
         updateMoney();
         this.gridPane.getChildren().add(this.buttons);
-        this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)(GameLayout.getWIDTH()*2/3)*2/3));
-        this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)(GameLayout.getWIDTH()*2/3)/3));
-        this.gridPane.getRowConstraints().add(new RowConstraints(  (float)(GameLayout.getHEIGHT()/3)*2/3));
-        this.gridPane.getRowConstraints().add(new RowConstraints(  (float)(GameLayout.getHEIGHT()/3)/3));
+        this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)(MainLayout.getWIDTH()*2/3)*2/3));
+        this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)(MainLayout.getWIDTH()*2/3)/3));
+        this.gridPane.getRowConstraints().add(new RowConstraints(  (float)(MainLayout.getHEIGHT()/3)*2/3));
+        this.gridPane.getRowConstraints().add(new RowConstraints(  (float)(MainLayout.getHEIGHT()/3)/3));
     }
 
     public GridPane getGridPane() {

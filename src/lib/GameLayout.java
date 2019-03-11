@@ -12,9 +12,7 @@ public class GameLayout {
     private GridPane gridPane;
     private Pane pane;
 
-    private static final Integer WIDTH= 1600;//1200;
-    private static final Integer HEIGHT = 900;//675;
-    private static final Scene SCENE= new Scene(new Parent(){}, GameLayout.WIDTH, GameLayout.HEIGHT);
+
     private static final GameLayout INSTANCE = new GameLayout();
 
     private GameLayout(){
@@ -45,18 +43,6 @@ public class GameLayout {
 
     public Pane getPane() {
         return pane;
-    }
-
-    public static Integer getWIDTH() {
-        return GameLayout.WIDTH;
-    }
-
-    public static Integer getHEIGHT() {
-        return GameLayout.HEIGHT;
-    }
-
-    public static Scene getSCENE() {
-        return GameLayout.SCENE;
     }
 
     public void setNbColumns(int nbColumns) {
