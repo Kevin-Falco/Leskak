@@ -4,6 +4,7 @@ package lib;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -68,10 +69,12 @@ public class DialogLayout {
 
     public void addButton(String name, EventHandler eventHandler){
         Button button = new Button(name);
-        //button.setFocusTraversable(false);
         button.setOnAction(eventHandler);
+        button.setDefaultButton(true);
 
         this.buttons.getChildren().add(button);
+
+        Movement.removeMovement();
     }
 
     public int getMoney() {

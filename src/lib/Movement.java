@@ -4,6 +4,7 @@ import config.Direction;
 import config.Key;
 import config.KeyboardConfig;
 import config.Sprite;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,15 +12,19 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 
+
 public class Movement {
     private static Map map = new Map();
     private static ImageView lastSprite;
     private static boolean moved = false;
+    private static EventHandler eventHandler;
+    private static EventHandler backToGame;
 
     public static void configPlayerEventHandler(Scene scene) {
         KeyboardConfig k = KeyboardConfig.ENTER;
-        Player player = Player.getINSTANCE();
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+        Movement.eventHandler = ((EventHandler<KeyEvent>) (key) -> {
+            Player player = Player.getINSTANCE();
+
             boolean isTransitionCell = false;
             TransitionCell transitionCell = null;
             if(isTransitionCell(player.getPosition().getKey(), player.getPosition().getValue())){
@@ -65,7 +70,7 @@ public class Movement {
                                 || !isAccessibleCell(player.getPosition().getKey() -1, player.getPosition().getValue()) ?
                                 player.getPosition().getKey() :  player.getPosition().getKey() - 1,
                         player.getPosition().getValue()));
-              player.setSprite(Sprite.LEFT);
+                player.setSprite(Sprite.LEFT);
                 player.setDirection(Direction.LEFT);
                 Movement.moved = true;
             }
@@ -88,6 +93,13 @@ public class Movement {
                 GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
             }
         });
+        scene.addEventHandler(KeyEvent.KEY_PRESSED ,Movement.eventHandler);
+        Movement.backToGame = ((EventHandler<KeyEvent>) (key) -> {
+            if (key.getCode() == Key.BACK_SPACE.getKeyCode()){
+                scene.addEventHandler(KeyEvent.KEY_PRESSED, Movement.eventHandler);
+                scene.removeEventHandler(KeyEvent.KEY_PRESSED, Movement.backToGame);
+            }
+        } );
     }
 
     private static boolean isAccessibleCell(Integer col, Integer row){
@@ -132,6 +144,16 @@ public class Movement {
         return null;
     }
 
+    public static void removeMovement(){
+        MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.eventHandler);
+        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Movement.backToGame);
+    }
+
+    public static void resumeMovement(){
+        MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.backToGame);
+        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Movement.eventHandler);
+    }
+
     public static ImageView getLastSprite() {
         return lastSprite;
     }
@@ -155,4 +177,5 @@ public class Movement {
     public static void setMoved(boolean moved) {
         Movement.moved = moved;
     }
+
 }

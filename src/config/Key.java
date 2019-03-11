@@ -9,6 +9,7 @@ public enum Key {
     LEFT(KeyCode.LEFT),
     ENTER(KeyCode.ENTER),
     SPACE(KeyCode.SPACE),
+    BACK_SPACE(KeyCode.BACK_SPACE),
     ;
 
     private KeyCode keyCode;
