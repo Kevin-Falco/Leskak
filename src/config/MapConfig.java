@@ -113,10 +113,18 @@ public class MapConfig {
             for (int i = 30; i <= 31; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
             /*LIGNE 3*/
             for (int i = 0; i <= 6; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
-            for (int i = 6; i <= 19; ++i) m.add(this.addCell(Sprite.GRASS, new Pair<>(i, 2)));
+            for (int i = 7; i <= 15; ++i) m.add(this.addCell(Sprite.GRASS, new Pair<>(i, 2)));
+            for (int i = 16; i <= 16; ++i) m.add(this.addBlockingCell(Sprite.BUSH, new Pair<>(i, 2)));
+            for (int i = 17; i <= 19; ++i) m.add(this.addCell(Sprite.GRASS, new Pair<>(i, 2)));
             for (int i = 20; i <= 25; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
             for (int i = 25; i <= 29; ++i) m.add(this.addBlockingCell(Sprite.WATER, new Pair<>(i, 2)));
             for (int i = 30; i <= 31; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
+            /*LIGNE 4*/
+            for (int i = 0; i <= 5; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
+            for (int i = 6; i <= 20; ++i) m.add(this.addCell(Sprite.GRASS, new Pair<>(i, 3)));
+            for (int i = 21; i <= 23; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
+            for (int i = 24; i <= 27; ++i) m.add(this.addBlockingCell(Sprite.WATER, new Pair<>(i, 3)));
+            for (int i = 28; i <= 31; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
         }
         else if(nbMap == 1){
             this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ3, new Pair<>(29, 6), Interaction.PNJ2));
