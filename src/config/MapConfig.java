@@ -7,6 +7,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.util.Pair;
 import lib.*;
 
+import java.awt.image.SinglePixelPackedSampleModel;
 import java.util.ArrayList;
 
 public class MapConfig {
@@ -58,6 +59,12 @@ public class MapConfig {
         return pnj;
     }
 
+    private Cell addCell(Sprite sprite, Pair<Integer, Integer> position){
+        Cell pnj = new Cell(new ImageView( sprite.getSpritePath()), position);
+        GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
+        return pnj;
+    }
+
     public void configMap(int nbMap){
         if(nbMap == 0){
             configMap(nbMap, new Pair<>(6, 5), Sprite.DOWN);
@@ -94,7 +101,22 @@ public class MapConfig {
     public void setupMap(int nbMap){
         if(nbMap == 0){
             Map m = this.maps.get(nbMap);
-            m.add(this.addBlockingCell(Sprite.));
+
+            /*LIGNE 1*/
+            for (int i = 0; i <= 27; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 0)));
+            for (int i = 28; i <= 31; ++i) m.add(this.addBlockingCell(Sprite.WATER, new Pair<>(i, 0)));
+            /*LIGNE 2*/
+            for (int i = 0; i <= 9; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
+            for (int i = 10; i <= 16; ++i) m.add(this.addCell(Sprite.GRASS, new Pair<>(i, 1)));
+            for (int i = 17; i <= 25; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
+            for (int i = 25; i <= 29; ++i) m.add(this.addBlockingCell(Sprite.WATER, new Pair<>(i, 1)));
+            for (int i = 30; i <= 31; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
+            /*LIGNE 3*/
+            for (int i = 0; i <= 6; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
+            for (int i = 6; i <= 19; ++i) m.add(this.addCell(Sprite.GRASS, new Pair<>(i, 2)));
+            for (int i = 20; i <= 25; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
+            for (int i = 25; i <= 29; ++i) m.add(this.addBlockingCell(Sprite.WATER, new Pair<>(i, 2)));
+            for (int i = 30; i <= 31; ++i) m.add(this.addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
         }
         else if(nbMap == 1){
             this.maps.get(nbMap).add(this.addBlockingCell(Sprite.PNJ3, new Pair<>(29, 6), Interaction.PNJ2));
