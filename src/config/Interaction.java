@@ -21,7 +21,6 @@ public enum Interaction {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
                 DialogLayout.getINSTANCE().setText("V'la des sous. Enjoy");
-                System.out.println("I'M A PNJ");
                 DialogLayout.getINSTANCE().addMoney(50);
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PNJ.getEventHandler());
@@ -80,7 +79,6 @@ public enum Interaction {
                                 Inventory.getINSTANCE().getGridPane().getChildren().contains(InventoryConfig.OBJ6.getImageView())){
                     DialogLayout.getINSTANCE().addButton("Aller voir le maitre", Action.TELEPORT_MAP4.getEventHandler());
                 }
-                System.out.println("I'M A ROCKET");
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());
         });

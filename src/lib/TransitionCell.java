@@ -50,7 +50,6 @@ public class TransitionCell extends Cell {
                         Player player = Player.getINSTANCE();
                         Movement.setLastSprite(Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue()));
                         ImageView lastSprite = Movement.getLastSprite();
-                        System.out.println(player.getPosition().getKey() + ":" + player.getPosition().getValue());
                         if (lastSprite != null){
                             lastSprite.setVisible(false);
                         }

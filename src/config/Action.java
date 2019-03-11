@@ -46,7 +46,6 @@ public enum Action {
         GIVE_OBJECT1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             Inventory.getINSTANCE().add(InventoryConfig.OBJ1);
             Node node = (Node) action.getSource();
-            System.out.println(node);
             node.setFocusTraversable(false);
         });
         GIVE_OBJECT2.eventHandler = ((EventHandler<ActionEvent>) (action) -> Inventory.getINSTANCE().add(InventoryConfig.OBJ2));
