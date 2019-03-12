@@ -8,6 +8,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.stage.Stage;
+import sample.Main;
 
 
 public class MainLayout {
@@ -16,9 +18,11 @@ public class MainLayout {
     private static final Integer WIDTH= 1600;//1200;
     private static final Integer HEIGHT = 900;//675;
     private static final Scene SCENE= new Scene(new Parent(){}, MainLayout.WIDTH, MainLayout.HEIGHT);
+    private static final Stage STAGE = new Stage();
     private static final MainLayout INSTANCE = new MainLayout();
 
     private MainLayout() {
+        MainLayout.STAGE.setScene(MainLayout.SCENE);
         this.gridPane = mainLayout();
     }
 
@@ -67,5 +71,9 @@ public class MainLayout {
 
     public static Scene getSCENE() {
         return MainLayout.SCENE;
+    }
+
+    public static Stage getSTAGE() {
+        return STAGE;
     }
 }

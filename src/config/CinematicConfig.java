@@ -28,7 +28,6 @@ public enum CinematicConfig {
                 MainLayout.getSCENE().setRoot(pane);
                 pt.play();
                 pt.setOnFinished(event1 -> {
-                    System.out.println("T4");
                     MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Interaction.RETURN_GAME.getEventHandler());
                     MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, TEST1.getEventHandler());
                 });
@@ -46,7 +45,6 @@ public enum CinematicConfig {
                 MainLayout.getSCENE().setRoot(pane);
                 pt.play();
                 pt.setOnFinished(event1 -> {
-                    System.out.println("T3");
                     MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, TEST1.getEventHandler());
                     MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, TEST2.getEventHandler());
                 });
@@ -59,11 +57,9 @@ public enum CinematicConfig {
             imageView.setPreserveRatio(true);
             imageView.setFitWidth(MainLayout.getWIDTH());
             pane.getChildren().add(imageView);
-            System.out.println("T1");
             MainLayout.getSCENE().setRoot(pane);
             pt.play();
             pt.setOnFinished(event1 -> {
-                System.out.println("T2");
                 MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, TEST2.getEventHandler());
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, TEST3.getEventHandler());
             });
