@@ -56,14 +56,7 @@ public enum Interaction {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
                 DialogLayout.getINSTANCE().setText("Coucou je suis le maitre. Et t'es bloqué ici. Lol.");
-                Pane pane = new Pane();
-                ImageView imageView = new ImageView(Sprite.CINEMATIC.getSpritePath());
-                imageView.setPreserveRatio(true);
-                imageView.setFitWidth(MainLayout.getWIDTH());
-                pane.getChildren().add(imageView);
-                MainLayout.getSCENE().setRoot(pane);
-                MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Interaction.RETURN_GAME.getEventHandler() );
-
+                MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.TEST3.getEventHandler());
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.MASTER.getEventHandler());
         });
@@ -85,6 +78,7 @@ public enum Interaction {
         RETURN_GAME.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == Key.SPACE.getKeyCode()){
                 MainLayout.getSCENE().setRoot(MainLayout.getINSTANCE().getGridPane());
+                Movement.resumeMovement();
             }
         });
     }

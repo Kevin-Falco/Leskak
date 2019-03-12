@@ -1,14 +1,13 @@
 package sample;
 
+import config.CinematicConfig;
 import config.MapConfig;
-import config.Sprite;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.util.Pair;
-import lib.GameLayout;
 import lib.Movement;
 import lib.MainLayout;
+
 
 public class Main extends Application {
 
@@ -20,6 +19,7 @@ public class Main extends Application {
         scene.setRoot(MainLayout.getINSTANCE().getGridPane());
         Movement.configPlayerEventHandler(scene);
         MapConfig.getINSTANCE();
+        CinematicConfig.setupGame();
         primaryStage.setScene(scene);
         primaryStage.show();
     }
