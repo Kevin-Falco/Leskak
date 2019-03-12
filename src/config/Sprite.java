@@ -7,6 +7,11 @@ public enum Sprite {
     RIGHT("sprite/player_right_p1.png"),
     LEFT("sprite/player_left_p1.png"),
 
+    UP_BRIDGE("sprite/player_up_bridge.png"),
+    DOWN_BRIDGE("sprite/player_down_bridge.png"),
+    RIGHT_BRIDGE("sprite/player_right_bridge.png"),
+    LEFT_BRIDGE("sprite/player_left_bridge.png"),
+
     GRASS("sprite/grass.png"),
     BUSH("sprite/bush.png"),
     TREE("sprite/tree.png"),
