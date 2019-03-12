@@ -1,15 +1,21 @@
 package lib;
 
 
+import config.Action;
 import config.Interaction;
+import config.Key;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
-import sample.Main;
+
+
 
 
 public class MainLayout {
@@ -23,6 +29,13 @@ public class MainLayout {
 
     private MainLayout() {
         MainLayout.STAGE.setScene(MainLayout.SCENE);
+       // MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+       //     if(key.getCode().equals(Key.ESCAPE.getKeyCode())){
+       //         Button b = new Button();
+       //         b.setOnAction(Action.RETURN_TO_MENU.getEventHandler());
+       //         b.fireEvent(new Event(ActionEvent.ACTION));
+       //     }
+       // });
         this.gridPane = mainLayout();
     }
 

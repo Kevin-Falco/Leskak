@@ -10,6 +10,7 @@ public enum Key {
     ENTER(KeyCode.ENTER),
     SPACE(KeyCode.SPACE),
     BACK_SPACE(KeyCode.BACK_SPACE),
+    ESCAPE(KeyCode.ESCAPE),
     ;
 
     private KeyCode keyCode;
@@ -20,5 +21,25 @@ public enum Key {
 
     public KeyCode getKeyCode() {
         return this.keyCode;
+    }
+
+    public void setKeyCode(KeyCode keyCode) {
+        this.keyCode = keyCode;
+    }
+
+    public static boolean isKeyCodeAlreadyUsed(KeyCode keyCode){
+        for(int i = 0; i < Key.values().length ; ++i){
+            if(keyCode.equals(Key.values()[i].getKeyCode()))
+                return true;
+        }
+        return false;
+    }
+
+    public static Key getKeyofKeyCode(KeyCode keyCode){
+        for(int i = 0; i < Key.values().length ; ++i){
+            if(keyCode.equals(Key.values()[i].getKeyCode()))
+                return Key.values()[i];
+        }
+        return null;
     }
 }
