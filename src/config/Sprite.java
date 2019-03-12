@@ -28,6 +28,8 @@ public enum Sprite {
     HOUSE_BOTTOM_RIGHT("sprite/house_bottom_right.png"),
 
     CINEMATIC("sprite/eevee_evolution.jpg"),
+    CINEMATIC2("sprite/eevee2.jpg"),
+    CINEMATIC3("sprite/eevee3.jpg"),
     ;
 
     private String spritePath;
