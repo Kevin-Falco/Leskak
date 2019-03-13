@@ -1,7 +1,5 @@
 package lib;
 
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -11,6 +9,7 @@ public class GameLayout {
     private int nbRows;
     private GridPane gridPane;
     private Pane pane;
+    private boolean gameHasBegun = false;
 
 
     private static final GameLayout INSTANCE = new GameLayout();
@@ -39,6 +38,14 @@ public class GameLayout {
 
     public GridPane getGridPane() {
         return gridPane;
+    }
+
+    public boolean HasGameBegun() {
+        return gameHasBegun;
+    }
+
+    public void setGameHasBegun(boolean gameHasBegun) {
+        this.gameHasBegun = gameHasBegun;
     }
 
     public Pane getPane() {

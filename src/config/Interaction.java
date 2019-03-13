@@ -14,7 +14,8 @@ public enum Interaction {
     PNJ3,
     MASTER,
     ROCKET,
-    RETURN_GAME;
+    RETURN_GAME,
+    TRANSITION;
 
     static {
         PNJ.eventHandler = ((EventHandler<KeyEvent>) event -> {

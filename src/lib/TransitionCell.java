@@ -12,7 +12,7 @@ public class TransitionCell extends Cell {
     private Direction direction;
     private EventHandler eventHandler;
 
-    public TransitionCell(ImageView sprite, Pair<Integer, Integer> position, Direction direction) {
+    public TransitionCell(Sprite sprite, Pair<Integer, Integer> position, Direction direction) {
         super(sprite, position);
         this.direction = direction;
         this.eventHandler = (EventHandler<KeyEvent>) event -> {

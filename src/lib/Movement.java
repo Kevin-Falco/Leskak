@@ -22,6 +22,7 @@ public class Movement {
 
     public static void configPlayerEventHandler(Scene scene) {
         KeyboardConfig k = KeyboardConfig.ENTER;
+        KeyboardConfig k1 = KeyboardConfig.ESCAPE;
         Movement.eventHandler = ((EventHandler<KeyEvent>) (key) -> {
             Player player = Player.getINSTANCE();
 
@@ -40,7 +41,7 @@ public class Movement {
                         ((player.getPosition().getValue() == 0
                                 || !isAccessibleCell(player.getPosition().getKey(), player.getPosition().getValue() -1)) ?
                                 player.getPosition().getValue() :  player.getPosition().getValue() - 1)));
-                player.setSprite(Sprite.UP);
+                player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getUP());
                 player.setDirection(Direction.UP);
                 Movement.moved = true;
             }
@@ -50,7 +51,7 @@ public class Movement {
                         player.getPosition().getValue() == GameLayout.getINSTANCE().getNbRows() - 1
                                 || !isAccessibleCell(player.getPosition().getKey(), player.getPosition().getValue() +1) ?
                                 player.getPosition().getValue() :  player.getPosition().getValue() + 1));
-                player.setSprite(Sprite.DOWN);
+                player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getDOWN());
                 player.setDirection(Direction.DOWN);
                 Movement.moved = true;
             }
@@ -60,7 +61,7 @@ public class Movement {
                                 || !isAccessibleCell(player.getPosition().getKey() +1, player.getPosition().getValue()) ?
                                 player.getPosition().getKey() :  player.getPosition().getKey() + 1,
                         player.getPosition().getValue()));
-                player.setSprite(Sprite.RIGHT);
+                player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getRIGHT());
                 player.setDirection(Direction.RIGHT);
                 Movement.moved = true;
             }
@@ -70,7 +71,7 @@ public class Movement {
                                 || !isAccessibleCell(player.getPosition().getKey() -1, player.getPosition().getValue()) ?
                                 player.getPosition().getKey() :  player.getPosition().getKey() - 1,
                         player.getPosition().getValue()));
-                player.setSprite(Sprite.LEFT);
+                player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getLEFT());
                 player.setDirection(Direction.LEFT);
                 Movement.moved = true;
             }

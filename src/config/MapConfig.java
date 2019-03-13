@@ -30,6 +30,8 @@ public class MapConfig {
             setupMap(nbMap);
         }
         this.configMap(0);
+        CinematicConfig.setupGame();
+        GameLayout.getINSTANCE().setGameHasBegun(true);
     }
 
     public ArrayList<Map> getMaps() {
@@ -44,16 +46,16 @@ public class MapConfig {
 
     public void configMap(int nbMap){
         if(nbMap == 0){
-            configMap(nbMap, new Pair<>(10, 6), Sprite.DOWN);
+            configMap(nbMap, new Pair<>(10, 6), Sprite.DOWN_P1);
         }
         if(nbMap == 1){
-            configMap(nbMap, new Pair<>(6, 5), Sprite.DOWN);
+            configMap(nbMap, new Pair<>(6, 5), Sprite.DOWN_P1);
         }
         if(nbMap == 2){
-            configMap(nbMap, new Pair<>(6, 5), Sprite.DOWN);
+            configMap(nbMap, new Pair<>(6, 5), Sprite.DOWN_P1);
         }
         if(nbMap == 3){
-            configMap(nbMap, new Pair<>(6, 5), Sprite.DOWN);
+            configMap(nbMap, new Pair<>(6, 5), Sprite.DOWN_P1);
         }
     }
 
@@ -91,25 +93,25 @@ public class MapConfig {
     private static class MapSetup{
 
         private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position){
-            BlockingCell pnj = new BlockingCell(new ImageView( sprite.getSpritePath()), position);
+            BlockingCell pnj = new BlockingCell(sprite, position);
             GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
             return pnj;
         }
 
         private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position, Interaction interaction){
-            BlockingCell pnj = new BlockingCell(new ImageView( sprite.getSpritePath()), position, interaction);
+            BlockingCell pnj = new BlockingCell(sprite, position, interaction);
             GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
             return pnj;
         }
 
         private static TransitionCell addTransitionCell(Sprite sprite, Pair<Integer, Integer> position, Direction direction){
-            TransitionCell pnj = new TransitionCell(new ImageView( sprite.getSpritePath()), position, direction);
+            TransitionCell pnj = new TransitionCell(sprite, position, direction);
             GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
             return pnj;
         }
 
         private static Cell addCell(Sprite sprite, Pair<Integer, Integer> position){
-            Cell pnj = new Cell(new ImageView( sprite.getSpritePath()), position);
+            Cell pnj = new Cell(sprite, position);
             GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
             return pnj;
         }
@@ -138,7 +140,7 @@ public class MapConfig {
             for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE_TOP_LEFT, new Pair<>(i, 2)));
             for (int i = 6; i <= 6; ++i) m.add(addBlockingCell(Sprite.HOUSE_TOP_RIGHT, new Pair<>(i, 2)));
             for (int i = 7; i <= 8; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 2)));
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.DOWN, new Pair<>(i, 2)));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.DOWN_P1, new Pair<>(i, 2)));
             for (int i = 10; i <= 19; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 2)));
             for (int i = 20; i <= 21; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
             for (int i = 22; i <= 23; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 2)));
@@ -181,9 +183,9 @@ public class MapConfig {
             for (int i = 3; i <= 8; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 5)));
             for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 5)));
             for (int i = 10; i <= 13; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 5)));
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.DOWN, new Pair<>(i, 5)));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.DOWN_P1, new Pair<>(i, 5)));
             for (int i = 15; i <= 21; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 5)));
-            for (int i = 22; i <= 22; ++i) m.add(addCell(Sprite.LEFT, new Pair<>(i, 5)));
+            for (int i = 22; i <= 22; ++i) m.add(addCell(Sprite.LEFT_P1, new Pair<>(i, 5)));
             for (int i = 23; i <= 24; ++i) m.add(addCell(Sprite.BRIDGE, new Pair<>(i, 5)));
             for (int i = 25; i <= 28; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 5)));
             for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.BUSH, new Pair<>(i, 5)));
@@ -294,7 +296,7 @@ public class MapConfig {
             for (int i = 17; i <= 20; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 6)));
             for (int i = 21; i <= 21; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 6)));
             for (int i = 22; i <= 26; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 6)));
-            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.LEFT, new Pair<>(i, 6), Interaction.PNJ2));
+            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.LEFT_P1, new Pair<>(i, 6), Interaction.PNJ2));
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.HOUSE_BOTTOM_LEFT, new Pair<>(i, 6)));
             for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.HOUSE_BOTTOM_RIGHT, new Pair<>(i, 6)));
             for (int i = 30; i <= 30; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 6)));

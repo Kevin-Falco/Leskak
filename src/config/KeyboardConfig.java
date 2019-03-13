@@ -32,25 +32,23 @@ public enum KeyboardConfig {
                 DialogLayout.getINSTANCE().setText("YOUPI");
             }
         }
-    });
+    }),
+    ESCAPE(Key.ESCAPE, (EventHandler<KeyEvent>) event -> {
+        if(event.getCode() == Key.ESCAPE.getKeyCode()){
+            MainLayout.getSTAGE().close();
+            LauncherLayout.setupLauncher();
+        }
+    })
+    ;
 
     private Key key;
-    private EventHandler eventHandler;
 
     KeyboardConfig(Key key, EventHandler eventHandler) {
         this.key = key;
-        this.eventHandler = eventHandler;
-        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, this.eventHandler);
+        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, eventHandler);
     }
 
     public Key getKey() {
         return key;
-    }
-
-    public void setKey(Key key) {
-        this.key = key;
-        this.eventHandler = (EventHandler<KeyEvent>) event -> {
-        };
-        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, this.eventHandler);
     }
 }

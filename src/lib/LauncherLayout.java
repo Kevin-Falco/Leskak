@@ -35,12 +35,15 @@ public class LauncherLayout {
         LauncherLayout.vBox.setSpacing(10);
         LauncherLayout.vBox.setBackground(new Background(new BackgroundImage(new Image("sprite/background_launcher.jpg"),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
-        Button game = new Button("Jouer");
+        LauncherLayout.setupLauncher();
+    }
+
+    public static void setupLauncher(){
+        Button game = new Button( GameLayout.getINSTANCE().HasGameBegun() ? "Reprendre la partie" : "Jouer");
         game.setOnAction((EventHandler) (event) -> {
             MainLayout.getSCENE().setRoot(MainLayout.getINSTANCE().getGridPane());
             Movement.configPlayerEventHandler(MainLayout.getSCENE());
             MapConfig.getINSTANCE();
-            CinematicConfig.setupGame();
             MainLayout.getSTAGE().show();
         });
         Button options = new Button("Options");
@@ -52,6 +55,7 @@ public class LauncherLayout {
             Stage stage = (Stage) LauncherLayout.SCENE.getWindow();
             stage.close();
         });
+        LauncherLayout.vBox.getChildren().removeAll(LauncherLayout.vBox.getChildren());
         LauncherLayout.vBox.getChildren().addAll(game, options, credits, quit);
     }
 
@@ -129,6 +133,7 @@ public class LauncherLayout {
         Button button = new Button("Retour");
         button.setOnAction((EventHandler) (event) -> LauncherLayout.SCENE.setRoot(LauncherLayout.vBox));
         button.setAlignment(Pos.BOTTOM_CENTER);
+        button.setCancelButton(true);
         return button;
     }
 

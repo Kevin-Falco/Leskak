@@ -19,8 +19,6 @@ public enum Action {
     GIVE_OBJECT4,
     GIVE_OBJECT5,
     GIVE_OBJECT6,
-
-    RETURN_TO_MENU,
     ;
 
     static{
@@ -80,9 +78,6 @@ public enum Action {
             Inventory.getINSTANCE().add(InventoryConfig.OBJ6);
             ((Node) action.getSource()).setVisible(false);
             Movement.resumeMovement();
-        });
-        RETURN_TO_MENU.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            MainLayout.getSTAGE().close();
         });
     }
 
