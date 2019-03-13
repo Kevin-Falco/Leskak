@@ -83,7 +83,7 @@ public class LauncherLayout {
             Key currentKey = Key.values()[i] ;
             Text name = new Text(currentKey.name() + " : " + currentKey.getKeyCode().getName());
             Button button = new Button("Change Key for " + currentKey.name());
-           EventHandler<KeyEvent> keyEventEventHandler = new EventHandler<>() {
+           EventHandler<KeyEvent> keyEventEventHandler = new EventHandler<KeyEvent>() {
                @Override
                public void handle(KeyEvent key) {
                    if(Key.isKeyCodeAlreadyUsed(key.getCode())){
