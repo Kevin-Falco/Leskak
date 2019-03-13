@@ -15,7 +15,8 @@ public enum Interaction {
     MASTER,
     ROCKET,
     RETURN_GAME,
-    TRANSITION;
+    TRANSITION,
+    MOVEMENT;
 
     static {
         PNJ.eventHandler = ((EventHandler<KeyEvent>) event -> {
@@ -73,6 +74,7 @@ public enum Interaction {
                                 Inventory.getINSTANCE().getGridPane().getChildren().contains(InventoryConfig.OBJ6.getImageView())){
                     DialogLayout.getINSTANCE().addButton("Aller voir le maitre", Action.TELEPORT_MAP4.getEventHandler());
                 }
+                DialogLayout.getINSTANCE().addButton("Aller voir le maitre", Action.TELEPORT_MAP4.getEventHandler());
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());
         });
@@ -82,6 +84,8 @@ public enum Interaction {
                 Movement.resumeMovement();
             }
         });
+
+        MOVEMENT.eventHandler = Movement.setupMovementEvent();
     }
 
     private EventHandler eventHandler;

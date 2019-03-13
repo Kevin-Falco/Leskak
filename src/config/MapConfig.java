@@ -30,7 +30,7 @@ public class MapConfig {
             setupMap(nbMap);
         }
         this.configMap(0);
-        CinematicConfig.setupGame();
+        //CinematicConfig.setupGame();
         GameLayout.getINSTANCE().setGameHasBegun(true);
     }
 
@@ -49,7 +49,7 @@ public class MapConfig {
             configMap(nbMap, new Pair<>(10, 6), Sprite.DOWN_P1);
         }
         if(nbMap == 1){
-            configMap(nbMap, new Pair<>(6, 5), Sprite.DOWN_P1);
+            configMap(nbMap, new Pair<>(15, 5), Sprite.DOWN_P1);
         }
         if(nbMap == 2){
             configMap(nbMap, new Pair<>(6, 5), Sprite.DOWN_P1);
@@ -87,6 +87,9 @@ public class MapConfig {
         }
         else if(nbMap == 2){
             MapSetup.setupMap2();
+        }
+        else if(nbMap == 3){
+            MapSetup.setupMap3();
         }
     }
 
@@ -181,7 +184,7 @@ public class MapConfig {
             /*LIGNE 6*/
             for (int i = 0; i <= 2; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 5)));
             for (int i = 3; i <= 8; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 5)));
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 5)));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 5), Interaction.ROCKET));
             for (int i = 10; i <= 13; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 5)));
             for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.DOWN_P1, new Pair<>(i, 5)));
             for (int i = 15; i <= 21; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 5)));
@@ -197,7 +200,7 @@ public class MapConfig {
             for (int i = 4; i <= 4; ++i) m.add(addBlockingCell(Sprite.HOUSE_TOP_LEFT, new Pair<>(i, 6)));
             for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE_TOP_RIGHT, new Pair<>(i, 6)));
             for (int i = 6; i <= 8; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 6)));
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 6)));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 6), Interaction.ROCKET));
             for (int i = 10; i <= 17; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 6)));
             for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.BUSH, new Pair<>(i, 6)));
             for (int i = 19; i <= 22; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 6)));
@@ -422,6 +425,17 @@ public class MapConfig {
             for (int i = 15; i <= 21; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
             for (int i = 22; i <= 24; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 11)));
             for (int i = 25; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
+        }
+
+        private static void setupMap3(){
+            Map m = maps.get(3);
+
+            for(int i = 0; i <= 31; i++)
+            {
+                for(int j = 0; j <= 11; ++j){
+                    m.add(addCell(Sprite.GRASS, new Pair<>(i,j)));
+                }
+            }
         }
     }
 }

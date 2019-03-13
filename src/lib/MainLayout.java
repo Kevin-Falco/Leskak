@@ -11,8 +11,6 @@ import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 
 
-
-
 public class MainLayout {
     private GridPane gridPane;
 
