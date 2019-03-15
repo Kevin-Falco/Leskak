@@ -5,12 +5,15 @@ import config.Key;
 import config.KeyboardConfig;
 import config.MapConfig;
 import javafx.animation.PauseTransition;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -41,10 +44,17 @@ public class LauncherLayout {
     public static void setupLauncher(){
         Button game = new Button( GameLayout.getINSTANCE().HasGameBegun() ? "Reprendre la partie" : "Jouer");
         game.setOnAction((EventHandler) (event) -> {
-            MainLayout.getSCENE().setRoot(MainLayout.getINSTANCE().getGridPane());
-            Movement.configPlayerEventHandler(MainLayout.getSCENE());
-            MapConfig.getINSTANCE();
-            MainLayout.getSTAGE().show();
+            Button button = (Button) event.getSource();
+            if(button.getText() == "Reprendre la partie"){
+                MainLayout.getSTAGE().show();
+            }
+            else{
+                MainLayout.getSCENE().setRoot(MainLayout.getINSTANCE().getGridPane());
+                Movement.configPlayerEventHandler(MainLayout.getSCENE());
+                MapConfig.getINSTANCE();
+                MainLayout.getSTAGE().setTitle("LESKAK");
+                MainLayout.getSTAGE().show();
+            }
         });
         Button options = new Button("Options");
         options.setOnAction((EventHandler) (event) -> LauncherLayout.SCENE.setRoot(LauncherLayout.getOptions()));

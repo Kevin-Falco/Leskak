@@ -85,6 +85,8 @@ public enum Interaction {
             }
         });
 
+
+
         MOVEMENT.eventHandler = Movement.setupMovementEvent();
     }
 

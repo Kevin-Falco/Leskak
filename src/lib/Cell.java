@@ -54,7 +54,8 @@ public class Cell {
             case LEFT_BRIDGE:
             case BRIDGE:
                 return SpriteSet.SET_BRIDGE;
+            default:
+                return SpriteSet.SET_P1;
         }
-        return null;
     }
 }
