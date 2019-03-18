@@ -32,6 +32,9 @@ public class MapConfig {
         }
         this.configMap(0);
         //CinematicConfig.setupGame();
+
+        maps.get(3).setFogOfWar(true);
+        maps.get(3).updateFogOfWar();
         GameLayout.getINSTANCE().setGameHasBegun(true);
     }
 
@@ -66,15 +69,15 @@ public class MapConfig {
         player.setPosition(position);
         player.setSprite(sprite);
 
-        ImageView imageView = new ImageView(player.getSprite().getSpritePath());
-        imageView.setPreserveRatio(true);
-        imageView.setFitWidth(50);//(37);
+        //ImageView imageView = new ImageView(player.getSprite().getSpritePath());
+        //imageView.setPreserveRatio(true);
+        //imageView.setFitWidth(50);//(37);
+        player.getImage().setTranslateX(0);
+        player.getImage().setTranslateY(0);
+        GridPane.setConstraints(player.getImage(), position.getKey(),position.getValue());
 
         //MapConfig.maps.get(nbMap).getGridPane().setGridLinesVisible(true);
-
-        GridPane.setConstraints(imageView, position.getKey(),position.getValue());
-
-        MapConfig.maps.get(nbMap).getGridPane().getChildren().add(imageView);
+        MapConfig.maps.get(nbMap).getGridPane().getChildren().add(player.getImage());
 
         GameLayout.getINSTANCE().setGridPane(MapConfig.maps.get(nbMap).getGridPane());
     }
@@ -119,9 +122,10 @@ public class MapConfig {
             Movement.getLastSprite().setVisible(false);
         }
 
-        ImageView imageView = (ImageView) Movement.getMap().getGridPane().getChildren().get(Movement.getMap().getGridPane().getChildren().size() - 1);
+        //ImageView imageView = (ImageView) Movement.getMap().getGridPane().getChildren().get(Movement.getMap().getGridPane().getChildren().size() - 1);
+        ImageView imageView = player.getImage();
         imageView.setImage(new Image(player.getSprite().getSpritePath()));
-        GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
+        //GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
         //GridPane.setConstraints(new ImageView(Player.getINSTANCE().getSprite().getSpritePath()), targetPosition.getKey(), targetPosition.getValue());
     }
 
@@ -131,6 +135,10 @@ public class MapConfig {
         }
         Cell cell1 = getCell(nbMap, positionCell1.getKey(), positionCell1.getValue());
         Cell cell2 = getCell(nbMap, positionCell2.getKey(), positionCell2.getValue());
+        cell1.setInFogOfWar(false);
+        cell2.setInFogOfWar(false);
+        cell1.getSprite().setVisible(true);
+        cell2.getSprite().setVisible(true);
 
         cell1.setPosition(positionCell2);
         GridPane.setConstraints(cell1.getSprite(), positionCell2.getKey(), positionCell2.getValue());

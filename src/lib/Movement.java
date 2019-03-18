@@ -1,9 +1,6 @@
 package lib;
 
-import config.Direction;
-import config.Key;
-import config.KeyboardConfig;
-import config.Sprite;
+import config.*;
 import javafx.animation.Interpolator;
 import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
@@ -168,6 +165,7 @@ public class Movement {
             player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getRIGHT());
             player.setDirection(Direction.RIGHT);
             Movement.moved = true;
+            System.out.println("HA");
         }
         if (key.getCode() == Key.LEFT.getKeyCode()) {
             x = (player.getPosition().getKey() == 0
@@ -194,9 +192,9 @@ public class Movement {
         } else {
             lastSprite = Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue());
 
-
-            ImageView imageView = (ImageView) Movement.map.getGridPane().getChildren().get(Movement.map.getGridPane().getChildren().size() - 1);
-            imageView.setImage(new Image(player.getSprite().getSpritePath()));
+            ImageView imageView = player.getImage();
+            //ImageView imageView = (ImageView) Movement.map.getGridPane().getChildren().get(Movement.map.getGridPane().getChildren().size() - 1);
+            //imageView.setImage(new Image(player.getSprite().getSpritePath()));
             tt.setNode(imageView);
             tt.setByX(x);
             tt.setByY(y);
@@ -206,8 +204,10 @@ public class Movement {
                 if (lastSprite != null) {
                     //lastSprite.setVisible(false);
                 }
-            });
 
+                if(map.isFogOfWar())
+                    map.updateFogOfWar();
+            });
             tt.play();
             //GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
         }

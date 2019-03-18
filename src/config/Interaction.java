@@ -81,7 +81,7 @@ public enum Interaction {
                 Movement.setMoved(false);
                 DialogLayout.getINSTANCE().setText("I'M A ROCKET");
                 if(Inventory.getINSTANCE().getGridPane().getChildren().contains(InventoryConfig.OBJ2.getImageView()))
-                    DialogLayout.getINSTANCE().addButton("GO MAP2", Action.TELEPORT_MAP2.getEventHandler());
+                    DialogLayout.getINSTANCE().addButton("GO NEW MAP", Action.TELEPORT_MAP4.getEventHandler());
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());
         });

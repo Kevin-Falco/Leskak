@@ -43,20 +43,27 @@ public class TransitionCell extends Cell {
                                         Player.getINSTANCE().getPosition().getValue());
                                 break;
                         }
+                        Player player = Player.getINSTANCE();
 
-                        Movement.getMap().getGridPane().getChildren().remove(Movement.getMap().getGridPane().getChildren().size() - 1);
+                        //Movement.getMap().getGridPane().getChildren().remove(Movement.getMap().getGridPane().getChildren().size() - 1);
+                        Movement.getMap().getGridPane().getChildren().remove(player.getImage());
                         MapConfig.getINSTANCE().configMap(nextMap, new Pair<>(nextPosition.getKey(),nextPosition.getValue()), Player.getINSTANCE().getSprite());
 
-                        Player player = Player.getINSTANCE();
+
                         Movement.setLastSprite(Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue()));
                         ImageView lastSprite = Movement.getLastSprite();
                         if (lastSprite != null){
                             lastSprite.setVisible(false);
                         }
 
-                        ImageView imageView = (ImageView) Movement.getMap().getGridPane().getChildren().get(Movement.getMap().getGridPane().getChildren().size() -1);
-                        imageView.setImage(new Image(player.getSprite().getSpritePath()));
-                        GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
+                        MapConfig.getINSTANCE().movePlayer(nextPosition);
+
+                        //ImageView imageView = (ImageView) Movement.getMap().getGridPane().getChildren().get(Movement.getMap().getGridPane().getChildren().size() -1);
+                        //ImageView imageView = player.getImage();
+                        //imageView.setImage(new Image(player.getSprite().getSpritePath()));
+                        //GridPane.setConstraints(player.getImage(), player.getPosition().getKey(), player.getPosition().getValue());
+                        System.out.println(player.getPosition() + " : " + nextPosition);
+                        System.out.println(player.getImage().getImage().getUrl());
 
                         break;
                     }

@@ -2,13 +2,18 @@ package lib;
 
 import config.Direction;
 import config.Sprite;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Pair;
+
+
 
 public class Player {
 
     private Pair<Integer, Integer> position;
     private Direction direction = Direction.DOWN;
     private Sprite sprite;
+    private ImageView image = new ImageView();
 
     private static final Player INSTANCE = new Player();
     private static final String NAME = "Leskak";
@@ -45,5 +50,16 @@ public class Player {
 
     public void setSprite(final Sprite sprite) {
         this.sprite = sprite;
+        this.image.setImage(new Image(this.sprite.getSpritePath()));
+        this.image.setPreserveRatio(true);
+        this.image.setFitWidth(50);
+    }
+
+    public ImageView getImage() {
+        return image;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
     }
 }
