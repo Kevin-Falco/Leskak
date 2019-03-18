@@ -22,6 +22,8 @@ public class GameLayout {
         GridPane.setColumnSpan(this.pane, 2);
         GridPane.setConstraints(this.pane, 0, 0);
         this.pane.getChildren().add(this.gridPane);
+        this.pane.setFocusTraversable(true);
+        this.pane.requestFocus();
     }
 
     public static GameLayout getINSTANCE() {

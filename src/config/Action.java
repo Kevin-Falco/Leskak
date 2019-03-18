@@ -3,10 +3,10 @@ package config;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import lib.DialogLayout;
-import lib.Inventory;
-import lib.MainLayout;
-import lib.Movement;
+import javafx.scene.control.DialogPane;
+import javafx.scene.input.KeyEvent;
+import javafx.util.Pair;
+import lib.*;
 
 public enum Action {
     TELEPORT_MAP1,
@@ -19,6 +19,9 @@ public enum Action {
     GIVE_OBJECT4,
     GIVE_OBJECT5,
     GIVE_OBJECT6,
+    RETURN_OBJECT1,
+    TEST1,
+    RETURN,
     ;
 
     static{
@@ -50,14 +53,17 @@ public enum Action {
         });
         GIVE_OBJECT1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             Inventory.getINSTANCE().add(InventoryConfig.OBJ1);
-            Node node = (Node) action.getSource();
-            node.setFocusTraversable(false);
+            Interaction.BUSH1.setInteractionDone(true);
             Movement.resumeMovement();
+            DialogLayout.getINSTANCE().removeContent();
+            Movement.setMoved(true);
         });
         GIVE_OBJECT2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             Inventory.getINSTANCE().add(InventoryConfig.OBJ2);
-            ((Node) action.getSource()).setVisible(false);
+            Interaction.PNJ4.setInteractionDone(true);
             Movement.resumeMovement();
+            DialogLayout.getINSTANCE().removeContent();
+            Movement.setMoved(true);
         });
         GIVE_OBJECT3.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             Inventory.getINSTANCE().add(InventoryConfig.OBJ3);
@@ -78,6 +84,29 @@ public enum Action {
             Inventory.getINSTANCE().add(InventoryConfig.OBJ6);
             ((Node) action.getSource()).setVisible(false);
             Movement.resumeMovement();
+        });
+        RETURN_OBJECT1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            //MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.TEST1.getEventHandler());
+            //KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
+            if(!MapConfig.getINSTANCE().swapCells(0, new Pair<>(22, 5), new Pair<>(22, 6))){
+                MapConfig.getINSTANCE().movePlayer(new Pair<>(21, 6));
+                MapConfig.getINSTANCE().swapCells(0, new Pair<>(22, 5), new Pair<>(22, 6));
+            }
+            Interaction.PNJ3.setInteractionDone(true);
+            Inventory.getINSTANCE().remove(InventoryConfig.OBJ1);
+            DialogLayout.getINSTANCE().removeContent();
+            Movement.resumeMovement();
+        });
+        TEST1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.TEST1.getEventHandler());
+            KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
+
+        });
+
+        RETURN.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            DialogLayout.getINSTANCE().removeContent();
+            Movement.resumeMovement();
+            Movement.setMoved(true);
         });
     }
 

@@ -1,6 +1,7 @@
 package lib;
 
 
+import config.Action;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
@@ -71,6 +72,17 @@ public class DialogLayout {
         Button button = new Button(name);
         button.setOnAction(eventHandler);
         button.setDefaultButton(true);
+
+        this.buttons.getChildren().add(button);
+
+        Movement.removeMovement();
+        button.requestFocus();
+    }
+
+    public void addReturnButton(){
+        Button button = new Button("Retour");
+        button.setOnAction(Action.RETURN.getEventHandler());
+        button.setCancelButton(true);
 
         this.buttons.getChildren().add(button);
 

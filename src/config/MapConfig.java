@@ -1,5 +1,6 @@
 package config;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -93,6 +94,53 @@ public class MapConfig {
         }
     }
 
+    private static Cell getCell(int nbMap, Integer col, Integer row){
+        Map m = getINSTANCE().getMaps().get(0);
+        for (Cell cell : m
+        ) {
+            if(cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){
+                return cell;
+            }
+        }
+        return null;
+    }
+
+    public void movePlayer(Pair<Integer, Integer> targetPosition){
+        Player player = Player.getINSTANCE();
+
+        if (Movement.getLastSprite() != null) {
+            Movement.getLastSprite().setVisible(true);
+        }
+        Player.getINSTANCE().setPosition(targetPosition);
+
+        Movement.setLastSprite(Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue()));
+
+        if (Movement.getLastSprite() != null) {
+            Movement.getLastSprite().setVisible(false);
+        }
+
+        ImageView imageView = (ImageView) Movement.getMap().getGridPane().getChildren().get(Movement.getMap().getGridPane().getChildren().size() - 1);
+        imageView.setImage(new Image(player.getSprite().getSpritePath()));
+        GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
+        //GridPane.setConstraints(new ImageView(Player.getINSTANCE().getSprite().getSpritePath()), targetPosition.getKey(), targetPosition.getValue());
+    }
+
+    public boolean swapCells(int nbMap, Pair<Integer, Integer> positionCell1, Pair<Integer, Integer> positionCell2){
+        if(Player.getINSTANCE().getPosition().equals(positionCell1) || Player.getINSTANCE().getPosition().equals(positionCell2)){
+            return false;
+        }
+        Cell cell1 = getCell(nbMap, positionCell1.getKey(), positionCell1.getValue());
+        Cell cell2 = getCell(nbMap, positionCell2.getKey(), positionCell2.getValue());
+
+        cell1.setPosition(positionCell2);
+        GridPane.setConstraints(cell1.getSprite(), positionCell2.getKey(), positionCell2.getValue());
+
+        cell2.setPosition(positionCell1);
+        GridPane.setConstraints(cell2.getSprite(), positionCell1.getKey(), positionCell1.getValue());
+
+        return true;
+    }
+
     private static class MapSetup{
 
         private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position){
@@ -143,7 +191,7 @@ public class MapConfig {
             for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE_TOP_LEFT, new Pair<>(i, 2)));
             for (int i = 6; i <= 6; ++i) m.add(addBlockingCell(Sprite.HOUSE_TOP_RIGHT, new Pair<>(i, 2)));
             for (int i = 7; i <= 8; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 2)));
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.DOWN_P1, new Pair<>(i, 2)));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.DOWN_P1, new Pair<>(i, 2), Interaction.PNJ1));
             for (int i = 10; i <= 19; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 2)));
             for (int i = 20; i <= 21; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
             for (int i = 22; i <= 23; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 2)));
@@ -186,9 +234,9 @@ public class MapConfig {
             for (int i = 3; i <= 8; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 5)));
             for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 5), Interaction.ROCKET));
             for (int i = 10; i <= 13; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 5)));
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.DOWN_P1, new Pair<>(i, 5)));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.DOWN_P1, new Pair<>(i, 5), Interaction.PNJ2));
             for (int i = 15; i <= 21; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 5)));
-            for (int i = 22; i <= 22; ++i) m.add(addCell(Sprite.LEFT_P1, new Pair<>(i, 5)));
+            for (int i = 22; i <= 22; ++i) m.add(addBlockingCell(Sprite.LEFT_P1, new Pair<>(i, 5), Interaction.PNJ3));
             for (int i = 23; i <= 24; ++i) m.add(addCell(Sprite.BRIDGE, new Pair<>(i, 5)));
             for (int i = 25; i <= 28; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 5)));
             for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.BUSH, new Pair<>(i, 5)));
@@ -299,7 +347,7 @@ public class MapConfig {
             for (int i = 17; i <= 20; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 6)));
             for (int i = 21; i <= 21; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 6)));
             for (int i = 22; i <= 26; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 6)));
-            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.LEFT_P1, new Pair<>(i, 6), Interaction.PNJ2));
+            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.LEFT_P1, new Pair<>(i, 6), Interaction.PNJ4));
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.HOUSE_BOTTOM_LEFT, new Pair<>(i, 6)));
             for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.HOUSE_BOTTOM_RIGHT, new Pair<>(i, 6)));
             for (int i = 30; i <= 30; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 6)));
@@ -392,7 +440,7 @@ public class MapConfig {
             /*LIGNE 8*/
             for (int i = 0; i <= 5; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 7)));
             for (int i = 6; i <= 9; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 7)));
-            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.BUSH, new Pair<>(i, 7)));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.BUSH, new Pair<>(i, 7), Interaction.BUSH1));
             for (int i = 11; i <= 17; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 7)));
             for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 7)));
             for (int i = 19; i <= 20; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 7)));

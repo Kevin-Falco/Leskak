@@ -50,8 +50,10 @@ public class Inventory {
         this.getGridPane().getChildren().add(inventoryConfig.getImageView());
     }
 
-    public void remove(ImageView imageView){
-        this.getGridPane().getChildren().remove(imageView);
+    public void remove(InventoryConfig inventoryConfig){
+        if(!this.getGridPane().getChildren().contains(inventoryConfig.getImageView()))
+            return;
+        this.getGridPane().getChildren().remove(inventoryConfig.getImageView());
     }
 
 

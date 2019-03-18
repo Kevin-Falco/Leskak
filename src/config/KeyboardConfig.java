@@ -3,6 +3,7 @@ package config;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import lib.*;
+import sample.Main;
 
 public enum KeyboardConfig {
 
@@ -34,7 +35,7 @@ public enum KeyboardConfig {
         }
     }),
     ESCAPE(Key.ESCAPE, (EventHandler<KeyEvent>) event -> {
-        if(event.getCode() == Key.ESCAPE.getKeyCode()){
+        if(event.getCode() == Key.ESCAPE.getKeyCode() && GameLayout.getINSTANCE().getPane().isFocused()){
             MainLayout.getSTAGE().close();
             LauncherLayout.setupLauncher();
         }

@@ -238,11 +238,14 @@ public class Movement {
     }
 
     public static void removeMovement(){
+        GameLayout.getINSTANCE().getPane().setFocusTraversable(false);
         MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.setupEventHandler);
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Movement.backToGame);
     }
 
     public static void resumeMovement(){
+        GameLayout.getINSTANCE().getPane().setFocusTraversable(true);
+        GameLayout.getINSTANCE().getPane().requestFocus();
         MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.backToGame);
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Movement.setupEventHandler);
     }
