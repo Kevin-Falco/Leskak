@@ -19,6 +19,7 @@ public enum Sprite {
     TREE("sprite/tree.png"),
     ROCK("sprite/rock.png"),
     BRIDGE("sprite/bridge.png"),
+    FOG("sprite/fog.jpg"),
 
     WATER("sprite/water.png"),
     WATER_LEFT("sprite/water_left.png"),

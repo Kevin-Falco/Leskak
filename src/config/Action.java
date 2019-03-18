@@ -3,7 +3,6 @@ package config;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.DialogPane;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Pair;
 import lib.*;

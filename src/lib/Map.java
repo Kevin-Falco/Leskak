@@ -38,11 +38,14 @@ public class Map implements  Iterable<Cell> {
 
     public void add(Cell cell){
         this.cells.add(cell);
-        //cell.setInFogOfWar(true);
-        //this.getGridPane().getChildren().add(this.cells.get(this.cells.size() - 1).getSprite());
-        GridPane.setConstraints(this.cells.get(this.cells.size() - 1).getSprite(), cell.getPosition().getKey(), cell.getPosition().getValue());
-        cell.setInFogOfWar(false);
-        this.getGridPane().getChildren().add(this.cells.get(this.cells.size() - 1).getSprite());
+        if(isFogOfWar()){
+            GridPane.setConstraints(cell.getSprite2(), cell.getPosition().getKey(), cell.getPosition().getValue());
+            this.getGridPane().getChildren().add(cell.getSprite2());
+        }
+
+        GridPane.setConstraints(cell.getSprite(), cell.getPosition().getKey(), cell.getPosition().getValue());
+        this.getGridPane().getChildren().add(cell.getSprite());
+
     }
 
     @Override
@@ -59,21 +62,12 @@ public class Map implements  Iterable<Cell> {
     }
 
     public void updateFogOfWar(){
-        System.out.println("PLAYER : " + Player.getINSTANCE().getPosition());
         for(Cell cell : this){
             if(cellPositionAt(cell, 2)){
-                this.getGridPane().getChildren().remove(cell.getSprite());
-                cell.setInFogOfWar(false);
-                this.getGridPane().getChildren().add(cell.getSprite());
                 cell.getSprite().setVisible(true);
-                System.out.println("YES : " + cell.getPosition());
             }
             else{
-                this.getGridPane().getChildren().remove(cell.getSprite());
-                cell.setInFogOfWar(true);
-                this.getGridPane().getChildren().add(cell.getSprite());
                 cell.getSprite().setVisible(false);
-                System.out.println("NO : " + cell.getPosition());
             }
         }
     }

@@ -32,9 +32,6 @@ public class MapConfig {
         }
         this.configMap(0);
         //CinematicConfig.setupGame();
-
-        maps.get(3).setFogOfWar(true);
-        maps.get(3).updateFogOfWar();
         GameLayout.getINSTANCE().setGameHasBegun(true);
     }
 
@@ -65,6 +62,7 @@ public class MapConfig {
 
     public void configMap(int nbMap,Pair<Integer, Integer> position, Sprite sprite){
         Movement.setMap(MapConfig.maps.get(nbMap));
+
         Player player = Player.getINSTANCE();
         player.setPosition(position);
         player.setSprite(sprite);
@@ -78,6 +76,9 @@ public class MapConfig {
 
         //MapConfig.maps.get(nbMap).getGridPane().setGridLinesVisible(true);
         MapConfig.maps.get(nbMap).getGridPane().getChildren().add(player.getImage());
+
+        if(Movement.getMap().isFogOfWar())
+            Movement.getMap().updateFogOfWar();
 
         GameLayout.getINSTANCE().setGridPane(MapConfig.maps.get(nbMap).getGridPane());
     }
@@ -176,6 +177,7 @@ public class MapConfig {
         }
         private static void setupMap0(){
             Map m = maps.get(0);
+            m.setFogOfWar(true);
 
             /*LIGNE 1*/
             for (int i = 0; i <= 11; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 0)));

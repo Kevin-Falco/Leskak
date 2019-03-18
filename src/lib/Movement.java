@@ -165,7 +165,6 @@ public class Movement {
             player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getRIGHT());
             player.setDirection(Direction.RIGHT);
             Movement.moved = true;
-            System.out.println("HA");
         }
         if (key.getCode() == Key.LEFT.getKeyCode()) {
             x = (player.getPosition().getKey() == 0

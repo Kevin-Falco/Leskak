@@ -80,7 +80,7 @@ public enum Interaction {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
                 DialogLayout.getINSTANCE().setText("I'M A ROCKET");
-                if(Inventory.getINSTANCE().getGridPane().getChildren().contains(InventoryConfig.OBJ2.getImageView()))
+                //if(Inventory.getINSTANCE().getGridPane().getChildren().contains(InventoryConfig.OBJ2.getImageView()))
                     DialogLayout.getINSTANCE().addButton("GO NEW MAP", Action.TELEPORT_MAP4.getEventHandler());
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());

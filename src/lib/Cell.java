@@ -16,7 +16,7 @@ public class Cell {
         this.sprite = new ImageView( sprite.getSpritePath());
         this.sprite.setPreserveRatio(true);
         this.sprite.setFitWidth(50);//(37);
-        this.sprite2 = new ImageView(Sprite.HOUSE_BOTTOM_LEFT.getSpritePath());
+        this.sprite2 = new ImageView(Sprite.FOG.getSpritePath());
         this.sprite2.setPreserveRatio(true);
         this.sprite2.setFitWidth(50);//(37);
         this.position = position;
@@ -24,13 +24,11 @@ public class Cell {
     }
 
     public ImageView getSprite() {
-        if(inFogOfWar){
-            ImageView imageView = new ImageView(Sprite.HOUSE_BOTTOM_LEFT.getSpritePath());
-            imageView.setPreserveRatio(true);
-            imageView.setFitWidth(50);
-            return this.sprite2;
-        }
         return sprite;
+    }
+
+    public ImageView getSprite2() {
+        return sprite2;
     }
 
     public SpriteSet getPlayerSprite() {
