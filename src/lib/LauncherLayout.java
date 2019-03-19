@@ -49,6 +49,7 @@ public class LauncherLayout {
     public static void setupLauncher(){
         Button game = new Button( GameLayout.getINSTANCE().HasGameBegun() ? "Reprendre la partie" : "Jouer");
         Stage stage = new Stage();
+        stage.getIcons().add(new Image(Sprite.DOWN_P1.getSpritePath()));
         LauncherLayout.testService = new Service<Void>() {
             @Override
             protected Task<Void> createTask() {
@@ -75,7 +76,7 @@ public class LauncherLayout {
 
         BorderPane.setAlignment(text, Pos.BOTTOM_CENTER);
         ((BorderPane) pane).setBottom(pane2);
-        
+
         testService.setOnFailed(event -> testService.getException().printStackTrace());
         testService.setOnSucceeded(event -> {
             stage.close();

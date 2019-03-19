@@ -144,6 +144,9 @@ public class MapConfig {
 
     public void movePlayer(Pair<Integer, Integer> targetPosition){
         Player player = Player.getINSTANCE();
+        double x = (player.getPosition().getKey() - targetPosition.getKey()) * 50;
+        double y = (player.getPosition().getValue() - targetPosition.getValue()) * 50;
+        System.out.println(player.getPosition() + " : " + targetPosition + x);
 
         if (Movement.getLastSprite() != null) {
             Movement.getLastSprite().setVisible(true);
@@ -159,7 +162,10 @@ public class MapConfig {
         //ImageView imageView = (ImageView) Movement.getMap().getGridPane().getChildren().get(Movement.getMap().getGridPane().getChildren().size() - 1);
         ImageView imageView = player.getImage();
         imageView.setImage(new Image(player.getSprite().getSpritePath()));
-        //GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
+        player.getImage().setTranslateX(player.getImage().getX());
+        player.getImage().setTranslateY(player.getImage().getY() + y);
+
+        GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
         //GridPane.setConstraints(new ImageView(Player.getINSTANCE().getSprite().getSpritePath()), targetPosition.getKey(), targetPosition.getValue());
     }
 
@@ -169,17 +175,18 @@ public class MapConfig {
         }
         Cell cell1 = getCell(nbMap, positionCell1.getKey(), positionCell1.getValue());
         Cell cell2 = getCell(nbMap, positionCell2.getKey(), positionCell2.getValue());
-        cell1.setInFogOfWar(false);
-        cell2.setInFogOfWar(false);
-        cell1.getSprite().setVisible(true);
-        cell2.getSprite().setVisible(true);
+        //cell1.setInFogOfWar(false);
+        //cell2.setInFogOfWar(false);
+        MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().removeAll(cell1.getSprite(), cell2.getSprite());
 
         cell1.setPosition(positionCell2);
         GridPane.setConstraints(cell1.getSprite(), positionCell2.getKey(), positionCell2.getValue());
 
+
         cell2.setPosition(positionCell1);
         GridPane.setConstraints(cell2.getSprite(), positionCell1.getKey(), positionCell1.getValue());
-
+        MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().addAll(cell1.getSprite(), cell2.getSprite());
+        Player.getINSTANCE().setPlayerOnTop(nbMap);
         return true;
     }
 
@@ -187,25 +194,25 @@ public class MapConfig {
 
         private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position){
             BlockingCell pnj = new BlockingCell(sprite, position);
-            GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
+            //GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
             return pnj;
         }
 
         private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position, Interaction interaction){
             BlockingCell pnj = new BlockingCell(sprite, position, interaction);
-            GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
+            //GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
             return pnj;
         }
 
         private static TransitionCell addTransitionCell(Sprite sprite, Pair<Integer, Integer> position, Direction direction){
             TransitionCell pnj = new TransitionCell(sprite, position, direction);
-            GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
+            //GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
             return pnj;
         }
 
         private static Cell addCell(Sprite sprite, Pair<Integer, Integer> position){
             Cell pnj = new Cell(sprite, position);
-            GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
+            //GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
             return pnj;
         }
         private static void setupMap0(){

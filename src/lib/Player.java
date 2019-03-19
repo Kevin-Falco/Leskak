@@ -1,6 +1,7 @@
 package lib;
 
 import config.Direction;
+import config.MapConfig;
 import config.Sprite;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -61,5 +62,10 @@ public class Player {
 
     public void setImage(ImageView image) {
         this.image = image;
+    }
+
+    public void setPlayerOnTop(int nbMap){
+        MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().remove(this.image);
+        MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().add(this.image);
     }
 }

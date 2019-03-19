@@ -2,8 +2,10 @@ package lib;
 
 
 import config.Interaction;
+import config.Sprite;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -23,6 +25,7 @@ public class MainLayout {
 
     private MainLayout() {
         MainLayout.STAGE.setScene(MainLayout.SCENE);
+        MainLayout.STAGE.getIcons().add(new Image(Sprite.LEFT_P1.getSpritePath()));
         this.gridPane = mainLayout();
     }
 
