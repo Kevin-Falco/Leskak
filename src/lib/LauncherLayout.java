@@ -1,24 +1,27 @@
 package lib;
 
-import config.CinematicConfig;
 import config.Key;
-import config.KeyboardConfig;
 import config.MapConfig;
+import config.Sprite;
 import javafx.animation.PauseTransition;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -26,6 +29,7 @@ import javafx.util.Duration;
 public class LauncherLayout {
     private static VBox vBox;
     private static VBox options;
+    private static Service<Void> testService;
 
     private static final Integer WIDTH= 300;//1200;
     private static final Integer HEIGHT = 600;//675;
@@ -43,17 +47,56 @@ public class LauncherLayout {
 
     public static void setupLauncher(){
         Button game = new Button( GameLayout.getINSTANCE().HasGameBegun() ? "Reprendre la partie" : "Jouer");
+        Stage stage = new Stage();
+        LauncherLayout.testService = new Service<Void>() {
+            @Override
+            protected Task<Void> createTask() {
+                return MapConfig.getTask();
+            }
+        };
+        ProgressIndicator progressIndicator = new ProgressIndicator();
+        ProgressIndicator progressIndicator2 = new ProgressIndicator();
+        progressIndicator.progressProperty().bind(testService.progressProperty());
+
+        ProgressBar progressBar = new ProgressBar();
+        ProgressBar progressBar2 = new ProgressBar();
+        progressBar2.progressProperty().unbind();
+        progressBar.progressProperty().bind(testService.progressProperty());
+        Text text = new Text();
+        text.textProperty().bind(testService.messageProperty());
+
+        Pane pane = new BorderPane();
+        Pane pane2 = new HBox();
+        ((HBox) pane2).setSpacing(20);
+        ((HBox) pane2).setAlignment(Pos.CENTER);
+        pane.setBackground(new Background( new BackgroundImage(new Image(Sprite.LOAD.getSpritePath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        pane2.setBackground(new Background(new BackgroundFill(Color.color(0.6,0.6,0.6, 0.7), new CornerRadii(30), new Insets(-10, 200, -10, 200))));
+        stage.setScene(new Scene(pane, 900, 600));
+        pane2.getChildren().addAll(progressBar, progressBar2, progressIndicator, progressIndicator2, text );
+
+        BorderPane.setAlignment(text, Pos.BOTTOM_CENTER);
+        //BorderPane.setAlignment(pane2, Pos.TOP_LEFT);
+        //pane.getChildren().add(pane2);
+        ((BorderPane) pane).setBottom(pane2);
+        //((BorderPane) pane).setCenter(progressIndicator);
+        //((BorderPane) pane).setBottom(text);
+
+
+        testService.setOnFailed(event -> testService.getException().printStackTrace());
+        testService.setOnSucceeded(event -> {
+            stage.close();
+            MainLayout.getSTAGE().show();
+        });
+
         game.setOnAction((EventHandler) (event) -> {
             Button button = (Button) event.getSource();
             if(button.getText() == "Reprendre la partie"){
                 MainLayout.getSTAGE().show();
             }
             else{
+                stage.show();
                 MainLayout.getSCENE().setRoot(MainLayout.getINSTANCE().getGridPane());
-                Movement.configPlayerEventHandler(MainLayout.getSCENE());
-                MapConfig.getINSTANCE();
-                MainLayout.getSTAGE().setTitle("LESKAK");
-                MainLayout.getSTAGE().show();
+                testService.start();
             }
         });
         Button options = new Button("Options");
@@ -62,12 +105,14 @@ public class LauncherLayout {
         credits.setOnAction((EventHandler) (event) -> LauncherLayout.SCENE.setRoot(LauncherLayout.getCredits()));
         Button quit = new Button("Quitter");
         quit.setOnAction((EventHandler) (event) -> {
-            Stage stage = (Stage) LauncherLayout.SCENE.getWindow();
-            stage.close();
+            Stage s = (Stage) LauncherLayout.SCENE.getWindow();
+            s.close();
         });
         LauncherLayout.vBox.getChildren().removeAll(LauncherLayout.vBox.getChildren());
         LauncherLayout.vBox.getChildren().addAll(game, options, credits, quit);
     }
+
+
 
     private static VBox getCredits(){
         VBox vBox = new VBox();
@@ -157,5 +202,9 @@ public class LauncherLayout {
 
     public static LauncherLayout getINSTANCE() {
         return INSTANCE;
+    }
+
+    public static Service<Void> getTestService() {
+        return testService;
     }
 }

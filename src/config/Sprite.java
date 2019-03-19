@@ -36,6 +36,8 @@ public enum Sprite {
     CINEMATIC("sprite/eevee_evolution.jpg"),
     CINEMATIC2("sprite/eevee2.jpg"),
     CINEMATIC3("sprite/eevee3.jpg"),
+
+    LOAD("sprite/load.jpg"),
     ;
 
     private String spritePath;

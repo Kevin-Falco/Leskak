@@ -75,6 +75,9 @@ public class Map implements  Iterable<Cell> {
     private boolean cellPositionAt(Cell cell, int nb){
         Player player = Player.getINSTANCE();
         return Math.abs(cell.getPosition().getKey() - player.getPosition().getKey()) <= nb &&
-            Math.abs(cell.getPosition().getValue() - player.getPosition().getValue()) <= nb;
+            Math.abs(cell.getPosition().getValue() - player.getPosition().getValue()) <= nb
+                // suite à enlever pour Fog of War carré
+                && !(Math.abs(cell.getPosition().getKey() - player.getPosition().getKey()) == nb &&
+                        Math.abs(cell.getPosition().getValue() - player.getPosition().getValue()) == nb );
     }
 }

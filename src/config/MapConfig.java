@@ -1,5 +1,6 @@
 package config;
 
+import javafx.concurrent.Task;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -10,10 +11,12 @@ import lib.*;
 
 import java.util.ArrayList;
 
+
 public class MapConfig {
     private static final MapConfig INSTANCE = new MapConfig();
 
     private static ArrayList<Map> maps;
+    private  static Task<Void> task;
 
     private MapConfig() {
         MapConfig.maps = new ArrayList<>();
@@ -28,9 +31,37 @@ public class MapConfig {
                         .add(new RowConstraints(  (float)MainLayout.getHEIGHT()*2/3/GameLayout.getINSTANCE().getNbRows()));
             }
             MapConfig.maps.add(newMap);
-            setupMap(nbMap);
+            //setupMap(nbMap);
         }
-        this.configMap(0);
+        task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                // code to execute on background thread here:
+                Movement.configPlayerEventHandler(MainLayout.getSCENE());
+                MapConfig.getINSTANCE();
+                this.updateMapProgress();
+                MapConfig.getINSTANCE().configMap(0);
+                MainLayout.getSTAGE().setTitle("LESKAK");
+                MainLayout.getSTAGE().setOnCloseRequest(event -> LauncherLayout.setupLauncher());
+                return null;
+            }
+
+            private void updateMapProgress(){
+                this.updateProgress(0, 100);
+                for(int i = 0; i < MapConfig.getINSTANCE().getMaps().size(); ++i){
+                    this.updateMessage("Création de la map " + i);
+                    this.updateProgress(i*100/MapConfig.getINSTANCE().getMaps().size(), 100);
+                    MapConfig.getINSTANCE().setupMap(i);
+                    //try {
+                    //    Thread.sleep(1000);
+                    //} catch (InterruptedException e) {
+                    //    e.printStackTrace();
+                    //}
+                }
+                this.updateProgress(100, 100);
+            }
+        };
+        //this.configMap(0);
         //CinematicConfig.setupGame();
         GameLayout.getINSTANCE().setGameHasBegun(true);
     }
@@ -43,7 +74,9 @@ public class MapConfig {
         return INSTANCE;
     }
 
-
+    public static Task<Void> getTask() {
+        return task;
+    }
 
     public void configMap(int nbMap){
         if(nbMap == 0){
@@ -83,7 +116,7 @@ public class MapConfig {
         GameLayout.getINSTANCE().setGridPane(MapConfig.maps.get(nbMap).getGridPane());
     }
 
-    private void setupMap(int nbMap){
+    public void setupMap(int nbMap){
         if(nbMap == 0){
             MapSetup.setupMap0();
         }
