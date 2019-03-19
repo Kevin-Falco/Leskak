@@ -40,7 +40,7 @@ public enum Interaction {
                 if(!PNJ3.isInteractionDone()) {
                     DialogLayout.getINSTANCE().setText("Wep je sais où trouver une plaque de tole. Mais si tu veux que je te le dises, tu vas devoir me su... euh me trouver" +
                             "un bidule que j'ai pommé dans un buisson là haut là bas. Allez tchuss. ");
-                    if (Inventory.getINSTANCE().getGridPane().getChildren().contains(InventoryConfig.OBJ1.getImageView())) {
+                    if (Inventory.getINSTANCE().contains(InventoryConfig.OBJ1)) {
                         DialogLayout.getINSTANCE().addButton("Donner son bidule", Action.RETURN_OBJECT1.getEventHandler());
                         DialogLayout.getINSTANCE().addReturnButton();
                     }
@@ -57,8 +57,8 @@ public enum Interaction {
                 Movement.setMoved(false);
                 if(!PNJ4.isInteractionDone()){
                     DialogLayout.getINSTANCE().setText("Vlà ta plaque de tôle pti fragile. Maintenant laisses moi tranquille j'ai autre chose à foutre.");
-                    if(!Inventory.getINSTANCE().getGridPane().getChildren().contains(InventoryConfig.OBJ2.getImageView())){
-                        DialogLayout.getINSTANCE().addButton("Prendre la plaque de tôle", Action.GIVE_OBJECT2.getEventHandler());
+                    if(!Inventory.getINSTANCE().contains(InventoryConfig.OBJ1_2)){
+                        DialogLayout.getINSTANCE().addButton("Prendre la plaque de tôle", Action.GIVE_OBJECT1_2.getEventHandler());
                         DialogLayout.getINSTANCE().addReturnButton();
                     }
                 }
@@ -80,8 +80,12 @@ public enum Interaction {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
                 DialogLayout.getINSTANCE().setText("I'M A ROCKET");
-                //if(Inventory.getINSTANCE().getGridPane().getChildren().contains(InventoryConfig.OBJ2.getImageView()))
+                if(Inventory.getINSTANCE().contains(InventoryConfig.OBJ1_2)){
                     DialogLayout.getINSTANCE().addButton("GO NEW MAP", Action.TELEPORT_MAP4.getEventHandler());
+                    DialogLayout.getINSTANCE().addReturnButton();
+                }
+
+
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());
         });
@@ -90,7 +94,7 @@ public enum Interaction {
                 Movement.setMoved(false);
                 if(!BUSH1.isInteractionDone()){
                     DialogLayout.getINSTANCE().setText("Vous trouvez un bidule.");
-                    if(!Inventory.getINSTANCE().getGridPane().getChildren().contains(InventoryConfig.OBJ1.getImageView())){
+                    if(!Inventory.getINSTANCE().contains(InventoryConfig.OBJ1)){
                         DialogLayout.getINSTANCE().addButton("Prendre le bidule", Action.GIVE_OBJECT1.getEventHandler());
                         DialogLayout.getINSTANCE().addReturnButton();
                     }

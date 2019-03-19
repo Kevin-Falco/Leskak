@@ -5,7 +5,8 @@ import javafx.util.Pair;
 
 
 public enum InventoryConfig {
-    OBJ1("Plaque de tôle", new ImageView("sprite/player_up_p1.png"), new Pair<>(0,0)),
+    OBJ1("Bidule", new ImageView("sprite/player_up_bridge.png"), new Pair<>(0,0)),
+    OBJ1_2("Plaque de tôle", new ImageView("sprite/player_up_p1.png"), new Pair<>(0,0)),
     OBJ2("Panneau de commande", new ImageView("sprite/player_down_p1.png"), new Pair<>(1,0)),
     OBJ3("Dynamite", new ImageView("sprite/player_right_p1.png"), new Pair<>(2,0)),
     OBJ4("Réacteurs", new ImageView("sprite/player_left_p1.png"), new Pair<>(0,1)),

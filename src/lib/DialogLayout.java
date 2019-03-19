@@ -71,7 +71,7 @@ public class DialogLayout {
     public void addButton(String name, EventHandler eventHandler){
         Button button = new Button(name);
         button.setOnAction(eventHandler);
-        button.setDefaultButton(true);
+        //button.setDefaultButton(true);
 
         this.buttons.getChildren().add(button);
 
@@ -84,7 +84,7 @@ public class DialogLayout {
         button.setOnAction(Action.RETURN.getEventHandler());
         button.setCancelButton(true);
 
-        this.buttons.getChildren().add(button);
+        this.buttons.getChildren().addAll(button, new Text("SPACE pour confirmer, ESCAPE pour annuler"));
 
         Movement.removeMovement();
     }

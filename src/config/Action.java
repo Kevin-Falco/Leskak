@@ -13,6 +13,7 @@ public enum Action {
     TELEPORT_MAP3,
     TELEPORT_MAP4,
     GIVE_OBJECT1,
+    GIVE_OBJECT1_2,
     GIVE_OBJECT2,
     GIVE_OBJECT3,
     GIVE_OBJECT4,
@@ -53,6 +54,13 @@ public enum Action {
         GIVE_OBJECT1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             Inventory.getINSTANCE().add(InventoryConfig.OBJ1);
             Interaction.BUSH1.setInteractionDone(true);
+            Movement.resumeMovement();
+            DialogLayout.getINSTANCE().removeContent();
+            Movement.setMoved(true);
+        });
+        GIVE_OBJECT1_2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            Inventory.getINSTANCE().add(InventoryConfig.OBJ1_2);
+            Interaction.PNJ4.setInteractionDone(true);
             Movement.resumeMovement();
             DialogLayout.getINSTANCE().removeContent();
             Movement.setMoved(true);
