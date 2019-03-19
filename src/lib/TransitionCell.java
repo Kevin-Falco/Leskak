@@ -49,13 +49,6 @@ public class TransitionCell extends Cell {
                         Movement.getMap().getGridPane().getChildren().remove(player.getImage());
                         MapConfig.getINSTANCE().configMap(nextMap, new Pair<>(nextPosition.getKey(),nextPosition.getValue()), Player.getINSTANCE().getSprite());
 
-
-                        Movement.setLastSprite(Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue()));
-                        ImageView lastSprite = Movement.getLastSprite();
-                        if (lastSprite != null){
-                            lastSprite.setVisible(false);
-                        }
-
                         //MapConfig.getINSTANCE().movePlayer(nextPosition);
 
                         //ImageView imageView = (ImageView) Movement.getMap().getGridPane().getChildren().get(Movement.getMap().getGridPane().getChildren().size() -1);

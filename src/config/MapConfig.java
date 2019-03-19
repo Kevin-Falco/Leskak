@@ -40,9 +40,7 @@ public class MapConfig {
                 Movement.configPlayerEventHandler(MainLayout.getSCENE());
                 MapConfig.getINSTANCE();
                 this.updateMapProgress();
-                MapConfig.getINSTANCE().configMap(0);
-                MainLayout.getSTAGE().setTitle("LESKAK");
-                MainLayout.getSTAGE().setOnCloseRequest(event -> LauncherLayout.setupLauncher());
+
                 return null;
             }
 
@@ -80,16 +78,16 @@ public class MapConfig {
 
     public void configMap(int nbMap){
         if(nbMap == 0){
-            configMap(nbMap, new Pair<>(10, 6), Sprite.DOWN_P1);
+            configMap(nbMap, new Pair<>(10, 6), Sprite.PLAYER_DOWN_STOP);
         }
         if(nbMap == 1){
-            configMap(nbMap, new Pair<>(15, 5), Sprite.DOWN_P1);
+            configMap(nbMap, new Pair<>(15, 5), Sprite.PLAYER_DOWN_STOP);
         }
         if(nbMap == 2){
-            configMap(nbMap, new Pair<>(6, 5), Sprite.DOWN_P1);
+            configMap(nbMap, new Pair<>(6, 5), Sprite.PLAYER_DOWN_STOP);
         }
         if(nbMap == 3){
-            configMap(nbMap, new Pair<>(6, 5), Sprite.DOWN_P1);
+            configMap(nbMap, new Pair<>(6, 5), Sprite.PLAYER_DOWN_STOP);
         }
     }
 
@@ -97,6 +95,7 @@ public class MapConfig {
         Movement.setMap(MapConfig.maps.get(nbMap));
 
         Player player = Player.getINSTANCE();
+
         player.setPosition(position);
         player.setSprite(sprite);
 
@@ -148,16 +147,8 @@ public class MapConfig {
         double y = (player.getPosition().getValue() - targetPosition.getValue()) * 50;
         System.out.println(player.getPosition() + " : " + targetPosition + x);
 
-        if (Movement.getLastSprite() != null) {
-            Movement.getLastSprite().setVisible(true);
-        }
         Player.getINSTANCE().setPosition(targetPosition);
 
-        Movement.setLastSprite(Movement.getSprite(player.getPosition().getKey(), player.getPosition().getValue()));
-
-        if (Movement.getLastSprite() != null) {
-            Movement.getLastSprite().setVisible(false);
-        }
 
         //ImageView imageView = (ImageView) Movement.getMap().getGridPane().getChildren().get(Movement.getMap().getGridPane().getChildren().size() - 1);
         ImageView imageView = player.getImage();

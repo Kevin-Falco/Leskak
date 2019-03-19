@@ -2,6 +2,18 @@ package config;
 
 public enum Sprite {
 
+    PLAYER_UP_STOP("sprite/player/player_up_stop.png"),
+    PLAYER_UP_MOVE_RIGHT("sprite/player/player_up_move_right.png"),
+    PLAYER_UP_MOVE_LEFT("sprite/player/player_up_move_left.png"),
+    PLAYER_DOWN_STOP("sprite/player/player_down_stop.png"),
+    PLAYER_DOWN_MOVE_RIGHT("sprite/player/player_down_move_right.png"),
+    PLAYER_DOWN_MOVE_LEFT("sprite/player/player_down_move_left.png"),
+    PLAYER_RIGHT_STOP("sprite/player/player_right_stop.png"),
+    PLAYER_RIGHT_MOVE_RIGHT("sprite/player/player_right_move_right.png"),
+    PLAYER_RIGHT_MOVE_LEFT("sprite/player/player_right_move_left.png"),
+    PLAYER_LEFT_STOP("sprite/player/player_left_stop.png"),
+    PLAYER_LEFT_MOVE_RIGHT("sprite/player/player_left_move_right.png"),
+    PLAYER_LEFT_MOVE_LEFT("sprite/player/player_left_move_left.png"),
     UP_P1("sprite/player_up_p1.png"),
     DOWN_P1("sprite/player_down_p1.png"),
     //RIGHT_P1("sprite/TEST_ANIM.png"),

@@ -79,6 +79,9 @@ public class LauncherLayout {
 
         testService.setOnFailed(event -> testService.getException().printStackTrace());
         testService.setOnSucceeded(event -> {
+            MapConfig.getINSTANCE().configMap(0);
+                MainLayout.getSTAGE().setTitle("LESKAK");
+                MainLayout.getSTAGE().setOnCloseRequest(event1 -> LauncherLayout.setupLauncher());
             stage.close();
             MainLayout.getSTAGE().show();
         });
