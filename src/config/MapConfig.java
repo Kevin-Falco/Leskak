@@ -49,14 +49,14 @@ public class MapConfig {
             private void updateMapProgress(){
                 this.updateProgress(0, 100);
                 for(int i = 0; i < MapConfig.getINSTANCE().getMaps().size(); ++i){
-                    this.updateMessage("Création de la map " + i);
+                    this.updateMessage( " Création de la map " + i);
                     this.updateProgress(i*100/MapConfig.getINSTANCE().getMaps().size(), 100);
                     MapConfig.getINSTANCE().setupMap(i);
-                    //try {
-                    //    Thread.sleep(1000);
-                    //} catch (InterruptedException e) {
-                    //    e.printStackTrace();
-                    //}
+                   //try {
+                   //    Thread.sleep(1000);
+                   //} catch (InterruptedException e) {
+                   //    e.printStackTrace();
+                   //}
                 }
                 this.updateProgress(100, 100);
             }

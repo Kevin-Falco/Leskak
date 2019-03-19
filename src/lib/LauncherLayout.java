@@ -4,6 +4,7 @@ import config.Key;
 import config.MapConfig;
 import config.Sprite;
 import javafx.animation.PauseTransition;
+import javafx.beans.property.StringProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
@@ -54,34 +55,27 @@ public class LauncherLayout {
                 return MapConfig.getTask();
             }
         };
-        ProgressIndicator progressIndicator = new ProgressIndicator();
-        ProgressIndicator progressIndicator2 = new ProgressIndicator();
-        progressIndicator.progressProperty().bind(testService.progressProperty());
 
         ProgressBar progressBar = new ProgressBar();
-        ProgressBar progressBar2 = new ProgressBar();
-        progressBar2.progressProperty().unbind();
         progressBar.progressProperty().bind(testService.progressProperty());
+
         Text text = new Text();
+        Text pourcent = new Text();
         text.textProperty().bind(testService.messageProperty());
+        pourcent.textProperty().bind(StringProperty.stringExpression( testService.progressProperty().multiply(100)).concat("%"));
 
         Pane pane = new BorderPane();
-        Pane pane2 = new HBox();
-        ((HBox) pane2).setSpacing(20);
-        ((HBox) pane2).setAlignment(Pos.CENTER);
+        Pane pane2 = new VBox();
+        ((VBox) pane2).setSpacing(5);
+        ((VBox) pane2).setAlignment(Pos.CENTER);
         pane.setBackground(new Background( new BackgroundImage(new Image(Sprite.LOAD.getSpritePath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
-        pane2.setBackground(new Background(new BackgroundFill(Color.color(0.6,0.6,0.6, 0.7), new CornerRadii(30), new Insets(-10, 200, -10, 200))));
+        pane2.setBackground(new Background(new BackgroundFill(Color.color(0.6,0.6,0.6, 0.7), new CornerRadii(30), new Insets(-10, 350, -10, 350))));
         stage.setScene(new Scene(pane, 900, 600));
-        pane2.getChildren().addAll(progressBar, progressBar2, progressIndicator, progressIndicator2, text );
+        pane2.getChildren().addAll(progressBar, pourcent, text );
 
         BorderPane.setAlignment(text, Pos.BOTTOM_CENTER);
-        //BorderPane.setAlignment(pane2, Pos.TOP_LEFT);
-        //pane.getChildren().add(pane2);
         ((BorderPane) pane).setBottom(pane2);
-        //((BorderPane) pane).setCenter(progressIndicator);
-        //((BorderPane) pane).setBottom(text);
-
-
+        
         testService.setOnFailed(event -> testService.getException().printStackTrace());
         testService.setOnSucceeded(event -> {
             stage.close();
