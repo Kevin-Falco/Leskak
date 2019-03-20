@@ -130,7 +130,7 @@ public class MapConfig {
         }
     }
 
-    public static Cell getCell(int nbMap, Integer col, Integer row){
+    public static Cell getFirstCell(int nbMap, Integer col, Integer row){
         Map m = getINSTANCE().getMaps().get(nbMap);
         for (Cell cell : m
         ) {
@@ -139,6 +139,18 @@ public class MapConfig {
             }
         }
         return null;
+    }
+
+    public static Cell getLastCell(int nbMap, Integer col, Integer row){
+        Map m = getINSTANCE().getMaps().get(nbMap);
+        Cell toReturn = null;
+        for (Cell cell : m
+                ) {
+            if(cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){
+                toReturn = cell;
+            }
+        }
+        return toReturn;
     }
 
     public void movePlayer(Pair<Integer, Integer> targetPosition){
@@ -164,19 +176,39 @@ public class MapConfig {
         if(Player.getINSTANCE().getPosition().equals(positionCell1) || Player.getINSTANCE().getPosition().equals(positionCell2)){
             return false;
         }
-        Cell cell1 = getCell(nbMap, positionCell1.getKey(), positionCell1.getValue());
-        Cell cell2 = getCell(nbMap, positionCell2.getKey(), positionCell2.getValue());
-        //cell1.setInFogOfWar(false);
-        //cell2.setInFogOfWar(false);
-        MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().removeAll(cell1.getImage(), cell2.getImage());
+        Cell firstCell1 = getFirstCell(nbMap, positionCell1.getKey(), positionCell1.getValue());
+        Cell firstCell2 = getFirstCell(nbMap, positionCell2.getKey(), positionCell2.getValue());
+        Cell lastCell1 = getLastCell(nbMap, positionCell1.getKey(), positionCell1.getValue());
+        Cell lastCell2 = getLastCell(nbMap, positionCell2.getKey(), positionCell2.getValue());
 
-        cell1.setPosition(positionCell2);
-        GridPane.setConstraints(cell1.getImage(), positionCell2.getKey(), positionCell2.getValue());
+        if(firstCell1 != lastCell1 && firstCell2 != lastCell2 ){
+            MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().removeAll(lastCell1.getImage(), lastCell2.getImage());
 
+            lastCell1.setPosition(positionCell2);
+            GridPane.setConstraints(lastCell1.getImage(), positionCell2.getKey(), positionCell2.getValue());
 
-        cell2.setPosition(positionCell1);
-        GridPane.setConstraints(cell2.getImage(), positionCell1.getKey(), positionCell1.getValue());
-        MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().addAll(cell1.getImage(), cell2.getImage());
+            lastCell2.setPosition(positionCell1);
+            GridPane.setConstraints(lastCell2.getImage(), positionCell1.getKey(), positionCell1.getValue());
+
+            MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().addAll(lastCell1.getImage(), lastCell2.getImage());
+        }
+        else if(firstCell1 != lastCell1){
+            MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().remove(lastCell1.getImage());
+
+            lastCell1.setPosition(positionCell2);
+            GridPane.setConstraints(lastCell1.getImage(), positionCell2.getKey(), positionCell2.getValue());
+
+            MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().add(lastCell1.getImage());
+        }
+        else if(firstCell2 != lastCell2){
+            MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().remove(lastCell2.getImage());
+
+            lastCell2.setPosition(positionCell1);
+            GridPane.setConstraints(lastCell2.getImage(), positionCell1.getKey(), positionCell1.getValue());
+
+            MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().add(lastCell2.getImage());
+        }
+
         Player.getINSTANCE().setPlayerOnTop(nbMap);
         return true;
     }
@@ -505,11 +537,11 @@ public class MapConfig {
             for(int i = 0; i <= 31; i++)
             {
                 for(int j = 0; j <= 11; ++j){
-                    Cell currentCell = getCell(nbMap, i, j);
-                    Cell upCell = getCell(nbMap, i, j-1);
-                    Cell downCell = getCell(nbMap, i, j+1);
-                    Cell rightCell = getCell(nbMap, i+1, j);
-                    Cell leftCell = getCell(nbMap, i-1, j);
+                    Cell currentCell = getFirstCell(nbMap, i, j);
+                    Cell upCell = getFirstCell(nbMap, i, j-1);
+                    Cell downCell = getFirstCell(nbMap, i, j+1);
+                    Cell rightCell = getFirstCell(nbMap, i+1, j);
+                    Cell leftCell = getFirstCell(nbMap, i-1, j);
                     if(spriteSet.contains(currentCell.getSprite())){
                         if( downCell != null && !spriteSet.contains(downCell.getSprite())){
                             if(rightCell != null && !spriteSet.contains(rightCell.getSprite()) &&
