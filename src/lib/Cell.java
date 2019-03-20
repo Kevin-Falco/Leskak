@@ -5,23 +5,33 @@ import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 
 public class Cell {
-    private ImageView sprite;
+    private ImageView image;
+    private Sprite sprite;
     private ImageView sprite2;
     private Pair<Integer, Integer> position;
     private boolean inFogOfWar = false;
 
     public Cell(Sprite sprite, Pair<Integer, Integer> position) {
-        this.sprite = new ImageView( sprite.getSpritePath());
-        this.sprite.setPreserveRatio(true);
-        this.sprite.setFitWidth(50);//(37);
+        this.image = new ImageView( sprite.getSpritePath());
+        this.image.setPreserveRatio(true);
+        this.image.setFitWidth(50);//(37);
         this.sprite2 = new ImageView(Sprite.FOG.getSpritePath());
         this.sprite2.setPreserveRatio(true);
         this.sprite2.setFitWidth(50);//(37);
+        this.sprite = sprite;//(37);
         this.position = position;
     }
 
-    public ImageView getSprite() {
+    public ImageView getImage() {
+        return image;
+    }
+
+    public Sprite getSprite() {
         return sprite;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
     }
 
     public ImageView getSprite2() {
@@ -32,10 +42,10 @@ public class Cell {
         return position;
     }
 
-    public void setSprite(ImageView sprite) {
-        this.sprite = sprite;
-        this.sprite.setPreserveRatio(true);
-        this.sprite.setFitWidth(50);
+    public void setImage(ImageView image) {
+        this.image = image;
+        this.image.setPreserveRatio(true);
+        this.image.setFitWidth(50);
     }
 
     public void setPosition(Pair<Integer, Integer> position) {

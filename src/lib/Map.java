@@ -1,8 +1,5 @@
 package lib;
 
-import config.Sprite;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
@@ -43,8 +40,8 @@ public class Map implements  Iterable<Cell> {
             this.getGridPane().getChildren().add(cell.getSprite2());
         }
 
-        GridPane.setConstraints(cell.getSprite(), cell.getPosition().getKey(), cell.getPosition().getValue());
-        this.getGridPane().getChildren().add(cell.getSprite());
+        GridPane.setConstraints(cell.getImage(), cell.getPosition().getKey(), cell.getPosition().getValue());
+        this.getGridPane().getChildren().add(cell.getImage());
 
     }
 
@@ -64,10 +61,10 @@ public class Map implements  Iterable<Cell> {
     public void updateFogOfWar(){
         for(Cell cell : this){
             if(cellPositionAt(cell, 2)){
-                cell.getSprite().setVisible(true);
+                cell.getImage().setVisible(true);
             }
             else{
-                cell.getSprite().setVisible(false);
+                cell.getImage().setVisible(false);
             }
         }
     }

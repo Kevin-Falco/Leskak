@@ -6,10 +6,8 @@ import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import javafx.util.Pair;
 
@@ -26,7 +24,7 @@ public class Movement {
     private static boolean stoped = true;
     private static boolean directionChanged = false;
     private static boolean lastKeyReleased = true;
-    private static SpriteSet spriteSet = SpriteSet.PLAYER_STOP;
+    private static AnimationSet animationSet = AnimationSet.PLAYER_STOP;
     private static int delay = 250;
 
     public static void configPlayerEventHandler(Scene scene) {
@@ -66,7 +64,7 @@ public class Movement {
             }
 
             if(lastKeyReleased){
-                spriteSet = SpriteSet.PLAYER_STOP;
+                animationSet = AnimationSet.PLAYER_STOP;
                 Movement.refreshPlayerSprite();
                 stoped = true;
                 return;
@@ -81,14 +79,14 @@ public class Movement {
             if(!stoped && !Movement.automaticLastKey.equals(Movement.lastKeyTyped)){
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
                 stoped = false;
-                spriteSet = SpriteSet.getSpriteSet(SpriteSet.getNbAnim());
+                animationSet = AnimationSet.getSpriteSet(AnimationSet.getNbAnim());
                 directionChanged = true;
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
                 pt.play();
                 return;
             }
 
-            spriteSet = SpriteSet.getSpriteSet(SpriteSet.getNbAnim());
+            animationSet = AnimationSet.getSpriteSet(AnimationSet.getNbAnim());
             movePlayer(key);
             stoped = false;
 
@@ -140,8 +138,8 @@ public class Movement {
                     ((player.getPosition().getValue() == 0
                             || !isAccessibleCell(player.getPosition().getKey(), player.getPosition().getValue() - 1)) ?
                             player.getPosition().getValue() : player.getPosition().getValue() - 1)));
-            //player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getUP());
-            //player.setSprite(spriteSet.getUp());
+            //player.setImage(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getUP());
+            //player.setImage(animationSet.getUp());
             player.setDirection(Direction.UP);
             Movement.moved = true;
         }
@@ -153,8 +151,8 @@ public class Movement {
                     player.getPosition().getValue() == GameLayout.getINSTANCE().getNbRows() - 1
                             || !isAccessibleCell(player.getPosition().getKey(), player.getPosition().getValue() + 1) ?
                             player.getPosition().getValue() : player.getPosition().getValue() + 1));
-            //player.setSprite(spriteSet.getDown());
-            //player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getDOWN());
+            //player.setImage(animationSet.getDown());
+            //player.setImage(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getDOWN());
             player.setDirection(Direction.DOWN);
             Movement.moved = true;
         }
@@ -166,8 +164,8 @@ public class Movement {
                             || !isAccessibleCell(player.getPosition().getKey() + 1, player.getPosition().getValue()) ?
                             player.getPosition().getKey() : player.getPosition().getKey() + 1,
                     player.getPosition().getValue()));
-            //player.setSprite(spriteSet.getRight());
-            //player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getRIGHT());
+            //player.setImage(animationSet.getRight());
+            //player.setImage(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getRIGHT());
             player.setDirection(Direction.RIGHT);
             Movement.moved = true;
         }
@@ -179,8 +177,8 @@ public class Movement {
                             || !isAccessibleCell(player.getPosition().getKey() - 1, player.getPosition().getValue()) ?
                             player.getPosition().getKey() : player.getPosition().getKey() - 1,
                     player.getPosition().getValue()));
-            //player.setSprite(spriteSet.getLeft());
-            //player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getLEFT());
+            //player.setImage(animationSet.getLeft());
+            //player.setImage(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getLEFT());
             player.setDirection(Direction.LEFT);
             Movement.moved = true;
         }
@@ -198,7 +196,7 @@ public class Movement {
 
             ImageView imageView = player.getImage();
             //ImageView imageView = (ImageView) Movement.map.getGridPane().getChildren().get(Movement.map.getGridPane().getChildren().size() - 1);
-            //imageView.setImage(new Image(player.getSprite().getSpritePath()));
+            //imageView.setImage(new Image(player.getImage().getSpritePath()));
             tt.setNode(imageView);
             tt.setByX(x);
             tt.setByY(y);
@@ -217,16 +215,16 @@ public class Movement {
         Player player = Player.getINSTANCE();
         switch (player.getDirection()){
             case UP:
-                player.setSprite(spriteSet.getUp());
+                player.setSprite(animationSet.getUp());
                 break;
             case DOWN:
-                player.setSprite(spriteSet.getDown());
+                player.setSprite(animationSet.getDown());
                 break;
             case RIGHT:
-                player.setSprite(spriteSet.getRight());
+                player.setSprite(animationSet.getRight());
                 break;
             case LEFT:
-                player.setSprite(spriteSet.getLeft());
+                player.setSprite(animationSet.getLeft());
                 break;
         }
     }
@@ -262,7 +260,7 @@ public class Movement {
         for (Cell cell : Movement.map
              ) {
             if(cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){
-                return cell.getSprite();
+                return cell.getImage();
             }
         }
         return null;
@@ -307,11 +305,11 @@ public class Movement {
         Movement.moved = moved;
     }
 
-    public static SpriteSet getSpriteSet() {
-        return spriteSet;
+    public static AnimationSet getAnimationSet() {
+        return animationSet;
     }
 
-    public static void setSpriteSet(SpriteSet spriteSet) {
-        Movement.spriteSet = spriteSet;
+    public static void setAnimationSet(AnimationSet animationSet) {
+        Movement.animationSet = animationSet;
     }
 }

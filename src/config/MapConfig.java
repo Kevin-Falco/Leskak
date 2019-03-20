@@ -99,7 +99,7 @@ public class MapConfig {
         player.setPosition(position);
         player.setSprite(sprite);
 
-        //ImageView imageView = new ImageView(player.getSprite().getSpritePath());
+        //ImageView imageView = new ImageView(player.getImage().getSpritePath());
         //imageView.setPreserveRatio(true);
         //imageView.setFitWidth(50);//(37);
         player.getImage().setTranslateX(0);
@@ -157,7 +157,7 @@ public class MapConfig {
         player.getImage().setTranslateY(player.getImage().getY() + y);
 
         GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
-        //GridPane.setConstraints(new ImageView(Player.getINSTANCE().getSprite().getSpritePath()), targetPosition.getKey(), targetPosition.getValue());
+        //GridPane.setConstraints(new ImageView(Player.getINSTANCE().getImage().getSpritePath()), targetPosition.getKey(), targetPosition.getValue());
     }
 
     public boolean swapCells(int nbMap, Pair<Integer, Integer> positionCell1, Pair<Integer, Integer> positionCell2){
@@ -168,15 +168,15 @@ public class MapConfig {
         Cell cell2 = getCell(nbMap, positionCell2.getKey(), positionCell2.getValue());
         //cell1.setInFogOfWar(false);
         //cell2.setInFogOfWar(false);
-        MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().removeAll(cell1.getSprite(), cell2.getSprite());
+        MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().removeAll(cell1.getImage(), cell2.getImage());
 
         cell1.setPosition(positionCell2);
-        GridPane.setConstraints(cell1.getSprite(), positionCell2.getKey(), positionCell2.getValue());
+        GridPane.setConstraints(cell1.getImage(), positionCell2.getKey(), positionCell2.getValue());
 
 
         cell2.setPosition(positionCell1);
-        GridPane.setConstraints(cell2.getSprite(), positionCell1.getKey(), positionCell1.getValue());
-        MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().addAll(cell1.getSprite(), cell2.getSprite());
+        GridPane.setConstraints(cell2.getImage(), positionCell1.getKey(), positionCell1.getValue());
+        MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().addAll(cell1.getImage(), cell2.getImage());
         Player.getINSTANCE().setPlayerOnTop(nbMap);
         return true;
     }
@@ -185,25 +185,25 @@ public class MapConfig {
 
         private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position){
             BlockingCell pnj = new BlockingCell(sprite, position);
-            //GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
+            //GridPane.setConstraints(pnj.getImage(), position.getKey(),position.getValue());
             return pnj;
         }
 
         private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position, Interaction interaction){
             BlockingCell pnj = new BlockingCell(sprite, position, interaction);
-            //GridPane.setConstraints(pnj.getSprite(), position.getKey(),position.getValue());
+            //GridPane.setConstraints(pnj.getImage(), position.getKey(),position.getValue());
             return pnj;
         }
 
         private static TransitionCell addTransitionCell(Sprite sprite, Pair<Integer, Integer> position, Direction direction){
             TransitionCell pnj = new TransitionCell(sprite, position, direction);
-            //GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
+            //GridPane.setConstraints(pnj.getImage(), position.getKey(), position.getValue());
             return pnj;
         }
 
         private static Cell addCell(Sprite sprite, Pair<Integer, Integer> position){
             Cell pnj = new Cell(sprite, position);
-            //GridPane.setConstraints(pnj.getSprite(), position.getKey(), position.getValue());
+            //GridPane.setConstraints(pnj.getImage(), position.getKey(), position.getValue());
             return pnj;
         }
         private static void setupMap0(){
@@ -336,6 +336,75 @@ public class MapConfig {
             for (int i = 0; i <= 24; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
             for (int i = 25; i <= 26; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 11)));
             for (int i = 27; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
+
+            for(int i = 0; i <= 31; i++)
+            {
+                for(int j = 0; j <= 11; ++j){
+
+                    if(SpriteSet.TREE_SET.contains(getCell(0, i, j).getSprite())){
+                        if( getCell(0,i, j+1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j+1).getSprite())){
+                            if(getCell(0,i+1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i+1, j).getSprite()) &&
+                                    getCell(0,i-1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i-1, j).getSprite())){
+                                getCell(0, i, j).setSprite(Sprite.TREE_DOWN);
+                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_DOWN.getSpritePath()));
+                            }
+                            else if( getCell(0,i+1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i+1, j).getSprite())){
+                                getCell(0, i, j).setSprite(Sprite.TREE_DOWN_LEFT);
+                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_DOWN_LEFT.getSpritePath()));
+                            }
+                            else if(getCell(0,i-1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i-1, j).getSprite())){
+                                getCell(0, i, j).setSprite(Sprite.TREE_DOWN_RIGHT);
+                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_DOWN_RIGHT.getSpritePath()));
+                            }
+                            else{
+                                getCell(0, i, j).setSprite(Sprite.TREE_DOWN_LEFT_RIGHT);
+                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_DOWN_LEFT_RIGHT.getSpritePath()));
+                            }
+                        }
+                        else if(getCell(0,i, j-1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j-1).getSprite())){
+                            if(getCell(0,i+1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i+1, j).getSprite()) &&
+                                    getCell(0,i-1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i-1, j).getSprite())){
+                                getCell(0, i, j).setSprite(Sprite.TREE_UP);
+                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_UP.getSpritePath()));
+                            }
+                            else{
+                                getCell(0, i, j).setSprite(Sprite.TREE_UP_LEFT_RIGHT);
+                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_UP_LEFT_RIGHT.getSpritePath()));
+                            }
+                        }
+                        else if(getCell(0,i+1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i+1, j).getSprite())){
+                            if(getCell(0,i, j-1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j-1).getSprite()) &&
+                                    getCell(0,i, j+1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j+1).getSprite())){
+                                getCell(0, i, j).setSprite(Sprite.TREE_LEFT);
+                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_LEFT.getSpritePath()));
+                            }
+                            else if( getCell(0,i, j-1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j-1).getSprite())){
+                                getCell(0, i, j).setSprite(Sprite.TREE_UP_LEFT);
+                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_UP_LEFT.getSpritePath()));
+                            }
+                            else{
+                                getCell(0, i, j).setSprite(Sprite.TREE_LEFT_UP_DOWN);
+                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_LEFT_UP_DOWN.getSpritePath()));
+                            }
+                        }
+                        else if(getCell(0,i-1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i-1, j).getSprite())){
+                            if(getCell(0,i, j-1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j-1).getSprite()) &&
+                                    getCell(0,i, j+1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j+1).getSprite())){
+                                getCell(0, i, j).setSprite(Sprite.TREE_RIGHT);
+                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_RIGHT.getSpritePath()));
+                            }
+                            else if( getCell(0,i, j-1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j-1).getSprite())){
+                                getCell(0, i, j).setSprite(Sprite.TREE_UP_RIGHT);
+                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_UP_RIGHT.getSpritePath()));
+                            }
+                            else{
+                                getCell(0, i, j).setSprite(Sprite.TREE_RIGHT_UP_DOWN);
+                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_RIGHT_UP_DOWN.getSpritePath()));
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private static void setupMap1() {
@@ -579,13 +648,7 @@ public class MapConfig {
                 }
             }
 
-            for(int i = 0; i <= 31; i++)
-            {
-                for(int j = 0; j <= 11; ++j){
-                    //if(getCell(3, i, j).getSprite())
-                    m.add(addCell(Sprite.GRASS, new Pair<>(i,j)));
-                }
-            }
+
         }
     }
 }

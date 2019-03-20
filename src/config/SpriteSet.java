@@ -1,51 +1,40 @@
 package config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum SpriteSet {
+    TREE_SET(new ArrayList<>(13));
 
-    PLAYER_MOVE_RIGHT(Sprite.PLAYER_UP_MOVE_RIGHT, Sprite.PLAYER_DOWN_MOVE_RIGHT, Sprite.PLAYER_RIGHT_MOVE_RIGHT, Sprite.PLAYER_LEFT_MOVE_RIGHT),
-    PLAYER_STOP2(Sprite.PLAYER_UP_STOP, Sprite.PLAYER_DOWN_STOP, Sprite.PLAYER_RIGHT_STOP, Sprite.PLAYER_LEFT_STOP),
-    PLAYER_MOVE_LEFT(Sprite.PLAYER_UP_MOVE_LEFT, Sprite.PLAYER_DOWN_MOVE_LEFT, Sprite.PLAYER_RIGHT_MOVE_LEFT, Sprite.PLAYER_LEFT_MOVE_LEFT),
-    PLAYER_STOP(Sprite.PLAYER_UP_STOP, Sprite.PLAYER_DOWN_STOP, Sprite.PLAYER_RIGHT_STOP, Sprite.PLAYER_LEFT_STOP);
-
-    private Sprite up;
-    private Sprite down;
-    private Sprite right;
-    private Sprite left;
-
-    private static int nbAnim = 0;
-    private static final int nbMaxAnim = 4;
-
-    SpriteSet(Sprite up, Sprite down, Sprite right, Sprite left) {
-        this.up = up;
-        this.down = down;
-        this.right = right;
-        this.left = left;
+    static {
+        TREE_SET.sprites.add(Sprite.TREE);
+        TREE_SET.sprites.add(Sprite.TREE_UP);
+        TREE_SET.sprites.add(Sprite.TREE_DOWN);
+        TREE_SET.sprites.add(Sprite.TREE_RIGHT);
+        TREE_SET.sprites.add(Sprite.TREE_LEFT);
+        TREE_SET.sprites.add(Sprite.TREE_UP_RIGHT);
+        TREE_SET.sprites.add(Sprite.TREE_UP_LEFT);
+        TREE_SET.sprites.add(Sprite.TREE_UP_LEFT_RIGHT);
+        TREE_SET.sprites.add(Sprite.TREE_DOWN_RIGHT);
+        TREE_SET.sprites.add(Sprite.TREE_DOWN_LEFT);
+        TREE_SET.sprites.add(Sprite.TREE_DOWN_LEFT_RIGHT);
+        TREE_SET.sprites.add(Sprite.TREE_RIGHT_UP_DOWN);
+        TREE_SET.sprites.add(Sprite.TREE_LEFT_UP_DOWN);
     }
 
-    public Sprite getUp() {
-        return up;
+    private List<Sprite> sprites;
+
+    SpriteSet(List<Sprite> sprites) {
+        this.sprites = sprites;
     }
 
-    public Sprite getDown() {
-        return down;
+    public List<Sprite> getSprites() {
+        return sprites;
     }
 
-    public Sprite getRight() {
-        return right;
+    public boolean contains(Sprite sprite){
+        if(sprite == null) return false;
+        return sprites.contains(sprite);
     }
 
-    public Sprite getLeft() {
-        return left;
-    }
-
-    public static int getNbAnim() {
-        nbAnim = nbAnim % nbMaxAnim == nbMaxAnim - 1 ? 0 : ++nbAnim;
-        return nbAnim;
-    }
-
-    public static SpriteSet getSpriteSet(int nb){
-        if(nb < 0 || nb >= Sprite.values().length)
-            return null;
-        return SpriteSet.values()[nb];
-    }
 }

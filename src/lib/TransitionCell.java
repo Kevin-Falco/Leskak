@@ -53,7 +53,7 @@ public class TransitionCell extends Cell {
 
                         //ImageView imageView = (ImageView) Movement.getMap().getGridPane().getChildren().get(Movement.getMap().getGridPane().getChildren().size() -1);
                         //ImageView imageView = player.getImage();
-                        //imageView.setImage(new Image(player.getSprite().getSpritePath()));
+                        //imageView.setImage(new Image(player.getImage().getSpritePath()));
                         //GridPane.setConstraints(player.getImage(), player.getPosition().getKey(), player.getPosition().getValue());
 
 
