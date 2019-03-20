@@ -263,7 +263,7 @@ public class MapConfig {
             for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.HOUSE_DOWN_LEFT, new Pair<>(i, 4)));
             for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE_DOWN_RIGHT, new Pair<>(i, 4)));
             for (int i = 16; i <= 21; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 4)));
-            for (int i = 22; i <= 22; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 4)));
+            for (int i = 22; i <= 22; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 4)));
             for (int i = 23; i <= 24; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 4)));
             for (int i = 25; i <= 25; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 4)));
             for (int i = 26; i <= 27; ++i) m.add(addBlockingCell(Sprite.BUSH, new Pair<>(i, 4)));
