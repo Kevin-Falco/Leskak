@@ -338,6 +338,7 @@ public class MapConfig {
             for (int i = 27; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
 
             updateSpritesOf(0, SpriteSet.TREE_SET);
+            updateSpritesOf(0, SpriteSet.WATER_SET);
         }
 
         private static void setupMap1() {
@@ -570,6 +571,9 @@ public class MapConfig {
             for (int i = 22; i <= 24; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 11)));
             for (int i = 25; i <= 25; ++i) m.add(addBlockingCell(Sprite.TREE_RIGHT_UP_DOWN, new Pair<>(i, 11)));
             for (int i = 26; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
+
+            updateSpritesOf(2, SpriteSet.TREE_SET);
+            updateSpritesOf(2, SpriteSet.WATER_SET);
         }
 
         private static void setupMap3(){

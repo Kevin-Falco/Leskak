@@ -8,7 +8,10 @@ import java.util.List;
 public enum SpriteSet {
     TREE_SET(new ArrayList<>(Arrays.asList(Sprite.TREE, Sprite.TREE_UP, Sprite.TREE_DOWN, Sprite.TREE_RIGHT, Sprite.TREE_LEFT,
             Sprite.TREE_UP_RIGHT, Sprite.TREE_UP_LEFT, Sprite.TREE_UP_LEFT_RIGHT, Sprite.TREE_DOWN_RIGHT, Sprite.TREE_DOWN_LEFT,
-            Sprite.TREE_DOWN_LEFT_RIGHT, Sprite.TREE_RIGHT_UP_DOWN, Sprite.TREE_LEFT_UP_DOWN )));
+            Sprite.TREE_DOWN_LEFT_RIGHT, Sprite.TREE_RIGHT_UP_DOWN, Sprite.TREE_LEFT_UP_DOWN ))),
+    WATER_SET(new ArrayList<>(Arrays.asList(Sprite.WATER, Sprite.WATER_UP, Sprite.WATER_DOWN, Sprite.WATER_RIGHT, Sprite.WATER_LEFT,
+             Sprite.WATER_UP_RIGHT, Sprite.WATER_UP_LEFT, Sprite.WATER_UP_LEFT_RIGHT, Sprite.WATER_DOWN_RIGHT, Sprite.WATER_DOWN_LEFT,
+             Sprite.WATER_DOWN_LEFT_RIGHT, Sprite.WATER_RIGHT_UP_DOWN, Sprite.WATER_LEFT_UP_DOWN )));
 
     private List<Sprite> sprites;
 
