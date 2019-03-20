@@ -42,7 +42,7 @@ public class LauncherLayout {
         LauncherLayout.vBox = new VBox();
         LauncherLayout.vBox.setAlignment(Pos.CENTER);
         LauncherLayout.vBox.setSpacing(10);
-        LauncherLayout.vBox.setBackground(new Background(new BackgroundImage(new Image("sprite/background_launcher.jpg"),
+        LauncherLayout.vBox.setBackground(new Background(new BackgroundImage(new Image(Sprite.BACKGROUND_LAUNCHER.getSpritePath()),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         LauncherLayout.setupLauncher();
     }
@@ -122,7 +122,7 @@ public class LauncherLayout {
         vBox.getChildren().forEach((child) -> child.setTranslateY(100));
         vBox.setAlignment(Pos.TOP_CENTER);
         vBox.setSpacing(10);
-        vBox.setBackground(new Background(new BackgroundImage(new Image("sprite/background_credits.jpg"),
+        vBox.setBackground(new Background(new BackgroundImage(new Image(Sprite.BACKGROUND_CREDITS.getSpritePath()),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         return vBox;
     }
@@ -170,7 +170,7 @@ public class LauncherLayout {
         LauncherLayout.options.setAlignment(Pos.CENTER);
         LauncherLayout.options.setSpacing(10);
         LauncherLayout.options.getChildren().forEach((child) -> child.setTranslateY(-100));
-        LauncherLayout.options.setBackground(new Background(new BackgroundImage(new Image("sprite/background_options.jpg"),
+        LauncherLayout.options.setBackground(new Background(new BackgroundImage(new Image(Sprite.BACKGROUND_OPTIONS.getSpritePath()),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         return LauncherLayout.options;
     }

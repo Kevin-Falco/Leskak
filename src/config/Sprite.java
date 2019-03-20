@@ -63,6 +63,10 @@ public enum Sprite {
     CINEMATIC3("sprite/eevee3.jpg"),
 
     LOAD("sprite/load.jpg"),
+
+    BACKGROUND_LAUNCHER("sprite/background_launcher.jpg"),
+    BACKGROUND_OPTIONS("sprite/background_options.jpg"),
+    BACKGROUND_CREDITS("sprite/background_credits.jpg"),
     ;
 
     private String spritePath;
