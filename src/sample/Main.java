@@ -17,7 +17,7 @@ public class Main extends Application {
         Scene scene = LauncherLayout.getSCENE();
         scene.setRoot(LauncherLayout.getINSTANCE().getvBox());
         primaryStage.setScene(scene);
-        primaryStage.getIcons().add(new Image(Sprite.RIGHT_P1.getSpritePath()));
+        primaryStage.getIcons().add(new Image(Sprite.PLAYER_DOWN_STOP.getSpritePath()));
         primaryStage.show();
     }
 
