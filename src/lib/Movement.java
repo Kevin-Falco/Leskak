@@ -267,9 +267,11 @@ public class Movement {
     }
 
     private static Cell getCell(Integer col, Integer row){
+        int nb = 0;
         for (Cell cell : Movement.map
         ) {
             if(cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){
+                if(nb++ == 0) continue;
                 return cell;
             }
         }
