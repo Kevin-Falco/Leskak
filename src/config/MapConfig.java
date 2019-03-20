@@ -518,7 +518,7 @@ public class MapConfig {
             for (int i = 15; i <= 21; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
             for (int i = 22; i <= 24; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 11)));
             for (int i = 25; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
-            
+
             updateSpritesOf(2, SpriteSet.TREE_SET);
             updateSpritesOf(2, SpriteSet.WATER_SET);
         }
@@ -551,10 +551,10 @@ public class MapConfig {
                                 currentCell.setSprite(spriteSet.getDown());
                             }
                             else if( rightCell != null && !spriteSet.contains(rightCell.getSprite())){
-                                currentCell.setSprite(spriteSet.getDownLeft());
+                                currentCell.setSprite(spriteSet.getDownRight());
                             }
                             else if(leftCell != null && !spriteSet.contains(leftCell.getSprite())){
-                                currentCell.setSprite(spriteSet.getDownRight());
+                                currentCell.setSprite(spriteSet.getDownLeft());
                             }
                             else{
                                 currentCell.setSprite(spriteSet.getDownLeftRight());
@@ -566,10 +566,10 @@ public class MapConfig {
                                 currentCell.setSprite(spriteSet.getUp());
                             }
                             else if( rightCell != null && !spriteSet.contains(rightCell.getSprite())){
-                                currentCell.setSprite(spriteSet.getUpLeft());
+                                currentCell.setSprite(spriteSet.getUpRight());
                             }
                             else if( leftCell != null && !spriteSet.contains(leftCell.getSprite())){
-                                currentCell.setSprite(spriteSet.getUpRight());
+                                currentCell.setSprite(spriteSet.getUpLeft());
                             }
                             else{
                                 currentCell.setSprite(spriteSet.getUpLeftRight());
@@ -578,19 +578,19 @@ public class MapConfig {
                         else if(rightCell != null && !spriteSet.contains(rightCell.getSprite())){
                             if(upCell != null && !spriteSet.contains(upCell.getSprite()) &&
                                     downCell != null && !spriteSet.contains(downCell.getSprite())){
-                                currentCell.setSprite(spriteSet.getLeft());
+                                currentCell.setSprite(spriteSet.getRight());
                             }
                             else{
-                                currentCell.setSprite(spriteSet.getLeftUpDown());
+                                currentCell.setSprite(spriteSet.getRightUpDown());
                             }
                         }
                         else if(leftCell != null && !spriteSet.contains(leftCell.getSprite())){
                             if(upCell != null && !spriteSet.contains(upCell.getSprite()) &&
                                     downCell != null && !spriteSet.contains(downCell.getSprite())){
-                                currentCell.setSprite(spriteSet.getRight());
+                                currentCell.setSprite(spriteSet.getLeft());
                             }
                             else{
-                                currentCell.setSprite(spriteSet.getRightUpDown());
+                                currentCell.setSprite(spriteSet.getLeftUpDown());
                             }
                         }
                     }
