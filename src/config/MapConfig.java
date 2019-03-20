@@ -60,7 +60,7 @@ public class MapConfig {
             }
         };
         //this.configMap(0);
-        //CinematicConfig.setupGame();
+
         GameLayout.getINSTANCE().setGameHasBegun(true);
     }
 
@@ -582,6 +582,7 @@ public class MapConfig {
             for(int i = 0; i <= 31; i++)
             {
                 for(int j = 0; j <= 11; ++j){
+                    //if(getCell(3, i, j).getSprite())
                     m.add(addCell(Sprite.GRASS, new Pair<>(i,j)));
                 }
             }

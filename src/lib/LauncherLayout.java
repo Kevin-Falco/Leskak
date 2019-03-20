@@ -1,5 +1,6 @@
 package lib;
 
+import config.CinematicConfig;
 import config.Key;
 import config.MapConfig;
 import config.Sprite;
@@ -80,6 +81,7 @@ public class LauncherLayout {
         testService.setOnFailed(event -> testService.getException().printStackTrace());
         testService.setOnSucceeded(event -> {
             MapConfig.getINSTANCE().configMap(0);
+            CinematicConfig.setupGame();
                 MainLayout.getSTAGE().setTitle("LESKAK");
                 MainLayout.getSTAGE().setOnCloseRequest(event1 -> LauncherLayout.setupLauncher());
             stage.close();
