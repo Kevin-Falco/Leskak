@@ -43,13 +43,23 @@ public enum Sprite {
     TREE_RIGHT("sprite/tree/tree_right.png"),
     TREE_RIGHT_UP_DOWN("sprite/tree/tree_right_up_down.png"),
 
+    WATER("sprite/water/water.png"),
+    WATER_UP("sprite/water/water_up.png"),
+    WATER_UP_LEFT("sprite/water/water_up_left.png"),
+    WATER_UP_LEFT_RIGHT("sprite/water/water_up_left_right.png"),
+    WATER_UP_RIGHT("sprite/water/water_up_right.png"),
+    WATER_DOWN("sprite/water/water_down.png"),
+    WATER_DOWN_LEFT("sprite/water/water_down_left.png"),
+    WATER_DOWN_LEFT_RIGHT("sprite/water/water_down_left_right.png"),
+    WATER_DOWN_RIGHT("sprite/water/water_down_right.png"),
+    WATER_LEFT("sprite/water/water_left.png"),
+    WATER_LEFT_UP_DOWN("sprite/water/water_left_up_down.png"),
+    WATER_RIGHT("sprite/water/water_right.png"),
+    WATER_RIGHT_UP_DOWN("sprite/water/water_right_up_down.png"),
+
     ROCK("sprite/rock.png"),
     BRIDGE("sprite/bridge.png"),
     FOG("sprite/fog.jpg"),
-
-    WATER("sprite/water.png"),
-    WATER_LEFT("sprite/water_left.png"),
-    WATER_RIGHT("sprite/water_right.png"),
 
     ROCKET_UP("sprite/rocket_up.png"),
     ROCKET_DOWN("sprite/rocket_down.png"),
