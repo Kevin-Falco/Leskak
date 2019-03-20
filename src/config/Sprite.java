@@ -18,6 +18,7 @@ public enum Sprite {
     GRASS("sprite/env/grass.png"),
     BUSH("sprite/env/bush.png"),
     ROCK("sprite/env/rock.png"),
+    BRIDGE("sprite/env/bridge.png"),
 
     TREE("sprite/tree/tree.png"),
     TREE_UP("sprite/tree/tree_up.png"),
@@ -52,7 +53,6 @@ public enum Sprite {
     HOUSE_DOWN_LEFT("sprite/house/house_down_left.png"),
     HOUSE_DOWN_RIGHT("sprite/house/house_down_right.png"),
 
-    BRIDGE("sprite/bridge.png"),
     FOG("sprite/fog.jpg"),
 
     ROCKET_UP("sprite/rocket_up.png"),
