@@ -26,6 +26,7 @@ public class Movement {
     private static boolean stoped = true;
     private static boolean directionChanged = false;
     private static boolean lastKeyReleased = true;
+    private static SpriteSet spriteSet = SpriteSet.PLAYER_STOP;
     private static int delay = 200;
 
     public static void configPlayerEventHandler(Scene scene) {
@@ -65,6 +66,8 @@ public class Movement {
             }
 
             if(lastKeyReleased){
+                spriteSet = SpriteSet.PLAYER_STOP;
+                Movement.refreshPlayerSprite();
                 stoped = true;
                 return;
             }
@@ -78,15 +81,17 @@ public class Movement {
             if(!stoped && !Movement.automaticLastKey.equals(Movement.lastKeyTyped)){
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
                 stoped = false;
+                spriteSet = SpriteSet.getSpriteSet(SpriteSet.getNbAnim());
                 directionChanged = true;
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
                 pt.play();
                 return;
             }
 
-
+            spriteSet = SpriteSet.getSpriteSet(SpriteSet.getNbAnim());
             movePlayer(key);
             stoped = false;
+
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
             pt.play();
         };
@@ -136,7 +141,7 @@ public class Movement {
                             || !isAccessibleCell(player.getPosition().getKey(), player.getPosition().getValue() - 1)) ?
                             player.getPosition().getValue() : player.getPosition().getValue() - 1)));
             //player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getUP());
-            player.setSprite(Sprite.PLAYER_UP_STOP);
+            //player.setSprite(spriteSet.getUp());
             player.setDirection(Direction.UP);
             Movement.moved = true;
         }
@@ -148,7 +153,7 @@ public class Movement {
                     player.getPosition().getValue() == GameLayout.getINSTANCE().getNbRows() - 1
                             || !isAccessibleCell(player.getPosition().getKey(), player.getPosition().getValue() + 1) ?
                             player.getPosition().getValue() : player.getPosition().getValue() + 1));
-            player.setSprite(Sprite.PLAYER_DOWN_STOP);
+            //player.setSprite(spriteSet.getDown());
             //player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getDOWN());
             player.setDirection(Direction.DOWN);
             Movement.moved = true;
@@ -161,7 +166,7 @@ public class Movement {
                             || !isAccessibleCell(player.getPosition().getKey() + 1, player.getPosition().getValue()) ?
                             player.getPosition().getKey() : player.getPosition().getKey() + 1,
                     player.getPosition().getValue()));
-            player.setSprite(Sprite.PLAYER_RIGHT_STOP);
+            //player.setSprite(spriteSet.getRight());
             //player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getRIGHT());
             player.setDirection(Direction.RIGHT);
             Movement.moved = true;
@@ -174,7 +179,7 @@ public class Movement {
                             || !isAccessibleCell(player.getPosition().getKey() - 1, player.getPosition().getValue()) ?
                             player.getPosition().getKey() : player.getPosition().getKey() - 1,
                     player.getPosition().getValue()));
-            player.setSprite(Sprite.PLAYER_LEFT_STOP);
+            //player.setSprite(spriteSet.getLeft());
             //player.setSprite(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getLEFT());
             player.setDirection(Direction.LEFT);
             Movement.moved = true;
@@ -182,7 +187,7 @@ public class Movement {
         if (key.getCode() != Key.ENTER.getKeyCode()) {
             DialogLayout.getINSTANCE().removeContent();
         }
-
+        refreshPlayerSprite();
         if(Movement.isMovementKey(key)){
             Movement.automaticLastKey = Key.getKeyofKeyCode(key.getCode());
         }
@@ -205,6 +210,24 @@ public class Movement {
             });
             tt.play();
             //GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
+        }
+    }
+
+    private static void refreshPlayerSprite(){
+        Player player = Player.getINSTANCE();
+        switch (player.getDirection()){
+            case UP:
+                player.setSprite(spriteSet.getUp());
+                break;
+            case DOWN:
+                player.setSprite(spriteSet.getDown());
+                break;
+            case RIGHT:
+                player.setSprite(spriteSet.getRight());
+                break;
+            case LEFT:
+                player.setSprite(spriteSet.getLeft());
+                break;
         }
     }
 
@@ -284,4 +307,11 @@ public class Movement {
         Movement.moved = moved;
     }
 
+    public static SpriteSet getSpriteSet() {
+        return spriteSet;
+    }
+
+    public static void setSpriteSet(SpriteSet spriteSet) {
+        Movement.spriteSet = spriteSet;
+    }
 }

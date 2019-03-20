@@ -208,7 +208,6 @@ public class MapConfig {
         }
         private static void setupMap0(){
             Map m = maps.get(0);
-            m.setFogOfWar(true);
 
             /*LIGNE 1*/
             for (int i = 0; i <= 11; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 0)));
@@ -535,6 +534,7 @@ public class MapConfig {
 
         private static void setupMap3(){
             Map m = maps.get(3);
+            m.setFogOfWar(true);
 
             for(int i = 0; i <= 31; i++)
             {
