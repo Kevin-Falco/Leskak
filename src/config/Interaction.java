@@ -84,8 +84,6 @@ public enum Interaction {
                     DialogLayout.getINSTANCE().addButton("GO NEW MAP", Action.TELEPORT_MAP4.getEventHandler());
                     DialogLayout.getINSTANCE().addReturnButton();
                 }
-
-
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());
         });
