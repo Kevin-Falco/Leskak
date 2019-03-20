@@ -27,7 +27,7 @@ public class Movement {
     private static boolean directionChanged = false;
     private static boolean lastKeyReleased = true;
     private static SpriteSet spriteSet = SpriteSet.PLAYER_STOP;
-    private static int delay = 200;
+    private static int delay = 250;
 
     public static void configPlayerEventHandler(Scene scene) {
         KeyboardConfig k = KeyboardConfig.ENTER;

@@ -130,8 +130,8 @@ public class MapConfig {
         }
     }
 
-    private static Cell getCell(int nbMap, Integer col, Integer row){
-        Map m = getINSTANCE().getMaps().get(0);
+    public static Cell getCell(int nbMap, Integer col, Integer row){
+        Map m = getINSTANCE().getMaps().get(nbMap);
         for (Cell cell : m
         ) {
             if(cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){
@@ -535,6 +535,13 @@ public class MapConfig {
         private static void setupMap3(){
             Map m = maps.get(3);
             m.setFogOfWar(true);
+
+            for(int i = 0; i <= 31; i++)
+            {
+                for(int j = 0; j <= 11; ++j){
+                    m.add(addCell(Sprite.GRASS, new Pair<>(i,j)));
+                }
+            }
 
             for(int i = 0; i <= 31; i++)
             {
