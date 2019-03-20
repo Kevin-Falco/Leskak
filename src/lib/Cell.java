@@ -1,6 +1,7 @@
 package lib;
 
 import config.Sprite;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 
@@ -32,6 +33,7 @@ public class Cell {
 
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
+        this.image.setImage(new Image( sprite.getSpritePath()));
     }
 
     public ImageView getSprite2() {
@@ -40,12 +42,6 @@ public class Cell {
 
     public Pair<Integer, Integer> getPosition() {
         return position;
-    }
-
-    public void setImage(ImageView image) {
-        this.image = image;
-        this.image.setPreserveRatio(true);
-        this.image.setFitWidth(50);
     }
 
     public void setPosition(Pair<Integer, Integer> position) {

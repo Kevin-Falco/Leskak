@@ -337,74 +337,8 @@ public class MapConfig {
             for (int i = 25; i <= 26; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 11)));
             for (int i = 27; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
 
-            for(int i = 0; i <= 31; i++)
-            {
-                for(int j = 0; j <= 11; ++j){
-
-                    if(SpriteSet.TREE_SET.contains(getCell(0, i, j).getSprite())){
-                        if( getCell(0,i, j+1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j+1).getSprite())){
-                            if(getCell(0,i+1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i+1, j).getSprite()) &&
-                                    getCell(0,i-1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i-1, j).getSprite())){
-                                getCell(0, i, j).setSprite(Sprite.TREE_DOWN);
-                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_DOWN.getSpritePath()));
-                            }
-                            else if( getCell(0,i+1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i+1, j).getSprite())){
-                                getCell(0, i, j).setSprite(Sprite.TREE_DOWN_LEFT);
-                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_DOWN_LEFT.getSpritePath()));
-                            }
-                            else if(getCell(0,i-1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i-1, j).getSprite())){
-                                getCell(0, i, j).setSprite(Sprite.TREE_DOWN_RIGHT);
-                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_DOWN_RIGHT.getSpritePath()));
-                            }
-                            else{
-                                getCell(0, i, j).setSprite(Sprite.TREE_DOWN_LEFT_RIGHT);
-                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_DOWN_LEFT_RIGHT.getSpritePath()));
-                            }
-                        }
-                        else if(getCell(0,i, j-1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j-1).getSprite())){
-                            if(getCell(0,i+1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i+1, j).getSprite()) &&
-                                    getCell(0,i-1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i-1, j).getSprite())){
-                                getCell(0, i, j).setSprite(Sprite.TREE_UP);
-                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_UP.getSpritePath()));
-                            }
-                            else{
-                                getCell(0, i, j).setSprite(Sprite.TREE_UP_LEFT_RIGHT);
-                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_UP_LEFT_RIGHT.getSpritePath()));
-                            }
-                        }
-                        else if(getCell(0,i+1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i+1, j).getSprite())){
-                            if(getCell(0,i, j-1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j-1).getSprite()) &&
-                                    getCell(0,i, j+1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j+1).getSprite())){
-                                getCell(0, i, j).setSprite(Sprite.TREE_LEFT);
-                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_LEFT.getSpritePath()));
-                            }
-                            else if( getCell(0,i, j-1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j-1).getSprite())){
-                                getCell(0, i, j).setSprite(Sprite.TREE_UP_LEFT);
-                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_UP_LEFT.getSpritePath()));
-                            }
-                            else{
-                                getCell(0, i, j).setSprite(Sprite.TREE_LEFT_UP_DOWN);
-                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_LEFT_UP_DOWN.getSpritePath()));
-                            }
-                        }
-                        else if(getCell(0,i-1, j) != null && !SpriteSet.TREE_SET.contains(getCell(0,i-1, j).getSprite())){
-                            if(getCell(0,i, j-1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j-1).getSprite()) &&
-                                    getCell(0,i, j+1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j+1).getSprite())){
-                                getCell(0, i, j).setSprite(Sprite.TREE_RIGHT);
-                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_RIGHT.getSpritePath()));
-                            }
-                            else if( getCell(0,i, j-1) != null && !SpriteSet.TREE_SET.contains(getCell(0,i, j-1).getSprite())){
-                                getCell(0, i, j).setSprite(Sprite.TREE_UP_RIGHT);
-                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_UP_RIGHT.getSpritePath()));
-                            }
-                            else{
-                                getCell(0, i, j).setSprite(Sprite.TREE_RIGHT_UP_DOWN);
-                                getCell(0, i, j).getImage().setImage(new Image(Sprite.TREE_RIGHT_UP_DOWN.getSpritePath()));
-                            }
-                        }
-                    }
-                }
-            }
+            updateSpritesOf(0, SpriteSet.TREE_SET);
+            updateSpritesOf(0, SpriteSet.WATER_SET);
         }
 
         private static void setupMap1() {
@@ -487,6 +421,8 @@ public class MapConfig {
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 10)));
             /*LIGNE 11*/
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
+
+            updateSpritesOf(1, SpriteSet.TREE_SET);
         }
 
         private static void setupMap2(){
@@ -582,6 +518,9 @@ public class MapConfig {
             for (int i = 15; i <= 21; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
             for (int i = 22; i <= 24; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 11)));
             for (int i = 25; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
+
+            updateSpritesOf(2, SpriteSet.TREE_SET);
+            updateSpritesOf(2, SpriteSet.WATER_SET);
         }
 
         private static void setupMap3(){
@@ -594,8 +533,69 @@ public class MapConfig {
                     m.add(addCell(Sprite.GRASS, new Pair<>(i,j)));
                 }
             }
+        }
 
-
+        private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){
+            for(int i = 0; i <= 31; i++)
+            {
+                for(int j = 0; j <= 11; ++j){
+                    Cell currentCell = getCell(nbMap, i, j);
+                    Cell upCell = getCell(nbMap, i, j-1);
+                    Cell downCell = getCell(nbMap, i, j+1);
+                    Cell rightCell = getCell(nbMap, i+1, j);
+                    Cell leftCell = getCell(nbMap, i-1, j);
+                    if(spriteSet.contains(currentCell.getSprite())){
+                        if( downCell != null && !spriteSet.contains(downCell.getSprite())){
+                            if(rightCell != null && !spriteSet.contains(rightCell.getSprite()) &&
+                                    leftCell != null && !spriteSet.contains(leftCell.getSprite())){
+                                currentCell.setSprite(spriteSet.getDown());
+                            }
+                            else if( rightCell != null && !spriteSet.contains(rightCell.getSprite())){
+                                currentCell.setSprite(spriteSet.getDownRight());
+                            }
+                            else if(leftCell != null && !spriteSet.contains(leftCell.getSprite())){
+                                currentCell.setSprite(spriteSet.getDownLeft());
+                            }
+                            else{
+                                currentCell.setSprite(spriteSet.getDownLeftRight());
+                            }
+                        }
+                        else if(upCell != null && !spriteSet.contains(upCell.getSprite())){
+                            if(rightCell != null && !spriteSet.contains(rightCell.getSprite()) &&
+                                    leftCell != null && !spriteSet.contains(leftCell.getSprite())){
+                                currentCell.setSprite(spriteSet.getUp());
+                            }
+                            else if( rightCell != null && !spriteSet.contains(rightCell.getSprite())){
+                                currentCell.setSprite(spriteSet.getUpRight());
+                            }
+                            else if( leftCell != null && !spriteSet.contains(leftCell.getSprite())){
+                                currentCell.setSprite(spriteSet.getUpLeft());
+                            }
+                            else{
+                                currentCell.setSprite(spriteSet.getUpLeftRight());
+                            }
+                        }
+                        else if(rightCell != null && !spriteSet.contains(rightCell.getSprite())){
+                            if(upCell != null && !spriteSet.contains(upCell.getSprite()) &&
+                                    downCell != null && !spriteSet.contains(downCell.getSprite())){
+                                currentCell.setSprite(spriteSet.getRight());
+                            }
+                            else{
+                                currentCell.setSprite(spriteSet.getRightUpDown());
+                            }
+                        }
+                        else if(leftCell != null && !spriteSet.contains(leftCell.getSprite())){
+                            if(upCell != null && !spriteSet.contains(upCell.getSprite()) &&
+                                    downCell != null && !spriteSet.contains(downCell.getSprite())){
+                                currentCell.setSprite(spriteSet.getLeft());
+                            }
+                            else{
+                                currentCell.setSprite(spriteSet.getLeftUpDown());
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
