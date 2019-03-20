@@ -425,22 +425,39 @@ public class MapConfig {
             Map m = maps.get(2);
 
             /*LIGNE 1*/
-            for (int i = 0; i <= 27; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 0)));
+            for (int i = 0; i <= 9; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 0)));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.TREE_DOWN_LEFT, new Pair<>(i, 0)));
+            for (int i = 11; i <= 15; ++i) m.add(addBlockingCell(Sprite.TREE_DOWN, new Pair<>(i, 0)));
+            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.TREE_DOWN_RIGHT, new Pair<>(i, 0)));
+            for (int i = 17; i <= 23; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 0)));
+            for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 0)));
+            for (int i = 25; i <= 26; ++i) m.add(addBlockingCell(Sprite.TREE_DOWN_LEFT_RIGHT, new Pair<>(i, 0)));
+            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.TREE_DOWN_LEFT, new Pair<>(i, 0)));
             for (int i = 28; i <= 31; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 0)));
             /*LIGNE 2*/
-            for (int i = 0; i <= 9; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
+            for (int i = 0; i <= 6; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
+            for (int i = 7; i <= 7; ++i) m.add(addBlockingCell(Sprite.TREE_DOWN_LEFT, new Pair<>(i, 1)));
+            for (int i = 8; i <= 9; ++i) m.add(addBlockingCell(Sprite.TREE_DOWN, new Pair<>(i, 1)));
             for (int i = 10; i <= 16; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 1)));
-            for (int i = 17; i <= 25; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
+            for (int i = 17; i <= 18; ++i) m.add(addBlockingCell(Sprite.TREE_DOWN, new Pair<>(i, 1)));
+            for (int i = 19; i <= 19; ++i) m.add(addBlockingCell(Sprite.TREE_DOWN_RIGHT, new Pair<>(i, 1)));
+            for (int i = 20; i <= 23; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
+            for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.TREE_LEFT_UP_DOWN, new Pair<>(i, 1)));
             for (int i = 25; i <= 29; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 1)));
-            for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 1)));
+            for (int i = 30; i <= 30; ++i) m.add(addBlockingCell(Sprite.TREE_UP_RIGHT, new Pair<>(i, 1)));
+            for (int i = 31; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE_UP_LEFT_RIGHT, new Pair<>(i, 1)));
             /*LIGNE 3*/
-            for (int i = 0; i <= 6; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
+            for (int i = 0; i <= 5; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
+            for (int i = 6; i <= 6; ++i) m.add(addBlockingCell(Sprite.TREE_DOWN_LEFT, new Pair<>(i, 2)));
             for (int i = 7; i <= 15; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 2)));
             for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.BUSH, new Pair<>(i, 2)));
             for (int i = 17; i <= 19; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 2)));
-            for (int i = 20; i <= 25; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
+            for (int i = 20; i <= 20; ++i) m.add(addBlockingCell(Sprite.TREE_DOWN_RIGHT, new Pair<>(i, 2)));
+            for (int i = 21; i <= 23; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
+            for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.TREE_DOWN_LEFT, new Pair<>(i, 2)));
             for (int i = 25; i <= 29; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 2)));
-            for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
+            for (int i = 30; i <= 30; ++i) m.add(addBlockingCell(Sprite.TREE_RIGHT_UP_DOWN, new Pair<>(i, 2)));
+            for (int i = 31; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 2)));
             /*LIGNE 4*/
             for (int i = 0; i <= 5; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 3)));
             for (int i = 6; i <= 8; ++i) m.add(addCell(Sprite.GRASS, new Pair<>(i, 3)));

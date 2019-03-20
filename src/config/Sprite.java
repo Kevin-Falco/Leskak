@@ -28,7 +28,21 @@ public enum Sprite {
 
     GRASS("sprite/grass.png"),
     BUSH("sprite/bush.png"),
-    TREE("sprite/tree.png"),
+
+    TREE("sprite/tree/tree.png"),
+    TREE_UP("sprite/tree/tree_up.png"),
+    TREE_UP_LEFT("sprite/tree/tree_up_left.png"),
+    TREE_UP_LEFT_RIGHT("sprite/tree/tree_up_left_right.png"),
+    TREE_UP_RIGHT("sprite/tree/tree_up_right.png"),
+    TREE_DOWN("sprite/tree/tree_down.png"),
+    TREE_DOWN_LEFT("sprite/tree/tree_down_left.png"),
+    TREE_DOWN_LEFT_RIGHT("sprite/tree/tree_down_left_right.png"),
+    TREE_DOWN_RIGHT("sprite/tree/tree_down_right.png"),
+    TREE_LEFT("sprite/tree/tree_left.png"),
+    TREE_LEFT_UP_DOWN("sprite/tree/tree_left_up_down.png"),
+    TREE_RIGHT("sprite/tree/tree_right.png"),
+    TREE_RIGHT_UP_DOWN("sprite/tree/tree_right_up_down.png"),
+
     ROCK("sprite/rock.png"),
     BRIDGE("sprite/bridge.png"),
     FOG("sprite/fog.jpg"),
