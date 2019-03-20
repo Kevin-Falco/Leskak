@@ -50,7 +50,7 @@ public class LauncherLayout {
     public static void setupLauncher(){
         Button game = new Button( GameLayout.getINSTANCE().HasGameBegun() ? "Reprendre la partie" : "Jouer");
         Stage stage = new Stage();
-        stage.getIcons().add(new Image(Sprite.DOWN_P1.getSpritePath()));
+        stage.getIcons().add(new Image(Sprite.PLAYER_DOWN_STOP.getSpritePath()));
         LauncherLayout.testService = new Service<Void>() {
             @Override
             protected Task<Void> createTask() {

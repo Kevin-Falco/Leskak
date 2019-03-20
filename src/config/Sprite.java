@@ -15,16 +15,6 @@ public enum Sprite {
     PLAYER_LEFT_MOVE_RIGHT("sprite/player/player_left_move_right.png"),
     PLAYER_LEFT_MOVE_LEFT("sprite/player/player_left_move_left.png"),
 
-    UP_P1("sprite/player_up_p1.png"),
-    DOWN_P1("sprite/player_down_p1.png"),
-    RIGHT_P1("sprite/player_right_p1.png"),
-    LEFT_P1("sprite/player_left_p1.png"),
-
-    UP_BRIDGE("sprite/player_up_bridge.png"),
-    DOWN_BRIDGE("sprite/player_down_bridge.png"),
-    RIGHT_BRIDGE("sprite/player_right_bridge.png"),
-    LEFT_BRIDGE("sprite/player_left_bridge.png"),
-
     GRASS("sprite/env/grass.png"),
     BUSH("sprite/env/bush.png"),
     ROCK("sprite/env/rock.png"),
