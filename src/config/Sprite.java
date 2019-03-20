@@ -14,20 +14,20 @@ public enum Sprite {
     PLAYER_LEFT_STOP("sprite/player/player_left_stop.png"),
     PLAYER_LEFT_MOVE_RIGHT("sprite/player/player_left_move_right.png"),
     PLAYER_LEFT_MOVE_LEFT("sprite/player/player_left_move_left.png"),
+
     UP_P1("sprite/player_up_p1.png"),
     DOWN_P1("sprite/player_down_p1.png"),
-    //RIGHT_P1("sprite/TEST_ANIM.png"),
     RIGHT_P1("sprite/player_right_p1.png"),
     LEFT_P1("sprite/player_left_p1.png"),
 
     UP_BRIDGE("sprite/player_up_bridge.png"),
     DOWN_BRIDGE("sprite/player_down_bridge.png"),
-    //RIGHT_BRIDGE("sprite/TEST_ANIM.png"),
     RIGHT_BRIDGE("sprite/player_right_bridge.png"),
     LEFT_BRIDGE("sprite/player_left_bridge.png"),
 
-    GRASS("sprite/grass.png"),
-    BUSH("sprite/bush.png"),
+    GRASS("sprite/env/grass.png"),
+    BUSH("sprite/env/bush.png"),
+    ROCK("sprite/env/rock.png"),
 
     TREE("sprite/tree/tree.png"),
     TREE_UP("sprite/tree/tree_up.png"),
@@ -57,17 +57,16 @@ public enum Sprite {
     WATER_RIGHT("sprite/water/water_right.png"),
     WATER_RIGHT_UP_DOWN("sprite/water/water_right_up_down.png"),
 
-    ROCK("sprite/rock.png"),
+    HOUSE_UP_LEFT("sprite/house/house_up_left.png"),
+    HOUSE_UP_RIGHT("sprite/house/house_up_right.png"),
+    HOUSE_DOWN_LEFT("sprite/house/house_down_left.png"),
+    HOUSE_DOWN_RIGHT("sprite/house/house_down_right.png"),
+
     BRIDGE("sprite/bridge.png"),
     FOG("sprite/fog.jpg"),
 
     ROCKET_UP("sprite/rocket_up.png"),
     ROCKET_DOWN("sprite/rocket_down.png"),
-
-    HOUSE_TOP_LEFT("sprite/house_top_left.png"),
-    HOUSE_TOP_RIGHT("sprite/house_top_right.png"),
-    HOUSE_BOTTOM_LEFT("sprite/house_bottom_left.png"),
-    HOUSE_BOTTOM_RIGHT("sprite/house_bottom_right.png"),
 
     CINEMATIC("sprite/eevee_evolution.jpg"),
     CINEMATIC2("sprite/eevee2.jpg"),
