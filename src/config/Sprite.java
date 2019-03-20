@@ -15,10 +15,14 @@ public enum Sprite {
     PLAYER_LEFT_MOVE_RIGHT("sprite/player/player_left_move_right.png"),
     PLAYER_LEFT_MOVE_LEFT("sprite/player/player_left_move_left.png"),
 
+    ROCKET_UP("sprite/rocket/rocket_up.png"),
+    ROCKET_DOWN("sprite/rocket/rocket_down.png"),
+
     GRASS("sprite/env/grass.png"),
     BUSH("sprite/env/bush.png"),
     ROCK("sprite/env/rock.png"),
     BRIDGE("sprite/env/bridge.png"),
+    FOG("sprite/env/fog.jpg"),
 
     TREE("sprite/tree/tree.png"),
     TREE_UP("sprite/tree/tree_up.png"),
@@ -53,16 +57,11 @@ public enum Sprite {
     HOUSE_DOWN_LEFT("sprite/house/house_down_left.png"),
     HOUSE_DOWN_RIGHT("sprite/house/house_down_right.png"),
 
-    FOG("sprite/fog.jpg"),
+    CINEMATIC("sprite/cinematic/eevolution1.jpg"),
+    CINEMATIC2("sprite/cinematic/eevolution2.jpg"),
+    CINEMATIC3("sprite/cinematic/eevolution3.jpg"),
 
-    ROCKET_UP("sprite/rocket_up.png"),
-    ROCKET_DOWN("sprite/rocket_down.png"),
-
-    CINEMATIC("sprite/eevee_evolution.jpg"),
-    CINEMATIC2("sprite/eevee2.jpg"),
-    CINEMATIC3("sprite/eevee3.jpg"),
-
-    LOAD("sprite/load.jpg"),
+    LOAD("sprite/app/load.jpg"),
     ;
 
     private String spritePath;
