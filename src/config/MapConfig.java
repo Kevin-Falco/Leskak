@@ -306,9 +306,9 @@ public class MapConfig {
             for (int i = 25; i <= 26; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 10)));
             for (int i = 25; i <= 26; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 11)));
 
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.PLAYER_DOWN_STOP, new Pair<>(i, 2), Interaction.PNJ1));
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PLAYER_DOWN_STOP, new Pair<>(i, 5), Interaction.PNJ2));
-            for (int i = 22; i <= 22; ++i) m.add(addBlockingCell(Sprite.PLAYER_LEFT_STOP, new Pair<>(i, 5), Interaction.PNJ3));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.PNJ1_DOWN, new Pair<>(i, 2), Interaction.PNJ1));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ2_DOWN, new Pair<>(i, 5), Interaction.PNJ2));
+            for (int i = 22; i <= 22; ++i) m.add(addBlockingCell(Sprite.PNJ3_LEFT, new Pair<>(i, 5), Interaction.PNJ3));
 
             for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 5), Interaction.ROCKET));
             for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 6), Interaction.ROCKET));
@@ -387,7 +387,7 @@ public class MapConfig {
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 10)));
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 11)));
 
-            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.PLAYER_LEFT_STOP, new Pair<>(i, 6), Interaction.PNJ4));
+            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.PNJ4_LEFT, new Pair<>(i, 6), Interaction.PNJ4));
 
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.HOUSE_UP_LEFT, new Pair<>(i, 5)));
             for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.HOUSE_UP_RIGHT, new Pair<>(i, 5)));

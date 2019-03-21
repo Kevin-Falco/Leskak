@@ -15,6 +15,23 @@ public enum Sprite {
     PLAYER_LEFT_MOVE_RIGHT("sprite/player/player_left_move_right.png"),
     PLAYER_LEFT_MOVE_LEFT("sprite/player/player_left_move_left.png"),
 
+    PNJ1_UP("sprite/pnj/pnj1_up.png"),
+    PNJ1_DOWN("sprite/pnj/pnj1_down.png"),
+    PNJ1_RIGHT("sprite/pnj/pnj1_right.png"),
+    PNJ1_LEFT("sprite/pnj/pnj1_left.png"),
+    PNJ2_UP("sprite/pnj/pnj2_up.png"),
+    PNJ2_DOWN("sprite/pnj/pnj2_down.png"),
+    PNJ2_RIGHT("sprite/pnj/pnj2_right.png"),
+    PNJ2_LEFT("sprite/pnj/pnj2_left.png"),
+    PNJ3_UP("sprite/pnj/pnj3_up.png"),
+    PNJ3_DOWN("sprite/pnj/pnj3_down.png"),
+    PNJ3_RIGHT("sprite/pnj/pnj3_right.png"),
+    PNJ3_LEFT("sprite/pnj/pnj3_left.png"),
+    PNJ4_UP("sprite/pnj/pnj4_up.png"),
+    PNJ4_DOWN("sprite/pnj/pnj4_down.png"),
+    PNJ4_RIGHT("sprite/pnj/pnj4_right.png"),
+    PNJ4_LEFT("sprite/pnj/pnj4_left.png"),
+
     ROCKET_UP("sprite/rocket/rocket_up.png"),
     ROCKET_DOWN("sprite/rocket/rocket_down.png"),
 
