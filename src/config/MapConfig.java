@@ -396,6 +396,8 @@ public class MapConfig {
 
             for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.PNJ4_LEFT, new Pair<>(i, 6), Interaction.PNJ4));
 
+            for (int i = 30; i <= 30; ++i) m.add(addBlockingCell(Sprite.FOX_LEFT, new Pair<>(i, 7)));
+
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.HOUSE_UP_LEFT, new Pair<>(i, 5)));
             for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.HOUSE_UP_RIGHT, new Pair<>(i, 5)));
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.HOUSE_DOWN_LEFT, new Pair<>(i, 6)));
@@ -460,13 +462,13 @@ public class MapConfig {
             for (int i = 23; i <= 24; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 10)));
             for (int i = 22; i <= 24; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 11)));
 
-            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.COW_RIGHT, new Pair<>(i, 2)));
-            for (int i = 17; i <= 17; ++i) m.add(addBlockingCell(Sprite.COW_LEFT, new Pair<>(i, 2)));
-            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.COW_LEFT, new Pair<>(i, 3)));
-            for (int i = 17; i <= 17; ++i) m.add(addBlockingCell(Sprite.COW_RIGHT, new Pair<>(i, 4)));
-            for (int i = 8; i <= 8; ++i) m.add(addBlockingCell(Sprite.COW_LEFT, new Pair<>(i, 5)));
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.COW_RIGHT, new Pair<>(i, 7)));
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.COW_RIGHT, new Pair<>(i, 6)));
+            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.SNAKE_UP, new Pair<>(i, 2)));
+            for (int i = 17; i <= 17; ++i) m.add(addBlockingCell(Sprite.SNAKE_RIGHT, new Pair<>(i, 2)));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.SNAKE_RIGHT, new Pair<>(i, 3)));
+            for (int i = 17; i <= 17; ++i) m.add(addBlockingCell(Sprite.SNAKE_LEFT, new Pair<>(i, 4)));
+            for (int i = 8; i <= 8; ++i) m.add(addBlockingCell(Sprite.SNAKE_DOWN, new Pair<>(i, 5)));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.SNAKE_DOWN, new Pair<>(i, 7)));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.SNAKE_RIGHT, new Pair<>(i, 6)));
 
             for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.HERB, new Pair<>(i, 2)));
             for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HERB, new Pair<>(i, 3)));
