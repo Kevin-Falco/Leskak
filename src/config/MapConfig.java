@@ -102,6 +102,8 @@ public class MapConfig {
         GridPane.setConstraints(player.getImage(), position.getKey(),position.getValue());
 
         //MapConfig.maps.get(nbMap).getGridPane().setGridLinesVisible(true);
+        if(MapConfig.maps.get(nbMap).getGridPane().getChildren().contains(player.getImage()))
+            MapConfig.maps.get(nbMap).getGridPane().getChildren().remove(player.getImage());
         MapConfig.maps.get(nbMap).getGridPane().getChildren().add(player.getImage());
 
         if(Movement.getMap().isFogOfWar())

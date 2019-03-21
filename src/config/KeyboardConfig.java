@@ -44,7 +44,12 @@ public enum KeyboardConfig {
             MainLayout.getSTAGE().close();
             LauncherLayout.setupLauncher();
         }
-    })
+    }),
+    TELEPORT(Key.TELEPORT, (EventHandler<KeyEvent>) event -> {
+        if(event.getCode() == Key.TELEPORT.getKeyCode() && GameLayout.getINSTANCE().getPane().isFocused()){
+            MapConfig.getINSTANCE().configMap(0);
+        }
+    }),
     ;
 
     private Key key;

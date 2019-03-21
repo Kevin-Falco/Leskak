@@ -30,6 +30,7 @@ public class Movement {
     public static void configPlayerEventHandler(Scene scene) {
         KeyboardConfig k = KeyboardConfig.ENTER;
         KeyboardConfig k1 = KeyboardConfig.ESCAPE;
+        KeyboardConfig k2 = KeyboardConfig.TELEPORT;
         Movement.setupEventHandler = Movement.setupMovementEvent();
         Movement.automaticEventHandler = Movement.automaticMovementEvent();
 
