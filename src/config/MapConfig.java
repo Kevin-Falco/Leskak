@@ -506,7 +506,6 @@ public class MapConfig {
                             }
                             else if( rightCell == null || !spriteSet.contains(rightCell.getSprite())){
                                 currentCell.setSprite(spriteSet.getDownRight());
-                                if(i ==31) System.out.println( "MAP" + nbMap + " " + currentCell.getSprite().name() + " " + i + " " + j);
                             }
                             else if(leftCell == null || !spriteSet.contains(leftCell.getSprite())){
                                 currentCell.setSprite(spriteSet.getDownLeft());
