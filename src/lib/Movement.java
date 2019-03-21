@@ -126,7 +126,7 @@ public class Movement {
         TransitionCell transitionCell = null;
         if (isTransitionCell(player.getPosition().getKey(), player.getPosition().getValue())) {
             isTransitionCell = true;
-            transitionCell = (TransitionCell) getCell(player.getPosition().getKey(), player.getPosition().getValue());
+            transitionCell = getTransitionCell(player.getPosition().getKey(), player.getPosition().getValue());
         }
         double x = 0;
         double y = 0;
@@ -266,13 +266,12 @@ public class Movement {
         return null;
     }
 
-    private static Cell getCell(Integer col, Integer row){
-        int nb = 0;
+    private static TransitionCell getTransitionCell(Integer col, Integer row){
         for (Cell cell : Movement.map
         ) {
             if(cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){
-                if(nb++ == 0) continue;
-                return cell;
+                if(cell instanceof TransitionCell)
+                    return (TransitionCell) cell;
             }
         }
         return null;
