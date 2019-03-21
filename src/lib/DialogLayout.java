@@ -3,14 +3,16 @@ package lib;
 
 import config.Action;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 
 public class DialogLayout {
@@ -24,16 +26,29 @@ public class DialogLayout {
     private DialogLayout() {
         this.text = new Text();
         this.text.setWrappingWidth((float) (MainLayout.getWIDTH()*2/3)*2/3);
+        this.text.setTextAlignment(TextAlignment.CENTER);
+        this.text.setFont(Font.font("Lucida Console"));
+        this.text.setFill(Color.WHITE);
+        //this.text.setStyle("-fx-text-inner-color: white;");
+        Pane pane = new Pane();
+        //pane.setMinWidth((float) (MainLayout.getWIDTH()*2/3)*2/3);
+        //pane.setMinHeight((float) (MainLayout.getHEIGHT()/3));
+        pane.getChildren().add(this.text);
         GridPane.setConstraints(this.text, 0, 0);
 
         this.money = 0;
         Text text = new Text();
+        text.setFill(Color.WHITE);
         GridPane.setConstraints(text, 1, 1 );
 
         this.buttons = new VBox();
+        this.buttons.setSpacing(10);
+        this.buttons.setAlignment(Pos.CENTER);
         GridPane.setConstraints(this.buttons, 1, 0 );
 
         this.gridPane = new GridPane();
+        this.gridPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+
         this.gridPane.getChildren().add(this.text);
         this.gridPane.getChildren().add(text);
         updateMoney();
@@ -71,7 +86,12 @@ public class DialogLayout {
     public void addButton(String name, EventHandler eventHandler){
         Button button = new Button(name);
         button.setOnAction(eventHandler);
-        //button.setDefaultButton(true);
+        button.setStyle("-fx-background-color: white;" +
+                "    -fx-background-insets: 0,1,2,3;\n" +
+                "    -fx-background-radius: 3,2,2,2;\n" +
+                "    -fx-padding: 12 30 12 30;\n" +
+                "    -fx-text-fill: black;\n" +
+                "    -fx-font-size: 12px;");
 
         this.buttons.getChildren().add(button);
 
@@ -83,8 +103,14 @@ public class DialogLayout {
         Button button = new Button("Retour");
         button.setOnAction(Action.RETURN.getEventHandler());
         button.setCancelButton(true);
+        button.setStyle("-fx-background-color: white;" +
+                "    -fx-background-insets: 0,1,2,3;\n" +
+                "    -fx-background-radius: 3,2,2,2;\n" +
+                "    -fx-padding: 12 30 12 30;\n" +
+                "    -fx-text-fill: black;\n" +
+                "    -fx-font-size: 12px;");
 
-        this.buttons.getChildren().addAll(button, new Text("SPACE pour confirmer, ESCAPE pour annuler"));
+        this.buttons.getChildren().addAll(button);
 
         Movement.removeMovement();
     }
