@@ -32,10 +32,10 @@ public enum Action {
         TELEPORT_MAP2.eventHandler = createTeleportAction(1);
         TELEPORT_MAP3.eventHandler = createTeleportAction(2);
         TELEPORT_MAP4.eventHandler = createTeleportAction(3);
-        GIVE_OBJECT1.eventHandler = createGiveObjectAction(Interaction.BUSH1, Object.OBJ1);
-        GIVE_OBJECT1_2.eventHandler = createGiveObjectAction(Interaction.PNJ4, Object.OBJ1_2);
-        GIVE_MONEY_CAT.eventHandler = createGiveMoneyAction(Interaction.CAT2, 500);
-        GIVE_MONEY_FOX.eventHandler = createGiveMoneyAction(Interaction.FOX, 500);
+        GIVE_OBJECT1.eventHandler = createGiveObjectAction(Interaction.BUSH1, Object.OBJ1, DialogConfig.BUSH1_AFTER);
+        GIVE_OBJECT1_2.eventHandler = createGiveObjectAction(Interaction.PNJ4, Object.OBJ1_2, DialogConfig.PNJ4_AFTER);
+        GIVE_MONEY_CAT.eventHandler = createGiveMoneyAction(Interaction.CAT2, 500, DialogConfig.CAT2_AFTER);
+        GIVE_MONEY_FOX.eventHandler = createGiveMoneyAction(Interaction.FOX, 500,DialogConfig.FOX_SUCCESS);
         //GIVE_OBJECT2.eventHandler = createGiveObjectAction(Interaction., Object.OBJ2);
         //GIVE_OBJECT3.eventHandler = createGiveObjectAction(Interaction., Object.OBJ3);
         //GIVE_OBJECT4.eventHandler = createGiveObjectAction(Interaction., Object.OBJ4);
@@ -68,7 +68,7 @@ public enum Action {
         RETURN.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             DialogLayout.getINSTANCE().removeContent();
             Movement.resumeMovement();
-            Movement.setMoved(false);
+            Movement.setMoved(true);
         });
     }
 
@@ -91,23 +91,25 @@ public enum Action {
         });
     }
 
-    public static EventHandler createGiveObjectAction(Interaction interaction, Object object){
+    public static EventHandler createGiveObjectAction(Interaction interaction, Object object, DialogConfig dialogConfig){
         return ((EventHandler<ActionEvent>) (action) -> {
             Inventory.getINSTANCE().add(object);
             interaction.setInteractionDone(true);
             Movement.resumeMovement();
             DialogLayout.getINSTANCE().removeContent();
-            Movement.setMoved(true);
+            DialogLayout.getINSTANCE().setText(dialogConfig.getText());
+            Movement.setMoved(false);
         });
     }
 
-    public static EventHandler createGiveMoneyAction(Interaction interaction, int money){
+    public static EventHandler createGiveMoneyAction(Interaction interaction, int money, DialogConfig dialogConfig){
         return ((EventHandler<ActionEvent>) (action) -> {
             DialogLayout.getINSTANCE().addMoney(money);
             interaction.setInteractionDone(true);
             Movement.resumeMovement();
             DialogLayout.getINSTANCE().removeContent();
-            Movement.setMoved(true);
+            DialogLayout.getINSTANCE().setText(dialogConfig.getText());
+            Movement.setMoved(false);
         });
     }
 }
