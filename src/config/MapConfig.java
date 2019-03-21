@@ -31,12 +31,10 @@ public class MapConfig {
                         .add(new RowConstraints(  (float)MainLayout.getHEIGHT()*2/3/GameLayout.getINSTANCE().getNbRows()));
             }
             MapConfig.maps.add(newMap);
-            //setupMap(nbMap);
         }
         task = new Task<Void>() {
             @Override
-            protected Void call() throws Exception {
-                // code to execute on background thread here:
+            protected Void call() {
                 Movement.configPlayerEventHandler(MainLayout.getSCENE());
                 MapConfig.getINSTANCE();
                 this.updateMapProgress();
@@ -52,9 +50,9 @@ public class MapConfig {
                     MapConfig.getINSTANCE().setupMap(i);
                 }
                 this.updateProgress(100, 100);
+                configMap(0);
             }
         };
-        //this.configMap(0);
 
         GameLayout.getINSTANCE().setGameHasBegun(true);
     }
@@ -93,15 +91,10 @@ public class MapConfig {
 
         player.setPosition(position);
         player.setSprite(sprite);
-
-        //ImageView imageView = new ImageView(player.getImage().getSpritePath());
-        //imageView.setPreserveRatio(true);
-        //imageView.setFitWidth(50);//(37);
         player.getImage().setTranslateX(0);
         player.getImage().setTranslateY(0);
         GridPane.setConstraints(player.getImage(), position.getKey(),position.getValue());
 
-        //MapConfig.maps.get(nbMap).getGridPane().setGridLinesVisible(true);
         if(MapConfig.maps.get(nbMap).getGridPane().getChildren().contains(player.getImage()))
             MapConfig.maps.get(nbMap).getGridPane().getChildren().remove(player.getImage());
         MapConfig.maps.get(nbMap).getGridPane().getChildren().add(player.getImage());
@@ -171,15 +164,12 @@ public class MapConfig {
 
         Player.getINSTANCE().setPosition(targetPosition);
 
-
-        //ImageView imageView = (ImageView) Movement.getMap().getGridPane().getChildren().get(Movement.getMap().getGridPane().getChildren().size() - 1);
         ImageView imageView = player.getImage();
         imageView.setImage(new Image(player.getSprite().getSpritePath()));
         player.getImage().setTranslateX(player.getImage().getX());
         player.getImage().setTranslateY(player.getImage().getY() + y);
 
         GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
-        //GridPane.setConstraints(new ImageView(Player.getINSTANCE().getImage().getSpritePath()), targetPosition.getKey(), targetPosition.getValue());
     }
 
     public boolean swapCells(int nbMap, Pair<Integer, Integer> positionCell1, Pair<Integer, Integer> positionCell2){
@@ -226,27 +216,19 @@ public class MapConfig {
     private static class MapSetup{
 
         private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position){
-            BlockingCell pnj = new BlockingCell(sprite, position);
-            //GridPane.setConstraints(pnj.getImage(), position.getKey(),position.getValue());
-            return pnj;
+            return new BlockingCell(sprite, position);
         }
 
         private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position, Interaction interaction){
-            BlockingCell pnj = new BlockingCell(sprite, position, interaction);
-            //GridPane.setConstraints(pnj.getImage(), position.getKey(),position.getValue());
-            return pnj;
+            return new BlockingCell(sprite, position, interaction);
         }
 
         private static TransitionCell addTransitionCell(Sprite sprite, Pair<Integer, Integer> position, Direction direction){
-            TransitionCell pnj = new TransitionCell(sprite, position, direction);
-            //GridPane.setConstraints(pnj.getImage(), position.getKey(), position.getValue());
-            return pnj;
+            return new TransitionCell(sprite, position, direction);
         }
 
         private static Cell addCell(Sprite sprite, Pair<Integer, Integer> position){
-            Cell pnj = new Cell(sprite, position);
-            //GridPane.setConstraints(pnj.getImage(), position.getKey(), position.getValue());
-            return pnj;
+            return new Cell(sprite, position);
         }
         private static void setupMap0(){
             Map m = maps.get(0);
