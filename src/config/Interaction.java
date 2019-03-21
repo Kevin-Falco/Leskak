@@ -50,7 +50,7 @@ public enum Interaction {
                     DialogLayout.getINSTANCE().setText(DialogConfig.FOX_AFTER.getText());
                 }
             }
-            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.FOX.getEventHandler());
         });
 
         ROCKET.eventHandler = ((EventHandler<KeyEvent>) event -> {

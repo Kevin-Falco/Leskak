@@ -68,7 +68,7 @@ public enum Action {
         RETURN.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             DialogLayout.getINSTANCE().removeContent();
             Movement.resumeMovement();
-            Movement.setMoved(true);
+            Movement.setMoved(false);
         });
     }
 
