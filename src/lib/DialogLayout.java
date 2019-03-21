@@ -2,6 +2,8 @@ package lib;
 
 
 import config.Action;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -37,9 +39,13 @@ public class DialogLayout {
         GridPane.setConstraints(this.text, 0, 0);
 
         this.money = 0;
+        VBox pane1 = new VBox();
+        pane1.setAlignment(Pos.CENTER);
         Text text = new Text();
         text.setFill(Color.WHITE);
-        GridPane.setConstraints(text, 1, 1 );
+        text.setTextAlignment(TextAlignment.CENTER);
+        pane1.getChildren().add(text);
+        GridPane.setConstraints(pane1, 1, 1 );
 
         this.buttons = new VBox();
         this.buttons.setSpacing(10);
@@ -50,7 +56,7 @@ public class DialogLayout {
         this.gridPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
         this.gridPane.getChildren().add(this.text);
-        this.gridPane.getChildren().add(text);
+        this.gridPane.getChildren().add(pane1);
         updateMoney();
         this.gridPane.getChildren().add(this.buttons);
         this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)(MainLayout.getWIDTH()*2/3)*2/3));
@@ -86,12 +92,8 @@ public class DialogLayout {
     public void addButton(String name, EventHandler eventHandler){
         Button button = new Button(name);
         button.setOnAction(eventHandler);
-        button.setStyle("-fx-background-color: white;" +
-                "    -fx-background-insets: 0,1,2,3;\n" +
-                "    -fx-background-radius: 3,2,2,2;\n" +
-                "    -fx-padding: 12 30 12 30;\n" +
-                "    -fx-text-fill: black;\n" +
-                "    -fx-font-size: 12px;");
+        button.getStyleClass().add("interact_button");
+        button.focusedProperty().addListener((observable, oldValue, newValue) -> button.setStyle(observable.getValue() ? "-fx-background-color: lightgrey;" : ""));
 
         this.buttons.getChildren().add(button);
 
@@ -103,12 +105,8 @@ public class DialogLayout {
         Button button = new Button("Retour");
         button.setOnAction(Action.RETURN.getEventHandler());
         button.setCancelButton(true);
-        button.setStyle("-fx-background-color: white;" +
-                "    -fx-background-insets: 0,1,2,3;\n" +
-                "    -fx-background-radius: 3,2,2,2;\n" +
-                "    -fx-padding: 12 30 12 30;\n" +
-                "    -fx-text-fill: black;\n" +
-                "    -fx-font-size: 12px;");
+        button.getStyleClass().add("interact_button");
+        button.focusedProperty().addListener((observable, oldValue, newValue) -> button.setStyle(observable.getValue() ? "-fx-background-color: lightgrey" : ""));
 
         this.buttons.getChildren().addAll(button);
 
@@ -137,7 +135,8 @@ public class DialogLayout {
     }
 
     public void updateMoney(){
-        Text text = (Text) this.getGridPane().getChildren().get(1);
+        VBox pane = (VBox) this.getGridPane().getChildren().get(1);
+        Text text = (Text) pane.getChildren().get(0);
         text.setText("Pokédollars : " + String.valueOf(this.money));
     }
 }

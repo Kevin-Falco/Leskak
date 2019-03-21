@@ -25,6 +25,7 @@ public class MainLayout {
 
     private MainLayout() {
         MainLayout.STAGE.setScene(MainLayout.SCENE);
+        MainLayout.getSCENE().getStylesheets().add("config/style.css");
         MainLayout.STAGE.getIcons().add(new Image(Sprite.PLAYER_DOWN_STOP.getSpritePath()));
         this.gridPane = mainLayout();
     }
