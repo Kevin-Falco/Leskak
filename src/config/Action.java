@@ -25,89 +25,31 @@ public enum Action {
     ;
 
     static{
-        TELEPORT_MAP1.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
-            Movement.getMap().getGridPane().getChildren().remove(Movement.getMap().getGridPane().getChildren().size() - 1);
-            MapConfig.getINSTANCE().configMap(0);
-            DialogLayout.getINSTANCE().removeContent();
-            Node node = (Node) action.getSource();
-            node.setFocusTraversable(false);
-            Movement.resumeMovement();
-        });
-        TELEPORT_MAP2.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
-            Movement.getMap().getGridPane().getChildren().remove(Movement.getMap().getGridPane().getChildren().size() - 1);
-            MapConfig.getINSTANCE().configMap(1);
-            DialogLayout.getINSTANCE().removeContent();
-            Movement.resumeMovement();
-        });
-        TELEPORT_MAP3.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
-            Movement.getMap().getGridPane().getChildren().remove(Movement.getMap().getGridPane().getChildren().size() - 1);
-            MapConfig.getINSTANCE().configMap(2);
-            DialogLayout.getINSTANCE().removeContent();
-            Movement.resumeMovement();
-        });
-        TELEPORT_MAP4.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
-            Movement.getMap().getGridPane().getChildren().remove(Movement.getMap().getGridPane().getChildren().size() - 1);
-            MapConfig.getINSTANCE().configMap(3);
-            DialogLayout.getINSTANCE().removeContent();
-            Movement.resumeMovement();
-        });
-        GIVE_OBJECT1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Inventory.getINSTANCE().add(InventoryConfig.OBJ1);
-            Interaction.BUSH1.setInteractionDone(true);
-            Movement.resumeMovement();
-            DialogLayout.getINSTANCE().removeContent();
-            Movement.setMoved(true);
-        });
-        GIVE_OBJECT1_2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Inventory.getINSTANCE().add(InventoryConfig.OBJ1_2);
-            Interaction.PNJ4.setInteractionDone(true);
-            Movement.resumeMovement();
-            DialogLayout.getINSTANCE().removeContent();
-            Movement.setMoved(true);
-        });
-        GIVE_OBJECT2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Inventory.getINSTANCE().add(InventoryConfig.OBJ2);
-            Interaction.PNJ4.setInteractionDone(true);
-            Movement.resumeMovement();
-            DialogLayout.getINSTANCE().removeContent();
-            Movement.setMoved(true);
-        });
-        GIVE_OBJECT3.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Inventory.getINSTANCE().add(InventoryConfig.OBJ3);
-            ((Node) action.getSource()).setVisible(false);
-            Movement.resumeMovement();
-        });
-        GIVE_OBJECT4.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Inventory.getINSTANCE().add(InventoryConfig.OBJ4);
-            ((Node) action.getSource()).setVisible(false);
-            Movement.resumeMovement();
-        });
-        GIVE_OBJECT5.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Inventory.getINSTANCE().add(InventoryConfig.OBJ5);
-            ((Node) action.getSource()).setVisible(false);
-            Movement.resumeMovement();
-        });
-        GIVE_OBJECT6.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Inventory.getINSTANCE().add(InventoryConfig.OBJ6);
-            ((Node) action.getSource()).setVisible(false);
-            Movement.resumeMovement();
-        });
+        TELEPORT_MAP1.eventHandler = createTeleportAction(0);
+        TELEPORT_MAP2.eventHandler = createTeleportAction(1);
+        TELEPORT_MAP3.eventHandler = createTeleportAction(2);
+        TELEPORT_MAP4.eventHandler = createTeleportAction(3);
+        GIVE_OBJECT1.eventHandler = createGiveObjectAction(Interaction.BUSH1, Object.OBJ1);
+        GIVE_OBJECT1_2.eventHandler = createGiveObjectAction(Interaction.PNJ4, Object.OBJ1_2);
+        //GIVE_OBJECT2.eventHandler = createGiveObjectAction(Interaction., Object.OBJ2);
+        //GIVE_OBJECT3.eventHandler = createGiveObjectAction(Interaction., Object.OBJ3);
+        //GIVE_OBJECT4.eventHandler = createGiveObjectAction(Interaction., Object.OBJ4);
+        //GIVE_OBJECT5.eventHandler = createGiveObjectAction(Interaction., Object.OBJ5);
+        //GIVE_OBJECT6.eventHandler = createGiveObjectAction(Interaction., Object.OBJ6);
+
         RETURN_OBJECT1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            //MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.TEST1.getEventHandler());
-            //KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
             if(!MapConfig.getINSTANCE().swapCells(0, new Pair<>(22, 5), new Pair<>(22, 6))){
                 MapConfig.getINSTANCE().movePlayer(new Pair<>(21, 6));
                 MapConfig.getINSTANCE().swapCells(0, new Pair<>(22, 5), new Pair<>(22, 6));
             }
             Interaction.PNJ3.setInteractionDone(true);
-            Inventory.getINSTANCE().remove(InventoryConfig.OBJ1);
+            Inventory.getINSTANCE().remove(Object.OBJ1);
             DialogLayout.getINSTANCE().removeContent();
             Movement.resumeMovement();
         });
         TEST1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.TEST1.getEventHandler());
             KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
-
         });
 
         RETURN.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
@@ -123,5 +65,26 @@ public enum Action {
 
     public EventHandler getEventHandler() {
         return eventHandler;
+    }
+
+    public static EventHandler createTeleportAction(int nbMap){
+        return ((EventHandler<ActionEvent>) (action) ->{
+            Movement.getMap().getGridPane().getChildren().remove(Player.getINSTANCE().getImage());
+            MapConfig.getINSTANCE().configMap(nbMap);
+            DialogLayout.getINSTANCE().removeContent();
+            Node node = (Node) action.getSource();
+            node.setFocusTraversable(false);
+            Movement.resumeMovement();
+        });
+    }
+
+    public static EventHandler createGiveObjectAction(Interaction interaction, Object object){
+        return ((EventHandler<ActionEvent>) (action) -> {
+            Inventory.getINSTANCE().add(object);
+            interaction.setInteractionDone(true);
+            Movement.resumeMovement();
+            DialogLayout.getINSTANCE().removeContent();
+            Movement.setMoved(true);
+        });
     }
 }

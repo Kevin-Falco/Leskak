@@ -1,9 +1,8 @@
 package lib;
 
-import config.InventoryConfig;
+import config.Object;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -41,39 +40,39 @@ public class Inventory {
         this.gridPane = gridPane;
     }
 
-    public void add(InventoryConfig inventoryConfig){
-        if(this.contains(inventoryConfig))
+    public void add(Object object){
+        if(this.contains(object))
             return;
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
-        vBox.getChildren().addAll(inventoryConfig.getImageView(), new Text( inventoryConfig.getName()));
+        vBox.getChildren().addAll(object.getImageView(), new Text( object.getName()));
         GridPane.setConstraints(vBox,
-                inventoryConfig.getInventoryPosition().getKey(),
-                inventoryConfig.getInventoryPosition().getValue());
+                object.getInventoryPosition().getKey(),
+                object.getInventoryPosition().getValue());
         this.getGridPane().getChildren().add(vBox);
     }
 
-    public boolean contains(InventoryConfig inventoryConfig){
+    public boolean contains(Object object){
         for (Node node : this.getGridPane().getChildren()){
             if(! (node instanceof VBox))
                 continue;
             VBox vBox = (VBox) node;
-            if(vBox.getChildren().contains(inventoryConfig.getImageView())) return true;
+            if(vBox.getChildren().contains(object.getImageView())) return true;
         }
         return false;
     }
 
-    public void remove(InventoryConfig inventoryConfig){
-        if(!this.contains(inventoryConfig))
+    public void remove(Object object){
+        if(!this.contains(object))
             return;
-        this.getGridPane().getChildren().remove(getVboxThatContains(inventoryConfig));
+        this.getGridPane().getChildren().remove(getVboxThatContains(object));
     }
-    private VBox getVboxThatContains(InventoryConfig inventoryConfig){
+    private VBox getVboxThatContains(Object object){
         for (Node node : this.getGridPane().getChildren()){
             if(! (node instanceof VBox))
                 continue;
             VBox vBox = (VBox) node;
-            if(vBox.getChildren().contains(inventoryConfig.getImageView())) return vBox;
+            if(vBox.getChildren().contains(object.getImageView())) return vBox;
         }
         return null;
     }
