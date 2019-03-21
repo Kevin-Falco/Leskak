@@ -28,22 +28,21 @@ public class DialogLayout {
     private DialogLayout() {
         this.text = new Text();
         this.text.setWrappingWidth((float) (MainLayout.getWIDTH()*2/3)*2/3);
-        this.text.setTextAlignment(TextAlignment.CENTER);
+        this.text.setTextAlignment(TextAlignment.JUSTIFY);
         this.text.setFont(Font.font("Lucida Console"));
         this.text.setFill(Color.WHITE);
-        //this.text.setStyle("-fx-text-inner-color: white;");
-        Pane pane = new Pane();
-        //pane.setMinWidth((float) (MainLayout.getWIDTH()*2/3)*2/3);
-        //pane.setMinHeight((float) (MainLayout.getHEIGHT()/3));
+        VBox pane = new VBox();
         pane.getChildren().add(this.text);
-        GridPane.setConstraints(this.text, 0, 0);
+        pane.setAlignment(Pos.CENTER);
+        pane.setPadding(new Insets(50));
+        GridPane.setConstraints(pane, 0, 0);
 
         this.money = 0;
         VBox pane1 = new VBox();
         pane1.setAlignment(Pos.CENTER);
         Text text = new Text();
         text.setFill(Color.WHITE);
-        text.setTextAlignment(TextAlignment.CENTER);
+        
         pane1.getChildren().add(text);
         GridPane.setConstraints(pane1, 1, 1 );
 
@@ -55,7 +54,7 @@ public class DialogLayout {
         this.gridPane = new GridPane();
         this.gridPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        this.gridPane.getChildren().add(this.text);
+        this.gridPane.getChildren().add(pane);
         this.gridPane.getChildren().add(pane1);
         updateMoney();
         this.gridPane.getChildren().add(this.buttons);
