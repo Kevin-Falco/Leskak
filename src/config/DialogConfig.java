@@ -20,8 +20,10 @@ public enum DialogConfig {
     FOX_BEFORE("Je vais vous raconter une petite histoire ... Maître Corbeau, sur un arbre perché,\n" +
             "           Tenait en son bec un fromage.\n" +
             "       Maître Renard, par l'odeur ... "),
+    FOX_AFTER("Tu peux partir maintenant. Allez."),
     FOX_ERROR("Mauvaise réponse."),
-    FOX_AFTER("Félicitations"),
+    FOX_SUCCESS("Félicitations. Voila 500 dolls."),
+
     FOX_BUTTON1("Subjugué"),
     FOX_BUTTON2("Alléché"),
     FOX_BUTTON3("Tout emoustillé"),
