@@ -488,7 +488,7 @@ public class MapConfig {
             Map m = maps.get(3);
             m.setFogOfWar(true);
 
-            for(int i = 0; i <= 31; ++i) for(int j = 0; j <= 11; ++j) m.add(addCell(Sprite.GRASS, new Pair<>(i,j)));
+            for(int i = 0; i <= 31; ++i) for(int j = 0; j <= 11; ++j) m.add(addCell(Sprite.SAND, new Pair<>(i,j)));
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){
