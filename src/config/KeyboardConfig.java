@@ -23,6 +23,8 @@ public enum KeyboardConfig {
                     if(blockingCell.getPosition().getKey().equals(col) && blockingCell.getPosition().getValue().equals(row)
                             && blockingCell.getInteraction() != null ){
                         Movement.getMap().getBlockingCellIterator().reset();
+                        blockingCell.setDirection(player.getDirection().ordinal() %2 == 0 ?
+                                Direction.values()[player.getDirection().ordinal() +1] : Direction.values()[player.getDirection().ordinal() - 1] );
                         isAPNJ = true;
                         blockingCellInteract = blockingCell;
                         break;

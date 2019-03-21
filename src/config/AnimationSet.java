@@ -5,7 +5,22 @@ public enum AnimationSet {
     PLAYER_MOVE_RIGHT(Sprite.PLAYER_UP_MOVE_RIGHT, Sprite.PLAYER_DOWN_MOVE_RIGHT, Sprite.PLAYER_RIGHT_MOVE_RIGHT, Sprite.PLAYER_LEFT_MOVE_RIGHT),
     PLAYER_STOP2(Sprite.PLAYER_UP_STOP, Sprite.PLAYER_DOWN_STOP, Sprite.PLAYER_RIGHT_STOP, Sprite.PLAYER_LEFT_STOP),
     PLAYER_MOVE_LEFT(Sprite.PLAYER_UP_MOVE_LEFT, Sprite.PLAYER_DOWN_MOVE_LEFT, Sprite.PLAYER_RIGHT_MOVE_LEFT, Sprite.PLAYER_LEFT_MOVE_LEFT),
-    PLAYER_STOP(Sprite.PLAYER_UP_STOP, Sprite.PLAYER_DOWN_STOP, Sprite.PLAYER_RIGHT_STOP, Sprite.PLAYER_LEFT_STOP);
+    PLAYER_STOP(Sprite.PLAYER_UP_STOP, Sprite.PLAYER_DOWN_STOP, Sprite.PLAYER_RIGHT_STOP, Sprite.PLAYER_LEFT_STOP),
+
+
+
+    PNJ1(Sprite.PNJ1_UP, Sprite.PNJ1_DOWN, Sprite.PNJ1_RIGHT, Sprite.PNJ1_LEFT),
+    PNJ2(Sprite.PNJ2_UP, Sprite.PNJ2_DOWN, Sprite.PNJ2_RIGHT, Sprite.PNJ2_LEFT),
+    PNJ3(Sprite.PNJ3_UP, Sprite.PNJ3_DOWN, Sprite.PNJ3_RIGHT, Sprite.PNJ3_LEFT),
+    PNJ4(Sprite.PNJ4_UP, Sprite.PNJ4_DOWN, Sprite.PNJ4_RIGHT, Sprite.PNJ4_LEFT),
+
+    WHITE_CAT(Sprite.WHITE_CAT_UP, Sprite.WHITE_CAT_DOWN, Sprite.WHITE_CAT_RIGHT, Sprite.WHITE_CAT_LEFT),
+    GREY_CAT(Sprite.GREY_CAT_UP, Sprite.GREY_CAT_DOWN, Sprite.GREY_CAT_RIGHT, Sprite.GREY_CAT_LEFT),
+    BLACK_CAT(Sprite.BLACK_CAT_UP, Sprite.BLACK_CAT_DOWN, Sprite.BLACK_CAT_RIGHT, Sprite.BLACK_CAT_LEFT),
+    SNAKE(Sprite.SNAKE_UP, Sprite.SNAKE_DOWN, Sprite.SNAKE_RIGHT, Sprite.SNAKE_LEFT),
+    FOX(Sprite.FOX_UP, Sprite.FOX_DOWN, Sprite.FOX_RIGHT, Sprite.FOX_LEFT),
+
+    ;
 
     private Sprite up;
     private Sprite down;
@@ -48,4 +63,45 @@ public enum AnimationSet {
             return null;
         return AnimationSet.values()[nb];
     }
+
+    public boolean contains(Sprite sprite){
+        if(sprite.equals(this.up) || sprite.equals(this.down) || sprite.equals(this.left) || sprite.equals(this.right))
+            return true;
+        return false;
+    }
+
+    public Direction getDirection(Sprite sprite){
+        if(sprite.equals(this.up))
+            return Direction.UP;
+        if(sprite.equals(this.down))
+            return Direction.DOWN;
+        if(sprite.equals(this.right))
+            return Direction.RIGHT;
+        if(sprite.equals(this.left))
+            return Direction.LEFT;
+        return null;
+    }
+
+    public Sprite getSpriteDirection(Direction direction){
+        switch (direction){
+            case UP:
+                return this.up;
+            case DOWN:
+                return this.down;
+            case RIGHT:
+                return this.right;
+            case LEFT:
+                return this.left;
+        }
+        return null;
+    }
+
+    public static AnimationSet getAnimationSetThatHave(Sprite sprite){
+        for(int i = 0; i < AnimationSet.values().length; ++i){
+            if(AnimationSet.values()[i].contains(sprite)) return AnimationSet.values()[i];
+        }
+        return null;
+    }
+
+
 }
