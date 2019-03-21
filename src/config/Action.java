@@ -19,6 +19,9 @@ public enum Action {
     GIVE_OBJECT4,
     GIVE_OBJECT5,
     GIVE_OBJECT6,
+    GIVE_MONEY_CAT,
+    GIVE_MONEY_FOX,
+    ERROR_FOX,
     RETURN_OBJECT1,
     TEST1,
     RETURN,
@@ -31,12 +34,22 @@ public enum Action {
         TELEPORT_MAP4.eventHandler = createTeleportAction(3);
         GIVE_OBJECT1.eventHandler = createGiveObjectAction(Interaction.BUSH1, Object.OBJ1);
         GIVE_OBJECT1_2.eventHandler = createGiveObjectAction(Interaction.PNJ4, Object.OBJ1_2);
+        GIVE_MONEY_CAT.eventHandler = createGiveMoneyAction(Interaction.CAT2, 500);
+        GIVE_MONEY_FOX.eventHandler = createGiveMoneyAction(Interaction.FOX, 500);
         //GIVE_OBJECT2.eventHandler = createGiveObjectAction(Interaction., Object.OBJ2);
         //GIVE_OBJECT3.eventHandler = createGiveObjectAction(Interaction., Object.OBJ3);
         //GIVE_OBJECT4.eventHandler = createGiveObjectAction(Interaction., Object.OBJ4);
         //GIVE_OBJECT5.eventHandler = createGiveObjectAction(Interaction., Object.OBJ5);
         //GIVE_OBJECT6.eventHandler = createGiveObjectAction(Interaction., Object.OBJ6);
 
+        ERROR_FOX.eventHandler = TEST1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.FOX_ERROR.getText());
+            Node node = (Node) action.getSource();
+            node.setFocusTraversable(false);
+            Movement.setMoved(false);
+            Movement.resumeMovement();
+        });
         RETURN_OBJECT1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             if(!MapConfig.getINSTANCE().swapCells(0, new Pair<>(22, 5), new Pair<>(22, 6))){
                 MapConfig.getINSTANCE().movePlayer(new Pair<>(21, 6));
@@ -81,6 +94,16 @@ public enum Action {
     public static EventHandler createGiveObjectAction(Interaction interaction, Object object){
         return ((EventHandler<ActionEvent>) (action) -> {
             Inventory.getINSTANCE().add(object);
+            interaction.setInteractionDone(true);
+            Movement.resumeMovement();
+            DialogLayout.getINSTANCE().removeContent();
+            Movement.setMoved(true);
+        });
+    }
+
+    public static EventHandler createGiveMoneyAction(Interaction interaction, int money){
+        return ((EventHandler<ActionEvent>) (action) -> {
+            DialogLayout.getINSTANCE().addMoney(money);
             interaction.setInteractionDone(true);
             Movement.resumeMovement();
             DialogLayout.getINSTANCE().removeContent();

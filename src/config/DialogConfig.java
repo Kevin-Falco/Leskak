@@ -13,6 +13,19 @@ public enum DialogConfig {
     BUSH1_BEFORE("Vous trouvez un bidule."),
     BUSH1_AFTER("Vous avez déjà pris le bidule."),
     BUSH1_BUTTON("Prendre le bidule"),
+    CAT1("Miaou."),
+    CAT2_BEFORE("Ce chat a une bourse dans la gueule."),
+    CAT2_AFTER("Il est pas content de plus avoir sa bourse le pôôôvre."),
+    CAT2_BUTTON("Lui prendre sa bourse"),
+    FOX_BEFORE("Je vais vous raconter une petite histoire ... Maître Corbeau, sur un arbre perché,\n" +
+            "           Tenait en son bec un fromage.\n" +
+            "       Maître Renard, par l'odeur ... "),
+    FOX_ERROR("Mauvaise réponse."),
+    FOX_AFTER("Félicitations"),
+    FOX_BUTTON1("Subjugué"),
+    FOX_BUTTON2("Alléché"),
+    FOX_BUTTON3("Tout emoustillé"),
+    SNAKE("SSSSSSSSSSSSSS"),
     ;
 
     private String text;

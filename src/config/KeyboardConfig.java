@@ -31,9 +31,6 @@ public enum KeyboardConfig {
                 if(isAPNJ){
                     MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, blockingCellInteract.getInteraction().getEventHandler());
                 }
-                else{
-                    DialogLayout.getINSTANCE().setText("YOUPI");
-                }
             }
             else if(MainLayout.getSCENE().getFocusOwner() instanceof Button){
                 ((Button) MainLayout.getSCENE().getFocusOwner()).fire();

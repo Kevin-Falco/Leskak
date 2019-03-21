@@ -42,7 +42,7 @@ public class DialogLayout {
         pane1.setAlignment(Pos.CENTER);
         Text text = new Text();
         text.setFill(Color.WHITE);
-        
+
         pane1.getChildren().add(text);
         GridPane.setConstraints(pane1, 1, 1 );
 
@@ -136,6 +136,6 @@ public class DialogLayout {
     public void updateMoney(){
         VBox pane = (VBox) this.getGridPane().getChildren().get(1);
         Text text = (Text) pane.getChildren().get(0);
-        text.setText("Pokédollars : " + String.valueOf(this.money));
+        text.setText("Argent : " + String.valueOf(this.money));
     }
 }

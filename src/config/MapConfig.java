@@ -50,11 +50,6 @@ public class MapConfig {
                     this.updateMessage( " Création de la map " + i);
                     this.updateProgress(i*100/MapConfig.getINSTANCE().getMaps().size(), 100);
                     MapConfig.getINSTANCE().setupMap(i);
-                   //try {
-                   //    Thread.sleep(1000);
-                   //} catch (InterruptedException e) {
-                   //    e.printStackTrace();
-                   //}
                 }
                 this.updateProgress(100, 100);
             }
@@ -310,11 +305,11 @@ public class MapConfig {
             for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ2_DOWN, new Pair<>(i, 5), Interaction.PNJ2));
             for (int i = 22; i <= 22; ++i) m.add(addBlockingCell(Sprite.PNJ3_LEFT, new Pair<>(i, 5), Interaction.PNJ3));
 
-            for (int i = 8; i <= 8; ++i) m.add(addBlockingCell(Sprite.WHITE_CAT_DOWN, new Pair<>(i, 2)));
-            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.BLACK_CAT_DOWN, new Pair<>(i, 3)));
-            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.BLACK_CAT_RIGHT, new Pair<>(i, 8)));
-            for (int i = 11; i <= 11; ++i) m.add(addBlockingCell(Sprite.GREY_CAT_LEFT, new Pair<>(i, 8)));
-            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.WHITE_CAT_LEFT, new Pair<>(i, 9)));
+            for (int i = 8; i <= 8; ++i) m.add(addBlockingCell(Sprite.WHITE_CAT_DOWN, new Pair<>(i, 2), Interaction.CAT1));
+            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.BLACK_CAT_DOWN, new Pair<>(i, 3), Interaction.CAT2));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.BLACK_CAT_RIGHT, new Pair<>(i, 8), Interaction.CAT1));
+            for (int i = 11; i <= 11; ++i) m.add(addBlockingCell(Sprite.GREY_CAT_LEFT, new Pair<>(i, 8), Interaction.CAT1));
+            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.WHITE_CAT_LEFT, new Pair<>(i, 9), Interaction.CAT1));
 
             for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 5), Interaction.ROCKET));
             for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 6), Interaction.ROCKET));
@@ -396,7 +391,7 @@ public class MapConfig {
 
             for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.PNJ4_LEFT, new Pair<>(i, 6), Interaction.PNJ4));
 
-            for (int i = 30; i <= 30; ++i) m.add(addBlockingCell(Sprite.FOX_LEFT, new Pair<>(i, 7)));
+            for (int i = 30; i <= 30; ++i) m.add(addBlockingCell(Sprite.FOX_LEFT, new Pair<>(i, 7), Interaction.FOX));
 
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.HOUSE_UP_LEFT, new Pair<>(i, 5)));
             for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.HOUSE_UP_RIGHT, new Pair<>(i, 5)));
@@ -462,13 +457,13 @@ public class MapConfig {
             for (int i = 23; i <= 24; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 10)));
             for (int i = 22; i <= 24; ++i) m.add(addBlockingCell(Sprite.WATER, new Pair<>(i, 11)));
 
-            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.SNAKE_UP, new Pair<>(i, 2)));
-            for (int i = 17; i <= 17; ++i) m.add(addBlockingCell(Sprite.SNAKE_RIGHT, new Pair<>(i, 2)));
-            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.SNAKE_RIGHT, new Pair<>(i, 3)));
-            for (int i = 17; i <= 17; ++i) m.add(addBlockingCell(Sprite.SNAKE_LEFT, new Pair<>(i, 4)));
-            for (int i = 8; i <= 8; ++i) m.add(addBlockingCell(Sprite.SNAKE_DOWN, new Pair<>(i, 5)));
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.SNAKE_DOWN, new Pair<>(i, 7)));
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.SNAKE_RIGHT, new Pair<>(i, 6)));
+            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.SNAKE_UP, new Pair<>(i, 2), Interaction.SNAKE));
+            for (int i = 17; i <= 17; ++i) m.add(addBlockingCell(Sprite.SNAKE_RIGHT, new Pair<>(i, 2), Interaction.SNAKE));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.SNAKE_RIGHT, new Pair<>(i, 3), Interaction.SNAKE));
+            for (int i = 17; i <= 17; ++i) m.add(addBlockingCell(Sprite.SNAKE_LEFT, new Pair<>(i, 4), Interaction.SNAKE));
+            for (int i = 8; i <= 8; ++i) m.add(addBlockingCell(Sprite.SNAKE_DOWN, new Pair<>(i, 5), Interaction.SNAKE));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.SNAKE_DOWN, new Pair<>(i, 7), Interaction.SNAKE));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.SNAKE_RIGHT, new Pair<>(i, 6), Interaction.SNAKE));
 
             for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.HERB, new Pair<>(i, 2)));
             for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HERB, new Pair<>(i, 3)));
