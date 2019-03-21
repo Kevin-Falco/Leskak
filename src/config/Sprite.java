@@ -48,6 +48,10 @@ public enum Sprite {
     SNAKE_DOWN("sprite/animal/snake_down.png"),
     SNAKE_RIGHT("sprite/animal/snake_right.png"),
     SNAKE_LEFT("sprite/animal/snake_left.png"),
+    FOX_UP("sprite/animal/fox_up.png"),
+    FOX_DOWN("sprite/animal/fox_down.png"),
+    FOX_RIGHT("sprite/animal/fox_right.png"),
+    FOX_LEFT("sprite/animal/fox_left.png"),
 
     ROCKET_UP("sprite/rocket/rocket_up.png"),
     ROCKET_DOWN("sprite/rocket/rocket_down.png"),
