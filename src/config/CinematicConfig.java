@@ -17,8 +17,8 @@ public enum CinematicConfig {
     static {
         PauseTransition pt = new PauseTransition();
         pt.setDuration(Duration.millis(1));
+        //TEST1.eventHandler = createCinematicEvent(false, Sprite.CINEMATIC, Interaction.RETURN_GAME.getEventHandler(), TEST1.getEventHandler());
         TEST1.eventHandler = ((EventHandler<KeyEvent>) (event) -> {
-            event.consume();
             if(event.getCode() == Key.SPACE.getKeyCode()) {
                 Pane pane = new Pane();
                 ImageView imageView = new ImageView(Sprite.CINEMATIC.getSpritePath());
@@ -34,8 +34,8 @@ public enum CinematicConfig {
 
             }
         });
+        //TEST2.eventHandler = createCinematicEvent(false, Sprite.CINEMATIC3, TEST1.getEventHandler(), TEST2.getEventHandler());
         TEST2.eventHandler = ((EventHandler<KeyEvent>) (event) -> {
-            event.consume();
             if(event.getCode() == Key.SPACE.getKeyCode()) {
                 Pane pane = new Pane();
                 ImageView imageView = new ImageView(Sprite.CINEMATIC3.getSpritePath());
@@ -50,6 +50,7 @@ public enum CinematicConfig {
                 });
             }
         });
+        //TEST3.eventHandler = createCinematicEvent(true, Sprite.CINEMATIC2, TEST2.getEventHandler(), TEST3.getEventHandler());
         TEST3.eventHandler = ((EventHandler<KeyEvent>) (event) -> {
             Movement.removeMovement();
             Pane pane = new Pane();
@@ -75,5 +76,27 @@ public enum CinematicConfig {
     public static void setupGame(){
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.TEST3.getEventHandler());
         KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.ENTER.getKeyCode(), false, false, false, false) );
+    }
+
+    private static EventHandler createCinematicEvent(boolean removeMovement, Sprite spriteCinematic, EventHandler toAdd, EventHandler toRemove){
+        PauseTransition pt = new PauseTransition();
+        pt.setDuration(Duration.millis(1));
+        return ((EventHandler<KeyEvent>) (event) -> {
+            if(event.getCode() == Key.SPACE.getKeyCode()) {
+                if(removeMovement)
+                    Movement.removeMovement();
+                Pane pane = new Pane();
+                ImageView imageView = new ImageView(spriteCinematic.getSpritePath());
+                imageView.setPreserveRatio(true);
+                imageView.setFitWidth(MainLayout.getWIDTH());
+                pane.getChildren().add(imageView);
+                MainLayout.getSCENE().setRoot(pane);
+                pt.play();
+                pt.setOnFinished(event1 -> {
+                    MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, toAdd);
+                    MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, toRemove);
+                });
+            }
+        });
     }
 }
