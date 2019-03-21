@@ -1,12 +1,11 @@
 package lib;
 
 import config.Object;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 
@@ -19,6 +18,7 @@ public class Inventory {
     private Inventory(){
         this.gridPane = new GridPane();
         this.gridPane.setGridLinesVisible(true);
+        this.gridPane.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
         this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)MainLayout.getWIDTH()/9));
         this.gridPane.getColumnConstraints().add(new ColumnConstraints(  (float)MainLayout.getWIDTH()/9));
@@ -45,6 +45,7 @@ public class Inventory {
             return;
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
+        vBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(100), Insets.EMPTY)));
         vBox.getChildren().addAll(object.getImageView(), new Text( object.getName()));
         GridPane.setConstraints(vBox,
                 object.getInventoryPosition().getKey(),
