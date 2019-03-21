@@ -61,7 +61,8 @@ public enum Sprite {
     HERB("sprite/env/herb.png"),
     ROCK("sprite/env/rock.png"),
     BRIDGE("sprite/env/bridge.png"),
-    FOG("sprite/env/fog.jpg"),
+    FOG("sprite/env/fog.png"),
+    SAND("sprite/env/sand.png"),
 
     TREE("sprite/tree/tree.png"),
     TREE_UP("sprite/tree/tree_up.png"),
