@@ -1,5 +1,6 @@
 package config;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -50,7 +51,7 @@ public class MapConfig {
                     MapConfig.getINSTANCE().setupMap(i);
                 }
                 this.updateProgress(100, 100);
-                configMap(3);
+                Platform.runLater(() -> configMap(3));
             }
         };
 
