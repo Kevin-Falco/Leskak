@@ -97,6 +97,7 @@ public class MapConfig {
 
         if(MapConfig.maps.get(nbMap).getGridPane().getChildren().contains(player.getImage()))
             MapConfig.maps.get(nbMap).getGridPane().getChildren().remove(player.getImage());
+
         MapConfig.maps.get(nbMap).getGridPane().getChildren().add(player.getImage());
 
         if(Movement.getMap().isFogOfWar())
@@ -241,7 +242,7 @@ public class MapConfig {
         }
         private static void setupMap0(){
             Map m = maps.get(0);
-            
+
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.GRASS, new Pair<>(i, j)));
 
             for (int i = 12; i <= 14; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 0), Direction.UP));
@@ -508,6 +509,72 @@ public class MapConfig {
             for (int i = 24; i <= 25; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 0)));
             for (int i = 27; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 0)));
             for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 0)));
+            for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 2; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 7; i <= 8; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 12; i <= 12; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 14; i <= 16; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 18; i <= 20; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 22; i <= 22; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 24; i <= 25; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 27; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 2; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 8; i <= 8; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 12; i <= 12; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 14; i <= 16; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 22; i <= 22; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 25; i <= 25; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 3)));
+            for (int i = 5; i <= 6; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 3)));
+            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 3)));
+            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 3)));
+            for (int i = 20; i <= 20; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 3)));
+            for (int i = 22; i <= 23; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 3)));
+            for (int i = 25; i <= 26; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 3)));
+            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 3)));
+            for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 4)));
+            for (int i = 2; i <= 14; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 4)));
+            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 4)));
+            for (int i = 28; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 4)));
+            for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 5)));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 5)));
+            for (int i = 16; i <= 18; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 5)));
+            for (int i = 20; i <= 26; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 5)));
+            for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 6)));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 6)));
+            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 6)));
+            for (int i = 21; i <= 21; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 6)));
+            for (int i = 28; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 6)));
+            for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 7)));
+            for (int i = 14; i <= 16; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 7)));
+            for (int i = 18; i <= 19; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 7)));
+            for (int i = 21; i <= 21; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 7)));
+            for (int i = 23; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 7)));
+            for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 8)));
+            for (int i = 19; i <= 19; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 8)));
+            for (int i = 21; i <= 21; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 8)));
+            for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 8)));
+            for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 9)));
+            for (int i = 14; i <= 17; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 9)));
+            for (int i = 19; i <= 19; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 9)));
+            for (int i = 23; i <= 23; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 9)));
+            for (int i = 25; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 9)));
+            for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 10)));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 10)));
+            for (int i = 21; i <= 23; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 10)));
+            for (int i = 28; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 10)));
+            for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
+
+            m.setFogOfWar(true);
         }
 
         private static void setupMap4(){
@@ -519,6 +586,8 @@ public class MapConfig {
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SAND, new Pair<>(i, 5), Direction.LEFT));
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SAND, new Pair<>(i, 7), Direction.LEFT));
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SAND, new Pair<>(i, 9), Direction.LEFT));
+
+            m.setFogOfWar(true);
         }
 
         private static void setupMap5(){
@@ -627,6 +696,8 @@ public class MapConfig {
             for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
 
             for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.SNAKE_DOWN, new Pair<>(i, 4), Interaction.SNAKE));
+
+            m.setFogOfWar(true);
         }
 
         private static void setupMap6(){
@@ -638,6 +709,8 @@ public class MapConfig {
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SAND, new Pair<>(i, 5), Direction.LEFT));
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SAND, new Pair<>(i, 8), Direction.LEFT));
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SAND, new Pair<>(i, 10), Direction.LEFT));
+
+            m.setFogOfWar(true);
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){

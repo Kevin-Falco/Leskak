@@ -7,7 +7,7 @@ public enum DialogConfig {
     PNJ3_AFTER("Merci énormément étranger ! Je prépare mon téléporteur et je vais livrer mon colis de ce pas !"),
     PNJ3_BUTTON("Donner le colis"),
     PNJ4_BEFORE("Tu cherches une plaque de tôle ? En effet, j'en possède une qui traîne dans mon grenier depuis les travaux. Si tu veux je te l'offre !"),
-    PNJ4_AFTER("Jte l'ai filé ta putain de plaque. Casse toi de là."),
+    PNJ4_AFTER("Rends toi sur la planète Hibliss si tu souhaites continuer ta quête."),
     PNJ4_BUTTON("Prendre la plaque de tôle"),
     BUSH1_BEFORE("Il y a un colis dans ces hautes herbes. Souhaitez-vous le prendre ?"),
     BUSH1_AFTER(""),
