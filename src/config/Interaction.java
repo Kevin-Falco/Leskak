@@ -56,9 +56,8 @@ public enum Interaction {
         ROCKET.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
-                DialogLayout.getINSTANCE().setText("I'M A ROCKET");
                 if(Inventory.getINSTANCE().contains(Object.OBJ1_2)){
-                    DialogLayout.getINSTANCE().addButton("GO NEW MAP", Action.TELEPORT_MAP4.getEventHandler());
+                    DialogLayout.getINSTANCE().addButton("Hibliss", Action.TELEPORT_MAP4.getEventHandler());
                     DialogLayout.getINSTANCE().addReturnButton();
                 }
             }

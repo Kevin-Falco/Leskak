@@ -50,7 +50,7 @@ public class MapConfig {
                     MapConfig.getINSTANCE().setupMap(i);
                 }
                 this.updateProgress(100, 100);
-                configMap(0);
+                configMap(3);
             }
         };
 
@@ -73,14 +73,8 @@ public class MapConfig {
         if(nbMap == 0){
             configMap(nbMap, new Pair<>(10, 6), Sprite.PLAYER_DOWN_STOP);
         }
-        if(nbMap == 1){
-            configMap(nbMap, new Pair<>(15, 5), Sprite.PLAYER_DOWN_STOP);
-        }
-        if(nbMap == 2){
-            configMap(nbMap, new Pair<>(6, 5), Sprite.PLAYER_DOWN_STOP);
-        }
         if(nbMap == 3){
-            configMap(nbMap, new Pair<>(6, 5), Sprite.PLAYER_DOWN_STOP);
+            configMap(nbMap, new Pair<>(4, 8), Sprite.PLAYER_DOWN_STOP);
         }
     }
 
@@ -575,6 +569,16 @@ public class MapConfig {
             for (int i = 28; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 10)));
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
 
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.PNJ2_LEFT, new Pair<>(i, 9), Interaction.SNAKE));
+
+            for (int i = 3; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 7), Interaction.ROCKET));
+            for (int i = 3; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 8), Interaction.ROCKET ));
+
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE_UP_LEFT, new Pair<>(i, 7)));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE_UP_RIGHT, new Pair<>(i, 7)));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE_DOWN_LEFT, new Pair<>(i, 8)));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE_DOWN_RIGHT, new Pair<>(i, 8)));
+
             //m.setFogOfWar(true);
         }
 
@@ -665,6 +669,8 @@ public class MapConfig {
             for (int i = 18; i <= 22; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 10)));
             for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 10)));
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
+
+            for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.PNJ2_DOWN, new Pair<>(i, 9), Interaction.SNAKE));
 
             //m.setFogOfWar(true);
         }
@@ -774,7 +780,7 @@ public class MapConfig {
             for (int i = 27; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
             for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
 
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.SNAKE_DOWN, new Pair<>(i, 4), Interaction.SNAKE));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ2_DOWN, new Pair<>(i, 4), Interaction.SNAKE));
 
             //m.setFogOfWar(true);
         }
