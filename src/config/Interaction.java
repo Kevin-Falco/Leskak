@@ -9,7 +9,9 @@ public enum Interaction {
     PNJ1,
     PNJ2,
     PNJ3,
+    PNJ3_2,
     PNJ4,
+    PNJ5,
     ROCKET,
     RETURN_GAME,
     BUSH1,
@@ -25,15 +27,20 @@ public enum Interaction {
         CAT1.eventHandler = createSimpleDialog(Interaction.CAT1, DialogConfig.CAT1);
         SNAKE.eventHandler = createSimpleDialog(Interaction.SNAKE, DialogConfig.SNAKE);
         PNJ3.eventHandler = createSimpleButtonInteractionObject(Interaction.PNJ3, DialogConfig.PNJ3_BEFORE,
-                DialogConfig.PNJ3_AFTER, DialogConfig.PNJ3_BUTTON, Action.RETURN_OBJECT1, true,
-                Object.OBJ1);
+                DialogConfig.PNJ3_AFTER, DialogConfig.PNJ3_BUTTON, Action.RETURN_OBJECT6, true,
+                Object.OBJ6);
+        PNJ3_2.eventHandler = createSimpleButtonInteraction(Interaction.PNJ3_2, DialogConfig.PNJ3_2_BEFORE,
+                DialogConfig.PNJ3_2_AFTER, DialogConfig.PNJ3_2_BUTTON, Action.GIVE_OBJECT6_2);
         PNJ4.eventHandler = createSimpleButtonInteractionObject(Interaction.PNJ4, DialogConfig.PNJ4_BEFORE,
-                DialogConfig.PNJ4_AFTER, DialogConfig.PNJ4_BUTTON, Action.GIVE_OBJECT1_2, false,
-                Object.OBJ1_2);
+                DialogConfig.PNJ4_AFTER, DialogConfig.PNJ4_BUTTON, Action.GIVE_OBJECT1, false,
+                Object.OBJ1);
+        PNJ5.eventHandler = createSimpleButtonInteractionObjectWithInteractionChange(Interaction.PNJ5, DialogConfig.PNJ5_BEFORE,
+                DialogConfig.PNJ5_AFTER, DialogConfig.PNJ5_BUTTON, Action.RETURN_OBJECT6_2, true,
+                Object.OBJ6, 0, Interaction.PNJ3, Interaction.PNJ3_2);
 
         BUSH1.eventHandler = createSimpleButtonInteractionObject(Interaction.BUSH1, DialogConfig.BUSH1_BEFORE,
-                DialogConfig.BUSH1_AFTER, DialogConfig.BUSH1_BUTTON, Action.GIVE_OBJECT1, false,
-                Object.OBJ1);
+                DialogConfig.BUSH1_AFTER, DialogConfig.BUSH1_BUTTON, Action.GIVE_OBJECT6, false,
+                Object.OBJ6);
         CAT2.eventHandler = createSimpleButtonInteraction(Interaction.CAT2, DialogConfig.CAT2_BEFORE,
                 DialogConfig.CAT2_AFTER, DialogConfig.CAT2_BUTTON, Action.GIVE_MONEY_CAT);
 
@@ -59,7 +66,7 @@ public enum Interaction {
                 if(!Planet.PLANET1.getMaps().contains(Movement.getMap())){
                     DialogLayout.getINSTANCE().addButton(Planet.PLANET1.getName(), Action.TELEPORT_PLANET1.getEventHandler());
                 }
-                if(!Planet.PLANET2.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ1_2)){
+                if(!Planet.PLANET2.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ1)){
                     DialogLayout.getINSTANCE().addButton(Planet.PLANET2.getName(), Action.TELEPORT_PLANET2.getEventHandler());
                 }
                 DialogLayout.getINSTANCE().addReturnButton();
@@ -97,6 +104,22 @@ public enum Interaction {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
                 DialogLayout.getINSTANCE().setText(dialogConfig.getText());
+
+            }
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, interaction.getEventHandler());
+        });
+    }
+
+    public  static EventHandler createSimpleDialogWithInteractionChange(Interaction interaction, DialogConfig dialogConfig,
+                                                                        int nbMap, Interaction toRemove, Interaction toAdd){
+        return ((EventHandler<KeyEvent>) event -> {
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
+                Movement.setMoved(false);
+                DialogLayout.getINSTANCE().setText(dialogConfig.getText());
+                for(Cell cell : MapConfig.getINSTANCE().getMaps().get(nbMap).getCells()){
+                    if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null && ((BlockingCell) cell).getInteraction().equals(toRemove))
+                        ((BlockingCell) cell).setInteraction(toAdd);
+                }
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, interaction.getEventHandler());
         });
@@ -123,9 +146,54 @@ public enum Interaction {
         });
     }
 
+    public  static EventHandler createSimpleButtonInteractionObjectWithInteractionChange(Interaction interaction, DialogConfig dialogConfigBefore,
+                                                                                         DialogConfig dialogConfigAfter, DialogConfig dialogConfigButton,
+                                                                                         Action action, boolean contains, Object object,
+                                                                                         int nbMap, Interaction toRemove, Interaction toAdd){
+        return ((EventHandler<KeyEvent>) event -> {
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
+                Movement.setMoved(false);
+                if(!interaction.isInteractionDone()){
+                    DialogLayout.getINSTANCE().setText(dialogConfigBefore.getText());
+                    if(contains == Inventory.getINSTANCE().contains(object)){
+                        DialogLayout.getINSTANCE().addButton(dialogConfigButton.getText(), action.getEventHandler());
+                        DialogLayout.getINSTANCE().addReturnButton();
+                    }
+                }
+                else{
+                    DialogLayout.getINSTANCE().setText(dialogConfigAfter.getText());
+                }
+                for(Cell cell : MapConfig.getINSTANCE().getMaps().get(nbMap).getCells()){
+                    if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null && ((BlockingCell) cell).getInteraction().equals(toRemove))
+                        ((BlockingCell) cell).setInteraction(toAdd);
+                }
+            }
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, interaction.getEventHandler());
+        });
+    }
+
     public  static EventHandler createSimpleButtonInteraction(Interaction interaction, DialogConfig dialogConfigBefore,
                                                               DialogConfig dialogConfigAfter, DialogConfig dialogConfigButton,
                                                               Action action){
+        return ((EventHandler<KeyEvent>) event -> {
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
+                Movement.setMoved(false);
+                if(!interaction.isInteractionDone()){
+                    DialogLayout.getINSTANCE().setText(dialogConfigBefore.getText());
+                    DialogLayout.getINSTANCE().addButton(dialogConfigButton.getText(), action.getEventHandler());
+                    DialogLayout.getINSTANCE().addReturnButton();
+                }
+                else{
+                    DialogLayout.getINSTANCE().setText(dialogConfigAfter.getText());
+                }
+            }
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, interaction.getEventHandler());
+        });
+    }
+
+    public  static EventHandler createSimpleButtonInteractionWithInteractionChange(Interaction interaction, DialogConfig dialogConfigBefore,
+                                                              DialogConfig dialogConfigAfter, DialogConfig dialogConfigButton,
+                                                              Action action, int nbMap, Interaction toRemove, Interaction toAdd){
         return ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);

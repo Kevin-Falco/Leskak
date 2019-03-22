@@ -5,13 +5,12 @@ import javafx.util.Pair;
 
 
 public enum Object {
-    OBJ1("Colis", new ImageView("sprite/object/package.png"), new Pair<>(0,0)),
-    OBJ1_2("Plaque de tôle", new ImageView("sprite/object/sheet_metal_plate.png"), new Pair<>(0,0)),
+    OBJ1("Plaque de tôle", new ImageView("sprite/object/sheet_metal_plate.png"), new Pair<>(0,0)),
     OBJ2("Réacteurs", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(1,0)),
     OBJ3("Panneau de commande", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(2,0)),
     OBJ4("Dynamite", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(0,1)),
     OBJ5("Rayon laser", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(1,1)),
-    OBJ6("Bague de Rokanh", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(2,1));
+    OBJ6("Colis", new ImageView("sprite/object/package.png"), new Pair<>(2,1));
 
     private String name;
     private ImageView imageView;
