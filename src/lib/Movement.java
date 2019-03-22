@@ -139,8 +139,6 @@ public class Movement {
                     ((player.getPosition().getValue() == 0
                             || !isAccessibleCell(player.getPosition().getKey(), player.getPosition().getValue() - 1)) ?
                             player.getPosition().getValue() : player.getPosition().getValue() - 1)));
-            //player.setImage(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getUP());
-            //player.setImage(animationSet.getUp());
             player.setDirection(Direction.UP);
             Movement.moved = true;
         }
@@ -152,8 +150,6 @@ public class Movement {
                     player.getPosition().getValue() == GameLayout.getINSTANCE().getNbRows() - 1
                             || !isAccessibleCell(player.getPosition().getKey(), player.getPosition().getValue() + 1) ?
                             player.getPosition().getValue() : player.getPosition().getValue() + 1));
-            //player.setImage(animationSet.getDown());
-            //player.setImage(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getDOWN());
             player.setDirection(Direction.DOWN);
             Movement.moved = true;
         }
@@ -165,8 +161,6 @@ public class Movement {
                             || !isAccessibleCell(player.getPosition().getKey() + 1, player.getPosition().getValue()) ?
                             player.getPosition().getKey() : player.getPosition().getKey() + 1,
                     player.getPosition().getValue()));
-            //player.setImage(animationSet.getRight());
-            //player.setImage(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getRIGHT());
             player.setDirection(Direction.RIGHT);
             Movement.moved = true;
         }
@@ -178,8 +172,6 @@ public class Movement {
                             || !isAccessibleCell(player.getPosition().getKey() - 1, player.getPosition().getValue()) ?
                             player.getPosition().getKey() : player.getPosition().getKey() - 1,
                     player.getPosition().getValue()));
-            //player.setImage(animationSet.getLeft());
-            //player.setImage(getCell(player.getPosition().getKey(), player.getPosition().getValue()).getPlayerSprite().getLEFT());
             player.setDirection(Direction.LEFT);
             Movement.moved = true;
         }
@@ -196,8 +188,6 @@ public class Movement {
         } else {
 
             ImageView imageView = player.getImage();
-            //ImageView imageView = (ImageView) Movement.map.getGridPane().getChildren().get(Movement.map.getGridPane().getChildren().size() - 1);
-            //imageView.setImage(new Image(player.getImage().getSpritePath()));
             tt.setNode(imageView);
             tt.setByX(x);
             tt.setByY(y);
@@ -208,7 +198,6 @@ public class Movement {
                     map.updateFogOfWar();
             });
             tt.play();
-            //GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
         }
     }
 
