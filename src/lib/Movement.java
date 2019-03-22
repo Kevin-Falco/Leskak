@@ -303,4 +303,8 @@ public class Movement {
     public static void setAnimationSet(AnimationSet animationSet) {
         Movement.animationSet = animationSet;
     }
+
+    public static boolean isStoped() {
+        return stoped;
+    }
 }
