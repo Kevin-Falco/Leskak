@@ -339,7 +339,6 @@ public class MapConfig {
 
             updateSpritesOf(0, SpriteSet.TREE_SET);
             updateSpritesOf(0, SpriteSet.WATER_SET);
-            m.setFogOfWar(true);
         }
 
         private static void setupMap1() {
