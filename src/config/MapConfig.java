@@ -159,7 +159,7 @@ public class MapConfig {
         Cell toReturn = null;
         for (Cell cell : m
                 ) {
-            if(cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){
+            if(!(cell instanceof FogCell) && cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){
                 toReturn = cell;
             }
         }
@@ -339,6 +339,7 @@ public class MapConfig {
 
             updateSpritesOf(0, SpriteSet.TREE_SET);
             updateSpritesOf(0, SpriteSet.WATER_SET);
+            m.setFogOfWar(true);
         }
 
         private static void setupMap1() {
@@ -397,6 +398,7 @@ public class MapConfig {
 
         private static void setupMap2(){
             Map m = maps.get(2);
+
 
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.GRASS, new Pair<>(i, j)));
 
