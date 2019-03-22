@@ -15,15 +15,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -32,6 +29,7 @@ public class LauncherLayout {
     private static VBox vBox;
     private static VBox options;
     private static Service<Void> testService;
+    private static Stage loadingStage;
 
     private static final Integer WIDTH= 300;//1200;
     private static final Integer HEIGHT = 600;//675;
@@ -49,8 +47,36 @@ public class LauncherLayout {
 
     public static void setupLauncher(){
         Button game = new Button( GameLayout.getINSTANCE().HasGameBegun() ? "Reprendre la partie" : "Jouer");
-        Stage stage = new Stage();
-        stage.getIcons().add(new Image(Sprite.PLAYER_DOWN_STOP.getSpritePath()));
+
+        setupLoadingLayout();
+
+        game.setOnAction((EventHandler) (event) -> {
+            Button button = (Button) event.getSource();
+            if(button.getText() == "Reprendre la partie"){
+                MainLayout.getSTAGE().show();
+            }
+            else{
+                loadingStage.show();
+                MainLayout.getSCENE().setRoot(MainLayout.getINSTANCE().getGridPane());
+                testService.start();
+            }
+        });
+        Button options = new Button("Options");
+        options.setOnAction((EventHandler) (event) -> LauncherLayout.SCENE.setRoot(LauncherLayout.getOptions()));
+        Button credits = new Button("Crédits");
+        credits.setOnAction((EventHandler) (event) -> LauncherLayout.SCENE.setRoot(LauncherLayout.getCredits()));
+        Button quit = new Button("Quitter");
+        quit.setOnAction((EventHandler) (event) -> {
+            Stage s = (Stage) LauncherLayout.SCENE.getWindow();
+            s.close();
+        });
+        LauncherLayout.vBox.getChildren().removeAll(LauncherLayout.vBox.getChildren());
+        LauncherLayout.vBox.getChildren().addAll(game, options, credits, quit);
+    }
+
+    private static void setupLoadingLayout(){
+        loadingStage = new Stage();
+        loadingStage.getIcons().add(new Image(Sprite.PLAYER_DOWN_STOP.getSpritePath()));
         LauncherLayout.testService = new Service<Void>() {
             @Override
             protected Task<Void> createTask() {
@@ -72,7 +98,7 @@ public class LauncherLayout {
         ((VBox) pane2).setAlignment(Pos.CENTER);
         pane.setBackground(new Background( new BackgroundImage(new Image(Sprite.LOAD.getSpritePath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         pane2.setBackground(new Background(new BackgroundFill(Color.color(0.6,0.6,0.6, 0.7), new CornerRadii(30), new Insets(-10, 350, -10, 350))));
-        stage.setScene(new Scene(pane, 900, 600));
+        loadingStage.setScene(new Scene(pane, 900, 600));
         pane2.getChildren().addAll(progressBar, pourcent, text );
 
         BorderPane.setAlignment(text, Pos.BOTTOM_CENTER);
@@ -80,36 +106,12 @@ public class LauncherLayout {
 
         testService.setOnFailed(event -> testService.getException().printStackTrace());
         testService.setOnSucceeded(event -> {
-            MapConfig.getINSTANCE().configMap(0);
             CinematicConfig.setupGame();
-                MainLayout.getSTAGE().setTitle("LESKAK");
-                MainLayout.getSTAGE().setOnCloseRequest(event1 -> LauncherLayout.setupLauncher());
-            stage.close();
+            MainLayout.getSTAGE().setTitle("LESKAK");
+            MainLayout.getSTAGE().setOnCloseRequest(event1 -> LauncherLayout.setupLauncher());
+            loadingStage.close();
             MainLayout.getSTAGE().show();
         });
-
-        game.setOnAction((EventHandler) (event) -> {
-            Button button = (Button) event.getSource();
-            if(button.getText() == "Reprendre la partie"){
-                MainLayout.getSTAGE().show();
-            }
-            else{
-                stage.show();
-                MainLayout.getSCENE().setRoot(MainLayout.getINSTANCE().getGridPane());
-                testService.start();
-            }
-        });
-        Button options = new Button("Options");
-        options.setOnAction((EventHandler) (event) -> LauncherLayout.SCENE.setRoot(LauncherLayout.getOptions()));
-        Button credits = new Button("Crédits");
-        credits.setOnAction((EventHandler) (event) -> LauncherLayout.SCENE.setRoot(LauncherLayout.getCredits()));
-        Button quit = new Button("Quitter");
-        quit.setOnAction((EventHandler) (event) -> {
-            Stage s = (Stage) LauncherLayout.SCENE.getWindow();
-            s.close();
-        });
-        LauncherLayout.vBox.getChildren().removeAll(LauncherLayout.vBox.getChildren());
-        LauncherLayout.vBox.getChildren().addAll(game, options, credits, quit);
     }
 
 

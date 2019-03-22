@@ -1,6 +1,8 @@
 package lib;
 
+import config.Sprite;
 import javafx.scene.layout.GridPane;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -35,11 +37,6 @@ public class Map implements  Iterable<Cell> {
 
     public void add(Cell cell){
         this.cells.add(cell);
-        if(isFogOfWar()){
-            GridPane.setConstraints(cell.getSprite2(), cell.getPosition().getKey(), cell.getPosition().getValue());
-            this.getGridPane().getChildren().add(cell.getSprite2());
-        }
-
         GridPane.setConstraints(cell.getImage(), cell.getPosition().getKey(), cell.getPosition().getValue());
         this.getGridPane().getChildren().add(cell.getImage());
 
@@ -56,20 +53,37 @@ public class Map implements  Iterable<Cell> {
 
     public void setFogOfWar(boolean fogOfWar) {
         this.fogOfWar = fogOfWar;
-    }
-
-    public void updateFogOfWar(){
-        for(Cell cell : this){
-            if(cellPositionAt(cell, 2)){
-                cell.getImage().setVisible(true);
+        if(this.fogOfWar){
+            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j){
+                add(new FogCell(new Pair<>(i, j)));
             }
-            else{
-                cell.getImage().setVisible(false);
+        }
+        else{
+            for(Cell cell : this){
+                if(cell instanceof FogCell){
+                    this.cells.remove(cell);
+                }
             }
         }
     }
 
-    private boolean cellPositionAt(Cell cell, int nb){
+    public void updateFogOfWar(){
+        for(Cell cell : this){
+            if(cell instanceof FogCell){
+                if(cellPositionAt((FogCell)cell, 2)){
+                    //cell.getImage().setVisible(false);
+                    this.getGridPane().getChildren().remove(cell.getImage());
+                }
+                else{
+                    //cell.getImage().setVisible(true);
+                    if(!this.getGridPane().getChildren().contains(cell.getImage()))
+                        this.getGridPane().getChildren().add(cell.getImage());
+                }
+            }
+        }
+    }
+
+    private boolean cellPositionAt(FogCell cell, int nb){
         Player player = Player.getINSTANCE();
         return Math.abs(cell.getPosition().getKey() - player.getPosition().getKey()) <= nb &&
             Math.abs(cell.getPosition().getValue() - player.getPosition().getValue()) <= nb

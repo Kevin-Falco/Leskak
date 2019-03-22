@@ -83,9 +83,6 @@ public class DialogLayout {
     public void removeContent(){
         this.text.setText("");
         this.buttons.getChildren().remove(0, this.buttons.getChildren().size());
-        if(this.gridPane.getChildren().size() > 2){
-            //this.gridPane.getChildren().remove(2, this.gridPane.getChildren().size());
-        }
     }
 
     public void addButton(String name, EventHandler eventHandler){
@@ -136,6 +133,6 @@ public class DialogLayout {
     public void updateMoney(){
         VBox pane = (VBox) this.getGridPane().getChildren().get(1);
         Text text = (Text) pane.getChildren().get(0);
-        text.setText("Argent : " + String.valueOf(this.money));
+        text.setText("Argent : " + this.money);
     }
 }
