@@ -56,10 +56,13 @@ public enum Interaction {
         ROCKET.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
-                if(Inventory.getINSTANCE().contains(Object.OBJ1_2)){
-                    DialogLayout.getINSTANCE().addButton("Hibliss", Action.TELEPORT_MAP4.getEventHandler());
-                    DialogLayout.getINSTANCE().addReturnButton();
+                if(!Planet.PLANET1.getMaps().contains(Movement.getMap())){
+                    DialogLayout.getINSTANCE().addButton(Planet.PLANET1.getName(), Action.TELEPORT_PLANET1.getEventHandler());
                 }
+                if(!Planet.PLANET2.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ1_2)){
+                    DialogLayout.getINSTANCE().addButton(Planet.PLANET2.getName(), Action.TELEPORT_PLANET2.getEventHandler());
+                }
+                DialogLayout.getINSTANCE().addReturnButton();
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());
         });

@@ -94,10 +94,15 @@ public class DialogLayout {
         this.buttons.getChildren().add(button);
 
         Movement.removeMovement();
-        button.requestFocus();
+        if(this.buttons.getChildren().size() == 1){
+            button.requestFocus();
+        }
+
     }
 
     public void addReturnButton(){
+        if(this.buttons.getChildren().isEmpty())
+            return;
         Button button = new Button("Retour");
         button.setOnAction(Action.RETURN.getEventHandler());
         button.setCancelButton(true);

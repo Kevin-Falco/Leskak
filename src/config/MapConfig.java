@@ -21,17 +21,18 @@ public class MapConfig {
 
     private MapConfig() {
         MapConfig.maps = new ArrayList<>();
-        for(int nbMap = 0; nbMap < 7; ++nbMap){
-            Map newMap = new Map();
-            for(int i = 0; i < GameLayout.getINSTANCE().getNbColumns(); ++i){
-                newMap.getGridPane().getColumnConstraints()
-                        .add(new ColumnConstraints((float)MainLayout.getWIDTH()/GameLayout.getINSTANCE().getNbColumns()));
+        for(Planet planet : Planet.values()){
+            for(Map map : planet.getMaps()){
+                for(int i = 0; i < GameLayout.getINSTANCE().getNbColumns(); ++i){
+                    map.getGridPane().getColumnConstraints()
+                            .add(new ColumnConstraints((float)MainLayout.getWIDTH()/GameLayout.getINSTANCE().getNbColumns()));
+                }
+                for(int i = 0 ; i < GameLayout.getINSTANCE().getNbRows(); ++i){
+                    map.getGridPane().getRowConstraints()
+                            .add(new RowConstraints(  (float)MainLayout.getHEIGHT()*2/3/GameLayout.getINSTANCE().getNbRows()));
+                }
+                MapConfig.maps.add(map);
             }
-            for(int i = 0 ; i < GameLayout.getINSTANCE().getNbRows(); ++i){
-                newMap.getGridPane().getRowConstraints()
-                        .add(new RowConstraints(  (float)MainLayout.getHEIGHT()*2/3/GameLayout.getINSTANCE().getNbRows()));
-            }
-            MapConfig.maps.add(newMap);
         }
         task = new Task<Void>() {
             @Override
@@ -39,7 +40,6 @@ public class MapConfig {
                 Movement.configPlayerEventHandler(MainLayout.getSCENE());
                 MapConfig.getINSTANCE();
                 this.updateMapProgress();
-
                 return null;
             }
 
@@ -51,7 +51,7 @@ public class MapConfig {
                     MapConfig.getINSTANCE().setupMap(i);
                 }
                 this.updateProgress(100, 100);
-                Platform.runLater(() -> configMap(3));
+                Platform.runLater(() -> configMap(0));
             }
         };
 

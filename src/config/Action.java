@@ -8,10 +8,8 @@ import javafx.util.Pair;
 import lib.*;
 
 public enum Action {
-    TELEPORT_MAP1,
-    TELEPORT_MAP2,
-    TELEPORT_MAP3,
-    TELEPORT_MAP4,
+    TELEPORT_PLANET1,
+    TELEPORT_PLANET2,
     GIVE_OBJECT1,
     GIVE_OBJECT1_2,
     GIVE_OBJECT2,
@@ -28,10 +26,8 @@ public enum Action {
     ;
 
     static{
-        TELEPORT_MAP1.eventHandler = createTeleportAction(0);
-        TELEPORT_MAP2.eventHandler = createTeleportAction(1);
-        TELEPORT_MAP3.eventHandler = createTeleportAction(2);
-        TELEPORT_MAP4.eventHandler = createTeleportAction(3);
+        TELEPORT_PLANET1.eventHandler = createTeleportAction(0);
+        TELEPORT_PLANET2.eventHandler = createTeleportAction(3);
         GIVE_OBJECT1.eventHandler = createGiveObjectAction(Interaction.BUSH1, Object.OBJ1, DialogConfig.BUSH1_AFTER);
         GIVE_OBJECT1_2.eventHandler = createGiveObjectAction(Interaction.PNJ4, Object.OBJ1_2, DialogConfig.PNJ4_AFTER);
         GIVE_MONEY_CAT.eventHandler = createGiveMoneyAction(Interaction.CAT2, 500, DialogConfig.CAT2_AFTER);
