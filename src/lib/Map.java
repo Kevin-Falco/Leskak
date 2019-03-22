@@ -67,6 +67,19 @@ public class Map implements  Iterable<Cell> {
         }
     }
 
+    public void removeFogCell(int col, int row){
+        Cell cell1 = null;
+        for (Cell cell : this
+                ) {
+            if( cell instanceof FogCell && cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){
+                this.getGridPane().getChildren().remove(cell.getImage());
+                cell1 = cell;
+            }
+        }
+        if(cell1 != null)
+            this.getCells().remove(cell1);
+    }
+
     public void updateFogOfWar(){
         for(Cell cell : this){
             if(cell instanceof FogCell){

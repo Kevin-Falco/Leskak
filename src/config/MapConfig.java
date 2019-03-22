@@ -51,7 +51,7 @@ public class MapConfig {
                     MapConfig.getINSTANCE().setupMap(i);
                 }
                 this.updateProgress(100, 100);
-                Platform.runLater(() -> configMap(0));
+                Platform.runLater(() -> configMap(3));
             }
         };
 
@@ -160,6 +160,7 @@ public class MapConfig {
         }
         return toReturn;
     }
+
 
     public void movePlayer(Pair<Integer, Integer> targetPosition){
         Player player = Player.getINSTANCE();
@@ -580,7 +581,9 @@ public class MapConfig {
             for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE_DOWN_LEFT, new Pair<>(i, 8)));
             for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE_DOWN_RIGHT, new Pair<>(i, 8)));
 
-            //m.setFogOfWar(true);
+            m.setFogOfWar(true);
+
+            for (int i = 1; i <= 13; ++i) for(int j = 5; j <=10; ++j) m.removeFogCell(i,j);
         }
 
         private static void setupMap4(){
