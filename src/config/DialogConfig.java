@@ -1,33 +1,32 @@
 package config;
 
 public enum DialogConfig {
-    PNJ1("Coucou ça va ? je sais plus ce que je dois dire en vrai lol."),
-    PNJ2("Tu chechers un plaque de tôle ? Va voir le trouduc a droite j'crois qu'il sais où tu peux en avoir."),
-    PNJ3_BEFORE("Wep je sais où trouver une plaque de tole. Mais si tu veux que je te le dises, tu vas devoir me su... euh me trouver" +
-            "un bidule que j'ai pommé dans un buisson là haut là bas. Allez tchuss. "),
-    PNJ3_AFTER("Ok Ci-mer bro va voir l'autre teubé la bas crois il a ce que tu veux mdr. "),
-    PNJ3_BUTTON("Donner son bidule"),
-    PNJ4_BEFORE("Vlà ta plaque de tôle pti fragile. Maintenant laisses moi tranquille j'ai autre chose à foutre."),
+    PNJ1("Salut étranger ! Ici nous sommes sur la planète Jansen. Cette planète est couverte d'arbres et de plaines verdoyantes !"),
+    PNJ2("Tu t'appelles Leskak ? Et tu cherches une plaque de tôle ? Il y a un ermite à l'Est qui a refait sa maison il y a peu. Il doit posséder ce que tu cherches."),
+    PNJ3_BEFORE("Etranger ! Etranger ! Je dois me rendre sur Hibliss dans moins d'une heure et je ne trouve plus le colis que je devais livrer ! J'ai du le perdre en m'enfuyant face aux serpents sauvages tout à l'heure. S'il te plait, AIDE-MOI A LE RETROUVER !"),
+    PNJ3_AFTER("Merci énormément étranger ! Je prépare mon téléporteur et je vais livrer mon colis de ce pas !"),
+    PNJ3_BUTTON("Donner le colis"),
+    PNJ4_BEFORE("Tu cherches une plaque de tôle ? En effet, j'en possède une qui traîne dans mon grenier depuis les travaux. Si tu veux je te l'offre !"),
     PNJ4_AFTER("Jte l'ai filé ta putain de plaque. Casse toi de là."),
     PNJ4_BUTTON("Prendre la plaque de tôle"),
-    BUSH1_BEFORE("Vous trouvez un bidule."),
-    BUSH1_AFTER("Vous avez déjà pris le bidule."),
-    BUSH1_BUTTON("Prendre le bidule"),
-    CAT1("Miaou."),
-    CAT2_BEFORE("Ce chat a une bourse dans la gueule."),
-    CAT2_AFTER("Il est pas content de plus avoir sa bourse le pôôôvre."),
+    BUSH1_BEFORE("Il y a un colis dans ces hautes herbes. Souhaitez-vous le prendre ?"),
+    BUSH1_AFTER(""),
+    BUSH1_BUTTON("Prendre le colis"),
+    CAT1("Miaou !"),
+    CAT2_BEFORE("Ce chat a une bourse dans la gueule. Voulez-vous la prendre ?"),
+    CAT2_AFTER("MIAOOOOU ! Il n'est pas content de ne plus avoir sa bourse ! Le paaauvre."),
     CAT2_BUTTON("Lui prendre sa bourse"),
-    FOX_BEFORE("Je vais vous raconter une petite histoire ... Maître Corbeau, sur un arbre perché,\n" +
+    FOX_BEFORE("Je vais vous raconter une petite histoire ...\n       Maître Corbeau, sur un arbre perché,\n" +
             "           Tenait en son bec un fromage.\n" +
             "       Maître Renard, par l'odeur ... "),
-    FOX_AFTER("Tu peux partir maintenant. Allez."),
-    FOX_ERROR("Mauvaise réponse."),
-    FOX_SUCCESS("Félicitations. Voila 500 dolls."),
+    FOX_AFTER("Tu peux partir maintenant. Allez !"),
+    FOX_ERROR("Mauvaise réponse. IGNORANT !"),
+    FOX_SUCCESS("Félicitations. Je t'offre 500€ afin que tu puisses accomplir ta quête."),
 
-    FOX_BUTTON1("Subjugué"),
-    FOX_BUTTON2("Alléché"),
-    FOX_BUTTON3("Tout emoustillé"),
-    SNAKE("SSSSSSSSSSSSSS"),
+    FOX_BUTTON1("Subjuguée"),
+    FOX_BUTTON2("Alléchée"),
+    FOX_BUTTON3("Tout emoustillée"),
+    SNAKE("Ssssssssssss !"),
     ;
 
     private String text;
