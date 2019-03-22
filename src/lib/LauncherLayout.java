@@ -5,6 +5,9 @@ import config.Key;
 import config.MapConfig;
 import config.Sprite;
 import javafx.animation.PauseTransition;
+import javafx.beans.binding.IntegerBinding;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.StringProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -90,7 +93,7 @@ public class LauncherLayout {
         Text text = new Text();
         Text pourcent = new Text();
         text.textProperty().bind(testService.messageProperty());
-        pourcent.textProperty().bind(StringProperty.stringExpression( testService.progressProperty().multiply(100)).concat("%"));
+        pourcent.textProperty().bind(StringProperty.stringExpression(IntegerProperty.integerExpression(testService.progressProperty().multiply(100))).concat("%"));
 
         Pane pane = new BorderPane();
         Pane pane2 = new VBox();
