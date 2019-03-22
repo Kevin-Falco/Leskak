@@ -241,7 +241,7 @@ public class MapConfig {
         }
         private static void setupMap0(){
             Map m = maps.get(0);
-
+            
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.GRASS, new Pair<>(i, j)));
 
             for (int i = 12; i <= 14; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 0), Direction.UP));
