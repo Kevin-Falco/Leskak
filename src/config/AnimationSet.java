@@ -13,6 +13,9 @@ public enum AnimationSet {
     PNJ2(Sprite.PNJ2_UP, Sprite.PNJ2_DOWN, Sprite.PNJ2_RIGHT, Sprite.PNJ2_LEFT),
     PNJ3(Sprite.PNJ3_UP, Sprite.PNJ3_DOWN, Sprite.PNJ3_RIGHT, Sprite.PNJ3_LEFT),
     PNJ4(Sprite.PNJ4_UP, Sprite.PNJ4_DOWN, Sprite.PNJ4_RIGHT, Sprite.PNJ4_LEFT),
+    PNJ5(Sprite.PNJ5_UP, Sprite.PNJ5_DOWN, Sprite.PNJ5_RIGHT, Sprite.PNJ5_LEFT),
+    PNJ6(Sprite.PNJ6_UP, Sprite.PNJ6_DOWN, Sprite.PNJ6_RIGHT, Sprite.PNJ6_LEFT),
+    PNJ7(Sprite.PNJ7_UP, Sprite.PNJ7_DOWN, Sprite.PNJ7_RIGHT, Sprite.PNJ7_LEFT),
 
     WHITE_CAT(Sprite.WHITE_CAT_UP, Sprite.WHITE_CAT_DOWN, Sprite.WHITE_CAT_RIGHT, Sprite.WHITE_CAT_LEFT),
     GREY_CAT(Sprite.GREY_CAT_UP, Sprite.GREY_CAT_DOWN, Sprite.GREY_CAT_RIGHT, Sprite.GREY_CAT_LEFT),
