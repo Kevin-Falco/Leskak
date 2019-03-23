@@ -59,6 +59,10 @@ public enum Sprite {
     PNJ5_DOWN("sprite/pnj/pnj5_down.png"),
     PNJ5_RIGHT("sprite/pnj/pnj5_right.png"),
     PNJ5_LEFT("sprite/pnj/pnj5_left.png"),
+    PNJ6_UP("sprite/pnj/pnj6_up.png"),
+    PNJ6_DOWN("sprite/pnj/pnj6_down.png"),
+    PNJ6_RIGHT("sprite/pnj/pnj6_right.png"),
+    PNJ6_LEFT("sprite/pnj/pnj6_left.png"),
     PNJ7_UP("sprite/pnj/pnj7_up.png"),
     PNJ7_DOWN("sprite/pnj/pnj7_down.png"),
     PNJ7_RIGHT("sprite/pnj/pnj7_right.png"),
@@ -99,6 +103,10 @@ public enum Sprite {
     SPACESHIP_DOWN4("sprite/rocket/spaceship_down4.png"),
     SPACESHIP_DOWN5("sprite/rocket/spaceship_down5.png"),
 
+    CHEST_HIDDEN("sprite/animal/fox_left.png"),
+    CHEST_CLOSED("sprite/animal/snake_left.png"),
+    CHEST_OPENED("sprite/animal/black_cat_left.png"),
+
     GRASS("sprite/env/grass.png"),
     BUSH("sprite/env/bush.png"),
     HERB("sprite/env/herb.png"),
@@ -106,10 +114,6 @@ public enum Sprite {
     BRIDGE("sprite/env/bridge.png"),
     FOG("sprite/env/fog.png"),
     SAND("sprite/env/sand.png"),
-
-    CHEST_HIDDEN("sprite/animal/fox_left.png"),
-    CHEST_CLOSED("sprite/animal/snake_left.png"),
-    CHEST_OPENED("sprite/animal/black_cat_left.png"),
 
     TREE("sprite/tree/tree.png"),
     TREE_UP("sprite/tree/tree_up.png"),

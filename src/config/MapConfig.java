@@ -677,7 +677,7 @@ public class MapConfig {
             for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 10)));
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
 
-            for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.PNJ2_DOWN, new Pair<>(i, 9), Interaction.PNJ6));
+            for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.PNJ6_DOWN, new Pair<>(i, 9), Interaction.PNJ6));
 
             m.setFogOfWar(true);
         }
