@@ -92,6 +92,7 @@ public enum Sprite {
     ROCKET_UP("sprite/rocket/rocket_up.png"),
     ROCKET_DOWN("sprite/rocket/rocket_down.png"),
 
+    SPACESHIP_0("sprite/rocket/spaceship_0.png"),
     SPACESHIP_1("sprite/rocket/spaceship_1.png"),
     SPACESHIP_2("sprite/rocket/spaceship_2.png"),
     SPACESHIP_3("sprite/rocket/spaceship_3.png"),
@@ -101,7 +102,6 @@ public enum Sprite {
     SPACESHIP_7("sprite/rocket/spaceship_7.png"),
     SPACESHIP_8("sprite/rocket/spaceship_8.png"),
     SPACESHIP_9("sprite/rocket/spaceship_9.png"),
-    SPACESHIP_10("sprite/rocket/spaceship_10.png"),
 
     CHEST_HIDDEN("sprite/chest/chest_hidden.png"),
     CHEST_CLOSED("sprite/chest/chest_closed.png"),
@@ -114,6 +114,20 @@ public enum Sprite {
     BRIDGE("sprite/env/bridge.png"),
     FOG("sprite/env/fog.png"),
     SAND("sprite/env/sand.png"),
+    ROAD("sprite/env/road.png"),
+    ROAD_UP_DOWN("sprite/env/road_up_down.png"),
+    ROAD_UP_RIGHT("sprite/env/road_up_right.png"),
+    ROAD_LEFT_RIGHT("sprite/env/road_left_right.png"),
+
+    FLOOR("sprite/env/floor.png"),
+    FLOOR_UP("sprite/env/floor_up.png"),
+    FLOOR_UP_LEFT("sprite/env/floor_up_left.png"),
+    FLOOR_UP_RIGHT("sprite/env/floor_up_right.png"),
+    FLOOR_DOWN("sprite/env/floor_down.png"),
+    FLOOR_DOWN_LEFT("sprite/env/floor_down_left.png"),
+    FLOOR_DOWN_RIGHT("sprite/env/floor_down_right.png"),
+    FLOOR_LEFT("sprite/env/floor_left.png"),
+    FLOOR_RIGHT("sprite/env/floor_right.png"),
 
     TREE("sprite/tree/tree.png"),
     TREE_UP("sprite/tree/tree_up.png"),
@@ -162,14 +176,14 @@ public enum Sprite {
     WATER_RIGHT("sprite/water/water_right.png"),
     WATER_RIGHT_UP_DOWN("sprite/water/water_right_up_down.png"),
 
+    HOUSE1_0("sprite/house/house1_0.png"),
     HOUSE1_1("sprite/house/house1_1.png"),
     HOUSE1_2("sprite/house/house1_2.png"),
     HOUSE1_3("sprite/house/house1_3.png"),
-    HOUSE1_4("sprite/house/house1_4.png"),
+    HOUSE2_0("sprite/house/house2_0.png"),
     HOUSE2_1("sprite/house/house2_1.png"),
     HOUSE2_2("sprite/house/house2_2.png"),
     HOUSE2_3("sprite/house/house2_3.png"),
-    HOUSE2_4("sprite/house/house2_4.png"),
 
     CINEMATIC("sprite/cinematic/eevolution1.jpg"),
     CINEMATIC2("sprite/cinematic/eevolution2.jpg"),
