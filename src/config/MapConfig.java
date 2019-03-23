@@ -322,22 +322,24 @@ public class MapConfig {
             for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
             for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 3)));
 
-            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 2)));
-            for (int i = 6; i <= 6; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 2)));
-            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 3)));
-            for (int i = 6; i <= 6; ++i) m.add(addBlockingCell(Sprite.HOUSE1_4, new Pair<>(i, 3)));
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 3)));
-            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 3)));
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 4)));
-            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE1_4, new Pair<>(i, 4)));
-            for (int i = 4; i <= 4; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 6)));
-            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 6)));
-            for (int i = 4; i <= 4; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 7)));
-            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE1_4, new Pair<>(i, 7)));
-            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 7)));
-            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 7)));
-            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 8)));
-            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.HOUSE1_4, new Pair<>(i, 8)));
+            //for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE1_0, new Pair<>(i, 2)));
+            //for (int i = 6; i <= 6; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 2)));
+            //for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 3)));
+            //for (int i = 6; i <= 6; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 3)));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.HOUSE1_0, new Pair<>(i, 3)));
+            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 3)));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 4)));
+            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 4)));
+            for (int i = 4; i <= 4; ++i) m.add(addBlockingCell(Sprite.HOUSE1_0, new Pair<>(i, 6)));
+            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 6)));
+            for (int i = 4; i <= 4; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 7)));
+            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 7)));
+            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE1_0, new Pair<>(i, 7)));
+            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 7)));
+            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 8)));
+            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 8)));
+
+            createBuilding(m, "HOUSE1_", 2, 2, new Pair<>(5, 2), null);
 
             for (int i = 23; i <= 25; ++i) m.add(addCell(Sprite.BRIDGE, new Pair<>(i, 5)));
 
@@ -393,10 +395,10 @@ public class MapConfig {
 
             for (int i = 30; i <= 30; ++i) m.add(addBlockingCell(Sprite.FOX_LEFT, new Pair<>(i, 4), Interaction.FOX));
 
-            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 5)));
-            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 5)));
-            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 6)));
-            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.HOUSE1_4, new Pair<>(i, 6)));
+            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.HOUSE1_0, new Pair<>(i, 5)));
+            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 5)));
+            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 6)));
+            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 6)));
 
             updateSpritesOf(1, SpriteSet.TREE_SET);
         }
@@ -586,10 +588,10 @@ public class MapConfig {
             for (int i = 3; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 7), Interaction.ROCKET));
             for (int i = 3; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 8), Interaction.ROCKET ));
 
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE2_1, new Pair<>(i, 7)));
-            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE2_2, new Pair<>(i, 7)));
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE2_3, new Pair<>(i, 8)));
-            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE2_4, new Pair<>(i, 8)));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE2_0, new Pair<>(i, 7)));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE2_1, new Pair<>(i, 7)));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE2_2, new Pair<>(i, 8)));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE2_3, new Pair<>(i, 8)));
 
             updateSpritesOf(3, SpriteSet.TREE2_SET);
 
@@ -994,13 +996,13 @@ public class MapConfig {
             }
         }
 
-        private void createBuilding(Map m, String str, int col, int row, Interaction interaction){
+        private static void createBuilding(Map m, String str, int col, int row, Pair<Integer, Integer> position, Interaction interaction){
             for(int i = 0; i < col; ++i){
                 for(int j = 0; j < row; ++j){
                     if(interaction == null)
-                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*row + col + j*col))), new Pair<>(i, j)));
+                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*row + j))), new Pair<>(position.getKey() + j, position.getValue() + i)));
                     else
-                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*row + col + j*col))), new Pair<>(i, j), interaction));
+                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*row + j))), new Pair<>(position.getKey() + j, position.getValue() + i), interaction));
                 }
             }
         }
