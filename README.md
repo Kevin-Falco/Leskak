@@ -1,6 +1,6 @@
 # Leskak
 
-Koryo-RPG is a non-profit game which is in the course of creation by four students in the third year in the IUP MIAGE of Aix-en-Provence. We are going to put all our heart to realize this project! We hope you'll enjoy <3
+Leskak is a non-profit game which is in the course of creation by four students in the third year in the IUP MIAGE of Aix-en-Provence. We are going to put all our heart to realize this project! We hope you'll enjoy <3
 
 ## Languages Used
 
