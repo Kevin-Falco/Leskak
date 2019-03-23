@@ -69,7 +69,7 @@ public class MapConfig {
     public static Task<Void> getTask() {
         return task;
     }
-
+    
     public void configMap(Map map){
         Planet planet = Planet.getPlanetOfMap(map);
         if(planet.equals(Planet.PLANET1)){
