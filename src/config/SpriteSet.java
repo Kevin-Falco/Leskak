@@ -10,8 +10,11 @@ public enum SpriteSet {
             Sprite.TREE_DOWN_LEFT_RIGHT, Sprite.TREE_RIGHT_UP_DOWN, Sprite.TREE_LEFT_UP_DOWN, Sprite.TREE_UP_DOWN, Sprite.TREE_LEFT_RIGHT ))),
     WATER_SET(new ArrayList<>(Arrays.asList(Sprite.WATER, Sprite.WATER_UP, Sprite.WATER_DOWN, Sprite.WATER_RIGHT, Sprite.WATER_LEFT,
              Sprite.WATER_UP_RIGHT, Sprite.WATER_UP_LEFT, Sprite.WATER_UP_LEFT_RIGHT, Sprite.WATER_DOWN_RIGHT, Sprite.WATER_DOWN_LEFT,
-             Sprite.WATER_DOWN_LEFT_RIGHT, Sprite.WATER_RIGHT_UP_DOWN, Sprite.WATER_LEFT_UP_DOWN, Sprite.WATER_UP_DOWN, Sprite.WATER_LEFT_RIGHT )));
-
+             Sprite.WATER_DOWN_LEFT_RIGHT, Sprite.WATER_RIGHT_UP_DOWN, Sprite.WATER_LEFT_UP_DOWN, Sprite.WATER_UP_DOWN, Sprite.WATER_LEFT_RIGHT ))),
+    TREE2_SET(new ArrayList<>(Arrays.asList(Sprite.TREE2, Sprite.TREE2_UP, Sprite.TREE2_DOWN, Sprite.TREE2_RIGHT, Sprite.TREE2_LEFT,
+             Sprite.TREE2_UP_RIGHT, Sprite.TREE2_UP_LEFT, Sprite.TREE2_UP_LEFT_RIGHT, Sprite.TREE2_DOWN_RIGHT, Sprite.TREE2_DOWN_LEFT,
+             Sprite.TREE2_DOWN_LEFT_RIGHT, Sprite.TREE2_RIGHT_UP_DOWN, Sprite.TREE2_LEFT_UP_DOWN, Sprite.TREE2_UP_DOWN, Sprite.TREE2_LEFT_RIGHT ))),
+    ;
     private List<Sprite> sprites;
 
     SpriteSet(List<Sprite> sprites) {
