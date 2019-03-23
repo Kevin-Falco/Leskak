@@ -46,7 +46,9 @@ public class Inventory {
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         vBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(100), Insets.EMPTY)));
-        vBox.getChildren().addAll(object.getImageView(), new Text( object.getName()));
+        Text text = new Text( object.getName());
+        text.setStyle("-fx-font: 12 arial;");
+        vBox.getChildren().addAll(object.getImageView(), text );
         GridPane.setConstraints(vBox,
                 object.getInventoryPosition().getKey(),
                 object.getInventoryPosition().getValue());
