@@ -87,6 +87,7 @@ public class MapConfig {
 
         player.setPosition(position);
         player.setSprite(sprite);
+        player.setDirection(AnimationSet.getAnimationSetThatHave(sprite).getDirection(sprite));
         player.getImage().setTranslateX(0);
         player.getImage().setTranslateY(0);
         GridPane.setConstraints(player.getImage(), position.getKey(),position.getValue());
