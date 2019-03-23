@@ -166,6 +166,10 @@ public enum Sprite {
     HOUSE_UP_RIGHT("sprite/house/house_up_right.png"),
     HOUSE_DOWN_LEFT("sprite/house/house_down_left.png"),
     HOUSE_DOWN_RIGHT("sprite/house/house_down_right.png"),
+    HOUSE2_UP_LEFT("sprite/house/house2_up_left.png"),
+    HOUSE2_UP_RIGHT("sprite/house/house2_up_right.png"),
+    HOUSE2_DOWN_LEFT("sprite/house/house2_down_left.png"),
+    HOUSE2_DOWN_RIGHT("sprite/house/house2_down_right.png"),
 
     CINEMATIC("sprite/cinematic/eevolution1.jpg"),
     CINEMATIC2("sprite/cinematic/eevolution2.jpg"),
