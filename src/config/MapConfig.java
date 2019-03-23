@@ -604,13 +604,13 @@ public class MapConfig {
             for (int i = 0; i <= 5; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 0)));
             for (int i = 7; i <= 11; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 0)));
             for (int i = 13; i <= 21; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 0)));
-            for (int i = 22; i <= 26; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 0)));
+            for (int i = 23; i <= 26; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 0)));
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 0)));
             for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 0)));
             for (int i = 0; i <= 5; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
             for (int i = 7; i <= 11; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
             for (int i = 13; i <= 21; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
-            for (int i = 22; i <= 26; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
+            for (int i = 23; i <= 26; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
             for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1)));
             for (int i = 0; i <= 4; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
@@ -618,7 +618,7 @@ public class MapConfig {
             for (int i = 11; i <= 11; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
             for (int i = 13; i <= 13; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
             for (int i = 17; i <= 21; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
-            for (int i = 22; i <= 26; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
+            for (int i = 23; i <= 26; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
             for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
             for (int i = 6; i <= 7; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 3)));
@@ -676,7 +676,7 @@ public class MapConfig {
 
             for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.PNJ2_DOWN, new Pair<>(i, 9), Interaction.SNAKE));
 
-            m.setFogOfWar(true);
+            //m.setFogOfWar(true);
         }
 
         private static void setupMap5(){
