@@ -51,9 +51,9 @@ public enum DialogConfig {
     CHEST_CLOSED_BUTTON("Ouvrir le coffre"),
     CHEST_OPENED("Vous trouvez 2000 pièces."),
     CHEST_AFTER_OPENED("Le coffre est désormais aussi vide que votre avenir."),
-    SPACESHIP_BEFORE("A CHANGER : il y a un réacteur et des sous à prendre"),
-    SPACESHIP_AFTER("A CHANGER : il n'y a plus rien à prendre"),
-    SPACESHIP_BUTTON("Prendre le réacteur et les sous"),
+    SPACESHIP_BEFORE("C'est un vaisseau écrasé ! Il y a même une bourse pleine à l'intérieur ! Mais ces réacteurs sont en piteux état... "),
+    SPACESHIP_BUTTON("Prendre les réacteurs endommagés"),
+    SPACESHIP_AFTER("Peut être qu'en allant au centre commercial, je trouverais un moyen de réparer ces réacteurs..."),
     
     ;
 
