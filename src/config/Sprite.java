@@ -96,6 +96,10 @@ public enum Sprite {
     FOG("sprite/env/fog.png"),
     SAND("sprite/env/sand.png"),
 
+    CHEST_HIDDEN("sprite/animal/fox_left.png"),
+    CHEST_CLOSED("sprite/animal/snake_left.png"),
+    CHEST_OPENED("sprite/animal/black_cat_left.png"),
+
     TREE("sprite/tree/tree.png"),
     TREE_UP("sprite/tree/tree_up.png"),
     TREE_UP_LEFT("sprite/tree/tree_up_left.png"),

@@ -20,8 +20,12 @@ public enum Action {
     GIVE_MONEY_CAT,
     GIVE_MONEY_FOX,
     ERROR_FOX,
+    GIVE_MONEY_PNJ6,
+    ERROR_PNJ6,
     RETURN_OBJECT6,
     RETURN_OBJECT6_2,
+    CHEST_HIDDEN,
+    CHEST_CLOSED,
     TEST1,
     RETURN,
     ;
@@ -33,6 +37,11 @@ public enum Action {
         GIVE_OBJECT6_2.eventHandler = createGiveObjectAction(Interaction.PNJ3_2, Object.OBJ6, DialogConfig.PNJ3_2_AFTER);
         GIVE_MONEY_CAT.eventHandler = createGiveMoneyAction(Interaction.CAT2, 500, DialogConfig.CAT2_AFTER);
         GIVE_MONEY_FOX.eventHandler = createGiveMoneyAction(Interaction.FOX, 500,DialogConfig.FOX_SUCCESS);
+        CHEST_HIDDEN.eventHandler = createInteractionAndSpriteChange(Interaction.CHEST_HIDDEN, DialogConfig.CHEST_CLOSED, 1,
+                Interaction.CHEST_HIDDEN, Interaction.CHEST_CLOSED, Sprite.CHEST_CLOSED);
+        CHEST_CLOSED.eventHandler = createInteractionAndSpriteChangeAndGiveMoney(Interaction.CHEST_CLOSED, DialogConfig.CHEST_OPENED, 1,
+                Interaction.CHEST_CLOSED, Interaction.CHEST_OPENED, Sprite.CHEST_OPENED, 2000);
+        GIVE_MONEY_PNJ6.eventHandler = createGiveMoneyAction(Interaction.PNJ6, 500,DialogConfig.PNJ6_SUCCESS);
         GIVE_OBJECT1.eventHandler = createGiveObjectAction(Interaction.PNJ4, Object.OBJ1, DialogConfig.PNJ4_AFTER);
         //GIVE_OBJECT2.eventHandler = createGiveObjectAction(Interaction., Object.OBJ2, DialogConfig.);
         //GIVE_OBJECT3.eventHandler = createGiveObjectAction(Interaction., Object.OBJ3, DialogConfig.);
@@ -40,14 +49,8 @@ public enum Action {
         //GIVE_OBJECT5.eventHandler = createGiveObjectAction(Interaction., Object.OBJ5, DialogConfig.);
 
 
-        ERROR_FOX.eventHandler = TEST1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            DialogLayout.getINSTANCE().removeContent();
-            DialogLayout.getINSTANCE().setText(DialogConfig.FOX_ERROR.getText());
-            Node node = (Node) action.getSource();
-            node.setFocusTraversable(false);
-            Movement.setMoved(false);
-            Movement.resumeMovement();
-        });
+        ERROR_FOX.eventHandler = createRiddleErrorAction(DialogConfig.FOX_ERROR);
+        ERROR_PNJ6.eventHandler = createRiddleErrorAction(DialogConfig.PNJ6_ERROR);
         RETURN_OBJECT6.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             if(!MapConfig.getINSTANCE().swapCells(0, new Pair<>(22, 5), new Pair<>(22, 6))){
                 MapConfig.getINSTANCE().movePlayer(new Pair<>(21, 6));
@@ -117,6 +120,52 @@ public enum Action {
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(dialogConfig.getText());
             Movement.setMoved(false);
+        });
+    }
+
+    public static EventHandler createRiddleErrorAction(DialogConfig dialogError){
+        return ((EventHandler<ActionEvent>) (action) -> {
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(dialogError.getText());
+            Node node = (Node) action.getSource();
+            node.setFocusTraversable(false);
+            Movement.setMoved(true);
+            Movement.resumeMovement();
+        });
+    }
+
+    public  static  EventHandler createInteractionAndSpriteChange(Interaction interaction,DialogConfig dialogConfig,
+                                                                  int nbMap, Interaction toRemove, Interaction toAdd, Sprite sprite){
+        return ((EventHandler<ActionEvent>) (action) -> {
+            interaction.setInteractionDone(true);
+            for(Cell cell : MapConfig.getINSTANCE().getMaps().get(nbMap).getCells()){
+                if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null && ((BlockingCell) cell).getInteraction().equals(toRemove)){
+                    ((BlockingCell) cell).setInteraction(toAdd);
+                    cell.setSprite(sprite);
+                }
+            }
+            Movement.resumeMovement();
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(dialogConfig.getText());
+            Movement.setMoved(true);
+        });
+    }
+
+    public  static  EventHandler createInteractionAndSpriteChangeAndGiveMoney(Interaction interaction,DialogConfig dialogConfig,
+                                                                  int nbMap, Interaction toRemove, Interaction toAdd, Sprite sprite, int money){
+        return ((EventHandler<ActionEvent>) (action) -> {
+            interaction.setInteractionDone(true);
+            for(Cell cell : MapConfig.getINSTANCE().getMaps().get(nbMap).getCells()){
+                if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null && ((BlockingCell) cell).getInteraction().equals(toRemove)){
+                    ((BlockingCell) cell).setInteraction(toAdd);
+                    cell.setSprite(sprite);
+                }
+            }
+            DialogLayout.getINSTANCE().addMoney(money);
+            Movement.resumeMovement();
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(dialogConfig.getText());
+            Movement.setMoved(true);
         });
     }
 }

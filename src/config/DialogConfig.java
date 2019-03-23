@@ -30,11 +30,25 @@ public enum DialogConfig {
     FOX_AFTER("Tu peux partir maintenant. Allez !"),
     FOX_ERROR("Mauvaise réponse. IGNORANT !"),
     FOX_SUCCESS("Félicitations. Je t'offre 500€ afin que tu puisses accomplir ta quête."),
-
     FOX_BUTTON1("Subjuguée"),
     FOX_BUTTON2("Alléchée"),
     FOX_BUTTON3("Tout emoustillée"),
+    PNJ6_BEFORE(" A CHANGER : ENGIGME"),
+    PNJ6_AFTER(" A CHANGER : tu peux partir"),
+    PNJ6_ERROR("A CHANGER : tu as donné la mauvaise réponse"),
+    PNJ6_SUCCESS("A CHANGER : bonne réponse"),
+    PNJ6_BUTTON1("A CHANGER : mauvaise réponse"),
+    PNJ6_BUTTON2("A CHANGER : bonne réponse"),
+    PNJ6_BUTTON3("A CHANGER : mauvaise réponse"),
     SNAKE("Ssssssssssss !"),
+    PNJ7("A CHANGER : trésor caché derrière la maison d'un ermite sur Jansen"),
+    CHEST_BEFORE_HIDDEN("A CHANGER : Il y a quelque chose de bizarre avec la terre par ici. Vaut mieu pas marcher dessus"),
+    CHEST_HIDDEN("A CHANGER : C'est ici dont le pirate a du parler"),
+    CHEST_HIDDEN_BUTTON("Creuser"),
+    CHEST_CLOSED("A CHANGER : Vous trouvez un coffre"),
+    CHEST_CLOSED_BUTTON("Ouvrir le coffre"),
+    CHEST_OPENED("A CHANGER : Vous trouvez 2000 pièces"),
+    CHEST_AFTER_OPENED("A CHANGER : coffre vide"),
     ;
 
     private String text;
