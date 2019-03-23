@@ -176,14 +176,14 @@ public enum Sprite {
     WATER_RIGHT("sprite/water/water_right.png"),
     WATER_RIGHT_UP_DOWN("sprite/water/water_right_up_down.png"),
 
+    HOUSE1_0("sprite/house/house1_0.png"),
     HOUSE1_1("sprite/house/house1_1.png"),
     HOUSE1_2("sprite/house/house1_2.png"),
     HOUSE1_3("sprite/house/house1_3.png"),
-    HOUSE1_4("sprite/house/house1_4.png"),
+    HOUSE2_0("sprite/house/house2_0.png"),
     HOUSE2_1("sprite/house/house2_1.png"),
     HOUSE2_2("sprite/house/house2_2.png"),
     HOUSE2_3("sprite/house/house2_3.png"),
-    HOUSE2_4("sprite/house/house2_4.png"),
 
     CINEMATIC("sprite/cinematic/eevolution1.jpg"),
     CINEMATIC2("sprite/cinematic/eevolution2.jpg"),
