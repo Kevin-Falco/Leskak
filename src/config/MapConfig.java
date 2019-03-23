@@ -51,7 +51,7 @@ public class MapConfig {
                     MapConfig.getINSTANCE().setupMap(i);
                 }
                 this.updateProgress(100, 100);
-                Platform.runLater(() -> configMap(0));
+                Platform.runLater(() -> configMap(Planet.PLANET1.getMaps().get(0)));
             }
         };
 
@@ -70,17 +70,18 @@ public class MapConfig {
         return task;
     }
 
-    public void configMap(int nbMap){
-        if(nbMap == 0){
-            configMap(nbMap, new Pair<>(10, 6), Sprite.PLAYER_DOWN_STOP);
+    public void configMap(Map map){
+        Planet planet = Planet.getPlanetOfMap(map);
+        if(planet.equals(Planet.PLANET1)){
+            configMap(map, new Pair<>(10, 6), Sprite.PLAYER_DOWN_STOP);
         }
-        if(nbMap == 3){
-            configMap(nbMap, new Pair<>(4, 8), Sprite.PLAYER_DOWN_STOP);
+        if(planet.equals(Planet.PLANET2)){
+            configMap(map, new Pair<>(4, 8), Sprite.PLAYER_DOWN_STOP);
         }
     }
 
-    public void configMap(int nbMap,Pair<Integer, Integer> position, Sprite sprite){
-        Movement.setMap(MapConfig.maps.get(nbMap));
+    public void configMap(Map map,Pair<Integer, Integer> position, Sprite sprite){
+        Movement.setMap(map);
 
         Player player = Player.getINSTANCE();
 
@@ -90,15 +91,15 @@ public class MapConfig {
         player.getImage().setTranslateY(0);
         GridPane.setConstraints(player.getImage(), position.getKey(),position.getValue());
 
-        if(MapConfig.maps.get(nbMap).getGridPane().getChildren().contains(player.getImage()))
-            MapConfig.maps.get(nbMap).getGridPane().getChildren().remove(player.getImage());
+        if(map.getGridPane().getChildren().contains(player.getImage()))
+            map.getGridPane().getChildren().remove(player.getImage());
 
-        MapConfig.maps.get(nbMap).getGridPane().getChildren().add(player.getImage());
+        map.getGridPane().getChildren().add(player.getImage());
 
         if(Movement.getMap().isFogOfWar())
             Movement.getMap().updateFogOfWar();
 
-        GameLayout.getINSTANCE().setGridPane(MapConfig.maps.get(nbMap).getGridPane());
+        GameLayout.getINSTANCE().setGridPane(map.getGridPane());
     }
 
     public void setupMap(int nbMap){

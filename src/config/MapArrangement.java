@@ -1,40 +1,42 @@
 package config;
 
+import lib.Map;
+
 public enum MapArrangement {
-    MAP1(3,0,2,0),
-    MAP2(0,0,0,1),
-    MAP3(0,1,0,0),
-    MAP4(6,0,5,0),
-    MAP5(7,0,0,4),
-    MAP6(0,4,7,0),
-    MAP7(0,5,0,6),
+    MAP1(Planet.PLANET1.getMaps().get(2),null,Planet.PLANET1.getMaps().get(1),null),
+    MAP2(null,null,null,Planet.PLANET1.getMaps().get(0)),
+    MAP3(null,Planet.PLANET1.getMaps().get(0),null,null),
+    MAP4(Planet.PLANET2.getMaps().get(2),null,Planet.PLANET2.getMaps().get(1),null),
+    MAP5(Planet.PLANET2.getMaps().get(3),null,null,Planet.PLANET2.getMaps().get(0)),
+    MAP6(null,Planet.PLANET2.getMaps().get(0),Planet.PLANET2.getMaps().get(3),null),
+    MAP7(null,Planet.PLANET2.getMaps().get(1),null,Planet.PLANET2.getMaps().get(2)),
     ;
 
-    private int up;
-    private int down;
-    private int right;
-    private int left;
+    private Map up;
+    private Map down;
+    private Map right;
+    private Map left;
 
-    MapArrangement(int up, int down, int right, int left) {
+    MapArrangement(Map up, Map down, Map right, Map left) {
         this.up = up;
         this.down = down;
         this.right = right;
         this.left = left;
     }
 
-    public int getUp() {
+    public Map getUp() {
         return up;
     }
 
-    public int getDown() {
+    public Map getDown() {
         return down;
     }
 
-    public int getRight() {
+    public Map getRight() {
         return right;
     }
 
-    public int getLeft() {
+    public Map getLeft() {
         return left;
     }
 }

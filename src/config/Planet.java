@@ -26,4 +26,11 @@ public enum Planet {
     public ArrayList<Map> getMaps() {
         return maps;
     }
+
+    public static Planet getPlanetOfMap(Map map){
+        for(Planet planet : Planet.values())
+            if(planet.getMaps().contains(map))
+                return planet;
+        return null;
+    }
 }

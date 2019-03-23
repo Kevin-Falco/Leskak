@@ -27,8 +27,8 @@ public enum Action {
     ;
 
     static{
-        TELEPORT_PLANET1.eventHandler = createTeleportAction(0);
-        TELEPORT_PLANET2.eventHandler = createTeleportAction(3);
+        TELEPORT_PLANET1.eventHandler = createTeleportAction(Planet.PLANET1.getMaps().get(0));
+        TELEPORT_PLANET2.eventHandler = createTeleportAction(Planet.PLANET2.getMaps().get(0));
         GIVE_OBJECT6.eventHandler = createGiveObjectAction(Interaction.BUSH1, Object.OBJ6, DialogConfig.BUSH1_AFTER);
         GIVE_OBJECT6_2.eventHandler = createGiveObjectAction(Interaction.PNJ3_2, Object.OBJ6, DialogConfig.PNJ3_2_AFTER);
         GIVE_MONEY_CAT.eventHandler = createGiveMoneyAction(Interaction.CAT2, 500, DialogConfig.CAT2_AFTER);
@@ -56,12 +56,15 @@ public enum Action {
             Interaction.PNJ3.setInteractionDone(true);
             Inventory.getINSTANCE().remove(Object.OBJ6);
             DialogLayout.getINSTANCE().removeContent();
+            Movement.setMoved(true);
             Movement.resumeMovement();
         });
         RETURN_OBJECT6_2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             Interaction.PNJ5.setInteractionDone(true);
             Inventory.getINSTANCE().remove(Object.OBJ6);
             DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ5_AFTER.getText());
+            Movement.setMoved(true);
             Movement.resumeMovement();
         });
         TEST1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
@@ -84,10 +87,10 @@ public enum Action {
         return eventHandler;
     }
 
-    public static EventHandler createTeleportAction(int nbMap){
+    public static EventHandler createTeleportAction(Map map){
         return ((EventHandler<ActionEvent>) (action) ->{
             Movement.getMap().getGridPane().getChildren().remove(Player.getINSTANCE().getImage());
-            MapConfig.getINSTANCE().configMap(nbMap);
+            MapConfig.getINSTANCE().configMap(map);
             DialogLayout.getINSTANCE().removeContent();
             Node node = (Node) action.getSource();
             node.setFocusTraversable(false);
