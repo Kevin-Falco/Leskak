@@ -733,13 +733,13 @@ public class MapConfig {
             for (int i = 26; i <= 29; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 5)));
             for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 6)));
             for (int i = 3; i <= 6; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 6)));
-            for (int i = 12; i <= 13; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 6)));
+            for (int i = 11; i <= 13; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 6)));
             for (int i = 15; i <= 17; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 6)));
             for (int i = 26; i <= 27; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 6)));
             for (int i = 31; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 6)));
             for (int i = 0; i <= 1; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 7)));
             for (int i = 5; i <= 6; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 7)));
-            for (int i = 8; i <= 10; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 7)));
+            for (int i = 8; i <= 9; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 7)));
             for (int i = 19; i <= 23; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 7)));
             for (int i = 25; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 7)));
             for (int i = 0; i <= 3; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 8)));
