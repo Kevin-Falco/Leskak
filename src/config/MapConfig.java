@@ -993,5 +993,16 @@ public class MapConfig {
                 }
             }
         }
+
+        private void createBuilding(Map m, String str, int col, int row, Interaction interaction){
+            for(int i = 0; i < col; ++i){
+                for(int j = 0; j < row; ++j){
+                    if(interaction == null)
+                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*row + j))), new Pair<>(i, j)));
+                    else
+                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*row + j))), new Pair<>(i, j), interaction));
+                }
+            }
+        }
     }
 }
