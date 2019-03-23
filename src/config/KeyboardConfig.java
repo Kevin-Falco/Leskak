@@ -47,7 +47,7 @@ public enum KeyboardConfig {
     }),
     TELEPORT(Key.TELEPORT, (EventHandler<KeyEvent>) event -> {
         if(event.getCode() == Key.TELEPORT.getKeyCode() && GameLayout.getINSTANCE().getPane().isFocused() && Movement.isStoped()){
-            MapConfig.getINSTANCE().configMap(0);
+            MapConfig.getINSTANCE().configMap(Planet.getPlanetOfMap(Movement.getMap()).getMaps().get(0));
         }
     }),
     ;

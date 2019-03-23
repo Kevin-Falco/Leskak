@@ -18,27 +18,27 @@ public class TransitionCell extends Cell {
         this.eventHandler = (EventHandler<KeyEvent>) event -> {
             if(event.getCode() == this.direction.getKey().getKeyCode()){
                 int i = 0;
-                int nextMap = 0;
+                Map nextMap = null;
                 Pair<Integer, Integer> nextPosition = null;
                 for(Map m : MapConfig.getINSTANCE().getMaps()){
                     if(m.equals(Movement.getMap())){
                         switch(this.direction){
                             case UP :
                                 //nextMap = MapConfig.getINSTANCE().getMaps().get(MapArrangement.values()[i].getUp() - 1);
-                                nextMap = MapArrangement.values()[i].getUp() - 1;
+                                nextMap = MapArrangement.values()[i].getUp();
                                 nextPosition = new Pair<>(Player.getINSTANCE().getPosition().getKey(),
                                         GameLayout.getINSTANCE().getNbRows() - 1);
                                 break;
                             case DOWN :
-                                nextMap = MapArrangement.values()[i].getDown() - 1;
+                                nextMap = MapArrangement.values()[i].getDown();
                                 nextPosition = new Pair<>(Player.getINSTANCE().getPosition().getKey(), 0);
                                 break;
                             case RIGHT :
-                                nextMap = MapArrangement.values()[i].getRight() - 1;
+                                nextMap = MapArrangement.values()[i].getRight();
                                 nextPosition = new Pair<>(0, Player.getINSTANCE().getPosition().getValue());
                                 break;
                             case LEFT :
-                                nextMap = MapArrangement.values()[i].getLeft() - 1;
+                                nextMap = MapArrangement.values()[i].getLeft();
                                 nextPosition = new Pair<>(GameLayout.getINSTANCE().getNbColumns() - 1,
                                         Player.getINSTANCE().getPosition().getValue());
                                 break;
