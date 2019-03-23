@@ -78,6 +78,9 @@ public class MapConfig {
         if(planet.equals(Planet.PLANET2)){
             configMap(map, new Pair<>(4, 8), Sprite.PLAYER_DOWN_STOP);
         }
+        if(planet.equals(Planet.COMMERCIAL_CENTER)){
+            configMap(map, new Pair<>(10, 6), Sprite.PLAYER_DOWN_STOP);
+        }
     }
 
     public void configMap(Map map,Pair<Integer, Integer> position, Sprite sprite){
@@ -124,6 +127,9 @@ public class MapConfig {
         }
         else if(nbMap == 6){
             MapSetup.setupMap6();
+        }
+        else if(nbMap == 7){
+            MapSetup.setupMap7();
         }
     }
 
@@ -863,18 +869,24 @@ public class MapConfig {
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
             for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
 
-            for (int i = 25; i <= 25; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP1, new Pair<>(i, 3), Interaction.ROCKET));
-            for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP2, new Pair<>(i, 3), Interaction.ROCKET));
-            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP3, new Pair<>(i, 3), Interaction.ROCKET));
-            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP4, new Pair<>(i, 3), Interaction.ROCKET));
-            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP5, new Pair<>(i, 3), Interaction.ROCKET));
-            for (int i = 25; i <= 25; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN1, new Pair<>(i, 4), Interaction.ROCKET));
-            for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN2, new Pair<>(i, 4), Interaction.ROCKET));
-            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN3, new Pair<>(i, 4), Interaction.ROCKET));
-            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN4, new Pair<>(i, 4), Interaction.ROCKET));
-            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN5, new Pair<>(i, 4), Interaction.ROCKET));
+            for (int i = 25; i <= 25; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP1, new Pair<>(i, 3), Interaction.SPACESHIP));
+            for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP2, new Pair<>(i, 3), Interaction.SPACESHIP));
+            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP3, new Pair<>(i, 3), Interaction.SPACESHIP));
+            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP4, new Pair<>(i, 3), Interaction.SPACESHIP));
+            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP5, new Pair<>(i, 3), Interaction.SPACESHIP));
+            for (int i = 25; i <= 25; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN1, new Pair<>(i, 4), Interaction.SPACESHIP));
+            for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN2, new Pair<>(i, 4), Interaction.SPACESHIP));
+            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN3, new Pair<>(i, 4), Interaction.SPACESHIP));
+            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN4, new Pair<>(i, 4), Interaction.SPACESHIP));
+            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN5, new Pair<>(i, 4), Interaction.SPACESHIP));
 
             m.setFogOfWar(true);
+        }
+
+        private static void setupMap7(){
+            Map m = maps.get(7);
+
+            for(int i = 0; i <= 31; ++i) for(int j = 0; j <= 11; ++j) m.add(addCell(Sprite.GRASS, new Pair<>(i,j)));
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){

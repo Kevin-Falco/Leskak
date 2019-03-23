@@ -84,6 +84,9 @@ public enum Interaction {
                 if(!Planet.PLANET2.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ1)){
                     DialogLayout.getINSTANCE().addButton(Planet.PLANET2.getName(), Action.TELEPORT_PLANET2.getEventHandler());
                 }
+                if(!Planet.COMMERCIAL_CENTER.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ2)){
+                    DialogLayout.getINSTANCE().addButton(Planet.COMMERCIAL_CENTER.getName(), Action.TELEPORT_COMMERCIAL_CENTER.getEventHandler());
+                }
                 DialogLayout.getINSTANCE().addReturnButton();
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());

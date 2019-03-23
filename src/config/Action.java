@@ -10,6 +10,7 @@ import lib.*;
 public enum Action {
     TELEPORT_PLANET1,
     TELEPORT_PLANET2,
+    TELEPORT_COMMERCIAL_CENTER,
     GIVE_OBJECT1,
     GIVE_OBJECT2,
     GIVE_OBJECT3,
@@ -33,6 +34,7 @@ public enum Action {
     static{
         TELEPORT_PLANET1.eventHandler = createTeleportAction(Planet.PLANET1.getMaps().get(0));
         TELEPORT_PLANET2.eventHandler = createTeleportAction(Planet.PLANET2.getMaps().get(0));
+        TELEPORT_COMMERCIAL_CENTER.eventHandler = createTeleportAction(Planet.COMMERCIAL_CENTER.getMaps().get(0));
         GIVE_OBJECT6.eventHandler = createGiveObjectAction(Interaction.BUSH1, Object.OBJ6, DialogConfig.BUSH1_AFTER);
         GIVE_OBJECT6_2.eventHandler = createGiveObjectAction(Interaction.PNJ3_2, Object.OBJ6, DialogConfig.PNJ3_2_AFTER);
         GIVE_MONEY_CAT.eventHandler = createGiveMoneyAction(Interaction.CAT2, 500, DialogConfig.CAT2_AFTER);
