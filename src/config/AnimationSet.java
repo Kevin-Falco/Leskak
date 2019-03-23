@@ -67,13 +67,7 @@ public enum AnimationSet {
     }
 
     public static int getNbAnim(int nbAnimSet) {
-        System.out.println(nbAnim % nbMaxAnim == nbMaxAnim - 1);
-        nbAnim = (nbAnim % nbMaxAnim == nbMaxAnim - 1) ? nbAnimSet * 4 : ++nbAnim;
-        if(nbAnim % 4 == 0)
-            return nbAnimSet*nbMaxAnim;
-
-        System.out.println(nbAnimSet + ":" + nbAnim);
-        System.out.println("NB ANIM : " + (nbAnimSet*nbMaxAnim + nbAnim));
+        nbAnim = (nbAnim % nbMaxAnim == nbMaxAnim - 1) ? 0 : ++nbAnim;
         return nbAnimSet*nbMaxAnim + nbAnim;
     }
 

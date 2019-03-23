@@ -73,13 +73,13 @@ public class MapConfig {
     public void configMap(Map map){
         Planet planet = Planet.getPlanetOfMap(map);
         if(planet.equals(Planet.PLANET1)){
-            configMap(map, new Pair<>(10, 6), Sprite.PLAYER2_DOWN_STOP);
+            configMap(map, new Pair<>(10, 6), Sprite.PLAYER_DOWN_STOP);
         }
         if(planet.equals(Planet.PLANET2)){
-            configMap(map, new Pair<>(4, 8), Sprite.PLAYER_DOWN_STOP);
+            configMap(map, new Pair<>(4, 8), Sprite.PLAYER2_DOWN_STOP);
         }
         if(planet.equals(Planet.COMMERCIAL_CENTER)){
-            configMap(map, new Pair<>(8, 9), Sprite.PLAYER_DOWN_STOP);
+            configMap(map, new Pair<>(8, 9), Sprite.PLAYER3_DOWN_STOP);
         }
     }
 
