@@ -134,7 +134,7 @@ public enum Action {
             Movement.resumeMovement();
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(dialogConfig.getText());
-            Movement.setMoved(false);
+            Movement.setMoved(true);
         });
     }
 
