@@ -901,13 +901,13 @@ public class MapConfig {
             for (int i = 13; i <= 13; ++i) m.add(addBlockingCell(Sprite.PNJ7_DOWN, new Pair<>(i, 3), Interaction.PNJ7));
             for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.PNJ7_RIGHT, new Pair<>(i, 5), Interaction.PNJ7));
             for (int i = 17; i <= 17; ++i) m.add(addBlockingCell(Sprite.PNJ7_LEFT, new Pair<>(i, 5), Interaction.PNJ7));
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.PNJ7_RIGHT, new Pair<>(i, 6), Interaction.PNJ7));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.PNJ7_RIGHT, new Pair<>(i, 7), Interaction.PNJ7));
             for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ7_DOWN, new Pair<>(i, 9), Interaction.PNJ7));
 
             createBuilding(m, "STORE_", 3, 3, new Pair<>(12, 1), null);
             createBuilding(m, "FOUNTAIN_", 3, 3, new Pair<>(10, 6), null);
             createBuilding(m, "TRUCK_", 4, 2, new Pair<>(15, 10), null);
-            createBuilding(m, "BUILDING_", 3, 8, new Pair<>(20, 2), null);
+            createBuilding(m, "BUILDING_", 3, 8, new Pair<>(20, 1), null);
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){
