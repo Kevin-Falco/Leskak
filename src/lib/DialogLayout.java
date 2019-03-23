@@ -138,6 +138,6 @@ public class DialogLayout {
     public void updateMoney(){
         VBox pane = (VBox) this.getGridPane().getChildren().get(1);
         Text text = (Text) pane.getChildren().get(0);
-        text.setText("Argent : " + this.money);
+        text.setText("Argent : " + this.money + "€");
     }
 }
