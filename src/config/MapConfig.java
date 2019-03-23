@@ -877,7 +877,7 @@ public class MapConfig {
                     Cell rightCell = getSecondCell(nbMap, i+1, j);
                     Cell leftCell = getSecondCell(nbMap, i-1, j);
                     if(currentCell != null && spriteSet.contains(currentCell.getSprite())){
-                        if((downCell == null || !spriteSet.contains(downCell.getSprite()))){
+                        if((downCell == null || !spriteSet.contains(downCell.getSprite())) && j!= 11){
                             if((rightCell == null || !spriteSet.contains(rightCell.getSprite())) &&
                                     (leftCell == null || !spriteSet.contains(leftCell.getSprite()))){
                                 currentCell.setSprite(spriteSet.getDown());
