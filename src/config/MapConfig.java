@@ -69,7 +69,7 @@ public class MapConfig {
     public static Task<Void> getTask() {
         return task;
     }
-    
+
     public void configMap(Map map){
         Planet planet = Planet.getPlanetOfMap(map);
         if(planet.equals(Planet.PLANET1)){
@@ -785,7 +785,7 @@ public class MapConfig {
             for (int i = 27; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
             for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
 
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ2_DOWN, new Pair<>(i, 4), Interaction.SNAKE));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ7_DOWN, new Pair<>(i, 4), Interaction.SNAKE));
 
             m.setFogOfWar(true);
         }

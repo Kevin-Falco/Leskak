@@ -59,6 +59,10 @@ public enum Sprite {
     PNJ5_DOWN("sprite/pnj/pnj5_down.png"),
     PNJ5_RIGHT("sprite/pnj/pnj5_right.png"),
     PNJ5_LEFT("sprite/pnj/pnj5_left.png"),
+    PNJ7_UP("sprite/pnj/pnj7_up.png"),
+    PNJ7_DOWN("sprite/pnj/pnj7_down.png"),
+    PNJ7_RIGHT("sprite/pnj/pnj7_right.png"),
+    PNJ7_LEFT("sprite/pnj/pnj7_left.png"),
 
     WHITE_CAT_UP("sprite/animal/white_cat_up.png"),
     WHITE_CAT_DOWN("sprite/animal/white_cat_down.png"),
