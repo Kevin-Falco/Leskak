@@ -43,7 +43,7 @@ public enum Action {
                 Interaction.CHEST_CLOSED, Interaction.CHEST_OPENED, Sprite.CHEST_OPENED, 2000);
         GIVE_MONEY_PNJ6.eventHandler = createGiveMoneyAction(Interaction.PNJ6, 500,DialogConfig.PNJ6_SUCCESS);
         GIVE_OBJECT1.eventHandler = createGiveObjectAction(Interaction.PNJ4, Object.OBJ1, DialogConfig.PNJ4_AFTER);
-        //GIVE_OBJECT2.eventHandler = createGiveObjectAction(Interaction., Object.OBJ2, DialogConfig.);
+        GIVE_OBJECT2.eventHandler = createGiveObjectAndMoneyAction(Interaction.SPACESHIP, Object.OBJ2, DialogConfig.SPACESHIP_AFTER ,250);
         //GIVE_OBJECT3.eventHandler = createGiveObjectAction(Interaction., Object.OBJ3, DialogConfig.);
         //GIVE_OBJECT4.eventHandler = createGiveObjectAction(Interaction., Object.OBJ4, DialogConfig.);
         //GIVE_OBJECT5.eventHandler = createGiveObjectAction(Interaction., Object.OBJ5, DialogConfig.);
@@ -56,6 +56,7 @@ public enum Action {
                 MapConfig.getINSTANCE().movePlayer(new Pair<>(21, 6));
                 MapConfig.getINSTANCE().swapCells(0, new Pair<>(22, 5), new Pair<>(22, 6));
             }
+            DialogLayout.getINSTANCE().addMoney(250);
             Interaction.PNJ3.setInteractionDone(true);
             Inventory.getINSTANCE().remove(Object.OBJ6);
             DialogLayout.getINSTANCE().removeContent();
@@ -114,6 +115,18 @@ public enum Action {
 
     public static EventHandler createGiveMoneyAction(Interaction interaction, int money, DialogConfig dialogConfig){
         return ((EventHandler<ActionEvent>) (action) -> {
+            DialogLayout.getINSTANCE().addMoney(money);
+            interaction.setInteractionDone(true);
+            Movement.resumeMovement();
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(dialogConfig.getText());
+            Movement.setMoved(false);
+        });
+    }
+
+    public static EventHandler createGiveObjectAndMoneyAction(Interaction interaction, Object object, DialogConfig dialogConfig, int money){
+        return ((EventHandler<ActionEvent>) (action) -> {
+            Inventory.getINSTANCE().add(object);
             DialogLayout.getINSTANCE().addMoney(money);
             interaction.setInteractionDone(true);
             Movement.resumeMovement();

@@ -49,6 +49,9 @@ public enum DialogConfig {
     CHEST_CLOSED_BUTTON("Ouvrir le coffre"),
     CHEST_OPENED("A CHANGER : Vous trouvez 2000 pièces"),
     CHEST_AFTER_OPENED("A CHANGER : coffre vide"),
+    SPACESHIP_BEFORE("A CHANGER : il y a un réacteur et des sous à prendre"),
+    SPACESHIP_AFTER("A CHANGER : il n'y a plus rien à prendre"),
+    SPACESHIP_BUTTON("Prendre le réacteur et les sous"),
     ;
 
     private String text;

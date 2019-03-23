@@ -25,6 +25,7 @@ public enum Interaction {
     CHEST_HIDDEN,
     CHEST_CLOSED,
     CHEST_OPENED,
+    SPACESHIP,
     ROCKET,
     RETURN_GAME,
     BUSH1,
@@ -71,6 +72,8 @@ public enum Interaction {
         CHEST_CLOSED.eventHandler = createSimpleButtonInteraction(Interaction.CHEST_CLOSED, DialogConfig.CHEST_CLOSED,
                 null, DialogConfig.CHEST_CLOSED_BUTTON, Action.CHEST_CLOSED);
         CHEST_OPENED.eventHandler = createSimpleDialog(Interaction.CHEST_OPENED, DialogConfig.CHEST_AFTER_OPENED);
+        SPACESHIP.eventHandler = createSimpleButtonInteraction(Interaction.SPACESHIP, DialogConfig.SPACESHIP_BEFORE,
+                DialogConfig.SPACESHIP_AFTER, DialogConfig.SPACESHIP_BUTTON, Action.GIVE_OBJECT2);
 
         ROCKET.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
