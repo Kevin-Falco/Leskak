@@ -688,7 +688,9 @@ public class MapConfig {
 
             for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.PNJ6_DOWN, new Pair<>(i, 9), Interaction.PNJ6));
 
-            m.setFogOfWar(true);
+            updateSpritesOf(4, SpriteSet.TREE2_SET);
+
+            //m.setFogOfWar(true);
         }
 
         private static void setupMap5(){
@@ -797,7 +799,9 @@ public class MapConfig {
 
             for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ7_DOWN, new Pair<>(i, 4), Interaction.PNJ7));
 
-            m.setFogOfWar(true);
+            updateSpritesOf(5, SpriteSet.TREE2_SET);
+
+            //m.setFogOfWar(true);
         }
 
         private static void setupMap6(){
@@ -881,7 +885,9 @@ public class MapConfig {
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN4, new Pair<>(i, 4), Interaction.SPACESHIP));
             for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN5, new Pair<>(i, 4), Interaction.SPACESHIP));
 
-            m.setFogOfWar(true);
+            updateSpritesOf(6, SpriteSet.TREE2_SET);
+
+            //m.setFogOfWar(true);
         }
 
         private static void setupMap7(){
