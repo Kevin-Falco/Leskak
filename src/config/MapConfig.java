@@ -583,7 +583,7 @@ public class MapConfig {
 
             m.setFogOfWar(true);
 
-            for (int i = 1; i <= 13; ++i) for(int j = 5; j <=10; ++j) m.removeFogCell(i,j);
+            for (int i = 0; i <= 14; ++i) for(int j = 4; j <= 11; ++j) m.removeFogCell(i,j);
         }
 
         private static void setupMap4(){
@@ -676,7 +676,7 @@ public class MapConfig {
 
             for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.PNJ2_DOWN, new Pair<>(i, 9), Interaction.SNAKE));
 
-            //m.setFogOfWar(true);
+            m.setFogOfWar(true);
         }
 
         private static void setupMap5(){
@@ -786,7 +786,7 @@ public class MapConfig {
 
             for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ2_DOWN, new Pair<>(i, 4), Interaction.SNAKE));
 
-            //m.setFogOfWar(true);
+            m.setFogOfWar(true);
         }
 
         private static void setupMap6(){
@@ -804,7 +804,7 @@ public class MapConfig {
             for (int i = 27; i <= 27; ++i) m.add(addTransitionCell(Sprite.SAND, new Pair<>(i, 11), Direction.DOWN));
             for (int i = 29; i <= 29; ++i) m.add(addTransitionCell(Sprite.SAND, new Pair<>(i, 11), Direction.DOWN));
 
-            //m.setFogOfWar(true);
+            m.setFogOfWar(true);
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){
