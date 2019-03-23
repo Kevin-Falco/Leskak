@@ -56,12 +56,15 @@ public enum Action {
             Interaction.PNJ3.setInteractionDone(true);
             Inventory.getINSTANCE().remove(Object.OBJ6);
             DialogLayout.getINSTANCE().removeContent();
+            Movement.setMoved(true);
             Movement.resumeMovement();
         });
         RETURN_OBJECT6_2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             Interaction.PNJ5.setInteractionDone(true);
             Inventory.getINSTANCE().remove(Object.OBJ6);
             DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ5_AFTER.getText());
+            Movement.setMoved(true);
             Movement.resumeMovement();
         });
         TEST1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
