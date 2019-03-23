@@ -571,7 +571,7 @@ public class MapConfig {
             for (int i = 28; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 10)));
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
 
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.PNJ2_LEFT, new Pair<>(i, 9), Interaction.PNJ5));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.PNJ5_LEFT, new Pair<>(i, 9), Interaction.PNJ5));
 
             for (int i = 3; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 7), Interaction.ROCKET));
             for (int i = 3; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 8), Interaction.ROCKET ));
