@@ -862,8 +862,16 @@ public class MapConfig {
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
             for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 11)));
 
-            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 3)));
-            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 3)));
+            for (int i = 25; i <= 25; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP1, new Pair<>(i, 3), Interaction.ROCKET));
+            for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP2, new Pair<>(i, 3), Interaction.ROCKET));
+            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP3, new Pair<>(i, 3), Interaction.ROCKET));
+            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP4, new Pair<>(i, 3), Interaction.ROCKET));
+            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_UP5, new Pair<>(i, 3), Interaction.ROCKET));
+            for (int i = 25; i <= 25; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN1, new Pair<>(i, 4), Interaction.ROCKET));
+            for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN2, new Pair<>(i, 4), Interaction.ROCKET));
+            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN3, new Pair<>(i, 4), Interaction.ROCKET));
+            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN4, new Pair<>(i, 4), Interaction.ROCKET));
+            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_DOWN5, new Pair<>(i, 4), Interaction.ROCKET));
 
             m.setFogOfWar(true);
         }

@@ -88,6 +88,17 @@ public enum Sprite {
     ROCKET_UP("sprite/rocket/rocket_up.png"),
     ROCKET_DOWN("sprite/rocket/rocket_down.png"),
 
+    SPACESHIP_UP1("sprite/rocket/spaceship_up1.png"),
+    SPACESHIP_UP2("sprite/rocket/spaceship_up2.png"),
+    SPACESHIP_UP3("sprite/rocket/spaceship_up3.png"),
+    SPACESHIP_UP4("sprite/rocket/spaceship_up4.png"),
+    SPACESHIP_UP5("sprite/rocket/spaceship_up5.png"),
+    SPACESHIP_DOWN1("sprite/rocket/spaceship_down1.png"),
+    SPACESHIP_DOWN2("sprite/rocket/spaceship_down2.png"),
+    SPACESHIP_DOWN3("sprite/rocket/spaceship_down3.png"),
+    SPACESHIP_DOWN4("sprite/rocket/spaceship_down4.png"),
+    SPACESHIP_DOWN5("sprite/rocket/spaceship_down5.png"),
+
     GRASS("sprite/env/grass.png"),
     BUSH("sprite/env/bush.png"),
     HERB("sprite/env/herb.png"),
