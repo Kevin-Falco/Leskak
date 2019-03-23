@@ -910,7 +910,7 @@ public class MapConfig {
                             else if(rightCell != null && spriteSet.contains(rightCell.getSprite()) &&
                             (leftCell != null && spriteSet.contains(leftCell.getSprite())) &&
                                     (upCell == null || spriteSet.contains(upCell.getSprite()))){
-                                currentCell.setSprite(spriteSet.getDownLeftRight());
+                                currentCell.setSprite(spriteSet.getLeftRight());
                             }
                             else if( rightCell == null || !spriteSet.contains(rightCell.getSprite())){
                                 currentCell.setSprite(spriteSet.getDownRight());
@@ -919,7 +919,7 @@ public class MapConfig {
                                 currentCell.setSprite(spriteSet.getDownLeft());
                             }
                             else{
-                                currentCell.setSprite(spriteSet.getUpDown());
+                                currentCell.setSprite(spriteSet.getDownLeftRight());
                             }
                         }
                         else if(j-1 >= 0 && (upCell == null || !spriteSet.contains(upCell.getSprite()))){
@@ -945,10 +945,11 @@ public class MapConfig {
                             else if(upCell != null && spriteSet.contains(upCell.getSprite()) &&
                                     (downCell != null && spriteSet.contains(downCell.getSprite())) &&
                                     (leftCell == null || spriteSet.contains(leftCell.getSprite()))){
-                                currentCell.setSprite(spriteSet.getRightUpDown());
+                                currentCell.setSprite(spriteSet.getUpDown());
                             }
                             else{
-                                currentCell.setSprite(spriteSet.getLeftRight());
+                                currentCell.setSprite(spriteSet.getRightUpDown());
+
                             }
                         }
                         else if( i-1 >= 0 && (leftCell == null || !spriteSet.contains(leftCell.getSprite()))){
