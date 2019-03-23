@@ -65,8 +65,7 @@ public class Movement {
             }
 
             if(lastKeyReleased){
-                animationSet = AnimationSet.PLAYER_STOP;
-                Movement.refreshPlayerSprite();
+                animationSet = animationSet.getStopSpriteSet();
                 stoped = true;
                 return;
             }
@@ -80,14 +79,16 @@ public class Movement {
             if(!stoped && !Movement.automaticLastKey.equals(Movement.lastKeyTyped)){
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
                 stoped = false;
-                animationSet = AnimationSet.getSpriteSet(AnimationSet.getNbAnim());
+                animationSet = AnimationSet.getSpriteSet(AnimationSet.getNbAnim(Math.floorDiv(
+                        AnimationSet.getAnimationSetThatHave( Player.getINSTANCE().getSprite()).ordinal(), 4)));
                 directionChanged = true;
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
                 pt.play();
                 return;
             }
 
-            animationSet = AnimationSet.getSpriteSet(AnimationSet.getNbAnim());
+            animationSet = AnimationSet.getSpriteSet(AnimationSet.getNbAnim(Math.floorDiv(
+                    AnimationSet.getAnimationSetThatHave( Player.getINSTANCE().getSprite()).ordinal(), 4)));
             movePlayer(key);
             stoped = false;
 

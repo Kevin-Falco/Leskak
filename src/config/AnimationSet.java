@@ -7,6 +7,16 @@ public enum AnimationSet {
     PLAYER_MOVE_LEFT(Sprite.PLAYER_UP_MOVE_LEFT, Sprite.PLAYER_DOWN_MOVE_LEFT, Sprite.PLAYER_RIGHT_MOVE_LEFT, Sprite.PLAYER_LEFT_MOVE_LEFT),
     PLAYER_STOP(Sprite.PLAYER_UP_STOP, Sprite.PLAYER_DOWN_STOP, Sprite.PLAYER_RIGHT_STOP, Sprite.PLAYER_LEFT_STOP),
 
+    PLAYER2_MOVE_RIGHT(Sprite.PLAYER2_UP_MOVE_RIGHT, Sprite.PLAYER2_DOWN_MOVE_RIGHT, Sprite.PLAYER2_RIGHT_MOVE_RIGHT, Sprite.PLAYER2_LEFT_MOVE_RIGHT),
+    PLAYER2_STOP2(Sprite.PLAYER2_UP_STOP, Sprite.PLAYER2_DOWN_STOP, Sprite.PLAYER2_RIGHT_STOP, Sprite.PLAYER2_LEFT_STOP),
+    PLAYER2_MOVE_LEFT(Sprite.PLAYER2_UP_MOVE_LEFT, Sprite.PLAYER2_DOWN_MOVE_LEFT, Sprite.PLAYER2_RIGHT_MOVE_LEFT, Sprite.PLAYER2_LEFT_MOVE_LEFT),
+    PLAYER2_STOP(Sprite.PLAYER2_UP_STOP, Sprite.PLAYER2_DOWN_STOP, Sprite.PLAYER2_RIGHT_STOP, Sprite.PLAYER2_LEFT_STOP),
+
+    PLAYER3_MOVE_RIGHT(Sprite.PLAYER3_UP_MOVE_RIGHT, Sprite.PLAYER3_DOWN_MOVE_RIGHT, Sprite.PLAYER3_RIGHT_MOVE_RIGHT, Sprite.PLAYER3_LEFT_MOVE_RIGHT),
+    PLAYER3_STOP2(Sprite.PLAYER3_UP_STOP, Sprite.PLAYER3_DOWN_STOP, Sprite.PLAYER3_RIGHT_STOP, Sprite.PLAYER3_LEFT_STOP),
+    PLAYER3_MOVE_LEFT(Sprite.PLAYER3_UP_MOVE_LEFT, Sprite.PLAYER3_DOWN_MOVE_LEFT, Sprite.PLAYER3_RIGHT_MOVE_LEFT, Sprite.PLAYER3_LEFT_MOVE_LEFT),
+    PLAYER3_STOP(Sprite.PLAYER3_UP_STOP, Sprite.PLAYER3_DOWN_STOP, Sprite.PLAYER3_RIGHT_STOP, Sprite.PLAYER3_LEFT_STOP),
+
 
 
     PNJ1(Sprite.PNJ1_UP, Sprite.PNJ1_DOWN, Sprite.PNJ1_RIGHT, Sprite.PNJ1_LEFT),
@@ -56,15 +66,25 @@ public enum AnimationSet {
         return left;
     }
 
-    public static int getNbAnim() {
-        nbAnim = nbAnim % nbMaxAnim == nbMaxAnim - 1 ? 0 : ++nbAnim;
-        return nbAnim;
+    public static int getNbAnim(int nbAnimSet) {
+        System.out.println(nbAnim % nbMaxAnim == nbMaxAnim - 1);
+        nbAnim = (nbAnim % nbMaxAnim == nbMaxAnim - 1) ? nbAnimSet * 4 : ++nbAnim;
+        if(nbAnim % 4 == 0)
+            return nbAnimSet*nbMaxAnim;
+
+        System.out.println(nbAnimSet + ":" + nbAnim);
+        System.out.println("NB ANIM : " + (nbAnimSet*nbMaxAnim + nbAnim));
+        return nbAnimSet*nbMaxAnim + nbAnim;
     }
 
     public static AnimationSet getSpriteSet(int nb){
         if(nb < 0 || nb >= Sprite.values().length)
             return null;
         return AnimationSet.values()[nb];
+    }
+
+    public AnimationSet getStopSpriteSet(){
+        return AnimationSet.values()[Math.floorDiv(this.ordinal(),nbMaxAnim)*nbMaxAnim];
     }
 
     public boolean contains(Sprite sprite){
