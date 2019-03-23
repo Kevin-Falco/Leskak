@@ -51,7 +51,7 @@ public class MapConfig {
                     MapConfig.getINSTANCE().setupMap(i);
                 }
                 this.updateProgress(100, 100);
-                Platform.runLater(() -> configMap(Planet.PLANET2.getMaps().get(0)));
+                Platform.runLater(() -> configMap(Planet.PLANET1.getMaps().get(0)));
             }
         };
 
@@ -322,24 +322,9 @@ public class MapConfig {
             for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 2)));
             for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 3)));
 
-            //for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE1_0, new Pair<>(i, 2)));
-            //for (int i = 6; i <= 6; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 2)));
-            //for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 3)));
-            //for (int i = 6; i <= 6; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 3)));
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.HOUSE1_0, new Pair<>(i, 3)));
-            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 3)));
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 4)));
-            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 4)));
-            for (int i = 4; i <= 4; ++i) m.add(addBlockingCell(Sprite.HOUSE1_0, new Pair<>(i, 6)));
-            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 6)));
-            for (int i = 4; i <= 4; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 7)));
-            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 7)));
-            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE1_0, new Pair<>(i, 7)));
-            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 7)));
-            for (int i = 15; i <= 15; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 8)));
-            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 8)));
-
             createBuilding(m, "HOUSE1_", 2, 2, new Pair<>(5, 2), null);
+            createBuilding(m, "HOUSE1_", 2, 2, new Pair<>(15, 3), null);
+            createBuilding(m, "HOUSE1_", 2, 2, new Pair<>(15, 7), null);
 
             for (int i = 23; i <= 25; ++i) m.add(addCell(Sprite.BRIDGE, new Pair<>(i, 5)));
 
@@ -395,10 +380,7 @@ public class MapConfig {
 
             for (int i = 30; i <= 30; ++i) m.add(addBlockingCell(Sprite.FOX_LEFT, new Pair<>(i, 4), Interaction.FOX));
 
-            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.HOUSE1_0, new Pair<>(i, 5)));
-            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.HOUSE1_1, new Pair<>(i, 5)));
-            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.HOUSE1_2, new Pair<>(i, 6)));
-            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.HOUSE1_3, new Pair<>(i, 6)));
+            createBuilding(m, "HOUSE1_", 2, 2, new Pair<>(28, 5), null);
 
             updateSpritesOf(1, SpriteSet.TREE_SET);
         }
@@ -588,14 +570,11 @@ public class MapConfig {
             for (int i = 3; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 7), Interaction.ROCKET));
             for (int i = 3; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 8), Interaction.ROCKET ));
 
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE2_0, new Pair<>(i, 7)));
-            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE2_1, new Pair<>(i, 7)));
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE2_2, new Pair<>(i, 8)));
-            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE2_3, new Pair<>(i, 8)));
+            createBuilding(m, "HOUSE2_", 2, 2, new Pair<>(9, 7), null);
 
             updateSpritesOf(3, SpriteSet.TREE2_SET);
 
-            //m.setFogOfWar(true);
+            m.setFogOfWar(true);
 
             for (int i = 0; i <= 14; ++i) for(int j = 4; j <= 11; ++j) m.removeFogCell(i,j);
         }
@@ -692,7 +671,7 @@ public class MapConfig {
 
             updateSpritesOf(4, SpriteSet.TREE2_SET);
 
-            //m.setFogOfWar(true);
+            m.setFogOfWar(true);
         }
 
         private static void setupMap5(){
@@ -803,7 +782,7 @@ public class MapConfig {
 
             updateSpritesOf(5, SpriteSet.TREE2_SET);
 
-            //m.setFogOfWar(true);
+            m.setFogOfWar(true);
         }
 
         private static void setupMap6(){
@@ -876,20 +855,10 @@ public class MapConfig {
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 11)));
             for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE2, new Pair<>(i, 11)));
 
-            for (int i = 25; i <= 25; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_1, new Pair<>(i, 3), Interaction.SPACESHIP));
-            for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_2, new Pair<>(i, 3), Interaction.SPACESHIP));
-            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_3, new Pair<>(i, 3), Interaction.SPACESHIP));
-            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_4, new Pair<>(i, 3), Interaction.SPACESHIP));
-            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_5, new Pair<>(i, 3), Interaction.SPACESHIP));
-            for (int i = 25; i <= 25; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_6, new Pair<>(i, 4), Interaction.SPACESHIP));
-            for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_7, new Pair<>(i, 4), Interaction.SPACESHIP));
-            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_8, new Pair<>(i, 4), Interaction.SPACESHIP));
-            for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_9, new Pair<>(i, 4), Interaction.SPACESHIP));
-            for (int i = 29; i <= 29; ++i) m.add(addBlockingCell(Sprite.SPACESHIP_10, new Pair<>(i, 4), Interaction.SPACESHIP));
-
+            createBuilding(m, "SPACESHIP_", 5, 2, new Pair<>(25, 3), Interaction.SPACESHIP);
             updateSpritesOf(6, SpriteSet.TREE2_SET);
 
-            //m.setFogOfWar(true);
+            m.setFogOfWar(true);
         }
 
         private static void setupMap7(){
@@ -930,7 +899,6 @@ public class MapConfig {
                                 }
                             }
                             else if(j == 0){
-                                System.out.println(nbMap + ":" + i);
                                 if(rightCell == null || !spriteSet.contains(rightCell.getSprite())){
                                     currentCell.setSprite(spriteSet.getRight());
                                 }
@@ -997,12 +965,12 @@ public class MapConfig {
         }
 
         private static void createBuilding(Map m, String str, int col, int row, Pair<Integer, Integer> position, Interaction interaction){
-            for(int i = 0; i < col; ++i){
-                for(int j = 0; j < row; ++j){
+            for(int i = 0; i < row; ++i){
+                for(int j = 0; j < col; ++j){
                     if(interaction == null)
-                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*row + j))), new Pair<>(position.getKey() + j, position.getValue() + i)));
+                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*col + j))), new Pair<>(position.getKey() + j, position.getValue() + i)));
                     else
-                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*row + j))), new Pair<>(position.getKey() + j, position.getValue() + i), interaction));
+                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*col + j))), new Pair<>(position.getKey() + j, position.getValue() + i), interaction));
                 }
             }
         }
