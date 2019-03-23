@@ -905,6 +905,11 @@ public class MapConfig {
                                     (leftCell == null || !spriteSet.contains(leftCell.getSprite()))){
                                 currentCell.setSprite(spriteSet.getDown());
                             }
+                            else if(rightCell != null && spriteSet.contains(rightCell.getSprite()) &&
+                            (leftCell != null && spriteSet.contains(leftCell.getSprite())) &&
+                                    upCell == null || spriteSet.contains(upCell.getSprite())){
+                                currentCell.setSprite(spriteSet.getUpDown());
+                            }
                             else if( rightCell == null || !spriteSet.contains(rightCell.getSprite())){
                                 currentCell.setSprite(spriteSet.getDownRight());
                             }
@@ -934,6 +939,11 @@ public class MapConfig {
                             if((upCell == null || !spriteSet.contains(upCell.getSprite())) &&
                                     (downCell == null || !spriteSet.contains(downCell.getSprite()))){
                                 currentCell.setSprite(spriteSet.getRight());
+                            }
+                            else if(upCell != null && spriteSet.contains(upCell.getSprite()) &&
+                                    (downCell != null && spriteSet.contains(downCell.getSprite())) &&
+                                    leftCell == null || spriteSet.contains(leftCell.getSprite())){
+                                currentCell.setSprite(spriteSet.getLeftRight());
                             }
                             else{
                                 currentCell.setSprite(spriteSet.getRightUpDown());
