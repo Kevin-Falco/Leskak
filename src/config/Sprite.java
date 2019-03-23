@@ -103,9 +103,9 @@ public enum Sprite {
     SPACESHIP_DOWN4("sprite/rocket/spaceship_down4.png"),
     SPACESHIP_DOWN5("sprite/rocket/spaceship_down5.png"),
 
-    CHEST_HIDDEN("sprite/animal/fox_left.png"),
-    CHEST_CLOSED("sprite/animal/snake_left.png"),
-    CHEST_OPENED("sprite/animal/black_cat_left.png"),
+    CHEST_HIDDEN("sprite/chest/chest_hidden.png"),
+    CHEST_CLOSED("sprite/chest/chest_closed.png"),
+    CHEST_OPENED("sprite/chest/chest_opened.png"),
 
     GRASS("sprite/env/grass.png"),
     BUSH("sprite/env/bush.png"),
