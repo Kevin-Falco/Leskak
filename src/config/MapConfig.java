@@ -998,9 +998,9 @@ public class MapConfig {
             for(int i = 0; i < col; ++i){
                 for(int j = 0; j < row; ++j){
                     if(interaction == null)
-                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*row + j))), new Pair<>(i, j)));
+                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*row + col + j*col))), new Pair<>(i, j)));
                     else
-                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*row + j))), new Pair<>(i, j), interaction));
+                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*row + col + j*col))), new Pair<>(i, j), interaction));
                 }
             }
         }
