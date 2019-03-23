@@ -586,10 +586,10 @@ public class MapConfig {
             for (int i = 3; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 7), Interaction.ROCKET));
             for (int i = 3; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 8), Interaction.ROCKET ));
 
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE_UP_LEFT, new Pair<>(i, 7)));
-            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE_UP_RIGHT, new Pair<>(i, 7)));
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE_DOWN_LEFT, new Pair<>(i, 8)));
-            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE_DOWN_RIGHT, new Pair<>(i, 8)));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE2_UP_LEFT, new Pair<>(i, 7)));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE2_UP_RIGHT, new Pair<>(i, 7)));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.HOUSE2_DOWN_LEFT, new Pair<>(i, 8)));
+            for (int i = 10; i <= 10; ++i) m.add(addBlockingCell(Sprite.HOUSE2_DOWN_RIGHT, new Pair<>(i, 8)));
 
             updateSpritesOf(3, SpriteSet.TREE2_SET);
 
