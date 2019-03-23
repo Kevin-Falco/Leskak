@@ -216,7 +216,6 @@ public enum Sprite {
     FOUNTAIN_6("sprite/shopping_center/fountain_6.png"),
     FOUNTAIN_7("sprite/shopping_center/fountain_7.png"),
     FOUNTAIN_8("sprite/shopping_center/fountain_8.png"),
-    FOUNTAIN_9("sprite/shopping_center/fountain_9.png"),
     STORE_0("sprite/shopping_center/store_0.png"),
     STORE_1("sprite/shopping_center/store_1.png"),
     STORE_2("sprite/shopping_center/store_2.png"),
