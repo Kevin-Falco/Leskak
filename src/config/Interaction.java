@@ -21,6 +21,8 @@ public enum Interaction {
     PNJ5,
     PNJ6,
     PNJ7,
+    PNJ8,
+    PNJ9,
     CHEST_BEFORE_HIDDEN,
     CHEST_HIDDEN,
     CHEST_CLOSED,
@@ -39,6 +41,8 @@ public enum Interaction {
         PNJ1.eventHandler = createSimpleDialog(Interaction.PNJ1, DialogConfig.PNJ1);
         PNJ2.eventHandler = createSimpleDialog(Interaction.PNJ2, DialogConfig.PNJ2);
         CAT1.eventHandler = createSimpleDialog(Interaction.CAT1, DialogConfig.CAT1);
+        PNJ8.eventHandler = createSimpleDialog(Interaction.PNJ8, DialogConfig.PNJ8);
+        PNJ9.eventHandler = createSimpleDialog(Interaction.PNJ9, DialogConfig.PNJ9);
         SNAKE.eventHandler = createSimpleDialog(Interaction.SNAKE, DialogConfig.SNAKE);
         PNJ3.eventHandler = createSimpleButtonInteractionObject(Interaction.PNJ3, DialogConfig.PNJ3_BEFORE,
                 DialogConfig.PNJ3_AFTER, DialogConfig.PNJ3_BUTTON, Action.RETURN_OBJECT6, true,

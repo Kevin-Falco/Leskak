@@ -54,7 +54,9 @@ public enum DialogConfig {
     SPACESHIP_BEFORE("C'est un vaisseau écrasé ! Il y a même une bourse pleine à l'intérieur ! Mais ces réacteurs sont en piteux état... "),
     SPACESHIP_BUTTON("Prendre les réacteurs endommagés"),
     SPACESHIP_AFTER("Peut être qu'en allant au centre commercial, je trouverais un moyen de réparer ces réacteurs..."),
-    
+    PNJ8("A CHANGER : Dialog8"),
+    PNJ9("A CHANGER : DIALOG9"),
+
     ;
 
     private String text;
