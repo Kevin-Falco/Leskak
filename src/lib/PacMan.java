@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import javafx.util.Pair;
 
@@ -32,11 +33,31 @@ public class PacMan {
 
     public static void setPacmanMovement(boolean pacmanMovement) {
         if(pacmanMovement){
-
+            map.remove(ghost1.cellInMap);
+            map.remove(ghost2.cellInMap);
+            map.remove(ghost3.cellInMap);
+            map.remove(ghost4.cellInMap);
+            ghost1.cellInMap.setPosition(new Pair<>(14, 5));
+            ghost2.cellInMap.setPosition(new Pair<>(15, 5));
+            ghost3.cellInMap.setPosition(new Pair<>(16, 5));
+            ghost4.cellInMap.setPosition(new Pair<>(17, 5));
+            ghost1.cellInMap.getImage().setTranslateX(0);
+            ghost1.cellInMap.getImage().setTranslateY(0);
+            ghost2.cellInMap.getImage().setTranslateX(0);
+            ghost2.cellInMap.getImage().setTranslateY(0);
+            ghost3.cellInMap.getImage().setTranslateX(0);
+            ghost3.cellInMap.getImage().setTranslateY(0);
+            ghost4.cellInMap.getImage().setTranslateX(0);
+            ghost4.cellInMap.getImage().setTranslateY(0);
+            //GridPane.setConstraints(ghost1.cellInMap.getImage(), 14, 5);
+            //GridPane.setConstraints(ghost2.cellInMap.getImage(), 15, 5);
+            //GridPane.setConstraints(ghost3.cellInMap.getImage(), 16, 5);
+            //GridPane.setConstraints(ghost4.cellInMap.getImage(), 17, 5);
             map.add(ghost1.cellInMap);
             map.add(ghost2.cellInMap);
             map.add(ghost3.cellInMap);
             map.add(ghost4.cellInMap);
+
         }
         PacMan.pacmanMovement = pacmanMovement;
     }

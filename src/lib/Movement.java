@@ -93,13 +93,14 @@ public class Movement {
             animationSet = AnimationSet.getSpriteSet(AnimationSet.getNbAnim(Math.floorDiv(
                     AnimationSet.getAnimationSetThatHave( Player.getINSTANCE().getSprite()).ordinal(), 4)));
             movePlayer(key);
-
-            if(PacMan.getRemainingDots() == 0)
-                return;
             stoped = false;
 
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
             pt.play();
+            if(PacMan.getRemainingDots() == 0){
+                PacMan.setRemainingDots(181);
+                return;
+            }
         };
     }
 
