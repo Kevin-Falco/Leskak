@@ -1,13 +1,8 @@
 package lib;
 
-import config.CinematicConfig;
-import config.Key;
-import config.MapConfig;
-import config.Sprite;
+import config.*;
 import javafx.animation.PauseTransition;
-import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.StringProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -33,6 +28,7 @@ public class LauncherLayout {
     private static VBox options;
     private static Service<Void> testService;
     private static Stage loadingStage;
+    private static boolean isButtonChanging = false;
 
     private static final Integer WIDTH= 300;//1200;
     private static final Integer HEIGHT = 600;//675;
@@ -40,11 +36,21 @@ public class LauncherLayout {
     private static LauncherLayout INSTANCE = new LauncherLayout();
 
     private LauncherLayout() {
+
+
         LauncherLayout.vBox = new VBox();
         LauncherLayout.vBox.setAlignment(Pos.CENTER);
         LauncherLayout.vBox.setSpacing(10);
         LauncherLayout.vBox.setBackground(new Background(new BackgroundImage(new Image(Sprite.BACKGROUND_LAUNCHER.getSpritePath()),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        LauncherLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if(event.getCode() == KeyCode.ENTER && LauncherLayout.getSCENE().getFocusOwner() instanceof Button){
+                ((Button) LauncherLayout.getSCENE().getFocusOwner()).fire();
+            }
+            if(event.getCode() == KeyCode.ESCAPE && !isButtonChanging){
+                LauncherLayout.SCENE.setRoot(LauncherLayout.vBox);
+            }
+        });
         LauncherLayout.setupLauncher();
     }
 
@@ -134,7 +140,9 @@ public class LauncherLayout {
 
     private static VBox getOptions(){
         PauseTransition pt = new PauseTransition();
+        PauseTransition pt1 = new PauseTransition();
         pt.setDuration(Duration.millis(1));
+        pt1.setDuration(Duration.millis(100));
         LauncherLayout.options = new VBox();
         Text text = new Text("Ici c'est les options Lol");
         LauncherLayout.options.getChildren().add(text);
@@ -142,7 +150,9 @@ public class LauncherLayout {
             HBox hBox = new HBox();
             Key currentKey = Key.values()[i] ;
             Text name = new Text(currentKey.name() + " : " + currentKey.getKeyCode().getName());
-            Button button = new Button("Change Key for " + currentKey.name());
+            Button button = new Button("Change Key" );
+            button.setScaleY(0.8);
+            button.setScaleX(0.8);
            EventHandler<KeyEvent> keyEventEventHandler = new EventHandler<KeyEvent>() {
                @Override
                public void handle(KeyEvent key) {
@@ -154,6 +164,7 @@ public class LauncherLayout {
                    name.setText(currentKey.name() + " : " + currentKey.getKeyCode().getName());
                    hBox.getChildren().get(1).requestFocus();
                    text.setText("Ici c'est les options Lol");
+                   isButtonChanging = false;
                    LauncherLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, this);
                }
            };
@@ -161,6 +172,7 @@ public class LauncherLayout {
                 pt.play();
                 pt.setOnFinished(event1 -> {
                     text.setText("Appuyez sur une touche pour : " + currentKey.name());
+                    isButtonChanging = true;
                     LauncherLayout.getSCENE().getRoot().requestFocus();
                     LauncherLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, keyEventEventHandler);
                 });
@@ -173,7 +185,7 @@ public class LauncherLayout {
         }
         LauncherLayout.options.getChildren().add(LauncherLayout.getReturnButon());
         LauncherLayout.options.setAlignment(Pos.CENTER);
-        LauncherLayout.options.setSpacing(10);
+        LauncherLayout.options.setSpacing(1);
         LauncherLayout.options.getChildren().forEach((child) -> child.setTranslateY(-100));
         LauncherLayout.options.setBackground(new Background(new BackgroundImage(new Image(Sprite.BACKGROUND_OPTIONS.getSpritePath()),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
@@ -193,7 +205,7 @@ public class LauncherLayout {
         Button button = new Button("Retour");
         button.setOnAction((EventHandler) (event) -> LauncherLayout.SCENE.setRoot(LauncherLayout.vBox));
         button.setAlignment(Pos.BOTTOM_CENTER);
-        button.setCancelButton(true);
+        //button.setCancelButton(true);
         return button;
     }
 
