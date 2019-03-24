@@ -11,15 +11,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import javafx.util.Pair;
 
-
-
 public class Movement {
     private static Map map = new Map();
     private static boolean moved = false;
     private static EventHandler setupEventHandler;
     private static EventHandler automaticEventHandler;
     private static EventHandler stopEventHandler;
-    private static boolean pacmanMovement = false;
+
     private static EventHandler backToGame;
     private static Key lastKeyTyped;
     private static Key automaticLastKey;
@@ -95,6 +93,8 @@ public class Movement {
             animationSet = AnimationSet.getSpriteSet(AnimationSet.getNbAnim(Math.floorDiv(
                     AnimationSet.getAnimationSetThatHave( Player.getINSTANCE().getSprite()).ordinal(), 4)));
             movePlayer(key);
+            if(PacMan.getRemainingDots() == 0)
+                return;
             stoped = false;
 
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
@@ -186,9 +186,10 @@ public class Movement {
         }
         refreshPlayerSprite();
         Cell cell = MapConfig.getSecondCell(MapConfig.getINSTANCE().getMaps().indexOf(map), player.getPosition().getKey(), player.getPosition().getValue());
-        if(pacmanMovement && cell != null && cell.getSprite().equals(Sprite.HERB)){
+        if(PacMan.isPacmanMovement() && cell != null && cell.getSprite().equals(Sprite.HERB)){
             map.getGridPane().getChildren().remove(cell.getImage());
             map.getCells().remove(cell);
+            PacMan.setRemainingDots(PacMan.getRemainingDots() - 1);
         }
         if(Movement.isMovementKey(key)){
             Movement.automaticLastKey = Key.getKeyofKeyCode(key.getCode());
@@ -323,7 +324,11 @@ public class Movement {
         return stopEventHandler;
     }
 
-    public static void setPacmanMovement(boolean pacmanMovement) {
-        Movement.pacmanMovement = pacmanMovement;
+    public static Key getLastKeyTyped() {
+        return lastKeyTyped;
+    }
+
+    public static void setLastKeyReleased(boolean lastKeyReleased) {
+        Movement.lastKeyReleased = lastKeyReleased;
     }
 }
