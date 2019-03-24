@@ -94,9 +94,9 @@ public enum Interaction {
 
         PACMAN_IN.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Cell cell = MapConfig.getSecondCell(10, Player.getINSTANCE().getPosition().getKey(), Player.getINSTANCE().getPosition().getValue());
-                MapConfig.getINSTANCE().getMaps().get(10).getCells().remove(cell);
-                MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(cell.getImage());
+                //Cell cell = MapConfig.getSecondCell(10, Player.getINSTANCE().getPosition().getKey(), Player.getINSTANCE().getPosition().getValue());
+                //MapConfig.getINSTANCE().getMaps().get(10).getCells().remove(cell);
+                //MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(cell.getImage());
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
 
                 PacMan.setRemainingDots(181);
@@ -108,11 +108,13 @@ public enum Interaction {
             }
         });
         PACMAN_OUT.eventHandler = ((EventHandler<KeyEvent>) event -> {
+            System.out.println(event.getCode());
             if(event.getCode() == KeyCode.P && Movement.isMoved()){
                 MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(1), new Pair<>(20, 5));
                 MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
                 Movement.setLastKeyReleased(true);
                 PacMan.setPacmanMovement(false);
+                MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_OUT.getEventHandler());
             }
         });
         PNJ10.eventHandler = ((EventHandler<KeyEvent>) event -> {

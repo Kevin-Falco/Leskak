@@ -4,15 +4,13 @@ package lib;
 import config.*;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import javafx.util.Pair;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -49,10 +47,6 @@ public class PacMan {
             ghost3.cellInMap.getImage().setTranslateY(0);
             ghost4.cellInMap.getImage().setTranslateX(0);
             ghost4.cellInMap.getImage().setTranslateY(0);
-            //GridPane.setConstraints(ghost1.cellInMap.getImage(), 14, 5);
-            //GridPane.setConstraints(ghost2.cellInMap.getImage(), 15, 5);
-            //GridPane.setConstraints(ghost3.cellInMap.getImage(), 16, 5);
-            //GridPane.setConstraints(ghost4.cellInMap.getImage(), 17, 5);
             map.add(ghost1.cellInMap);
             map.add(ghost2.cellInMap);
             map.add(ghost3.cellInMap);
@@ -68,10 +62,16 @@ public class PacMan {
 
     public static void setRemainingDots(int pacmanRemainingDots) {
         PacMan.remainingDots = pacmanRemainingDots;
-        if (PacMan.remainingDots == 0){
-            MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_OUT.getEventHandler());
-            KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", KeyCode.P, false, false, false, false) );
-        }
+        if (PacMan.remainingDots == 0) gameOver();
+    }
+
+    public static void gameOver(){
+        MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(1), new Pair<>(20, 5));
+        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
+        Movement.setLastKeyReleased(true);
+        PacMan.setPacmanMovement(false);
+        //MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_OUT.getEventHandler());
+        //KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", KeyCode.P, false, false, false, false) );
     }
 
     public static void moveGhosts(){
@@ -92,6 +92,10 @@ public class PacMan {
 
         public void move(){
             Pair<Integer, Integer> position = this.cellInMap.getPosition();
+            if(position.equals(Player.getINSTANCE().getPosition())){
+                gameOver();
+                return;
+            }
             Cell upCell = MapConfig.getLastCell(10, position.getKey(), position.getValue() - 1);
             Cell downCell = MapConfig.getLastCell(10, position.getKey() ,  position.getValue() + 1);
             Cell rightCell = MapConfig.getLastCell(10, position.getKey() + 1, position.getValue());
@@ -102,8 +106,7 @@ public class PacMan {
             boolean canMoveRight = rightCell != null && isGoodSprite(rightCell.getSprite());
             boolean canMoveLeft = leftCell != null && isGoodSprite(leftCell.getSprite());
 
-            if(!canMoveUp && !canMoveDown && !canMoveRight && !canMoveLeft)
-                return;
+            //if(!canMoveUp && !canMoveDown && !canMoveRight && !canMoveLeft) return;
 
             Sprite sprite = null;
             TranslateTransition tt = new TranslateTransition(Duration.millis(Movement.getDelay()));
@@ -112,36 +115,52 @@ public class PacMan {
             double x = 0;
             double y = 0;
 
-            switch (randomMove(canMoveUp, canMoveDown, canMoveRight, canMoveLeft)){
-                case UP:
-                    y = -50;
-                    sprite = animationSet.getUp();
-                    position = upCell.getPosition();
-                    cellInMap.setPosition(position);
-                    break;
-                case DOWN:
-                    y = 50;
-                    sprite = animationSet.getDown();
-                    position = downCell.getPosition();
-                    cellInMap.setPosition(position);
-                    break;
-                case RIGHT:
-                    x = 50;
-                    sprite = animationSet.getRight();
-                    position = rightCell.getPosition();
-                    cellInMap.setPosition(position);
-                    break;
-                case LEFT:
-                    x = -50;
-                    sprite = animationSet.getLeft();
-                    position =leftCell.getPosition();
-                    cellInMap.setPosition(position);
+            Direction direction = randomMove(canMoveUp, canMoveDown, canMoveRight, canMoveLeft);
+
+            if(direction != null){
+                switch (direction){
+                    case UP:
+                        y = -50;
+                        sprite = animationSet.getUp();
+                        position = upCell.getPosition();
+                        cellInMap.setPosition(position);
+                        break;
+                    case DOWN:
+                        y = 50;
+                        sprite = animationSet.getDown();
+                        position = downCell.getPosition();
+                        cellInMap.setPosition(position);
+                        break;
+                    case RIGHT:
+                        x = 50;
+                        sprite = animationSet.getRight();
+                        position = rightCell.getPosition();
+                        cellInMap.setPosition(position);
+                        break;
+                    case LEFT:
+                        x = -50;
+                        sprite = animationSet.getLeft();
+                        position =leftCell.getPosition();
+                        cellInMap.setPosition(position);
+                        break;
+                    default:
+                        break;
+
+                }
+                this.cellInMap.setSprite(sprite);
+                tt.setNode(this.cellInMap.getImage());
+                tt.setByX(x);
+                tt.setByY(y);
+                tt.play();
             }
-            this.cellInMap.setSprite(sprite);
-            tt.setNode(this.cellInMap.getImage());
-            tt.setByX(x);
-            tt.setByY(y);
-            tt.play();
+
+            if(position.equals(Player.getINSTANCE().getPosition())){
+                TranslateTransition tt1 = new TranslateTransition(Duration.millis(Movement.getDelay()));
+                //tt1.setOnFinished(event -> gameOver());
+                //gameOver();
+                return;
+            }
+
         }
 
         private Direction randomMove(boolean canMoveUp, boolean canMoveDown, boolean canMoveRight, boolean canMoveLeft){
@@ -154,6 +173,8 @@ public class PacMan {
                 }
             }
             Random random = new Random();
+            if(arrayList3.size() == 0)
+                return null;
             return arrayList2.get( arrayList3.get(random.nextInt(arrayList3.size())));
         }
 

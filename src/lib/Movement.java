@@ -98,7 +98,7 @@ public class Movement {
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
             pt.play();
             if(PacMan.getRemainingDots() == 0){
-                PacMan.setRemainingDots(181);
+                //PacMan.setRemainingDots(181);
                 return;
             }
         };
@@ -211,10 +211,10 @@ public class Movement {
                     map.getCells().remove(cell);
                     PacMan.setRemainingDots(PacMan.getRemainingDots() - 1);
                 }
+                if(PacMan.isPacmanMovement())
+                    PacMan.moveGhosts();
             });
             tt.play();
-            if(PacMan.isPacmanMovement())
-                PacMan.moveGhosts();
         }
     }
 

@@ -42,10 +42,8 @@ public class Map implements  Iterable<Cell> {
     }
 
     public void remove(Cell cell){
-        System.out.println("HA");
         if(!this.getGridPane().getChildren().contains(cell.getImage()))
             return;
-        System.out.println("HE");
         this.cells.remove(cell);
         this.getGridPane().getChildren().remove(cell.getImage());
     }
