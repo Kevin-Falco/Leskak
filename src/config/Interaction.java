@@ -99,8 +99,10 @@ public enum Interaction {
                 //MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(cell.getImage());
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
                 Player.getINSTANCE().setCurrentSkin(3);
+                Movement.setAnimationSet(AnimationSet.getSpriteSet(Player.getINSTANCE().getCurrentSkin()*4).getStopSpriteSet());
+                Player.getINSTANCE().setSprite(Movement.getAnimationSet().getSpriteDirection(Player.getINSTANCE().getDirection()));
 
-                PacMan.setRemainingDots(181);
+                PacMan.setRemainingDots(PacMan.getMaxDots());
                 MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(0, MapConfig.getINSTANCE().getMaps().get(0).getGridPane().getChildren().size() - 1 );
                 MapConfig.getINSTANCE().getMaps().get(10).getCells().clear();
                 MapConfig.getINSTANCE().setupMap(10);
@@ -114,6 +116,8 @@ public enum Interaction {
                 MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(1), new Pair<>(20, 5));
                 MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
                 Player.getINSTANCE().setCurrentSkin(0);
+                Movement.setAnimationSet(AnimationSet.getSpriteSet(Player.getINSTANCE().getCurrentSkin()*4).getStopSpriteSet());
+                Player.getINSTANCE().setSprite(Movement.getAnimationSet().getSpriteDirection(Player.getINSTANCE().getDirection()));
                 Movement.setLastKeyReleased(true);
                 PacMan.setPacmanMovement(false);
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_OUT.getEventHandler());

@@ -18,11 +18,12 @@ import java.util.Random;
 
 public class PacMan {
     private static boolean pacmanMovement = false;
+    private static final int maxDots = 182;
     private static int remainingDots = 182;
-    private static Ghost ghost1 = new Ghost(new Pair<>(14, 5), AnimationSet.BLACK_CAT);
-    private static Ghost ghost2 = new Ghost(new Pair<>(15, 5), AnimationSet.GREY_CAT);
-    private static Ghost ghost3 = new Ghost(new Pair<>(16, 5), AnimationSet.WHITE_CAT);
-    private static Ghost ghost4 = new Ghost(new Pair<>(17, 5), AnimationSet.FOX);
+    private static Ghost ghost1 = new Ghost(new Pair<>(14, 5), AnimationSet.BLUE_GHOST);
+    private static Ghost ghost2 = new Ghost(new Pair<>(15, 5), AnimationSet.ORANGE_GHOST);
+    private static Ghost ghost3 = new Ghost(new Pair<>(16, 5), AnimationSet.PINK_GHOST);
+    private static Ghost ghost4 = new Ghost(new Pair<>(17, 5), AnimationSet.RED_GHOST);
     private static Map map = MapConfig.getINSTANCE().getMaps().get(10);
 
     public static boolean isPacmanMovement() {
@@ -60,6 +61,10 @@ public class PacMan {
         return remainingDots;
     }
 
+    public static int getMaxDots() {
+        return maxDots;
+    }
+
     public static void setRemainingDots(int pacmanRemainingDots) {
         PacMan.remainingDots = pacmanRemainingDots;
         if (PacMan.remainingDots == 0) gameOver();
@@ -68,6 +73,9 @@ public class PacMan {
     public static void gameOver(){
         MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(1), new Pair<>(20, 5));
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
+        Player.getINSTANCE().setCurrentSkin(0);
+        Movement.setAnimationSet(AnimationSet.getSpriteSet(Player.getINSTANCE().getCurrentSkin()*4).getStopSpriteSet());
+        Player.getINSTANCE().setSprite(Movement.getAnimationSet().getSpriteDirection(Player.getINSTANCE().getDirection()));
         Movement.setLastKeyReleased(true);
         PacMan.setPacmanMovement(false);
         //MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_OUT.getEventHandler());
