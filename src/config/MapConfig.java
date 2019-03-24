@@ -1134,6 +1134,8 @@ public class MapConfig {
             for (int i = 20; i <= 22; ++i) m.add(addBlockingCell(Sprite.PACMAN_WALL, new Pair<>(i, 10)));
             for (int i = 31; i <= 31; ++i) m.add(addBlockingCell(Sprite.PACMAN_WALL, new Pair<>(i, 10)));
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.PACMAN_WALL, new Pair<>(i, 11)));
+
+            createBuilding(m, "LETTER_", 8, 1, new Pair<>(12, 0), null);
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){
