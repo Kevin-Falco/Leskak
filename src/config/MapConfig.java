@@ -51,7 +51,7 @@ public class MapConfig {
                     MapConfig.getINSTANCE().setupMap(i);
                 }
                 this.updateProgress(100, 100);
-                Platform.runLater(() -> configMap(Planet.PLANET3.getMaps().get(1)));
+                Platform.runLater(() -> configMap(Planet.COMMERCIAL_CENTER.getMaps().get(0)));
             }
         };
         GameLayout.getINSTANCE().setGameHasBegun(true);
