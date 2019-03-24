@@ -61,6 +61,7 @@ public enum Action {
         ERROR_PNJ6.eventHandler = createRiddleErrorAction(DialogConfig.PNJ6_ERROR);
         BUY_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             if(DialogLayout.getINSTANCE().getMoney() < 15000){
+                DialogLayout.getINSTANCE().removeContent();
                 DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
                 Movement.setMoved(true);
                 Movement.resumeMovement();
@@ -69,6 +70,7 @@ public enum Action {
         });
         BUY_SKIN.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             if(DialogLayout.getINSTANCE().getMoney() < 10000){
+                DialogLayout.getINSTANCE().removeContent();
                 DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
                 Movement.setMoved(true);
                 Movement.resumeMovement();

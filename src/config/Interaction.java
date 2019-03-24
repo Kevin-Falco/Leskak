@@ -3,8 +3,10 @@ package config;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.util.Pair;
 import lib.*;
 
 import java.util.ArrayList;
@@ -92,14 +94,30 @@ public enum Interaction {
 
         PACMAN_IN.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(2));
+                Cell cell = MapConfig.getSecondCell(10, Player.getINSTANCE().getPosition().getKey(), Player.getINSTANCE().getPosition().getValue());
+                MapConfig.getINSTANCE().getMaps().get(10).getCells().remove(cell);
+                MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(cell.getImage());
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
-                Movement.setPacmanMovement(true);
+                PacMan.setPacmanMovement(true);
+                PacMan.setRemainingDots(182);
+                MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(0, MapConfig.getINSTANCE().getMaps().get(0).getGridPane().getChildren().size() - 1 );
+                MapConfig.getINSTANCE().getMaps().get(10).getCells().clear();
+                MapConfig.getINSTANCE().setupMap(10);
+                MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(2), new Pair<>(15, 7));
+            }
+        });
+        PACMAN_OUT.eventHandler = ((EventHandler<KeyEvent>) event -> {
+            if(event.getCode() == KeyCode.P && Movement.isMoved()){
+                MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(1), new Pair<>(20, 5));
+                MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
+                Movement.setLastKeyReleased(true);
+                PacMan.setPacmanMovement(false);
             }
         });
         PNJ10.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
+                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10.getText());
                 if(Inventory.getINSTANCE().contains(Object.OBJ2)){
                     DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON1.getText(), Action.RETURN_OBJECT2.getEventHandler());
                 }
