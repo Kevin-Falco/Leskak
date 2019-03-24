@@ -56,18 +56,21 @@ public enum DialogConfig {
     SPACESHIP_AFTER("Peut être qu'en allant au centre commercial, je trouverais un moyen de réparer ces réacteurs..."),
     PNJ8("Ma baguette magique a été faite avec du CRAIN DE LICORNE, Monsieur !"),
     PNJ9("Ma baguette magique a été faite avec un VENTRICULE DE DRAGON, Monsieur !"),
-    PNJ10("A CHANGER : je suis le vendeur"),
-    PNJ10_BUTTON1("A CHANGER : Réparer réacteurs 500"),
-    PNJ10_BUTTON2("A CHANGER : Tenue 10.000"),
-    PNJ10_BUTTON3("A CHANGER : Dynamite 15.000"),
-    PNJ10_NOT_ENOUGH_MONEY("A CHANGER : Pas assez de sous"),
-    PNJ10_REACTORS_REPARED("A CHANGER : Vos réacteurs sont réparés !"),
-    PNJ10_SKIN_BUYED("A CHANGER : Voici ta tenue ! Appuie sur " + Key.CHANGE_SKIN.getKeyCode().getName() + " pour en changer !"),
-    PNJ11_BEFORE("A CHANGER : Je suis Rohkan"),
-    PNJ11_AFTER("A CHANGER : Merci pour la bague. Vla des sous."),
+    PNJ10("Bienvenue au point de vente intergalactique ! Nous réparons et vendons de nombreux articles. Faites-vous plaisir !"),
+    PNJ10_BUTTON1("Réparer les réacteurs (500€)"),
+    PNJ10_BUTTON2("Tenue blanche (10.000€)"),
+    PNJ10_BUTTON3("Dynamite (15.000€)"),
+    PNJ10_NOT_ENOUGH_MONEY("Il semblerait que vous n'ayez pas assez d'argent pour cet article."),
+    PNJ10_REACTORS_REPARED("Et voilà, terminé en deux coups de cuiller à pot ! Vos réacteurs sont réparés!\n" +
+            "Quoi ?! Tu cherches à aller sur Longstar ? Vas voir M. Stark près des bureaux, il possède un carnet avec les coordonnées de nombreuses planètes."),
+    PNJ10_SKIN_BUYED("Voilà une nouvelle tenue pour ta collection ! Appuie sur " + Key.CHANGE_SKIN.getKeyCode().getName() + " pour en changer !"),
+    PNJ11_BEFORE("Salut toi !  Je m'appelle Rokhan et je viens du planète lointaine du nom de Kavi. Mais je ne peux désormais plus y retourner à cause de mes problèmes de dos...\n" +
+            "Pourrais-tu m'aider à retrouver une bague que j'ai perdu là bas ? Elle est très préciseuse et vaut très cher. Je te donnerais un petit quelque chose en échange.\n" +
+            "MAIS NE VAS SURTOUT PAS LA VENDRE AU MARCHAND ! COMPRIS ?"),
+    PNJ11_AFTER("Ohhh ! Tu as retrouvé ma bague ! Merci beaucoup ! Comme convenu, je te donne un peu d'argent pour t'aider dans ta quête !"),
     PNJ11_BUTTON("Donner la bague"),
-    PNJ12("A CHANGER : va réparer les réacteurs"),
-    PNJ12_2("A CHANGER : Va chercher le prochain item planete 3 "),
+    PNJ12("Les coordonnées de la planète Longstar ?! Répare déjà tes réacteurs avant que je t'en dise plus."),
+    PNJ12_2("Ooooh des réacteurs neufs ! Tu pourrais aller sur Longstar avec ça ! Elle se situe en Latitude:19,960905 et Longitude: 19.990312 dans la galaxie NeufTroisQuart !"),
     ;
 
     private String text;
