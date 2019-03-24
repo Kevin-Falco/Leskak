@@ -51,10 +51,9 @@ public class MapConfig {
                     MapConfig.getINSTANCE().setupMap(i);
                 }
                 this.updateProgress(100, 100);
-                Platform.runLater(() -> configMap(Planet.COMMERCIAL_CENTER.getMaps().get(0)));
+                Platform.runLater(() -> configMap(Planet.PLANET1.getMaps().get(0)));
             }
         };
-
         GameLayout.getINSTANCE().setGameHasBegun(true);
     }
 
@@ -73,27 +72,30 @@ public class MapConfig {
     public void configMap(Map map){
         Planet planet = Planet.getPlanetOfMap(map);
         if(planet.equals(Planet.PLANET1)){
-            configMap(map, new Pair<>(10, 6), Sprite.PLAYER_DOWN_STOP);
+            configMap(map, new Pair<>(10, 6));
         }
         if(planet.equals(Planet.PLANET2)){
-            configMap(map, new Pair<>(4, 8), Sprite.PLAYER2_DOWN_STOP);
+            configMap(map, new Pair<>(4, 8));
         }
         if(planet.equals(Planet.COMMERCIAL_CENTER)){
-            configMap(map, new Pair<>(8, 9), Sprite.PLAYER3_DOWN_STOP);
+            configMap(map, new Pair<>(8, 9));
         }
         if(planet.equals(Planet.PLANET3)){
-            configMap(map, new Pair<>(24, 5), Sprite.PLAYER3_DOWN_STOP);
+            configMap(map, new Pair<>(24, 5));
         }
     }
 
-    public void configMap(Map map,Pair<Integer, Integer> position, Sprite sprite){
+    public void configMap(Map map,Pair<Integer, Integer> position){
         Movement.setMap(map);
 
         Player player = Player.getINSTANCE();
 
         player.setPosition(position);
-        player.setSprite(sprite);
-        player.setDirection(AnimationSet.getAnimationSetThatHave(sprite).getDirection(sprite));
+        if(player.getSprite() == null)
+            player.setSprite(Sprite.PLAYER_DOWN_STOP);
+        else
+            player.setSprite(AnimationSet.getAnimationSetThatHave(Player.getINSTANCE().getSprite()).getDown());
+        player.setDirection(AnimationSet.getAnimationSetThatHave(player.getSprite()).getDirection(player.getSprite()));
         player.getImage().setTranslateX(0);
         player.getImage().setTranslateY(0);
         GridPane.setConstraints(player.getImage(), position.getKey(),position.getValue());
@@ -909,9 +911,9 @@ public class MapConfig {
 
             for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.PNJ8_RIGHT, new Pair<>(i, 2), Interaction.PNJ8));
             for (int i = 19  ; i <= 19; ++i) m.add(addBlockingCell(Sprite.PNJ9_LEFT, new Pair<>(i, 2), Interaction.PNJ9));
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ10_DOWN, new Pair<>(i, 4), Interaction.SNAKE));
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.PNJ11_RIGHT, new Pair<>(i, 7), Interaction.SNAKE));
-            for (int i = 22; i <= 22; ++i) m.add(addBlockingCell(Sprite.PNJ12_DOWN, new Pair<>(i, 8), Interaction.SNAKE));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ10_DOWN, new Pair<>(i, 4), Interaction.PNJ10));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.PNJ11_RIGHT, new Pair<>(i, 7), Interaction.PNJ11));
+            for (int i = 22; i <= 22; ++i) m.add(addBlockingCell(Sprite.PNJ12_DOWN, new Pair<>(i, 8), Interaction.PNJ12));
 
             createBuilding(m, "STORE_", 4, 4, new Pair<>(13, 0), null);
             createBuilding(m, "BURGER_", 4, 4, new Pair<>(7, 2), null);

@@ -83,7 +83,7 @@ public enum AnimationSet {
     }
 
     public AnimationSet getStopSpriteSet(){
-        return AnimationSet.values()[Math.floorDiv(this.ordinal(),nbMaxAnim)*nbMaxAnim];
+        return AnimationSet.values()[Math.floorDiv(this.ordinal(),nbMaxAnim)*nbMaxAnim + 1];
     }
 
     public boolean contains(Sprite sprite){

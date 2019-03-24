@@ -11,7 +11,8 @@ public enum Key {
     SPACE(KeyCode.SPACE),
     BACK_SPACE(KeyCode.BACK_SPACE),
     ESCAPE(KeyCode.ESCAPE),
-    TELEPORT(KeyCode.R)
+    TELEPORT(KeyCode.R),
+    CHANGE_SKIN(KeyCode.F),
     ;
 
     private KeyCode keyCode;

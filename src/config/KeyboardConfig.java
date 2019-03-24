@@ -50,6 +50,14 @@ public enum KeyboardConfig {
             MapConfig.getINSTANCE().configMap(Planet.getPlanetOfMap(Movement.getMap()).getMaps().get(0));
         }
     }),
+    CHANGE_SKIN(Key.CHANGE_SKIN, (EventHandler<KeyEvent>) event -> {
+        if(event.getCode() == Key.CHANGE_SKIN.getKeyCode() && GameLayout.getINSTANCE().getPane().isFocused() && Movement.isStoped()){
+            Player player = Player.getINSTANCE();
+            player.setCurrentSkin(Player.getINSTANCE().getNextSkinAvailable());
+            Movement.setAnimationSet(AnimationSet.getSpriteSet(player.getCurrentSkin()*4).getStopSpriteSet());
+            player.setSprite(Movement.getAnimationSet().getSpriteDirection(player.getDirection()));
+        }
+    }),
     ;
 
     private Key key;

@@ -10,6 +10,7 @@ import lib.*;
 public enum Action {
     TELEPORT_PLANET1,
     TELEPORT_PLANET2,
+    TELEPORT_PLANET3,
     TELEPORT_COMMERCIAL_CENTER,
     GIVE_OBJECT1,
     GIVE_OBJECT2,
@@ -23,10 +24,14 @@ public enum Action {
     ERROR_FOX,
     GIVE_MONEY_PNJ6,
     ERROR_PNJ6,
+    RETURN_OBJECT2,
     RETURN_OBJECT6,
+    RETURN_OBJECT4_2,
     RETURN_OBJECT6_2,
     CHEST_HIDDEN,
     CHEST_CLOSED,
+    BUY_SKIN,
+    BUY_DYNAMITE,
     TEST1,
     RETURN,
     ;
@@ -34,6 +39,7 @@ public enum Action {
     static{
         TELEPORT_PLANET1.eventHandler = createTeleportAction(Planet.PLANET1.getMaps().get(0));
         TELEPORT_PLANET2.eventHandler = createTeleportAction(Planet.PLANET2.getMaps().get(0));
+        TELEPORT_PLANET3.eventHandler = createTeleportAction(Planet.PLANET3.getMaps().get(0));
         TELEPORT_COMMERCIAL_CENTER.eventHandler = createTeleportAction(Planet.COMMERCIAL_CENTER.getMaps().get(0));
         GIVE_OBJECT6.eventHandler = createGiveObjectAction(Interaction.BUSH1, Object.OBJ6, DialogConfig.BUSH1_AFTER);
         GIVE_OBJECT6_2.eventHandler = createGiveObjectAction(Interaction.PNJ3_2, Object.OBJ6, DialogConfig.PNJ3_2_AFTER);
@@ -53,6 +59,49 @@ public enum Action {
 
         ERROR_FOX.eventHandler = createRiddleErrorAction(DialogConfig.FOX_ERROR);
         ERROR_PNJ6.eventHandler = createRiddleErrorAction(DialogConfig.PNJ6_ERROR);
+        BUY_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            if(DialogLayout.getINSTANCE().getMoney() < 15000){
+                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
+                Movement.setMoved(true);
+                Movement.resumeMovement();
+                return;
+            }
+        });
+        BUY_SKIN.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            if(DialogLayout.getINSTANCE().getMoney() < 10000){
+                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
+                Movement.setMoved(true);
+                Movement.resumeMovement();
+                return;
+            }
+            DialogLayout.getINSTANCE().removeMoney(10000);
+            Player.getINSTANCE().getSkinAvailables().add(1);
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_SKIN_BUYED.getText());
+            Movement.setMoved(true);
+            Movement.resumeMovement();
+        });
+        RETURN_OBJECT2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            if(DialogLayout.getINSTANCE().getMoney() < 500){
+                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
+                Movement.setMoved(true);
+                Movement.resumeMovement();
+                return;
+            }
+            DialogLayout.getINSTANCE().removeMoney(500);
+            Inventory.getINSTANCE().remove(Object.OBJ2);
+            Inventory.getINSTANCE().add(Object.OBJ2_2);
+            for(Cell cell : MapConfig.getINSTANCE().getMaps().get(7).getCells()){
+                if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null &&
+                        ((BlockingCell) cell).getInteraction().equals(Interaction.PNJ12)){
+                    ((BlockingCell) cell).setInteraction(Interaction.PNJ12_2);
+                }
+            }
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_REACTORS_REPARED.getText());
+            Movement.setMoved(true);
+            Movement.resumeMovement();
+        });
         RETURN_OBJECT6.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             if(!MapConfig.getINSTANCE().swapCells(0, new Pair<>(22, 5), new Pair<>(22, 6))){
                 MapConfig.getINSTANCE().movePlayer(new Pair<>(21, 6));
@@ -62,6 +111,15 @@ public enum Action {
             Interaction.PNJ3.setInteractionDone(true);
             Inventory.getINSTANCE().remove(Object.OBJ6);
             DialogLayout.getINSTANCE().removeContent();
+            Movement.setMoved(true);
+            Movement.resumeMovement();
+        });
+        RETURN_OBJECT4_2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            Interaction.PNJ11.setInteractionDone(true);
+            Inventory.getINSTANCE().remove(Object.OBJ4_2);
+            DialogLayout.getINSTANCE().addMoney(500);
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ11_AFTER.getText());
             Movement.setMoved(true);
             Movement.resumeMovement();
         });

@@ -54,9 +54,20 @@ public enum DialogConfig {
     SPACESHIP_BEFORE("C'est un vaisseau écrasé ! Il y a même une bourse pleine à l'intérieur ! Mais ces réacteurs sont en piteux état... "),
     SPACESHIP_BUTTON("Prendre les réacteurs endommagés"),
     SPACESHIP_AFTER("Peut être qu'en allant au centre commercial, je trouverais un moyen de réparer ces réacteurs..."),
-    PNJ8("Ma baguette magique a été faites avec du CRAIN DE LICORNE, Monsieur !"),
-    PNJ9("Ma baguette magique a été faites avec un VENTRICULE DE DRAGON, Monsieur !"),
-
+    PNJ8("Ma baguette magique a été faite avec du CRAIN DE LICORNE, Monsieur !"),
+    PNJ9("Ma baguette magique a été faite avec un VENTRICULE DE DRAGON, Monsieur !"),
+    PNJ10("A CHANGER : je suis le vendeur"),
+    PNJ10_BUTTON1("A CHANGER : Réparer réacteurs 500"),
+    PNJ10_BUTTON2("A CHANGER : Tenue 10.000"),
+    PNJ10_BUTTON3("A CHANGER : Dynamite 15.000"),
+    PNJ10_NOT_ENOUGH_MONEY("A CHANGER : Pas assez de sous"),
+    PNJ10_REACTORS_REPARED("A CHANGER : Vos réacteurs sont réparés !"),
+    PNJ10_SKIN_BUYED("A CHANGER : Voici ta tenue ! Appuie sur " + Key.CHANGE_SKIN.getKeyCode().getName() + " pour en changer !"),
+    PNJ11_BEFORE("A CHANGER : Je suis Rohkan"),
+    PNJ11_AFTER("A CHANGER : Merci pour la bague. Vla des sous."),
+    PNJ11_BUTTON("Donner la bague"),
+    PNJ12("A CHANGER : va réparer les réacteurs"),
+    PNJ12_2("A CHANGER : Va chercher le prochain item planete 3 "),
     ;
 
     private String text;

@@ -31,6 +31,7 @@ public class Movement {
         KeyboardConfig k = KeyboardConfig.ENTER;
         KeyboardConfig k1 = KeyboardConfig.ESCAPE;
         KeyboardConfig k2 = KeyboardConfig.TELEPORT;
+        KeyboardConfig k3 = KeyboardConfig.CHANGE_SKIN;
         Movement.setupEventHandler = Movement.setupMovementEvent();
         Movement.automaticEventHandler = Movement.automaticMovementEvent();
 
@@ -66,6 +67,7 @@ public class Movement {
 
             if(lastKeyReleased){
                 animationSet = animationSet.getStopSpriteSet();
+                Player.getINSTANCE().setSprite(animationSet.getSpriteDirection(Player.getINSTANCE().getDirection()));
                 stoped = true;
                 return;
             }

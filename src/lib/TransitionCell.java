@@ -24,7 +24,6 @@ public class TransitionCell extends Cell {
                     if(m.equals(Movement.getMap())){
                         switch(this.direction){
                             case UP :
-                                //nextMap = MapConfig.getINSTANCE().getMaps().get(MapArrangement.values()[i].getUp() - 1);
                                 nextMap = MapArrangement.values()[i].getUp();
                                 nextPosition = new Pair<>(Player.getINSTANCE().getPosition().getKey(),
                                         GameLayout.getINSTANCE().getNbRows() - 1);
@@ -45,17 +44,8 @@ public class TransitionCell extends Cell {
                         }
                         Player player = Player.getINSTANCE();
 
-                        //Movement.getMap().getGridPane().getChildren().remove(Movement.getMap().getGridPane().getChildren().size() - 1);
                         Movement.getMap().getGridPane().getChildren().remove(player.getImage());
-                        MapConfig.getINSTANCE().configMap(nextMap, new Pair<>(nextPosition.getKey(),nextPosition.getValue()), Player.getINSTANCE().getSprite());
-
-                        //MapConfig.getINSTANCE().movePlayer(nextPosition);
-
-                        //ImageView imageView = (ImageView) Movement.getMap().getGridPane().getChildren().get(Movement.getMap().getGridPane().getChildren().size() -1);
-                        //ImageView imageView = player.getImage();
-                        //imageView.setImage(new Image(player.getImage().getSpritePath()));
-                        //GridPane.setConstraints(player.getImage(), player.getPosition().getKey(), player.getPosition().getValue());
-
+                        MapConfig.getINSTANCE().configMap(nextMap, new Pair<>(nextPosition.getKey(),nextPosition.getValue()));
 
                         break;
                     }

@@ -23,6 +23,10 @@ public enum Interaction {
     PNJ7,
     PNJ8,
     PNJ9,
+    PNJ10,
+    PNJ11,
+    PNJ12,
+    PNJ12_2,
     CHEST_BEFORE_HIDDEN,
     CHEST_HIDDEN,
     CHEST_CLOSED,
@@ -43,10 +47,15 @@ public enum Interaction {
         CAT1.eventHandler = createSimpleDialog(Interaction.CAT1, DialogConfig.CAT1);
         PNJ8.eventHandler = createSimpleDialog(Interaction.PNJ8, DialogConfig.PNJ8);
         PNJ9.eventHandler = createSimpleDialog(Interaction.PNJ9, DialogConfig.PNJ9);
+        PNJ12.eventHandler = createSimpleDialog(Interaction.PNJ12, DialogConfig.PNJ12);
+        PNJ12_2.eventHandler = createSimpleDialog(Interaction.PNJ12_2, DialogConfig.PNJ12_2);
         SNAKE.eventHandler = createSimpleDialog(Interaction.SNAKE, DialogConfig.SNAKE);
         PNJ3.eventHandler = createSimpleButtonInteractionObject(Interaction.PNJ3, DialogConfig.PNJ3_BEFORE,
                 DialogConfig.PNJ3_AFTER, DialogConfig.PNJ3_BUTTON, Action.RETURN_OBJECT6, true,
                 Object.OBJ6);
+        PNJ11.eventHandler = createSimpleButtonInteractionObject(Interaction.PNJ11, DialogConfig.PNJ11_BEFORE,
+                DialogConfig.PNJ11_AFTER, DialogConfig.PNJ11_BUTTON, Action.RETURN_OBJECT4_2, true,
+                Object.OBJ4_2);
         PNJ3_2.eventHandler = createSimpleButtonInteraction(Interaction.PNJ3_2, DialogConfig.PNJ3_2_BEFORE,
                 DialogConfig.PNJ3_2_AFTER, DialogConfig.PNJ3_2_BUTTON, Action.GIVE_OBJECT6_2);
         PNJ4.eventHandler = createSimpleButtonInteractionObject(Interaction.PNJ4, DialogConfig.PNJ4_BEFORE,
@@ -79,6 +88,22 @@ public enum Interaction {
         SPACESHIP.eventHandler = createSimpleButtonInteraction(Interaction.SPACESHIP, DialogConfig.SPACESHIP_BEFORE,
                 DialogConfig.SPACESHIP_AFTER, DialogConfig.SPACESHIP_BUTTON, Action.GIVE_OBJECT2);
 
+        PNJ10.eventHandler = ((EventHandler<KeyEvent>) event -> {
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
+                Movement.setMoved(false);
+                if(Inventory.getINSTANCE().contains(Object.OBJ2)){
+                    DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON1.getText(), Action.RETURN_OBJECT2.getEventHandler());
+                }
+                if(!Player.getINSTANCE().getSkinAvailables().contains(1)){
+                    DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON2.getText(), Action.BUY_SKIN.getEventHandler());
+                }
+                if(!Inventory.getINSTANCE().contains(Object.OBJ4)){
+                    DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON3.getText(), Action.BUY_DYNAMITE.getEventHandler());
+                }
+                DialogLayout.getINSTANCE().addReturnButton();
+            }
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PNJ10.getEventHandler());
+        });
         ROCKET.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
@@ -90,6 +115,9 @@ public enum Interaction {
                 }
                 if(!Planet.COMMERCIAL_CENTER.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ2)){
                     DialogLayout.getINSTANCE().addButton(Planet.COMMERCIAL_CENTER.getName(), Action.TELEPORT_COMMERCIAL_CENTER.getEventHandler());
+                }
+                if(!Planet.PLANET3.getMaps().contains(Movement.getMap()) && PNJ12_2.isInteractionDone()){
+                    DialogLayout.getINSTANCE().addButton(Planet.PLANET3.getName(), Action.TELEPORT_PLANET3.getEventHandler());
                 }
                 DialogLayout.getINSTANCE().addReturnButton();
             }
@@ -126,7 +154,7 @@ public enum Interaction {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
                 DialogLayout.getINSTANCE().setText(dialogConfig.getText());
-
+                interaction.setInteractionDone(true);
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, interaction.getEventHandler());
         });

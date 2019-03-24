@@ -7,6 +7,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class Player {
@@ -14,6 +17,8 @@ public class Player {
     private Pair<Integer, Integer> position;
     private Direction direction = Direction.DOWN;
     private Sprite sprite;
+    private ArrayList<Integer> skinAvailables = new ArrayList<>(Arrays.asList(0, 1, 2));
+    private Integer currentSkin = 0;
     private ImageView image = new ImageView();
 
     private static final Player INSTANCE = new Player();
@@ -67,5 +72,26 @@ public class Player {
     public void setPlayerOnTop(int nbMap){
         MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().remove(this.image);
         MapConfig.getINSTANCE().getMaps().get(nbMap).getGridPane().getChildren().add(this.image);
+    }
+
+    public ArrayList<Integer> getSkinAvailables() {
+        return skinAvailables;
+    }
+
+    public void setSkinAvailables(ArrayList<Integer> skinAvailables) {
+        this.skinAvailables = skinAvailables;
+    }
+
+    public Integer getNextSkinAvailable() {
+        return currentSkin.equals(this.skinAvailables.get(this.skinAvailables.size() -1))
+                ? this.skinAvailables.get(0) : this.skinAvailables.get(this.currentSkin + 1)  ;
+    }
+
+    public Integer getCurrentSkin() {
+        return currentSkin;
+    }
+
+    public void setCurrentSkin(Integer currentSkin) {
+        this.currentSkin = currentSkin;
     }
 }
