@@ -18,8 +18,8 @@ public class Movement {
     private static boolean moved = false;
     private static EventHandler setupEventHandler;
     private static EventHandler automaticEventHandler;
-    private static EventHandler pacmanSetupEventHandler;
-    private static EventHandler pacmanAutomaticEventHandler;
+    private static EventHandler stopEventHandler;
+    private static boolean pacmanMovement = false;
     private static EventHandler backToGame;
     private static Key lastKeyTyped;
     private static Key automaticLastKey;
@@ -36,8 +36,11 @@ public class Movement {
         KeyboardConfig k3 = KeyboardConfig.CHANGE_SKIN;
         Movement.setupEventHandler = Movement.setupMovementEvent();
         Movement.automaticEventHandler = Movement.automaticMovementEvent();
-        Movement.pacmanSetupEventHandler = Movement.pacmanSetupMovementEvent();
-        Movement.pacmanAutomaticEventHandler = Movement.pacmanAutomaticMovementEvent();
+        Movement.stopEventHandler = ((EventHandler<KeyEvent>) event -> {
+            if(lastKeyTyped != null && event.getCode().equals(lastKeyTyped.getKeyCode())){
+                lastKeyReleased = true;
+            }
+        });
 
         scene.removeEventHandler(KeyEvent.KEY_PRESSED ,Movement.setupEventHandler);
         scene.removeEventHandler(KeyEvent.KEY_PRESSED ,Movement.automaticEventHandler);
@@ -48,11 +51,7 @@ public class Movement {
                 scene.removeEventHandler(KeyEvent.KEY_PRESSED, Movement.backToGame);
             }
         });
-        scene.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
-            if(lastKeyTyped != null && event.getCode().equals(lastKeyTyped.getKeyCode())){
-                lastKeyReleased = true;
-            }
-        });
+        scene.addEventHandler(KeyEvent.KEY_RELEASED, stopEventHandler);
     }
 
     public static EventHandler<KeyEvent> automaticMovementEvent(){
@@ -103,8 +102,6 @@ public class Movement {
         };
     }
 
-
-
     public static EventHandler<KeyEvent> setupMovementEvent(){
         PauseTransition pt = new PauseTransition();
         pt.setDuration(Duration.millis(10));
@@ -124,77 +121,6 @@ public class Movement {
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.setupEventHandler);
             MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
             KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Movement.lastKeyTyped.getKeyCode(), false, false, false, false) );
-            pt.play();
-        };
-    }
-
-    public static EventHandler<KeyEvent> pacmanSetupMovementEvent(){
-        PauseTransition pt = new PauseTransition();
-        pt.setDuration(Duration.millis(10));
-        pt.setOnFinished(event -> {
-            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED ,Movement.setupEventHandler);
-            MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED ,Movement.setupEventHandler);
-        });
-        return key -> {
-            if(!Movement.isMovementKey(key) ) return;
-            lastKeyTyped = Key.getKeyofKeyCode(key.getCode());
-            if(Movement.automaticLastKey != null && Movement.automaticLastKey.equals(Movement.lastKeyTyped) && !stoped) return;
-
-            if(lastKeyReleased)
-                lastKeyReleased = false;
-
-            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
-            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.setupEventHandler);
-            MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
-            KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Movement.lastKeyTyped.getKeyCode(), false, false, false, false) );
-            pt.play();
-        };
-    }
-
-    public static EventHandler<KeyEvent> pacmanAutomaticMovementEvent(){
-
-        PauseTransition pt = new PauseTransition();
-        pt.setDuration(Duration.millis(Movement.delay));
-        pt.setOnFinished(event -> {
-
-            if(directionChanged){
-                Movement.automaticLastKey = Movement.lastKeyTyped;
-                MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
-                KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Movement.automaticLastKey.getKeyCode(), false, false, false, false) );
-                directionChanged = false;
-                return;
-            }
-
-            if(lastKeyReleased){
-                animationSet = animationSet.getStopSpriteSet();
-                Player.getINSTANCE().setSprite(animationSet.getSpriteDirection(Player.getINSTANCE().getDirection()));
-                stoped = true;
-                return;
-            }
-            else {
-                MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
-                KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Movement.automaticLastKey.getKeyCode(), false, false, false, false) );
-            }
-        });
-        return key -> {
-
-            if(!stoped && !Movement.automaticLastKey.equals(Movement.lastKeyTyped)){
-                MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
-                stoped = false;
-                animationSet = AnimationSet.getSpriteSet(AnimationSet.getNbAnim(Math.floorDiv(
-                        AnimationSet.getAnimationSetThatHave( Player.getINSTANCE().getSprite()).ordinal(), 4)));
-                directionChanged = true;
-                MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
-                pt.play();
-                return;
-            }
-
-            animationSet = AnimationSet.getSpriteSet(AnimationSet.getNbAnim(Math.floorDiv(
-                    AnimationSet.getAnimationSetThatHave( Player.getINSTANCE().getSprite()).ordinal(), 4)));
-            movePlayer(key);
-            stoped = false;
-
-            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
             pt.play();
         };
     }
@@ -259,6 +185,10 @@ public class Movement {
             DialogLayout.getINSTANCE().removeContent();
         }
         refreshPlayerSprite();
+        if(pacmanMovement && MapConfig.getSecondCell(MapConfig.getINSTANCE().getMaps().indexOf(map), player.getPosition().getKey(), player.getPosition().getValue()).getSprite().equals(Sprite.GRASS)){
+            map.getCells().remove(MapConfig.getSecondCell(MapConfig.getINSTANCE().getMaps().indexOf(map), player.getPosition().getKey(), player.getPosition().getValue()));
+            map.getGridPane().getChildren().remove(MapConfig.getSecondCell(MapConfig.getINSTANCE().getMaps().indexOf(map), player.getPosition().getKey(), player.getPosition().getValue()).getImage());
+        }
         if(Movement.isMovementKey(key)){
             Movement.automaticLastKey = Key.getKeyofKeyCode(key.getCode());
         }
@@ -388,19 +318,11 @@ public class Movement {
         return stoped;
     }
 
-    public static EventHandler getSetupEventHandler() {
-        return setupEventHandler;
+    public static EventHandler getStopEventHandler() {
+        return stopEventHandler;
     }
 
-    public static EventHandler getAutomaticEventHandler() {
-        return automaticEventHandler;
-    }
-
-    public static EventHandler getPacmanSetupEventHandler() {
-        return pacmanSetupEventHandler;
-    }
-
-    public static EventHandler getPacmanAutomaticEventHandler() {
-        return pacmanAutomaticEventHandler;
+    public static void setPacmanMovement(boolean pacmanMovement) {
+        Movement.pacmanMovement = pacmanMovement;
     }
 }

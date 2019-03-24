@@ -93,8 +93,7 @@ public enum Interaction {
         PACMAN_IN.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(2));
-                MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.getSetupEventHandler());
-                MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.getAutomaticEventHandler());
+                MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
             }
         });
         PNJ10.eventHandler = ((EventHandler<KeyEvent>) event -> {
