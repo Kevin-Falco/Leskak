@@ -986,6 +986,8 @@ public class MapConfig {
 
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SPACE, new Pair<>(i, 5), Direction.LEFT));
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SPACE, new Pair<>(i, 6), Direction.LEFT));
+
+            createBuilding(m, "HOUSE2_", 2, 2, new Pair<>(21,5), null);
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){
