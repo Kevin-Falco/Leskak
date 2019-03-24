@@ -98,6 +98,7 @@ public enum Interaction {
                 //MapConfig.getINSTANCE().getMaps().get(10).getCells().remove(cell);
                 //MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(cell.getImage());
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
+                Player.getINSTANCE().setCurrentSkin(3);
 
                 PacMan.setRemainingDots(181);
                 MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(0, MapConfig.getINSTANCE().getMaps().get(0).getGridPane().getChildren().size() - 1 );
@@ -112,6 +113,7 @@ public enum Interaction {
             if(event.getCode() == KeyCode.P && Movement.isMoved()){
                 MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(1), new Pair<>(20, 5));
                 MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
+                Player.getINSTANCE().setCurrentSkin(0);
                 Movement.setLastKeyReleased(true);
                 PacMan.setPacmanMovement(false);
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_OUT.getEventHandler());

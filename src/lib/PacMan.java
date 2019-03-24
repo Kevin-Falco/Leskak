@@ -84,15 +84,18 @@ public class PacMan {
     private static class Ghost {
         private AnimationSet animationSet;
         private Cell cellInMap;
+        private Sprite sprite;
 
         public Ghost(Pair<Integer, Integer> position, AnimationSet animationSet) {
             this.animationSet = animationSet;
-            this.cellInMap = new Cell( this.animationSet.getDown(), position);
+            this.sprite = this.animationSet.getDown();
+            this.cellInMap = new Cell( this.sprite, position);
+
         }
 
         public void move(){
             Pair<Integer, Integer> position = this.cellInMap.getPosition();
-            if(position.equals(Player.getINSTANCE().getPosition())){
+            if(playerSameCase()){
                 gameOver();
                 return;
             }
@@ -107,8 +110,6 @@ public class PacMan {
             boolean canMoveLeft = leftCell != null && isGoodSprite(leftCell.getSprite());
 
             //if(!canMoveUp && !canMoveDown && !canMoveRight && !canMoveLeft) return;
-
-            Sprite sprite = null;
             TranslateTransition tt = new TranslateTransition(Duration.millis(Movement.getDelay()));
 
             tt.setInterpolator(Interpolator.LINEAR);
@@ -121,25 +122,25 @@ public class PacMan {
                 switch (direction){
                     case UP:
                         y = -50;
-                        sprite = animationSet.getUp();
+                        this.sprite = animationSet.getUp();
                         position = upCell.getPosition();
                         cellInMap.setPosition(position);
                         break;
                     case DOWN:
                         y = 50;
-                        sprite = animationSet.getDown();
+                        this.sprite = animationSet.getDown();
                         position = downCell.getPosition();
                         cellInMap.setPosition(position);
                         break;
                     case RIGHT:
                         x = 50;
-                        sprite = animationSet.getRight();
+                        this.sprite = animationSet.getRight();
                         position = rightCell.getPosition();
                         cellInMap.setPosition(position);
                         break;
                     case LEFT:
                         x = -50;
-                        sprite = animationSet.getLeft();
+                        this.sprite = animationSet.getLeft();
                         position =leftCell.getPosition();
                         cellInMap.setPosition(position);
                         break;
@@ -179,8 +180,36 @@ public class PacMan {
         }
 
         private boolean isGoodSprite(Sprite sprite){
-            return sprite.equals(Sprite.HERB) || sprite.equals(Sprite.SAND) || sprite.equals(Player.getINSTANCE().getSprite());
+            return sprite.equals(Sprite.PACMAN_BG) || sprite.equals(Sprite.PACGUM) || sprite.equals(Player.getINSTANCE().getSprite());
         }
 
+        private boolean playerSameCase(){
+            Player player = Player.getINSTANCE();
+            Direction direction = animationSet.getDirection(this.sprite);
+            Pair<Integer, Integer> pair = null;
+            switch (direction){
+                case UP:
+                    pair = new Pair<>(this.cellInMap.getPosition().getKey(), this.cellInMap.getPosition().getValue() - 1 );
+                    break;
+                case DOWN:
+                    pair = new Pair<>(this.cellInMap.getPosition().getKey(), this.cellInMap.getPosition().getValue() + 1 );
+                    break;
+                case RIGHT:
+                    pair = new Pair<>(this.cellInMap.getPosition().getKey() - 1, this.cellInMap.getPosition().getValue() );
+                    break;
+                case LEFT:
+                    pair = new Pair<>(this.cellInMap.getPosition().getKey() + 1, this.cellInMap.getPosition().getValue() );
+                    break;
+                default:
+                    break;
+            }
+
+            boolean oppositeDirection = false;
+            if(player.getPosition().equals(pair)){
+                if (Math.abs(player.getDirection().ordinal() - animationSet.getDirection(cellInMap.getSprite()).ordinal()) == 2 )
+                    oppositeDirection = true;
+            }
+            return (this.cellInMap.getPosition().equals(Player.getINSTANCE().getPosition()) ||  oppositeDirection );
+        }
     }
 }

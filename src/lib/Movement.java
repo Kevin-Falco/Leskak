@@ -206,7 +206,7 @@ public class Movement {
             tt.setOnFinished(event -> {
                 if(map.isFogOfWar())
                     map.updateFogOfWar();
-                if(PacMan.isPacmanMovement() && cell != null && cell.getSprite().equals(Sprite.HERB)){
+                if(PacMan.isPacmanMovement() && cell != null && cell.getSprite().equals(Sprite.PACGUM)){
                     map.getGridPane().getChildren().remove(cell.getImage());
                     map.getCells().remove(cell);
                     PacMan.setRemainingDots(PacMan.getRemainingDots() - 1);
