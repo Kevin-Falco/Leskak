@@ -10,8 +10,9 @@ public enum MapArrangement {
     MAP5(Planet.PLANET2.getMaps().get(3),null,null,Planet.PLANET2.getMaps().get(0)),
     MAP6(null,Planet.PLANET2.getMaps().get(0),Planet.PLANET2.getMaps().get(3),null),
     MAP7(null,Planet.PLANET2.getMaps().get(1),null,Planet.PLANET2.getMaps().get(2)),
-    MAP8(null, null, Planet.PLANET3.getMaps().get(1), null),
-    MAP9(null, null, null, Planet.PLANET3.getMaps().get(0)),
+    MAP8(null,null,null,null),
+    MAP9(null, null, Planet.PLANET3.getMaps().get(1), null),
+    MAP10(null, null, null, Planet.PLANET3.getMaps().get(0)),
     ;
 
     private Map up;
