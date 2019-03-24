@@ -39,7 +39,13 @@ public class Map implements  Iterable<Cell> {
         this.cells.add(cell);
         GridPane.setConstraints(cell.getImage(), cell.getPosition().getKey(), cell.getPosition().getValue());
         this.getGridPane().getChildren().add(cell.getImage());
+    }
 
+    public void remove(Cell cell){
+        if(!this.getGridPane().getChildren().contains(cell.getImage()))
+            return;
+        this.cells.remove(cell);
+        this.getGridPane().getChildren().remove(cell.getImage());
     }
 
     @Override

@@ -9,7 +9,7 @@ import lib.*;
 public enum KeyboardConfig {
 
     ENTER(Key.ENTER, (EventHandler<KeyEvent>) event -> {
-        if(event.getCode() == Key.ENTER.getKeyCode()){
+        if(event.getCode() == Key.ENTER.getKeyCode() && Movement.isStoped()){
             if(GameLayout.getINSTANCE().getPane().isFocused()){
                 boolean isAPNJ = false;
                 BlockingCell blockingCellInteract = null;

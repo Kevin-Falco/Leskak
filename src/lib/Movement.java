@@ -93,9 +93,6 @@ public class Movement {
             animationSet = AnimationSet.getSpriteSet(AnimationSet.getNbAnim(Math.floorDiv(
                     AnimationSet.getAnimationSetThatHave( Player.getINSTANCE().getSprite()).ordinal(), 4)));
             movePlayer(key);
-
-            if(PacMan.getRemainingDots() == 0)
-                return;
             stoped = false;
 
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
@@ -205,15 +202,15 @@ public class Movement {
             tt.setOnFinished(event -> {
                 if(map.isFogOfWar())
                     map.updateFogOfWar();
-                if(PacMan.isPacmanMovement() && cell != null && cell.getSprite().equals(Sprite.HERB)){
+                if(PacMan.isPacmanMovement() && cell != null && cell.getSprite().equals(Sprite.PACGUM)){
                     map.getGridPane().getChildren().remove(cell.getImage());
                     map.getCells().remove(cell);
                     PacMan.setRemainingDots(PacMan.getRemainingDots() - 1);
                 }
+                if(PacMan.isPacmanMovement())
+                    PacMan.moveGhosts();
             });
             tt.play();
-            if(PacMan.isPacmanMovement())
-                PacMan.moveGhosts();
         }
     }
 
