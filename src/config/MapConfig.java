@@ -985,8 +985,8 @@ public class MapConfig {
         private static void setupMap9() {
             Map m = maps.get(9);
 
-            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.SPACE, new Pair<>(i, j)));
-
+            //for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.SPACE, new Pair<>(i, j)));
+            placeFloor(m, "HOUSE1_", 2, 2);
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SPACE, new Pair<>(i, 5), Direction.LEFT));
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SPACE, new Pair<>(i, 6), Direction.LEFT));
 
@@ -1191,6 +1191,16 @@ public class MapConfig {
                         m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*col + j))), new Pair<>(position.getKey() + j, position.getValue() + i)));
                     else
                         m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*col + j))), new Pair<>(position.getKey() + j, position.getValue() + i), interaction));
+                }
+            }
+        }
+
+        private static void placeFloor(Map m, String str, int col,  int row){
+            for(int k = 0; k < 12*32; k+=2){
+                for(int i = 0; i < row; ++i){
+                    for(int j = 0; j < col; ++j){
+                        m.add(addCell(Sprite.valueOf(str.concat(String.valueOf(i*col + j))), new Pair<>(k%32 + j, k%12 + i)));
+                    }
                 }
             }
         }
