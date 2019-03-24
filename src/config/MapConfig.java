@@ -51,7 +51,7 @@ public class MapConfig {
                     MapConfig.getINSTANCE().setupMap(i);
                 }
                 this.updateProgress(100, 100);
-                Platform.runLater(() -> configMap(Planet.COMMERCIAL_CENTER.getMaps().get(0)));
+                Platform.runLater(() -> configMap(Planet.PLANET3.getMaps().get(0)));
             }
         };
 
@@ -79,6 +79,9 @@ public class MapConfig {
             configMap(map, new Pair<>(4, 8), Sprite.PLAYER2_DOWN_STOP);
         }
         if(planet.equals(Planet.COMMERCIAL_CENTER)){
+            configMap(map, new Pair<>(8, 9), Sprite.PLAYER3_DOWN_STOP);
+        }
+        if(planet.equals(Planet.PLANET3)){
             configMap(map, new Pair<>(8, 9), Sprite.PLAYER3_DOWN_STOP);
         }
     }
@@ -130,6 +133,12 @@ public class MapConfig {
         }
         else if(nbMap == 7){
             MapSetup.setupMap7();
+        }
+        else if(nbMap == 8){
+            MapSetup.setupMap8();
+        }
+        else if(nbMap == 9){
+            MapSetup.setupMap9();
         }
     }
 
@@ -910,6 +919,18 @@ public class MapConfig {
             createBuilding(m, "CAR_", 4, 2, new Pair<>(15, 10), null);
             createBuilding(m, "BUILDING_", 3, 8, new Pair<>(21, 0), null);
             createBuilding(m, "BUILDING2_", 4, 4, new Pair<>(17, 5), null);
+        }
+
+        private static void setupMap8() {
+            Map m = maps.get(8);
+
+            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.FLOOR, new Pair<>(i, j)));
+        }
+
+        private static void setupMap9() {
+            Map m = maps.get(9);
+
+            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.FLOOR, new Pair<>(i, j)));
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){
