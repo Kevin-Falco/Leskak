@@ -1025,7 +1025,7 @@ public class MapConfig {
 
             createBuilding(m, "HOUSE3_", 2, 2, new Pair<>(21,5), Interaction.PACMAN_IN);
 
-            updateSpritesOf(8, SpriteSet.TREE3_SET);
+            updateSpritesOf(9, SpriteSet.TREE3_SET);
         }
 
         private static void setupMap10() {
