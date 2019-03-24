@@ -98,11 +98,12 @@ public enum Interaction {
                 MapConfig.getINSTANCE().getMaps().get(10).getCells().remove(cell);
                 MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(cell.getImage());
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
-                PacMan.setPacmanMovement(true);
+
                 PacMan.setRemainingDots(182);
                 MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(0, MapConfig.getINSTANCE().getMaps().get(0).getGridPane().getChildren().size() - 1 );
                 MapConfig.getINSTANCE().getMaps().get(10).getCells().clear();
                 MapConfig.getINSTANCE().setupMap(10);
+                PacMan.setPacmanMovement(true);
                 MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(2), new Pair<>(15, 7));
             }
         });

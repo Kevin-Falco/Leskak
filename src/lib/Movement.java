@@ -93,6 +93,7 @@ public class Movement {
             animationSet = AnimationSet.getSpriteSet(AnimationSet.getNbAnim(Math.floorDiv(
                     AnimationSet.getAnimationSetThatHave( Player.getINSTANCE().getSprite()).ordinal(), 4)));
             movePlayer(key);
+
             if(PacMan.getRemainingDots() == 0)
                 return;
             stoped = false;
@@ -211,6 +212,8 @@ public class Movement {
                 }
             });
             tt.play();
+            if(PacMan.isPacmanMovement())
+                PacMan.moveGhosts();
         }
     }
 
@@ -331,5 +334,9 @@ public class Movement {
 
     public static void setLastKeyReleased(boolean lastKeyReleased) {
         Movement.lastKeyReleased = lastKeyReleased;
+    }
+
+    public static int getDelay() {
+        return delay;
     }
 }
