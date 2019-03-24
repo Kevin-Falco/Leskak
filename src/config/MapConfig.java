@@ -52,7 +52,7 @@ public class MapConfig {
                 }
                 this.updateProgress(100, 100);
 
-                Platform.runLater(() -> configMap(Planet.PLANET3.getMaps().get(0)));
+                Platform.runLater(() -> configMap(Planet.PLANET3.getMaps().get(1)));
             }
         };
         GameLayout.getINSTANCE().setGameHasBegun(true);
@@ -994,7 +994,38 @@ public class MapConfig {
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SPACE, new Pair<>(i, 5), Direction.LEFT));
             for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SPACE, new Pair<>(i, 6), Direction.LEFT));
 
-            createBuilding(m, "HOUSE2_", 2, 2, new Pair<>(21,5), Interaction.PACMAN_IN);
+            for (int i = 0; i <= 31; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 0)));
+            for (int i = 0; i <= 18; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 1)));
+            for (int i = 25; i <= 31; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 1)));
+            for (int i = 0; i <= 16; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 2)));
+            for (int i = 27; i <= 31; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 2)));
+            for (int i = 0; i <= 4; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 3)));
+            for (int i = 7; i <= 10; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 3)));
+            for (int i = 13; i <= 15; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 3)));
+            for (int i = 28; i <= 31; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 3)));
+            for (int i = 0; i <= 3; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 4)));
+            for (int i = 8; i <= 9; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 4)));
+            for (int i = 14; i <= 15; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 4)));
+            for (int i = 28; i <= 31; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 4)));
+            for (int i = 29; i <= 31; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 5)));
+            for (int i = 29; i <= 31; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 6)));
+            for (int i = 0; i <= 3; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 7)));
+            for (int i = 8; i <= 9; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 7)));
+            for (int i = 14; i <= 15; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 7)));
+            for (int i = 28; i <= 31; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 7)));
+            for (int i = 0; i <= 4; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 8)));
+            for (int i = 7; i <= 10; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 8)));
+            for (int i = 13; i <= 15; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 8)));
+            for (int i = 27; i <= 31; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 8)));
+            for (int i = 0; i <= 16; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 9)));
+            for (int i = 27; i <= 31; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 9)));
+            for (int i = 0; i <= 18; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 10)));
+            for (int i = 25; i <= 31; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 10)));
+            for (int i = 0; i <= 31; ++i) m.add(addCell(Sprite.TREE3, new Pair<>(i, 11)));
+
+            createBuilding(m, "HOUSE3_", 2, 2, new Pair<>(21,5), Interaction.PACMAN_IN);
+
+            updateSpritesOf(8, SpriteSet.TREE3_SET);
         }
 
         private static void setupMap10() {
