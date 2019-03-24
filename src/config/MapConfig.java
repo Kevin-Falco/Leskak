@@ -898,16 +898,18 @@ public class MapConfig {
             for (int i = 7; i <= 7; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 8), Interaction.ROCKET));
             for (int i = 7; i <= 7; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 9), Interaction.ROCKET));
 
-            for (int i = 13; i <= 13; ++i) m.add(addBlockingCell(Sprite.PNJ7_DOWN, new Pair<>(i, 3), Interaction.PNJ7));
-            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.PNJ7_RIGHT, new Pair<>(i, 5), Interaction.PNJ7));
-            for (int i = 17; i <= 17; ++i) m.add(addBlockingCell(Sprite.PNJ7_LEFT, new Pair<>(i, 5), Interaction.PNJ7));
+            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.PNJ7_RIGHT, new Pair<>(i, 3), Interaction.PNJ7));
+            for (int i = 19  ; i <= 19; ++i) m.add(addBlockingCell(Sprite.PNJ7_LEFT, new Pair<>(i, 3), Interaction.PNJ7));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ7_DOWN, new Pair<>(i, 4), Interaction.PNJ7));
             for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.PNJ7_RIGHT, new Pair<>(i, 7), Interaction.PNJ7));
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ7_DOWN, new Pair<>(i, 9), Interaction.PNJ7));
+            for (int i = 22; i <= 22; ++i) m.add(addBlockingCell(Sprite.PNJ7_DOWN, new Pair<>(i, 8), Interaction.PNJ7));
 
-            createBuilding(m, "STORE_", 3, 3, new Pair<>(12, 1), null);
+            createBuilding(m, "STORE_", 4, 4, new Pair<>(13, 0), null);
+            createBuilding(m, "BURGER_", 4, 4, new Pair<>(7, 2), null);
             createBuilding(m, "FOUNTAIN_", 3, 3, new Pair<>(10, 6), null);
-            createBuilding(m, "TRUCK_", 4, 2, new Pair<>(15, 10), null);
-            createBuilding(m, "BUILDING_", 3, 8, new Pair<>(20, 1), null);
+            createBuilding(m, "CAR_", 4, 2, new Pair<>(15, 10), null);
+            createBuilding(m, "BUILDING_", 3, 8, new Pair<>(21, 0), null);
+            createBuilding(m, "BUILDING2_", 4, 4, new Pair<>(17, 5), null);
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){
