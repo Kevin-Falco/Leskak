@@ -924,13 +924,48 @@ public class MapConfig {
         private static void setupMap8() {
             Map m = maps.get(8);
 
-            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.FLOOR, new Pair<>(i, j)));
+            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.SPACE, new Pair<>(i, j)));
+
+            for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 0)));
+            for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 1)));
+            for (int i = 2; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 2)));
+            for (int i = 3; i <= 11; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 3)));
+            for (int i = 17; i <= 26; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 3)));
+            for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 3)));
+            for (int i = 5; i <= 10; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 4)));
+            for (int i = 18; i <= 25; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 4)));
+            for (int i = 31; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 4)));
+            for (int i = 0; i <= 2; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 5)));
+            for (int i = 5; i <= 9; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 5)));
+            for (int i = 13; i <= 14; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 5)));
+            for (int i = 19; i <= 22; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 5)));
+            for (int i = 31; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 5)));
+            for (int i = 0; i <= 2; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 6)));
+            for (int i = 5; i <= 8; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 6)));
+            for (int i = 13; i <= 16; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 6)));
+            for (int i = 21; i <= 21; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 6)));
+            for (int i = 31; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 6)));
+            for (int i = 0; i <= 3; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 7)));
+            for (int i = 6; i <= 8; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 7)));
+            for (int i = 11; i <= 17; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 7)));
+            for (int i = 24; i <= 25; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 7)));
+            for (int i = 31; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 7)));
+            for (int i = 0; i <= 3; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 8)));
+            for (int i = 11; i <= 18; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 8)));
+            for (int i = 23; i <= 26; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 8)));
+            for (int i = 30; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 8)));
+            for (int i = 0; i <= 4; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 9)));
+            for (int i = 10; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 9)));
+            for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 10)));
+            for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 11)));
+
+            updateSpritesOf(8, SpriteSet.TREE3_SET);
         }
 
         private static void setupMap9() {
             Map m = maps.get(9);
 
-            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.FLOOR, new Pair<>(i, j)));
+            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.SPACE, new Pair<>(i, j)));
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){

@@ -14,6 +14,9 @@ public enum SpriteSet {
     TREE2_SET(new ArrayList<>(Arrays.asList(Sprite.TREE2, Sprite.TREE2_UP, Sprite.TREE2_DOWN, Sprite.TREE2_RIGHT, Sprite.TREE2_LEFT,
              Sprite.TREE2_UP_RIGHT, Sprite.TREE2_UP_LEFT, Sprite.TREE2_UP_LEFT_RIGHT, Sprite.TREE2_DOWN_RIGHT, Sprite.TREE2_DOWN_LEFT,
              Sprite.TREE2_DOWN_LEFT_RIGHT, Sprite.TREE2_RIGHT_UP_DOWN, Sprite.TREE2_LEFT_UP_DOWN, Sprite.TREE2_UP_DOWN, Sprite.TREE2_LEFT_RIGHT ))),
+    TREE3_SET(new ArrayList<>(Arrays.asList(Sprite.TREE3, Sprite.TREE3_UP, Sprite.TREE3_DOWN, Sprite.TREE3_RIGHT, Sprite.TREE3_LEFT,
+            Sprite.TREE3_UP_RIGHT, Sprite.TREE3_UP_LEFT, Sprite.TREE3_UP_LEFT_RIGHT, Sprite.TREE3_DOWN_RIGHT, Sprite.TREE3_DOWN_LEFT,
+            Sprite.TREE3_DOWN_LEFT_RIGHT, Sprite.TREE3_RIGHT_UP_DOWN, Sprite.TREE3_LEFT_UP_DOWN, Sprite.TREE3_UP_DOWN, Sprite.TREE3_LEFT_RIGHT ))),
     ;
     private List<Sprite> sprites;
 
