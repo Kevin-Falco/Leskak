@@ -185,9 +185,10 @@ public class Movement {
             DialogLayout.getINSTANCE().removeContent();
         }
         refreshPlayerSprite();
-        if(pacmanMovement && MapConfig.getSecondCell(MapConfig.getINSTANCE().getMaps().indexOf(map), player.getPosition().getKey(), player.getPosition().getValue()).getSprite().equals(Sprite.GRASS)){
-            map.getCells().remove(MapConfig.getSecondCell(MapConfig.getINSTANCE().getMaps().indexOf(map), player.getPosition().getKey(), player.getPosition().getValue()));
-            map.getGridPane().getChildren().remove(MapConfig.getSecondCell(MapConfig.getINSTANCE().getMaps().indexOf(map), player.getPosition().getKey(), player.getPosition().getValue()).getImage());
+        Cell cell = MapConfig.getSecondCell(MapConfig.getINSTANCE().getMaps().indexOf(map), player.getPosition().getKey(), player.getPosition().getValue());
+        if(pacmanMovement && cell != null && cell.getSprite().equals(Sprite.HERB)){
+            map.getGridPane().getChildren().remove(cell.getImage());
+            map.getCells().remove(cell);
         }
         if(Movement.isMovementKey(key)){
             Movement.automaticLastKey = Key.getKeyofKeyCode(key.getCode());
