@@ -10,7 +10,7 @@ public enum Planet {
     PLANET1("Jansen", new ArrayList<>(Arrays.asList( new Map(), new Map(), new Map()))),
     PLANET2("Hibliss", new ArrayList<>(Arrays.asList( new Map(), new Map(), new Map(), new Map()))),
     COMMERCIAL_CENTER("Centre commercial", new ArrayList<>(Arrays.asList( new Map()))),
-    PLANET3("Longstar", new ArrayList<>(Arrays.asList( new Map(), new Map()))),
+    PLANET3("Longstar", new ArrayList<>(Arrays.asList( new Map(), new Map(), new Map()))),
     ;
 
     private String name;
