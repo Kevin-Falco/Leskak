@@ -174,7 +174,7 @@ public class MapConfig {
         Player player = Player.getINSTANCE();
         double x = (player.getPosition().getKey() - targetPosition.getKey()) * 50;
         double y = (player.getPosition().getValue() - targetPosition.getValue()) * 50;
-        System.out.println(player.getPosition() + " : " + targetPosition + x);
+        //sysSystem.out.println(player.getPosition() + " : " + targetPosition + x);
 
         Player.getINSTANCE().setPosition(targetPosition);
 
@@ -898,11 +898,11 @@ public class MapConfig {
             for (int i = 7; i <= 7; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 8), Interaction.ROCKET));
             for (int i = 7; i <= 7; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 9), Interaction.ROCKET));
 
-            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.PNJ7_RIGHT, new Pair<>(i, 3), Interaction.PNJ7));
-            for (int i = 19  ; i <= 19; ++i) m.add(addBlockingCell(Sprite.PNJ7_LEFT, new Pair<>(i, 3), Interaction.PNJ7));
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ7_DOWN, new Pair<>(i, 4), Interaction.PNJ7));
-            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.PNJ7_RIGHT, new Pair<>(i, 7), Interaction.PNJ7));
-            for (int i = 22; i <= 22; ++i) m.add(addBlockingCell(Sprite.PNJ7_DOWN, new Pair<>(i, 8), Interaction.PNJ7));
+            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.PNJ8_RIGHT, new Pair<>(i, 2), Interaction.PNJ8));
+            for (int i = 19  ; i <= 19; ++i) m.add(addBlockingCell(Sprite.PNJ9_LEFT, new Pair<>(i, 2), Interaction.PNJ9));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ10_DOWN, new Pair<>(i, 4), Interaction.SNAKE));
+            for (int i = 9; i <= 9; ++i) m.add(addBlockingCell(Sprite.PNJ11_RIGHT, new Pair<>(i, 7), Interaction.SNAKE));
+            for (int i = 22; i <= 22; ++i) m.add(addBlockingCell(Sprite.PNJ12_DOWN, new Pair<>(i, 8), Interaction.SNAKE));
 
             createBuilding(m, "STORE_", 4, 4, new Pair<>(13, 0), null);
             createBuilding(m, "BURGER_", 4, 4, new Pair<>(7, 2), null);
