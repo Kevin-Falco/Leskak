@@ -11,7 +11,7 @@ import javafx.scene.input.KeyEvent;
 
 public class PacMan {
     private static boolean pacmanMovement = false;
-    private static int remainingDots = 181;
+    private static int remainingDots = 182;
 
 
     public static boolean isPacmanMovement() {

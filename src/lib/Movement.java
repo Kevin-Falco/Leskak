@@ -186,11 +186,7 @@ public class Movement {
         }
         refreshPlayerSprite();
         Cell cell = MapConfig.getSecondCell(MapConfig.getINSTANCE().getMaps().indexOf(map), player.getPosition().getKey(), player.getPosition().getValue());
-        if(PacMan.isPacmanMovement() && cell != null && cell.getSprite().equals(Sprite.HERB)){
-            map.getGridPane().getChildren().remove(cell.getImage());
-            map.getCells().remove(cell);
-            PacMan.setRemainingDots(PacMan.getRemainingDots() - 1);
-        }
+
         if(Movement.isMovementKey(key)){
             Movement.automaticLastKey = Key.getKeyofKeyCode(key.getCode());
         }
@@ -208,6 +204,11 @@ public class Movement {
             tt.setOnFinished(event -> {
                 if(map.isFogOfWar())
                     map.updateFogOfWar();
+                if(PacMan.isPacmanMovement() && cell != null && cell.getSprite().equals(Sprite.HERB)){
+                    map.getGridPane().getChildren().remove(cell.getImage());
+                    map.getCells().remove(cell);
+                    PacMan.setRemainingDots(PacMan.getRemainingDots() - 1);
+                }
             });
             tt.play();
         }
