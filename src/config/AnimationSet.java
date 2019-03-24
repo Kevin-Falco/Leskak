@@ -41,6 +41,7 @@ public enum AnimationSet {
     BLACK_CAT(Sprite.BLACK_CAT_UP, Sprite.BLACK_CAT_DOWN, Sprite.BLACK_CAT_RIGHT, Sprite.BLACK_CAT_LEFT),
     SNAKE(Sprite.SNAKE_UP, Sprite.SNAKE_DOWN, Sprite.SNAKE_RIGHT, Sprite.SNAKE_LEFT),
     FOX(Sprite.FOX_UP, Sprite.FOX_DOWN, Sprite.FOX_RIGHT, Sprite.FOX_LEFT),
+    CHICKEN(Sprite.CHICKEN_UP, Sprite.CHICKEN_DOWN, Sprite.CHICKEN_RIGHT, Sprite.CHICKEN_LEFT),
 
     ;
 

@@ -124,6 +124,10 @@ public enum Sprite {
     FOX_DOWN("sprite/animal/fox_down.png"),
     FOX_RIGHT("sprite/animal/fox_right.png"),
     FOX_LEFT("sprite/animal/fox_left.png"),
+    CHICKEN_UP("sprite/animal/chicken_up.png"),
+    CHICKEN_DOWN("sprite/animal/chicken_down.png"),
+    CHICKEN_RIGHT("sprite/animal/chicken_right.png"),
+    CHICKEN_LEFT("sprite/animal/chicken_left.png"),
 
     ROCKET_UP("sprite/rocket/rocket_up.png"),
     ROCKET_DOWN("sprite/rocket/rocket_down.png"),
@@ -167,6 +171,10 @@ public enum Sprite {
     SPACE("sprite/env/space.png"),
     STATUE_UP("sprite/env/statue_up.png"),
     STATUE_DOWN("sprite/env/statue_down.png"),
+    VORTEX_0("sprite/env/vortex_0.png"),
+    VORTEX_1("sprite/env/vortex_1.png"),
+    VORTEX_2("sprite/env/vortex_2.png"),
+    VORTEX_3("sprite/env/vortex_3.png"),
 
 
     TREE("sprite/tree/tree.png"),
