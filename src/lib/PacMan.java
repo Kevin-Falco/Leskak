@@ -18,8 +18,8 @@ import java.util.Random;
 
 public class PacMan {
     private static boolean pacmanMovement = false;
-    private static final int maxDots = 182;
-    private static int remainingDots = 182;
+    private static final int maxDots = 176;
+    private static int remainingDots = 176;
     private static Ghost ghost1 = new Ghost(new Pair<>(14, 5), AnimationSet.BLUE_GHOST);
     private static Ghost ghost2 = new Ghost(new Pair<>(15, 5), AnimationSet.ORANGE_GHOST);
     private static Ghost ghost3 = new Ghost(new Pair<>(16, 5), AnimationSet.PINK_GHOST);

@@ -1051,8 +1051,11 @@ public class MapConfig {
             Map m = maps.get(10);
 
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.PACMAN_BG, new Pair<>(i, j)));
-            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.PACGUM, new Pair<>(i, j)));
+            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 4; ++j) m.add(addCell(Sprite.PACGUM, new Pair<>(i, j)));
+            for (int i = 3; i <= 28; ++i) m.add(addCell(Sprite.PACGUM, new Pair<>(i, 5)));
+            for (int i = 0; i <= 31; ++i) for (int j = 6; j <= 11; ++j) m.add(addCell(Sprite.PACGUM, new Pair<>(i, j)));
             for (int i = 13; i <= 18; ++i) for (int j = 4; j <= 6; ++j) m.add(addBlockingCell(Sprite.PACMAN_BG, new Pair<>(i, j)));
+
             for (int i = 0; i <= 0; ++i) for (int j = 5; j <= 5; ++j) m.add(addTransitionCell(Sprite.PACMAN_BG, new Pair<>(i, j), Direction.LEFT));
             for (int i = 31; i <= 31; ++i) for (int j = 5; j <= 5; ++j) m.add(addTransitionCell(Sprite.PACMAN_BG, new Pair<>(i, j), Direction.RIGHT));
 
