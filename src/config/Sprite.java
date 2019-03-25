@@ -149,6 +149,7 @@ public enum Sprite {
     GRASS("sprite/env/grass.png"),
     BUSH("sprite/env/bush.png"),
     BUSH2("sprite/env/bush2.png"),
+    BUSH3("sprite/env/bush3.png"),
     HERB("sprite/env/herb.png"),
     ROCK("sprite/env/rock.png"),
     ROCK2("sprite/env/rock2.png"),
@@ -176,6 +177,7 @@ public enum Sprite {
     VORTEX_2("sprite/env/vortex_2.png"),
     VORTEX_3("sprite/env/vortex_3.png"),
     SNOW("sprite/env/snow.png"),
+    CAVE_ENTRANCE("sprite/env/cave_entrance.png"),
 
     TREE("sprite/tree/tree.png"),
     TREE_UP("sprite/tree/tree_up.png"),
@@ -281,6 +283,10 @@ public enum Sprite {
     HOUSE3_1("sprite/house/house3_1.png"),
     HOUSE3_2("sprite/house/house3_2.png"),
     HOUSE3_3("sprite/house/house3_3.png"),
+    HOUSE4_0("sprite/house/house4_0.png"),
+    HOUSE4_1("sprite/house/house4_1.png"),
+    HOUSE4_2("sprite/house/house4_2.png"),
+    HOUSE4_3("sprite/house/house4_3.png"),
 
     BUILDING_0("sprite/shopping_center/building_0.png"),
     BUILDING_1("sprite/shopping_center/building_1.png"),
