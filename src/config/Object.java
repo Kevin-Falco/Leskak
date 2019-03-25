@@ -12,7 +12,11 @@ public enum Object {
     OBJ4("Dynamite", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(0,1)),
     OBJ4_2("Bague de Rohkan", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(0,1)),
     OBJ5("Rayon laser", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(1,1)),
-    OBJ6("Colis", new ImageView("sprite/object/package.png"), new Pair<>(2,1));
+    OBJ6("Colis", new ImageView("sprite/object/package.png"), new Pair<>(2,1)),
+    OBJ6_2("Colis dangeureux", new ImageView("sprite/object/package.png"), new Pair<>(2,1)),
+    OBJ7_1("Plume", new ImageView("sprite/animal/fox_up.png"), new Pair<>(2,1)),
+    OBJ7_2("Plumes", new ImageView("sprite/animal/fox_down.png"), new Pair<>(2,1)),
+    OBJ7_3("Plumes", new ImageView("sprite/animal/fox_left.png"), new Pair<>(2,1));
 
     private String name;
     private ImageView imageView;

@@ -53,6 +53,7 @@ public class MapConfig {
                 this.updateProgress(100, 100);
 
                 Platform.runLater(() -> configMap(Planet.PLANET4.getMaps().get(0)));
+
             }
         };
         GameLayout.getINSTANCE().setGameHasBegun(true);
@@ -984,8 +985,8 @@ public class MapConfig {
             for (int i = 12; i <= 12; ++i) m.add(addBlockingCell(Sprite.PNJ15_RIGHT, new Pair<>(i, 8), Interaction.PNJ15));
             for (int i = 20; i <= 20; ++i) m.add(addBlockingCell(Sprite.PNJ16_DOWN, new Pair<>(i, 9), Interaction.PNJ16));
 
-            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.STATUE_UP, new Pair<>(i, 5), Interaction.SNAKE));
-            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.STATUE_DOWN, new Pair<>(i, 6), Interaction.SNAKE));
+            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.STATUE_UP, new Pair<>(i, 5), Interaction.STATUE));
+            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.STATUE_DOWN, new Pair<>(i, 6), Interaction.STATUE));
 
             createBuilding(m, "HOUSE3_", 2, 2, new Pair<>(12, 2), null);
             createBuilding(m, "HOUSE3_", 2, 2, new Pair<>(19, 2), null);
