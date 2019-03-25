@@ -29,6 +29,10 @@ public enum Interaction {
     PNJ11,
     PNJ12,
     PNJ12_2,
+    PNJ13,
+    PNJ14,
+    PNJ15,
+    PNJ16,
     CHEST_BEFORE_HIDDEN,
     CHEST_HIDDEN,
     CHEST_CLOSED,
@@ -43,6 +47,8 @@ public enum Interaction {
     CAT2,
     FOX,
     SNAKE,
+    CHICKEN,
+    FOX1,
     MOVEMENT;
 
     static {
@@ -53,6 +59,12 @@ public enum Interaction {
         PNJ9.eventHandler = createSimpleDialog(Interaction.PNJ9, DialogConfig.PNJ9);
         PNJ12.eventHandler = createSimpleDialog(Interaction.PNJ12, DialogConfig.PNJ12);
         PNJ12_2.eventHandler = createSimpleDialog(Interaction.PNJ12_2, DialogConfig.PNJ12_2);
+        PNJ13.eventHandler = createSimpleDialog(Interaction.PNJ13, DialogConfig.PNJ13);
+        PNJ15.eventHandler = createSimpleDialog(Interaction.PNJ15, DialogConfig.PNJ15);
+        PNJ16.eventHandler = createSimpleDialog(Interaction.PNJ16, DialogConfig.PNJ16);
+        SNAKE.eventHandler = createSimpleDialog(Interaction.SNAKE, DialogConfig.SNAKE);
+        CHICKEN.eventHandler = createSimpleDialog(Interaction.CHICKEN, DialogConfig.CHICKEN);
+        FOX1.eventHandler = createSimpleDialog(Interaction.FOX1, DialogConfig.FOX);
         SNAKE.eventHandler = createSimpleDialog(Interaction.SNAKE, DialogConfig.SNAKE);
         PNJ3.eventHandler = createSimpleButtonInteractionObject(Interaction.PNJ3, DialogConfig.PNJ3_BEFORE,
                 DialogConfig.PNJ3_AFTER, DialogConfig.PNJ3_BUTTON, Action.RETURN_OBJECT6, true,
@@ -92,6 +104,19 @@ public enum Interaction {
         SPACESHIP.eventHandler = createSimpleButtonInteraction(Interaction.SPACESHIP, DialogConfig.SPACESHIP_BEFORE,
                 DialogConfig.SPACESHIP_AFTER, DialogConfig.SPACESHIP_BUTTON, Action.GIVE_OBJECT2);
 
+        PNJ14.eventHandler = ((EventHandler<KeyEvent>) event -> {
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
+                Movement.setMoved(false);
+                if(!PNJ14.isInteractionDone()){
+                    DialogLayout.getINSTANCE().setText(DialogConfig.PNJ14_BEFORE.getText());
+                }
+                else{
+                    DialogLayout.getINSTANCE().setText(DialogConfig.PNJ14_AFTER.getText());
+                }
+            }
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, PNJ14.getEventHandler());
+        });
+
         PACMAN_IN.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 //Cell cell = MapConfig.getSecondCell(10, Player.getINSTANCE().getPosition().getKey(), Player.getINSTANCE().getPosition().getValue());
@@ -103,7 +128,7 @@ public enum Interaction {
                 Player.getINSTANCE().setSprite(Movement.getAnimationSet().getSpriteDirection(Player.getINSTANCE().getDirection()));
 
                 PacMan.setRemainingDots(PacMan.getMaxDots());
-                MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(0, MapConfig.getINSTANCE().getMaps().get(0).getGridPane().getChildren().size() - 1 );
+                MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(0, MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().size() - 1 );
                 MapConfig.getINSTANCE().getMaps().get(10).getCells().clear();
                 MapConfig.getINSTANCE().setupMap(10);
                 PacMan.setPacmanMovement(true);
@@ -111,7 +136,6 @@ public enum Interaction {
             }
         });
         PACMAN_OUT.eventHandler = ((EventHandler<KeyEvent>) event -> {
-            System.out.println(event.getCode());
             if(event.getCode() == KeyCode.P && Movement.isMoved()){
                 MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(1), new Pair<>(20, 5));
                 MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());

@@ -78,6 +78,7 @@ public class PacMan {
         Player.getINSTANCE().setSprite(Movement.getAnimationSet().getSpriteDirection(Player.getINSTANCE().getDirection()));
         Movement.setLastKeyReleased(true);
         PacMan.setPacmanMovement(false);
+        MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_IN.getEventHandler());
         //MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_OUT.getEventHandler());
         //KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", KeyCode.P, false, false, false, false) );
     }
@@ -214,7 +215,8 @@ public class PacMan {
 
             boolean oppositeDirection = false;
             if(player.getPosition().equals(pair)){
-                if (Math.abs(player.getDirection().ordinal() - animationSet.getDirection(cellInMap.getSprite()).ordinal()) == 2 )
+                if (Math.abs(player.getDirection().ordinal() - animationSet.getDirection(cellInMap.getSprite()).ordinal()) == 1 &&
+                        (Math.floorDiv( player.getDirection().ordinal(),2) == Math.floorDiv(animationSet.getDirection(cellInMap.getSprite()).ordinal(),2)))
                     oppositeDirection = true;
             }
             return (this.cellInMap.getPosition().equals(Player.getINSTANCE().getPosition()) ||  oppositeDirection );

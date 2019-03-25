@@ -24,6 +24,8 @@ public enum DialogConfig {
     CAT2_BEFORE("Ce chat a une bourse dans la gueule. Voulez-vous la prendre ?"),
     CAT2_AFTER("MIAOOOOU ! Il n'est pas content de ne plus avoir sa bourse ! Le paaauvre."),
     CAT2_BUTTON("Lui prendre sa bourse"),
+    CHICKEN("A CHANGER : Côôôt côt côt"),
+    FOX("A CHANGER :  What does the fox say ?"),
     FOX_BEFORE("Je vais vous raconter une petite histoire ...\n       Maître Corbeau, sur un arbre perché,\n" +
             "           Tenait en son bec un fromage.\n" +
             "       Maître Renard, par l'odeur ... "),
@@ -70,7 +72,14 @@ public enum DialogConfig {
     PNJ11_AFTER("Ohhh ! Tu as retrouvé ma bague ! Merci beaucoup ! Comme convenu, je te donne un peu d'argent pour t'aider dans ta quête !"),
     PNJ11_BUTTON("Donner la bague"),
     PNJ12("Les coordonnées de la planète Longstar ?! Répare déjà tes réacteurs avant que je t'en dise plus."),
-    PNJ12_2("Ooooh des réacteurs neufs ! Tu pourrais aller sur Longstar avec ça ! Elle se situe en Latitude:19,960905 et Longitude: 19.990312 dans la galaxie NeufTroisQuart !"),
+    PNJ12_2("Ooooh des réacteurs neufs ! Tu pourrais aller sur Longstar avec ça ! Elle se situe en Latitude:43.51715 et Longitude: 5.456508 dans le secteur NeufTroisQuart !"),
+    PNJ13("A CHANGER : HULK SMASH!"),
+    PNJ14(""),
+    PNJ14_BEFORE("A CHANGER : PD"),
+    PNJ14_AFTER(""),
+    PNJ14_BUTTON(""),
+    PNJ15("A CHANGER : Mon colis a explosé va le rechercher planete 2 "),
+    PNJ16("A CHANGER : I AM THOR"),
     ;
 
     private String text;

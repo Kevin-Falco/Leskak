@@ -52,7 +52,7 @@ public class MapConfig {
                 }
                 this.updateProgress(100, 100);
 
-                Platform.runLater(() -> configMap(Planet.PLANET3.getMaps().get(1)));
+                Platform.runLater(() -> configMap(Planet.PLANET3.getMaps().get(0)));
             }
         };
         GameLayout.getINSTANCE().setGameHasBegun(true);
@@ -970,10 +970,10 @@ public class MapConfig {
             for (int i = 23; i <= 23; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 4), Interaction.ROCKET));
             for (int i = 23; i <= 23; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 5), Interaction.ROCKET));
 
-            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ13_RIGHT, new Pair<>(i, 4), Interaction.SNAKE));
-            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.PNJ14_DOWN, new Pair<>(i, 4), Interaction.SNAKE));
-            for (int i = 12; i <= 12; ++i) m.add(addBlockingCell(Sprite.PNJ15_RIGHT, new Pair<>(i, 8), Interaction.SNAKE));
-            for (int i = 20; i <= 20; ++i) m.add(addBlockingCell(Sprite.PNJ16_DOWN, new Pair<>(i, 9), Interaction.SNAKE));
+            for (int i = 14; i <= 14; ++i) m.add(addBlockingCell(Sprite.PNJ13_RIGHT, new Pair<>(i, 4), Interaction.PNJ13));
+            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.PNJ14_DOWN, new Pair<>(i, 4), Interaction.PNJ14));
+            for (int i = 12; i <= 12; ++i) m.add(addBlockingCell(Sprite.PNJ15_RIGHT, new Pair<>(i, 8), Interaction.PNJ15));
+            for (int i = 20; i <= 20; ++i) m.add(addBlockingCell(Sprite.PNJ16_DOWN, new Pair<>(i, 9), Interaction.PNJ16));
 
             for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.STATUE_UP, new Pair<>(i, 5), Interaction.SNAKE));
             for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.STATUE_DOWN, new Pair<>(i, 6), Interaction.SNAKE));
@@ -1032,15 +1032,15 @@ public class MapConfig {
             for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.BUSH2, new Pair<>(i, 7)));
             for (int i = 20; i <= 23; ++i) m.add(addBlockingCell(Sprite.BUSH2, new Pair<>(i, 8)));
 
-            for (int i = 23; i <= 23; ++i) m.add(addBlockingCell(Sprite.FOX_DOWN, new Pair<>(i, 1), Interaction.SNAKE));
-            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.FOX_RIGHT, new Pair<>(i, 4), Interaction.SNAKE));
-            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.FOX_LEFT, new Pair<>(i, 4), Interaction.SNAKE));
-            for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.FOX_UP, new Pair<>(i, 6), Interaction.SNAKE));
-            for (int i = 20; i <= 20; ++i) m.add(addBlockingCell(Sprite.FOX_LEFT, new Pair<>(i, 9), Interaction.SNAKE));
+            for (int i = 23; i <= 23; ++i) m.add(addBlockingCell(Sprite.FOX_DOWN, new Pair<>(i, 1), Interaction.FOX1));
+            for (int i = 16; i <= 16; ++i) m.add(addBlockingCell(Sprite.FOX_RIGHT, new Pair<>(i, 4), Interaction.FOX1));
+            for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.FOX_LEFT, new Pair<>(i, 4), Interaction.FOX1));
+            for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.FOX_UP, new Pair<>(i, 6), Interaction.FOX1));
+            for (int i = 20; i <= 20; ++i) m.add(addBlockingCell(Sprite.FOX_LEFT, new Pair<>(i, 9), Interaction.FOX1));
 
-            for (int i = 19; i <= 19; ++i) m.add(addBlockingCell(Sprite.CHICKEN_LEFT, new Pair<>(i, 3), Interaction.SNAKE));
-            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.CHICKEN_DOWN, new Pair<>(i, 8), Interaction.SNAKE));
-            for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.CHICKEN_LEFT, new Pair<>(i, 10), Interaction.SNAKE));
+            for (int i = 19; i <= 19; ++i) m.add(addBlockingCell(Sprite.CHICKEN_LEFT, new Pair<>(i, 3), Interaction.CHICKEN));
+            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.CHICKEN_DOWN, new Pair<>(i, 8), Interaction.CHICKEN));
+            for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.CHICKEN_LEFT, new Pair<>(i, 10), Interaction.CHICKEN));
 
             createBuilding(m, "VORTEX_", 2, 2, new Pair<>(21,5), Interaction.PACMAN_IN);
 

@@ -160,6 +160,7 @@ public enum Action {
             DialogLayout.getINSTANCE().removeContent();
             Node node = (Node) action.getSource();
             node.setFocusTraversable(false);
+            Movement.setMoved(true);
             Movement.resumeMovement();
         });
     }
