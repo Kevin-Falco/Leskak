@@ -1,6 +1,5 @@
 package config;
 
-import lib.PacMan;
 
 public enum DialogConfig {
     PNJ1("Salut étranger ! Ici nous sommes sur la planète Jansen. Cette planète est couverte d'arbres et de plaines verdoyantes !"),
@@ -19,6 +18,9 @@ public enum DialogConfig {
             "Par ailleurs mon ami, aurais-tu vu un livreur sur la planète Jansen ? Il a mon colis et j'aimerais le récupérer au plus vite..."),
     PNJ5_AFTER("Oh ! Merci beaucoup ! Bonne chance encore pour ta quête !"),
     PNJ5_BUTTON("Rendre le colis"),
+    PNJ5_2_BEFORE("A CHANGER : Problème avec colis défectueux"),
+    PNJ5_2_AFTER("A CHANGER : Après l'avoir amené réparé go planète 4"),
+    PNJ5_2_BUTTON("Reprendre le colis"),
     BUSH1_BEFORE("Il y a un colis dans ces hautes herbes. Souhaitez-vous le prendre ?"),
     BUSH1_AFTER(""),
     BUSH1_BUTTON("Prendre le colis"),
@@ -68,6 +70,9 @@ public enum DialogConfig {
     PNJ8("Ma baguette magique a été faite avec du CRAIN DE LICORNE, Monsieur !"),
     PNJ9("Ma baguette magique a été faite avec un VENTRICULE DE DRAGON, Monsieur !"),
     PNJ10("Bienvenue au point de vente intergalactique ! Nous réparons et vendons de nombreux articles. Faites-vous plaisir !"),
+    PNJ10_PACKAGE_BEFORE("A CHANGER : oh un colis endommagé je dois vite le réparer"),
+    PNJ10_PACKAGE_AFTER("A CHANGER : colis réparé! ++A"),
+    PNJ10_PACKAGE_BUTTON("Faire réparer le colis"),
     PNJ10_BUTTON1("Réparer les réacteurs (500€)"),
     PNJ10_BUTTON2("Tenue blanche (5.000€)"),
     PNJ10_BUTTON3("Dynamite (10.000€)"),
@@ -83,13 +88,18 @@ public enum DialogConfig {
     PNJ12("Les coordonnées de la planète Longstar ?! Répare déjà tes réacteurs avant que je t'en dise plus."),
     PNJ12_2("Ooooh des réacteurs neufs ! Tu pourrais aller sur Longstar avec ça ! Elle se situe en Latitude:43.51715 et Longitude: 5.456508 dans le secteur NeufTroisQuart !"),
     PNJ13("A CHANGER : HULK SMASH!"),
-    PNJ14(""),
     PNJ14_BEFORE("A CHANGER : PD"),
-    PNJ14_AFTER(""),
-    PNJ14_BUTTON(""),
+    PNJ14_AFTER("A CHANGER : *Ouvre le colis* Quete des poulets"),
+    PNJ14_2_BEFORE("A CHANGER : Va chercher des poulets la"),
+    PNJ14_2_BUTTON("A CHANGER : Rendre les 3 plumes"),
+    PNJ14_2_AFTER("A CHANGER : Merci mais en fait c'est ton colis lol c'est une nouvelle tenur appuie sur " + Key.CHANGE_SKIN.getKeyCode().getName() + " pour en changer"),
     PNJ15("A CHANGER : Mon colis a explosé va le rechercher planete 2 "),
     PNJ16("A CHANGER : I AM THOR"),
-    PACMAN_WON("A CHANGER : Gagné"),
+    PNJ17_BEFORE("A CHANGER : Il fait beau aujourd'hui. Ah non  c'est une planète de glace lol. Puis la map elle est moche en plus ptdr Keke t'es nul. Et c'est pas Yaël qui le dit c'est moi, la map est symetrique de ouf et l'eau on dirait juste des rochers lol. Va apprendre à faire des sprites abruti."),
+    PNJ17_AFTER("A CHANGER : J'en veux pas de ton colis pourri"),
+    PNJ18("A CHANGER : Il faut de la dynamite"),
+    PNJ19("A CHANGER : Tiens le rayon laser"),
+    PACMAN_WON("A CHANGER : Gagné, nouveau skin et panneau de controle"),
     PACMAN_LOSE("A CHANGER : Perdu"),
     ;
 

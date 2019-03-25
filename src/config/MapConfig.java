@@ -52,7 +52,8 @@ public class MapConfig {
                 }
                 this.updateProgress(100, 100);
 
-                Platform.runLater(() -> configMap(Planet.PLANET1.getMaps().get(0)));
+                Platform.runLater(() -> configMap(Planet.PLANET4.getMaps().get(0)));
+
             }
         };
         GameLayout.getINSTANCE().setGameHasBegun(true);
@@ -83,6 +84,9 @@ public class MapConfig {
         }
         if(planet.equals(Planet.PLANET3)){
             configMap(map, new Pair<>(24, 5));
+        }
+        if(planet.equals(Planet.PLANET4)){
+            configMap(map, new Pair<>(1, 1));
         }
     }
 
@@ -145,6 +149,12 @@ public class MapConfig {
         }
         else if(nbMap == 10){
             MapSetup.setupMap10();
+        }
+        else if(nbMap == 11){
+            MapSetup.setupMap11();
+        }
+        else if(nbMap == 12){
+            MapSetup.setupMap12();
         }
     }
 
@@ -1141,6 +1151,25 @@ public class MapConfig {
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.PACMAN_WALL, new Pair<>(i, 11)));
 
             createBuilding(m, "LETTER_", 8, 1, new Pair<>(12, 0), null);
+        }
+
+        private static void setupMap11() {
+            Map m = maps.get(11);
+
+            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.GRASS, new Pair<>(i, j)));
+
+            for (int i = 3; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 4), Interaction.ROCKET));
+            for (int i = 3; i <= 3; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 5), Interaction.ROCKET));
+
+            for (int i = 4; i <= 4; ++i) m.add(addBlockingCell(Sprite.PNJ1_DOWN, new Pair<>(i, 4), Interaction.PNJ17));
+            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.PNJ1_DOWN, new Pair<>(i, 4), Interaction.PNJ18));
+            for (int i = 6; i <= 6; ++i) m.add(addBlockingCell(Sprite.PNJ1_DOWN, new Pair<>(i, 4), Interaction.PNJ19));
+        }
+
+        private static void setupMap12() {
+            Map m = maps.get(12);
+
+            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.GRASS, new Pair<>(i, j)));
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){

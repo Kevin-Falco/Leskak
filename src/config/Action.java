@@ -11,14 +11,16 @@ public enum Action {
     TELEPORT_PLANET1,
     TELEPORT_PLANET2,
     TELEPORT_PLANET3,
+    TELEPORT_PLANET4,
     TELEPORT_COMMERCIAL_CENTER,
     GIVE_OBJECT1,
     GIVE_OBJECT2,
-    GIVE_OBJECT3,
     GIVE_OBJECT4,
     GIVE_OBJECT5,
     GIVE_OBJECT6,
     GIVE_OBJECT6_2,
+    GIVE_OBJECT6_3,
+    GIVE_SKIN,
     GIVE_MONEY_CAT,
     GIVE_MONEY_FOX,
     GIVE_MONEY_STATUE,
@@ -34,6 +36,7 @@ public enum Action {
     CHEST_CLOSED,
     BUY_SKIN,
     BUY_DYNAMITE,
+    PACKAGE_REPAIR,
     TEST1,
     RETURN,
     ;
@@ -42,9 +45,11 @@ public enum Action {
         TELEPORT_PLANET1.eventHandler = createTeleportAction(Planet.PLANET1.getMaps().get(0));
         TELEPORT_PLANET2.eventHandler = createTeleportAction(Planet.PLANET2.getMaps().get(0));
         TELEPORT_PLANET3.eventHandler = createTeleportAction(Planet.PLANET3.getMaps().get(0));
+        TELEPORT_PLANET4.eventHandler = createTeleportAction(Planet.PLANET4.getMaps().get(0));
         TELEPORT_COMMERCIAL_CENTER.eventHandler = createTeleportAction(Planet.COMMERCIAL_CENTER.getMaps().get(0));
         GIVE_OBJECT6.eventHandler = createGiveObjectAction(Interaction.BUSH1, Object.OBJ6, DialogConfig.BUSH1_AFTER);
         GIVE_OBJECT6_2.eventHandler = createGiveObjectAction(Interaction.PNJ3_2, Object.OBJ6, DialogConfig.PNJ3_2_AFTER);
+        GIVE_OBJECT6_3.eventHandler = createGiveObjectAction(Interaction.PNJ5_2, Object.OBJ6_2, DialogConfig.PNJ5_2_AFTER);
         GIVE_MONEY_CAT.eventHandler = createGiveMoneyAction(Interaction.CAT2, 500, DialogConfig.CAT2_AFTER);
         GIVE_MONEY_FOX.eventHandler = createGiveMoneyAction(Interaction.FOX, 500,DialogConfig.FOX_SUCCESS);
         CHEST_HIDDEN.eventHandler = createInteractionAndSpriteChange(Interaction.CHEST_HIDDEN, DialogConfig.CHEST_CLOSED, 1,
@@ -59,6 +64,19 @@ public enum Action {
         ERROR_FOX.eventHandler = createRiddleErrorAction(DialogConfig.FOX_ERROR);
         ERROR_PNJ6.eventHandler = createRiddleErrorAction(DialogConfig.PNJ6_ERROR);
         ERROR_STATUE.eventHandler = createRiddleErrorAction(DialogConfig.STATUE_ERROR);
+        PACKAGE_REPAIR.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            Inventory.getINSTANCE().remove(Object.OBJ6_2);
+            Inventory.getINSTANCE().add(Object.OBJ6);
+            Movement.resumeMovement();
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_PACKAGE_AFTER.getText());
+            Movement.setMoved(true);
+        });
+
+        GIVE_SKIN.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
+            Player.getINSTANCE().getSkinAvailables().add(1);
+            Interaction.PNJ14_2.setInteractionDone(true);
+        });
         BUY_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             if(DialogLayout.getINSTANCE().getMoney() < 10000){
                 DialogLayout.getINSTANCE().removeContent();
@@ -77,7 +95,7 @@ public enum Action {
                 return;
             }
             DialogLayout.getINSTANCE().removeMoney(5000);
-            Player.getINSTANCE().getSkinAvailables().add(1);
+            Player.getINSTANCE().getSkinAvailables().add(2);
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_SKIN_BUYED.getText());
             Movement.setMoved(true);

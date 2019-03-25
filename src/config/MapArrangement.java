@@ -14,6 +14,8 @@ public enum MapArrangement {
     MAP9(null, null, Planet.PLANET3.getMaps().get(1), null),
     MAP10(null, null, null, Planet.PLANET3.getMaps().get(0)),
     MAP11(null, null, Planet.PLANET3.getMaps().get(2), Planet.PLANET3.getMaps().get(2)),
+    MAP12(Planet.PLANET4.getMaps().get(1), null, null, null),
+    MAP13(null, Planet.PLANET4.getMaps().get(0), null, null),
     ;
 
     private Map up;
