@@ -1,5 +1,7 @@
 package config;
 
+import lib.PacMan;
+
 public enum DialogConfig {
     PNJ1("Salut étranger ! Ici nous sommes sur la planète Jansen. Cette planète est couverte d'arbres et de plaines verdoyantes !"),
     PNJ2("Tu t'appelles Leskak ? Et tu cherches une plaque de tôle ? Il y a un ermite à l'Est qui a refait sa maison il y a peu. Il doit posséder ce que tu cherches."),
@@ -80,6 +82,8 @@ public enum DialogConfig {
     PNJ14_BUTTON(""),
     PNJ15("A CHANGER : Mon colis a explosé va le rechercher planete 2 "),
     PNJ16("A CHANGER : I AM THOR"),
+    PACMAN_WON("A CHANGER : Gagné"),
+    PACMAN_LOSE("A CHANGER : Perdu"),
     ;
 
     private String text;

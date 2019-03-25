@@ -2,11 +2,9 @@ package lib;
 
 
 import config.*;
+import config.Object;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import javafx.util.Pair;
@@ -71,6 +69,15 @@ public class PacMan {
     }
 
     public static void gameOver(){
+        if(PacMan.remainingDots == 0){
+            Interaction.PACMAN_IN.setInteractionDone(true);
+            DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_WON.getText());
+            Inventory.getINSTANCE().add(Object.OBJ3);
+            Player.getINSTANCE().getSkinAvailables().add(3);
+        }
+        else{
+            DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_LOSE.getText());
+        }
         MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(1), new Pair<>(20, 5));
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
         Player.getINSTANCE().setCurrentSkin(0);

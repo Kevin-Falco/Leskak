@@ -119,9 +119,7 @@ public enum Interaction {
 
         PACMAN_IN.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                //Cell cell = MapConfig.getSecondCell(10, Player.getINSTANCE().getPosition().getKey(), Player.getINSTANCE().getPosition().getValue());
-                //MapConfig.getINSTANCE().getMaps().get(10).getCells().remove(cell);
-                //MapConfig.getINSTANCE().getMaps().get(10).getGridPane().getChildren().remove(cell.getImage());
+                if(PACMAN_IN.isInteractionDone()) return;
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
                 Player.getINSTANCE().setCurrentSkin(3);
                 Movement.setAnimationSet(AnimationSet.getSpriteSet(Player.getINSTANCE().getCurrentSkin()*4).getStopSpriteSet());
@@ -173,7 +171,7 @@ public enum Interaction {
                 if(!Planet.PLANET2.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ1)){
                     DialogLayout.getINSTANCE().addButton(Planet.PLANET2.getName(), Action.TELEPORT_PLANET2.getEventHandler());
                 }
-                if(!Planet.COMMERCIAL_CENTER.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ2)){
+                if(!Planet.COMMERCIAL_CENTER.getMaps().contains(Movement.getMap()) && (Inventory.getINSTANCE().contains(Object.OBJ2) || Inventory.getINSTANCE().contains(Object.OBJ2_2))){
                     DialogLayout.getINSTANCE().addButton(Planet.COMMERCIAL_CENTER.getName(), Action.TELEPORT_COMMERCIAL_CENTER.getEventHandler());
                 }
                 if(!Planet.PLANET3.getMaps().contains(Movement.getMap()) && PNJ12_2.isInteractionDone()){
