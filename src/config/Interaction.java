@@ -68,7 +68,8 @@ public enum Interaction {
         PNJ13.eventHandler = createSimpleDialog(Interaction.PNJ13, DialogConfig.PNJ13);
         PNJ15.eventHandler = createSimpleDialogWithInteractionChange(Interaction.PNJ15, DialogConfig.PNJ15, 3, Interaction.PNJ5, Interaction.PNJ5_2);
         PNJ16.eventHandler = createSimpleDialog(Interaction.PNJ16, DialogConfig.PNJ16);
-        PNJ17.eventHandler = createSimpleDialog(Interaction.PNJ17, DialogConfig.PNJ17);
+        PNJ18.eventHandler = createSimpleDialog(Interaction.PNJ18, DialogConfig.PNJ18);
+        PNJ19.eventHandler = createSimpleDialog(Interaction.PNJ19, DialogConfig.PNJ19);
         SNAKE.eventHandler = createSimpleDialog(Interaction.SNAKE, DialogConfig.SNAKE);
         CHICKEN.eventHandler = createSimpleDialog(Interaction.CHICKEN, DialogConfig.CHICKEN);
         FOX1.eventHandler = createSimpleDialog(Interaction.FOX1, DialogConfig.FOX);
@@ -123,6 +124,7 @@ public enum Interaction {
                 }
                 else{
                     DialogLayout.getINSTANCE().setText(DialogConfig.PNJ14_AFTER.getText());
+                    Inventory.getINSTANCE().remove(Object.OBJ6);
                     for(Cell cell : MapConfig.getINSTANCE().getMaps().get(8).getCells()){
                         if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null &&
                                 ((BlockingCell) cell).getInteraction().equals(Interaction.PNJ14)){
@@ -132,6 +134,20 @@ public enum Interaction {
                 }
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, PNJ14.getEventHandler());
+        });
+
+        PNJ17.eventHandler = ((EventHandler<KeyEvent>) event -> {
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
+                Movement.setMoved(false);
+                if(Inventory.getINSTANCE().contains(Object.OBJ6) && Interaction.PNJ5_2.isInteractionDone() ){
+                    DialogLayout.getINSTANCE().setText(DialogConfig.PNJ17_AFTER.getText());
+                    PNJ17.setInteractionDone(true);
+                }
+                else{
+                    DialogLayout.getINSTANCE().setText(DialogConfig.PNJ17_BEFORE.getText());
+                }
+            }
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, PNJ17.getEventHandler());
         });
 
         PNJ14_2.eventHandler = createSimpleButtonInteractionObject(Interaction.PNJ14_2, DialogConfig.PNJ14_2_BEFORE,
@@ -208,7 +224,6 @@ public enum Interaction {
                 if(!Planet.PLANET4.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ3)){
                     DialogLayout.getINSTANCE().addButton(Planet.PLANET4.getName(), Action.TELEPORT_PLANET4.getEventHandler());
                 }
-                DialogLayout.getINSTANCE().addButton(Planet.PLANET4.getName(), Action.TELEPORT_PLANET4.getEventHandler());
                 DialogLayout.getINSTANCE().addReturnButton();
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());

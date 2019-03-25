@@ -95,7 +95,7 @@ public enum DialogConfig {
     PNJ14_2_AFTER("A CHANGER : Merci mais en fait c'est ton colis lol c'est une nouvelle tenur appuie sur " + Key.CHANGE_SKIN.getKeyCode().getName() + " pour en changer"),
     PNJ15("A CHANGER : Mon colis a explosé va le rechercher planete 2 "),
     PNJ16("A CHANGER : I AM THOR"),
-    PNJ17_BEFORE("A CHANGER : Il fait beau aujourd'hui. Ah non  c'est une planète de glace lol. Puis la map elle est moche en plus ptdr Keke t'es nul. Et c'est pas Yaël qui le dit c'est moi, la map est symetrique de ouf et l'eau on dirait juste des rochers lol. Va apprendre à faire des sprites abruti."),
+    PNJ17_BEFORE("A CHANGER : Il fait beau aujourd'hui. Ah non  c'est une planète de glace lol. Puis la map elle est moche en plus ptdr Keke t'es nul. Et c'est pas Yaël qui le dit c'est moi, la map est symetrique de ouf et l'eau on dirait juste des rochers lol. Va apprendre à faire des sprites gros naaaaze."),
     PNJ17_AFTER("A CHANGER : J'en veux pas de ton colis pourri"),
     PNJ18("A CHANGER : Il faut de la dynamite"),
     PNJ19("A CHANGER : Tiens le rayon laser"),
