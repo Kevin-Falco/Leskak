@@ -8,7 +8,7 @@ public enum Object {
     OBJ1("Plaque de tôle", new ImageView("sprite/object/sheet_metal_plate.png"), new Pair<>(0,0)),
     OBJ2("Réacteurs endommagés", new ImageView("sprite/object/reactors.png"), new Pair<>(1,0)),
     OBJ2_2("Réacteurs", new ImageView("sprite/object/reactors.png"), new Pair<>(1,0)),
-    OBJ3("Panneau de commande", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(2,0)),
+    OBJ3("Panneau de commande", new ImageView("sprite/object/command_panel.png"), new Pair<>(2,0)),
     OBJ4("Dynamite", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(0,1)),
     OBJ4_2("Bague de Rohkan", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(0,1)),
     OBJ5("Rayon laser", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(1,1)),
