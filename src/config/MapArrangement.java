@@ -13,7 +13,7 @@ public enum MapArrangement {
     MAP8(null,null,null,null),
     MAP9(null, null, Planet.PLANET3.getMaps().get(1), null),
     MAP10(null, null, null, Planet.PLANET3.getMaps().get(0)),
-    MAP11(null, null, null, null),
+    MAP11(null, null, Planet.PLANET3.getMaps().get(2), Planet.PLANET3.getMaps().get(2)),
     ;
 
     private Map up;

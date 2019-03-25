@@ -95,7 +95,7 @@ public class MapConfig {
         if(player.getSprite() == null)
             player.setSprite(Sprite.PLAYER_DOWN_STOP);
         else
-            player.setSprite(AnimationSet.getAnimationSetThatHave(Player.getINSTANCE().getSprite()).getDown());
+            player.setSprite(AnimationSet.getAnimationSetThatHave(Player.getINSTANCE().getSprite()).getSpriteDirection(player.getDirection()));
         player.setDirection(AnimationSet.getAnimationSetThatHave(player.getSprite()).getDirection(player.getSprite()));
         player.getImage().setTranslateX(0);
         player.getImage().setTranslateY(0);
@@ -1053,6 +1053,8 @@ public class MapConfig {
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.PACMAN_BG, new Pair<>(i, j)));
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.PACGUM, new Pair<>(i, j)));
             for (int i = 13; i <= 18; ++i) for (int j = 4; j <= 6; ++j) m.add(addBlockingCell(Sprite.PACMAN_BG, new Pair<>(i, j)));
+            for (int i = 0; i <= 0; ++i) for (int j = 5; j <= 5; ++j) m.add(addTransitionCell(Sprite.PACMAN_BG, new Pair<>(i, j), Direction.LEFT));
+            for (int i = 31; i <= 31; ++i) for (int j = 5; j <= 5; ++j) m.add(addTransitionCell(Sprite.PACMAN_BG, new Pair<>(i, j), Direction.RIGHT));
 
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.PACMAN_WALL, new Pair<>(i, 0)));
             for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.PACMAN_WALL, new Pair<>(i, 1)));
