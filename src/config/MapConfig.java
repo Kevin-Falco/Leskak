@@ -1157,6 +1157,7 @@ public class MapConfig {
             Map m = maps.get(11);
 
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.SNOW, new Pair<>(i, j)));
+            for (int i = 12; i <= 12; ++i) m.add(addCell(Sprite.TREE4, new Pair<>(i, 0)));
 
             for (int i = 12; i <= 12; ++i) m.add(addTransitionCell(Sprite.CAVE_ENTRANCE, new Pair<>(i, 0), Direction.UP));
 
