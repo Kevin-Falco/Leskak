@@ -44,6 +44,13 @@ public enum DialogConfig {
     PNJ6_BUTTON1("MAAAAAL !"),
     PNJ6_BUTTON2("partage !"),
     PNJ6_BUTTON3("BIIIIEN !"),
+    STATUE_BEFORE("A CHANGER : Enigme STATUE"),
+    STATUE_AFTER("A CHANGER : t'as win dégage"),
+    STATUE_ERROR("A CHANGER : Et c'est perdu"),
+    STATUE_SUCCESS("A CHANGER : Et c'est gagné"),
+    STATUE_BUTTON1("A CHANGER : mauvaise réponse"),
+    STATUE_BUTTON2("A CHANGER : bonne réponse"),
+    STATUE_BUTTON3("A CHANGER : mauvaise réponse"),
     SNAKE("Ssssssssssss !"),
     PNJ7("Je me suis perdue dans cet immense labyrinthe et je crois que je ne pourrais jamais trouver la sortie...\n" +
             "Si jamais tu y arrives étranger, saches que j'ai enterré un coffre au trésor derrière la maison d'un ermite sur Jansen.\n" +
@@ -62,8 +69,8 @@ public enum DialogConfig {
     PNJ9("Ma baguette magique a été faite avec un VENTRICULE DE DRAGON, Monsieur !"),
     PNJ10("Bienvenue au point de vente intergalactique ! Nous réparons et vendons de nombreux articles. Faites-vous plaisir !"),
     PNJ10_BUTTON1("Réparer les réacteurs (500€)"),
-    PNJ10_BUTTON2("Tenue blanche (10.000€)"),
-    PNJ10_BUTTON3("Dynamite (15.000€)"),
+    PNJ10_BUTTON2("Tenue blanche (5.000€)"),
+    PNJ10_BUTTON3("Dynamite (10.000€)"),
     PNJ10_NOT_ENOUGH_MONEY("Il semblerait que vous n'ayez pas assez d'argent pour cet article."),
     PNJ10_REACTORS_REPARED("Et voilà, terminé en deux coups de cuiller à pot ! Vos réacteurs sont réparés!\n" +
             "Quoi ?! Tu cherches à aller sur Longstar ? Vas voir M. Stark près des bureaux, il possède un carnet avec les coordonnées de nombreuses planètes."),

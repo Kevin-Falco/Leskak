@@ -21,9 +21,11 @@ public enum Action {
     GIVE_OBJECT6_2,
     GIVE_MONEY_CAT,
     GIVE_MONEY_FOX,
+    GIVE_MONEY_STATUE,
     ERROR_FOX,
     GIVE_MONEY_PNJ6,
     ERROR_PNJ6,
+    ERROR_STATUE,
     RETURN_OBJECT2,
     RETURN_OBJECT6,
     RETURN_OBJECT4_2,
@@ -50,17 +52,15 @@ public enum Action {
         CHEST_CLOSED.eventHandler = createInteractionAndSpriteChangeAndGiveMoney(Interaction.CHEST_CLOSED, DialogConfig.CHEST_OPENED, 1,
                 Interaction.CHEST_CLOSED, Interaction.CHEST_OPENED, Sprite.CHEST_OPENED, 2000);
         GIVE_MONEY_PNJ6.eventHandler = createGiveMoneyAction(Interaction.PNJ6, 500,DialogConfig.PNJ6_SUCCESS);
+        GIVE_MONEY_STATUE.eventHandler = createGiveMoneyAction(Interaction.STATUE, 500,DialogConfig.STATUE_SUCCESS);
         GIVE_OBJECT1.eventHandler = createGiveObjectAction(Interaction.PNJ4, Object.OBJ1, DialogConfig.PNJ4_AFTER);
         GIVE_OBJECT2.eventHandler = createGiveObjectAndMoneyAction(Interaction.SPACESHIP, Object.OBJ2, DialogConfig.SPACESHIP_AFTER ,250);
-        //GIVE_OBJECT3.eventHandler = createGiveObjectAction(Interaction., Object.OBJ3, DialogConfig.);
-        //GIVE_OBJECT4.eventHandler = createGiveObjectAction(Interaction., Object.OBJ4, DialogConfig.);
-        //GIVE_OBJECT5.eventHandler = createGiveObjectAction(Interaction., Object.OBJ5, DialogConfig.);
-
 
         ERROR_FOX.eventHandler = createRiddleErrorAction(DialogConfig.FOX_ERROR);
         ERROR_PNJ6.eventHandler = createRiddleErrorAction(DialogConfig.PNJ6_ERROR);
+        ERROR_STATUE.eventHandler = createRiddleErrorAction(DialogConfig.STATUE_ERROR);
         BUY_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            if(DialogLayout.getINSTANCE().getMoney() < 15000){
+            if(DialogLayout.getINSTANCE().getMoney() < 10000){
                 DialogLayout.getINSTANCE().removeContent();
                 DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
                 Movement.setMoved(true);
@@ -69,14 +69,14 @@ public enum Action {
             }
         });
         BUY_SKIN.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            if(DialogLayout.getINSTANCE().getMoney() < 10000){
+            if(DialogLayout.getINSTANCE().getMoney() < 5000){
                 DialogLayout.getINSTANCE().removeContent();
                 DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
                 Movement.setMoved(true);
                 Movement.resumeMovement();
                 return;
             }
-            DialogLayout.getINSTANCE().removeMoney(10000);
+            DialogLayout.getINSTANCE().removeMoney(5000);
             Player.getINSTANCE().getSkinAvailables().add(1);
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_SKIN_BUYED.getText());

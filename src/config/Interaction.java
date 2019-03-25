@@ -49,6 +49,7 @@ public enum Interaction {
     SNAKE,
     CHICKEN,
     FOX1,
+    STATUE,
     MOVEMENT;
 
     static {
@@ -93,6 +94,9 @@ public enum Interaction {
         PNJ6.eventHandler = createRiddleInteraction(Interaction.PNJ6, DialogConfig.PNJ6_BEFORE, DialogConfig.PNJ6_AFTER,
                 DialogConfig.PNJ6_BUTTON1, DialogConfig.PNJ6_BUTTON2, DialogConfig.PNJ6_BUTTON3,
                 Action.ERROR_PNJ6, Action.GIVE_MONEY_PNJ6);
+        STATUE.eventHandler = createRiddleInteraction(Interaction.STATUE, DialogConfig.STATUE_BEFORE, DialogConfig.STATUE_AFTER,
+                DialogConfig.STATUE_BUTTON1, DialogConfig.STATUE_BUTTON2, DialogConfig.STATUE_BUTTON3,
+                Action.ERROR_STATUE, Action.GIVE_MONEY_STATUE);
         PNJ7.eventHandler = createSimpleDialogWithInteractionAndSpriteChange(Interaction.PNJ7, DialogConfig.PNJ7, 1,
                 Interaction.CHEST_BEFORE_HIDDEN, Interaction.CHEST_HIDDEN, Sprite.CHEST_HIDDEN);
         CHEST_BEFORE_HIDDEN.eventHandler = createSimpleDialog(Interaction.CHEST_BEFORE_HIDDEN, DialogConfig.CHEST_BEFORE_HIDDEN);
