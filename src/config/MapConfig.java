@@ -52,7 +52,7 @@ public class MapConfig {
                 }
                 this.updateProgress(100, 100);
 
-                Platform.runLater(() -> configMap(Planet.PLANET4.getMaps().get(0)));
+                Platform.runLater(() -> configMap(Planet.PLANET3.getMaps().get(0)));
 
             }
         };
@@ -1062,11 +1062,12 @@ public class MapConfig {
 
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.PACMAN_BG, new Pair<>(i, j)));
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 4; ++j) m.add(addCell(Sprite.PACGUM, new Pair<>(i, j)));
-            for (int i = 3; i <= 28; ++i) m.add(addCell(Sprite.PACGUM, new Pair<>(i, 5)));
+            for (int i = 3; i <= 13; ++i) m.add(addCell(Sprite.PACGUM, new Pair<>(i, 5)));
+            for (int i = 18; i <= 28; ++i) m.add(addCell(Sprite.PACGUM, new Pair<>(i, 5)));
             for (int i = 0; i <= 31; ++i) for (int j = 6; j <= 11; ++j) m.add(addCell(Sprite.PACGUM, new Pair<>(i, j)));
 
-            for (int i = 0; i <= 0; ++i) for (int j = 5; j <= 5; ++j) m.add(addTransitionCell(Sprite.PACMAN_BG, new Pair<>(i, j), Direction.LEFT));
-            for (int i = 31; i <= 31; ++i) for (int j = 5; j <= 5; ++j) m.add(addTransitionCell(Sprite.PACMAN_BG, new Pair<>(i, j), Direction.RIGHT));
+            for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.PACMAN_BG, new Pair<>(i, 5), Direction.LEFT));
+            for (int i = 31; i <= 31; ++i) m.add(addTransitionCell(Sprite.PACMAN_BG, new Pair<>(i, 5), Direction.RIGHT));
 
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.PACMAN_WALL, new Pair<>(i, 0)));
             for (int i = 0; i <= 0; ++i) m.add(addBlockingCell(Sprite.PACMAN_WALL, new Pair<>(i, 1)));
@@ -1262,9 +1263,35 @@ public class MapConfig {
         private static void setupMap12() {
             Map m = maps.get(12);
 
-            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.SNOW, new Pair<>(i, j)));
+            for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.CAVE_FLOOR, new Pair<>(i, j)));
 
-            for (int i = 12; i <= 12; ++i) m.add(addTransitionCell(Sprite.SNOW, new Pair<>(i, 11), Direction.DOWN));
+            for (int i = 12; i <= 12; ++i) m.add(addTransitionCell(Sprite.CAVE_FLOOR, new Pair<>(i, 11), Direction.DOWN));
+
+            for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 0)));
+            for (int i = 0; i <= 9; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 1)));
+            for (int i = 15; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 1)));
+            for (int i = 0; i <= 8; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 2)));
+            for (int i = 16; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 2)));
+            for (int i = 0; i <= 7; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 3)));
+            for (int i = 17; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 3)));
+            for (int i = 0; i <= 7; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 4)));
+            for (int i = 17; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 4)));
+            for (int i = 0; i <= 6; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 5)));
+            for (int i = 18; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 5)));
+            for (int i = 0; i <= 6; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 6)));
+            for (int i = 18; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 6)));
+            for (int i = 0; i <= 7; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 7)));
+            for (int i = 17; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 7)));
+            for (int i = 0; i <= 7; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 8)));
+            for (int i = 17; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 8)));
+            for (int i = 0; i <= 8; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 9)));
+            for (int i = 16; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 9)));
+            for (int i = 0; i <= 9; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 10)));
+            for (int i = 15; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 10)));
+            for (int i = 0; i <= 11; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 11)));
+            for (int i = 13; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 11)));
+
+            updateSpritesOf(12, SpriteSet.CAVE_SET);
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){
