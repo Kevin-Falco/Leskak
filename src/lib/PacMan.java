@@ -196,7 +196,7 @@ public class PacMan {
         }
 
         private boolean isGoodSprite(Sprite sprite){
-            return sprite.equals(Sprite.PACMAN_BG) || sprite.equals(Sprite.PACGUM) || sprite.equals(Player.getINSTANCE().getSprite());
+            return sprite.equals(Sprite.PACMAN_BG) || sprite.equals(Sprite.PACGUM) || sprite.equals(Sprite.PACMAN_SEMI_WALL) || sprite.equals(Player.getINSTANCE().getSprite());
         }
 
         private boolean playerSameCase(){
