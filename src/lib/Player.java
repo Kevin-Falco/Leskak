@@ -84,7 +84,7 @@ public class Player {
 
     public Integer getNextSkinAvailable() {
         return currentSkin.equals(this.skinAvailables.get(this.skinAvailables.size() -1))
-                ? this.skinAvailables.get(0) : this.skinAvailables.get(this.currentSkin + 1)  ;
+                ? this.skinAvailables.get(0) : this.skinAvailables.get(this.skinAvailables.indexOf(this.currentSkin)+1);
     }
 
     public Integer getCurrentSkin() {

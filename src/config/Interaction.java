@@ -53,6 +53,9 @@ public enum Interaction {
     FOX,
     SNAKE,
     CHICKEN,
+    CHICKEN1,
+    CHICKEN2,
+    CHICKEN3,
     FOX1,
     STATUE,
     MOVEMENT;
@@ -66,12 +69,14 @@ public enum Interaction {
         PNJ12.eventHandler = createSimpleDialog(Interaction.PNJ12, DialogConfig.PNJ12);
         PNJ12_2.eventHandler = createSimpleDialog(Interaction.PNJ12_2, DialogConfig.PNJ12_2);
         PNJ13.eventHandler = createSimpleDialog(Interaction.PNJ13, DialogConfig.PNJ13);
-        PNJ15.eventHandler = createSimpleDialogWithInteractionChange(Interaction.PNJ15, DialogConfig.PNJ15, 3, Interaction.PNJ5, Interaction.PNJ5_2);
         PNJ16.eventHandler = createSimpleDialog(Interaction.PNJ16, DialogConfig.PNJ16);
         PNJ18.eventHandler = createSimpleDialog(Interaction.PNJ18, DialogConfig.PNJ18);
         PNJ19.eventHandler = createSimpleDialog(Interaction.PNJ19, DialogConfig.PNJ19);
         SNAKE.eventHandler = createSimpleDialog(Interaction.SNAKE, DialogConfig.SNAKE);
         CHICKEN.eventHandler = createSimpleDialog(Interaction.CHICKEN, DialogConfig.CHICKEN);
+        CHICKEN1.eventHandler = chickenInteraction(Interaction.CHICKEN1);
+        CHICKEN2.eventHandler = chickenInteraction(Interaction.CHICKEN2);
+        CHICKEN3.eventHandler = chickenInteraction(Interaction.CHICKEN3);
         FOX1.eventHandler = createSimpleDialog(Interaction.FOX1, DialogConfig.FOX);
         SNAKE.eventHandler = createSimpleDialog(Interaction.SNAKE, DialogConfig.SNAKE);
         PNJ3.eventHandler = createSimpleButtonInteractionObject(Interaction.PNJ3, DialogConfig.PNJ3_BEFORE,
@@ -116,6 +121,9 @@ public enum Interaction {
         SPACESHIP.eventHandler = createSimpleButtonInteraction(Interaction.SPACESHIP, DialogConfig.SPACESHIP_BEFORE,
                 DialogConfig.SPACESHIP_AFTER, DialogConfig.SPACESHIP_BUTTON, Action.GIVE_OBJECT2);
 
+
+
+
         PNJ14.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
@@ -125,6 +133,7 @@ public enum Interaction {
                 else{
                     DialogLayout.getINSTANCE().setText(DialogConfig.PNJ14_AFTER.getText());
                     Inventory.getINSTANCE().remove(Object.OBJ6);
+                    Interaction.PNJ14.setInteractionDone(true);
                     for(Cell cell : MapConfig.getINSTANCE().getMaps().get(8).getCells()){
                         if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null &&
                                 ((BlockingCell) cell).getInteraction().equals(Interaction.PNJ14)){
@@ -148,6 +157,26 @@ public enum Interaction {
                 }
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, PNJ17.getEventHandler());
+        });
+
+        PNJ15.eventHandler = ((EventHandler<KeyEvent>) event -> {
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
+                Movement.setMoved(false);
+                if(Interaction.PNJ15.isInteractionDone() )
+                    DialogLayout.getINSTANCE().setText(DialogConfig.PNJ15_AFTER.getText());
+                else if(!Inventory.getINSTANCE().contains(Object.OBJ6) && Interaction.PNJ5.isInteractionDone() ){
+                    DialogLayout.getINSTANCE().setText(DialogConfig.PNJ15_AFTER.getText());
+                    PNJ15.setInteractionDone(true);
+                    for(Cell cell : MapConfig.getINSTANCE().getMaps().get(3).getCells()){
+                        if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null && ((BlockingCell) cell).getInteraction().equals(Interaction.PNJ5))
+                            ((BlockingCell) cell).setInteraction(Interaction.PNJ5_2);
+                    }
+                }
+                else{
+                    DialogLayout.getINSTANCE().setText(DialogConfig.PNJ15_BEFORE.getText());
+                }
+            }
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, PNJ15.getEventHandler());
         });
 
         PNJ14_2.eventHandler = createSimpleButtonInteractionObject(Interaction.PNJ14_2, DialogConfig.PNJ14_2_BEFORE,
@@ -224,6 +253,7 @@ public enum Interaction {
                 if(!Planet.PLANET4.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ3)){
                     DialogLayout.getINSTANCE().addButton(Planet.PLANET4.getName(), Action.TELEPORT_PLANET4.getEventHandler());
                 }
+
                 DialogLayout.getINSTANCE().addReturnButton();
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());
@@ -427,6 +457,41 @@ public enum Interaction {
                 }
                 else{
                     DialogLayout.getINSTANCE().setText(dialogAfter.getText());
+                }
+            }
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, interaction.getEventHandler());
+        });
+    }
+
+    public  static EventHandler chickenInteraction(Interaction interaction){
+        return ((EventHandler<KeyEvent>) event -> {
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
+                Movement.setMoved(false);
+                if(!interaction.isInteractionDone()){
+                    DialogLayout.getINSTANCE().setText(DialogConfig.CHICKEN.getText());
+                    if(PNJ14.isInteractionDone()){
+                        if(Inventory.getINSTANCE().contains(Object.OBJ7_2)){
+                            DialogLayout.getINSTANCE().removeContent();
+                            DialogLayout.getINSTANCE().setText(DialogConfig.CHICKEN_BEFORE.getText());
+                            DialogLayout.getINSTANCE().addButton(DialogConfig.CHICKEN_BUTTON.getText(), Action.CHICKEN3.getEventHandler());
+                            DialogLayout.getINSTANCE().addReturnButton();
+                        }
+                        else if(Inventory.getINSTANCE().contains(Object.OBJ7_1)){
+                            DialogLayout.getINSTANCE().removeContent();
+                            DialogLayout.getINSTANCE().setText(DialogConfig.CHICKEN_BEFORE.getText());
+                            DialogLayout.getINSTANCE().addButton(DialogConfig.CHICKEN_BUTTON.getText(), Action.CHICKEN2.getEventHandler());
+                            DialogLayout.getINSTANCE().addReturnButton();
+                        }
+                        else if(!Inventory.getINSTANCE().contains(Object.OBJ6)){
+                            DialogLayout.getINSTANCE().removeContent();
+                            DialogLayout.getINSTANCE().setText(DialogConfig.CHICKEN_BEFORE.getText());
+                            DialogLayout.getINSTANCE().addButton(DialogConfig.CHICKEN_BUTTON.getText(), Action.CHICKEN1.getEventHandler());
+                            DialogLayout.getINSTANCE().addReturnButton();
+                        }
+                    }
+                }
+                else{
+                    DialogLayout.getINSTANCE().setText(DialogConfig.CHICKEN_AFTER.getText());
                 }
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, interaction.getEventHandler());

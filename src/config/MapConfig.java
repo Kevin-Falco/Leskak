@@ -52,7 +52,7 @@ public class MapConfig {
                 }
                 this.updateProgress(100, 100);
 
-                Platform.runLater(() -> configMap(Planet.PLANET4.getMaps().get(0)));
+                Platform.runLater(() -> configMap(Planet.PLANET1.getMaps().get(0)));
 
             }
         };
@@ -1048,9 +1048,9 @@ public class MapConfig {
             for (int i = 26; i <= 26; ++i) m.add(addBlockingCell(Sprite.FOX_UP, new Pair<>(i, 6), Interaction.FOX1));
             for (int i = 20; i <= 20; ++i) m.add(addBlockingCell(Sprite.FOX_LEFT, new Pair<>(i, 9), Interaction.FOX1));
 
-            for (int i = 19; i <= 19; ++i) m.add(addBlockingCell(Sprite.CHICKEN_LEFT, new Pair<>(i, 3), Interaction.CHICKEN));
-            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.CHICKEN_DOWN, new Pair<>(i, 8), Interaction.CHICKEN));
-            for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.CHICKEN_LEFT, new Pair<>(i, 10), Interaction.CHICKEN));
+            for (int i = 19; i <= 19; ++i) m.add(addBlockingCell(Sprite.CHICKEN_LEFT, new Pair<>(i, 3), Interaction.CHICKEN1));
+            for (int i = 18; i <= 18; ++i) m.add(addBlockingCell(Sprite.CHICKEN_DOWN, new Pair<>(i, 8), Interaction.CHICKEN2));
+            for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.CHICKEN_LEFT, new Pair<>(i, 10), Interaction.CHICKEN3));
 
             createBuilding(m, "VORTEX_", 2, 2, new Pair<>(21,5), Interaction.PACMAN_IN);
 
