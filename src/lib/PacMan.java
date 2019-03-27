@@ -77,6 +77,8 @@ public class PacMan {
         }
         else{
             DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_LOSE.getText());
+            DialogLayout.getINSTANCE().addButton(DialogConfig.PACMAN_BUTTON.getText(), Action.PACMANSKIP.getEventHandler());
+            DialogLayout.getINSTANCE().addReturnButton();
         }
         MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(1), new Pair<>(20, 5));
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());

@@ -52,8 +52,7 @@ public class MapConfig {
                 }
                 this.updateProgress(100, 100);
 
-                Platform.runLater(() -> configMap(Planet.PLANET1.getMaps().get(0)));
-
+                Platform.runLater(() -> configMap(Planet.PLANET4.getMaps().get(0)));
             }
         };
         GameLayout.getINSTANCE().setGameHasBegun(true);
@@ -1250,8 +1249,8 @@ public class MapConfig {
             for (int i = 1; i <= 1; ++i) m.add(addBlockingCell(Sprite.ROCKET_UP, new Pair<>(i, 7), Interaction.ROCKET));
             for (int i = 1; i <= 1; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 8), Interaction.ROCKET));
 
-            for (int i = 13; i <= 13; ++i) m.add(addBlockingCell(Sprite.PNJ1_DOWN, new Pair<>(i, 1), Interaction.PNJ17));
-            for (int i = 2; i <= 2; ++i) m.add(addBlockingCell(Sprite.PNJ1_DOWN, new Pair<>(i, 4), Interaction.PNJ18));
+            for (int i = 13; i <= 13; ++i) m.add(addBlockingCell(Sprite.PNJ1_DOWN, new Pair<>(i, 1), Interaction.PNJ18));
+            for (int i = 2; i <= 2; ++i) m.add(addBlockingCell(Sprite.PNJ1_DOWN, new Pair<>(i, 4), Interaction.PNJ17));
             for (int i = 21; i <= 21; ++i) m.add(addBlockingCell(Sprite.PNJ1_LEFT, new Pair<>(i, 6), Interaction.PNJ19));
 
             createBuilding(m, "HOUSE4_", 2, 2, new Pair<>(4, 8), null);

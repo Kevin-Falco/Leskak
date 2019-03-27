@@ -38,6 +38,7 @@ public enum Interaction {
     PNJ17,
     PNJ18,
     PNJ19,
+    PNJ20,
     CHEST_BEFORE_HIDDEN,
     CHEST_HIDDEN,
     CHEST_CLOSED,
@@ -71,7 +72,6 @@ public enum Interaction {
         PNJ13.eventHandler = createSimpleDialog(Interaction.PNJ13, DialogConfig.PNJ13);
         PNJ16.eventHandler = createSimpleDialog(Interaction.PNJ16, DialogConfig.PNJ16);
         PNJ18.eventHandler = createSimpleDialog(Interaction.PNJ18, DialogConfig.PNJ18);
-        PNJ19.eventHandler = createSimpleDialog(Interaction.PNJ19, DialogConfig.PNJ19);
         SNAKE.eventHandler = createSimpleDialog(Interaction.SNAKE, DialogConfig.SNAKE);
         CHICKEN.eventHandler = createSimpleDialog(Interaction.CHICKEN, DialogConfig.CHICKEN);
         CHICKEN1.eventHandler = chickenInteraction(Interaction.CHICKEN1);
@@ -104,6 +104,9 @@ public enum Interaction {
         FOX.eventHandler = createRiddleInteraction(Interaction.FOX, DialogConfig.FOX_BEFORE, DialogConfig.FOX_AFTER,
                 DialogConfig.FOX_BUTTON1, DialogConfig.FOX_BUTTON2, DialogConfig.FOX_BUTTON3,
                 Action.ERROR_FOX, Action.GIVE_MONEY_FOX);
+        PNJ19.eventHandler = createRiddleInteraction(Interaction.PNJ19, DialogConfig.PNJ19_BEFORE, DialogConfig.PNJ19_AFTER,
+                DialogConfig.PNJ19_BUTTON1, DialogConfig.PNJ19_BUTTON2, DialogConfig.PNJ19_BUTTON3,
+                Action.ERROR_PNJ19, Action.GIVE_SKIN2);
         PNJ6.eventHandler = createRiddleInteraction(Interaction.PNJ6, DialogConfig.PNJ6_BEFORE, DialogConfig.PNJ6_AFTER,
                 DialogConfig.PNJ6_BUTTON1, DialogConfig.PNJ6_BUTTON2, DialogConfig.PNJ6_BUTTON3,
                 Action.ERROR_PNJ6, Action.GIVE_MONEY_PNJ6);

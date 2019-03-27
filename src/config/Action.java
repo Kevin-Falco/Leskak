@@ -21,6 +21,7 @@ public enum Action {
     GIVE_OBJECT6_2,
     GIVE_OBJECT6_3,
     GIVE_SKIN,
+    GIVE_SKIN2,
     GIVE_MONEY_CAT,
     GIVE_MONEY_FOX,
     GIVE_MONEY_STATUE,
@@ -28,6 +29,7 @@ public enum Action {
     GIVE_MONEY_PNJ6,
     ERROR_PNJ6,
     ERROR_STATUE,
+    ERROR_PNJ19,
     RETURN_OBJECT2,
     RETURN_OBJECT6,
     RETURN_OBJECT4_2,
@@ -40,6 +42,7 @@ public enum Action {
     CHICKEN3,
     BUY_DYNAMITE,
     PACKAGE_REPAIR,
+    PACMANSKIP,
     TEST1,
     RETURN,
     ;
@@ -65,6 +68,7 @@ public enum Action {
         GIVE_OBJECT2.eventHandler = createGiveObjectAndMoneyAction(Interaction.SPACESHIP, Object.OBJ2, DialogConfig.SPACESHIP_AFTER ,250);
 
         ERROR_FOX.eventHandler = createRiddleErrorAction(DialogConfig.FOX_ERROR);
+        ERROR_PNJ19.eventHandler = createRiddleErrorAction(DialogConfig.PNJ19_ERROR);
         ERROR_PNJ6.eventHandler = createRiddleErrorAction(DialogConfig.PNJ6_ERROR);
         ERROR_STATUE.eventHandler = createRiddleErrorAction(DialogConfig.STATUE_ERROR);
         PACKAGE_REPAIR.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
@@ -76,7 +80,17 @@ public enum Action {
             Movement.setMoved(true);
         });
 
-        CHICKEN1.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
+        PACMANSKIP.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            Interaction.PACMAN_IN.setInteractionDone(true);
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_WON.getText());
+            Inventory.getINSTANCE().add(Object.OBJ3);
+            Player.getINSTANCE().getSkinAvailables().add(3);
+            Movement.setMoved(true);
+            Movement.resumeMovement();
+        });
+
+            CHICKEN1.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
             Inventory.getINSTANCE().add(Object.OBJ7_1);
             Pair<Integer, Integer> p = Player.getINSTANCE().getPosition();
             switch (Player.getINSTANCE().getDirection()){
@@ -187,6 +201,13 @@ public enum Action {
             Inventory.getINSTANCE().remove(Object.OBJ7_3);
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ14_2_AFTER.getText());
+            Movement.resumeMovement();
+        });
+        GIVE_SKIN2.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
+            Player.getINSTANCE().getSkinAvailables().add(2);
+            Interaction.PNJ14_2.setInteractionDone(true);
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ19_SUCCESS.getText());
             Movement.resumeMovement();
         });
         BUY_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {

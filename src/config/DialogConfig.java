@@ -102,10 +102,17 @@ public enum DialogConfig {
     CHICKEN_AFTER("A CHANGER : ça a eu l'air douloureux. LE POOOOOOOOOOOOOOOVRE"),
     CHICKEN_BUTTON("Arracher une plume"),
     PNJ18("A CHANGER : Il faut de la dynamite"),
-    PNJ19("A CHANGER : Je suis le panda"),
+    PNJ19_BEFORE("A CHANGER : Enigme Panda"),
+    PNJ19_AFTER("A CHANGER : t'as win dégage"),
+    PNJ19_ERROR("A CHANGER : Et c'est perdu"),
+    PNJ19_SUCCESS("A CHANGER : Et c'est gagné"),
+    PNJ19_BUTTON1("A CHANGER : mauvaise réponse"),
+    PNJ19_BUTTON2("A CHANGER : bonne réponse"),
+    PNJ19_BUTTON3("A CHANGER : mauvaise réponse"),
     PNJ20("A CHANGER : Tiens le rayon laser"),
     PACMAN_WON("A CHANGER : Gagné, nouveau skin et panneau de controle"),
     PACMAN_LOSE("A CHANGER : Perdu"),
+    PACMAN_BUTTON("A CHANGER : Voulez-vous passer le PAC-MAN et recevoir les récompenses ?"),
     ;
 
     private String text;
