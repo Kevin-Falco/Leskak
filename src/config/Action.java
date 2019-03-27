@@ -15,6 +15,7 @@ public enum Action {
     TELEPORT_COMMERCIAL_CENTER,
     GIVE_OBJECT1,
     GIVE_OBJECT2,
+    GIVE_OBJECT4_2,
     GIVE_OBJECT5,
     GIVE_OBJECT6,
     GIVE_OBJECT6_2,
@@ -45,6 +46,7 @@ public enum Action {
     PACKAGE_REPAIR,
     PACMANSKIP,
     TEST1,
+    DEATH_STAR,
     RETURN,
     ;
 
@@ -54,6 +56,7 @@ public enum Action {
         TELEPORT_PLANET3.eventHandler = createTeleportAction(Planet.PLANET3.getMaps().get(0));
         TELEPORT_PLANET4.eventHandler = createTeleportAction(Planet.PLANET4.getMaps().get(0));
         TELEPORT_COMMERCIAL_CENTER.eventHandler = createTeleportAction(Planet.COMMERCIAL_CENTER.getMaps().get(0));
+        GIVE_OBJECT4_2.eventHandler = createGiveObjectAction(Interaction.BUSH2, Object.OBJ4_2, DialogConfig.BUSH2_AFTER);
         GIVE_OBJECT5.eventHandler = createGiveObjectAction(Interaction.PNJ20, Object.OBJ5, DialogConfig.PNJ20_AFTER);
         GIVE_OBJECT6.eventHandler = createGiveObjectAction(Interaction.BUSH1, Object.OBJ6, DialogConfig.BUSH1_AFTER);
         GIVE_OBJECT6_2.eventHandler = createGiveObjectAction(Interaction.PNJ3_2, Object.OBJ6, DialogConfig.PNJ3_2_AFTER);
@@ -82,8 +85,17 @@ public enum Action {
             Movement.setMoved(true);
         });
 
+        PACKAGE_REPAIR.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            Inventory.getINSTANCE().remove(Object.OBJ6_2);
+            Inventory.getINSTANCE().add(Object.OBJ6);
+            Movement.resumeMovement();
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_PACKAGE_AFTER.getText());
+            Movement.setMoved(true);
+        });
+
         USE_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Inventory.getINSTANCE().remove(Object.OBJ5);
+            Inventory.getINSTANCE().remove(Object.OBJ4);
             Movement.resumeMovement();
             Cell toRemove = null;
             for(Cell cell : Movement.getMap().getCells()){
@@ -305,7 +317,7 @@ public enum Action {
         RETURN_OBJECT4_2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             Interaction.PNJ11.setInteractionDone(true);
             Inventory.getINSTANCE().remove(Object.OBJ4_2);
-            DialogLayout.getINSTANCE().addMoney(500);
+            DialogLayout.getINSTANCE().addMoney(1000);
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ11_AFTER.getText());
             Movement.setMoved(true);
@@ -318,6 +330,10 @@ public enum Action {
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ5_AFTER.getText());
             Movement.setMoved(true);
             Movement.resumeMovement();
+        });
+        DEATH_STAR.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.DEATH_STAR.getEventHandler());
+            KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
         });
         TEST1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.TEST1.getEventHandler());

@@ -6,13 +6,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import lib.MainLayout;
-import lib.Movement;
+import lib.*;
+import sample.Main;
 
 public enum CinematicConfig {
     TEST1,
     TEST2,
-    TEST3;
+    TEST3,
+    DEATH_STAR,
+    END_GAME,
+    ;
 
     static {
         PauseTransition pt = new PauseTransition();
@@ -64,6 +67,33 @@ public enum CinematicConfig {
                 MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, TEST2.getEventHandler());
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, TEST3.getEventHandler());
             });
+        });
+
+        DEATH_STAR.eventHandler = ((EventHandler<KeyEvent>) (event) -> {
+            if(event.getCode() == Key.SPACE.getKeyCode()) {
+                Pane pane = new Pane();
+                ImageView imageView;
+                if(Player.getINSTANCE().getSkinAvailables().size() == 5)
+                    imageView = new ImageView(Sprite.CINEMATIC2.getSpritePath());
+                else
+                    imageView = new ImageView(Sprite.CINEMATIC.getSpritePath());
+                imageView.setPreserveRatio(true);
+                imageView.setFitWidth(MainLayout.getWIDTH());
+                pane.getChildren().add(imageView);
+                MainLayout.getSCENE().setRoot(pane);
+                pt.play();
+                pt.setOnFinished(event1 -> {
+                    MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, END_GAME.getEventHandler());
+                    MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, DEATH_STAR.getEventHandler());
+                });
+            }
+        });
+
+        END_GAME.eventHandler = ((EventHandler<KeyEvent>) (event) -> {
+            if(event.getCode() == Key.SPACE.getKeyCode()) {
+                MainLayout.getSTAGE().close();
+                Main.getStage().close();
+            }
         });
     }
 

@@ -17,7 +17,7 @@ public class Player {
     private Pair<Integer, Integer> position;
     private Direction direction = Direction.DOWN;
     private Sprite sprite;
-    private ArrayList<Integer> skinAvailables = new ArrayList<>(Arrays.asList(0, 4));
+    private ArrayList<Integer> skinAvailables = new ArrayList<>(Arrays.asList(0));
     private Integer currentSkin = 0;
     private ImageView image = new ImageView();
 

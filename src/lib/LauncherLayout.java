@@ -6,6 +6,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.Worker;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -67,7 +69,15 @@ public class LauncherLayout {
             else{
                 loadingStage.show();
                 MainLayout.getSCENE().setRoot(MainLayout.getINSTANCE().getGridPane());
-                testService.start();
+                if(testService.stateProperty().equals(Worker.State.SUCCEEDED)){
+                    System.out.println("OK");
+                    testService.restart();
+                }
+                else{
+                    testService.restart() ;
+                    //testService.start();
+                }
+
             }
         });
         Button options = new Button("Options");

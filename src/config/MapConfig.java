@@ -1235,7 +1235,7 @@ public class MapConfig {
 
             for (int i = 27; i <= 27; ++i) m.add(addBlockingCell(Sprite.BUSH3, new Pair<>(i, 1)));
             for (int i = 24; i <= 24; ++i) m.add(addBlockingCell(Sprite.BUSH3, new Pair<>(i, 2)));
-            for (int i = 30; i <= 30; ++i) m.add(addBlockingCell(Sprite.BUSH3, new Pair<>(i, 2)));
+            for (int i = 30; i <= 30; ++i) m.add(addBlockingCell(Sprite.BUSH3, new Pair<>(i, 2), Interaction.BUSH2));
             for (int i = 28; i <= 28; ++i) m.add(addBlockingCell(Sprite.BUSH3, new Pair<>(i, 3)));
             for (int i = 25; i <= 25; ++i) m.add(addBlockingCell(Sprite.BUSH3, new Pair<>(i, 4)));
 
@@ -1293,14 +1293,13 @@ public class MapConfig {
             for (int i = 0; i <= 11; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 11)));
             for (int i = 13; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 11)));
 
-            for (int i = 13; i <= 13; ++i) m.add(addBlockingCell(Sprite.PNJ20_DOWN, new Pair<>(i, 6), Interaction.SNAKE));
+            for (int i = 13; i <= 13; ++i) m.add(addBlockingCell(Sprite.PNJ20_DOWN, new Pair<>(i, 6), Interaction.PNJ20));
 
             updateSpritesOf(12, SpriteSet.CAVE_SET);
         }
 
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){
-            for(int i = 0; i <= 31; i++)
-            {
+            for(int i = 0; i <= 31; i++){
                 for(int j = 0; j <= 11; ++j){
                     Cell currentCell = getSecondCell(nbMap, i, j);
                     Cell upCell = getSecondCell(nbMap, i, j-1);

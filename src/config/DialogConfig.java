@@ -126,6 +126,10 @@ public enum DialogConfig {
     PACMAN_LOSE("A CHANGER : Perdu"),
     PACMAN_BUTTON("A CHANGER : Voulez-vous passer le PAC-MAN et recevoir les récompenses ?"),
     ROCK_BUTTON("A CHANGER : Tout faire péter"),
+    DEATH_STAR("A CHANGER : Assembler les 4 éléments"),
+    BUSH2_BEFORE("A CHANGER : Il y a une bague dans ces hautes herbes. Souhaitez-vous le prendre ?"),
+    BUSH2_AFTER(""),
+    BUSH2_BUTTON("Prendre la bague"),
     ;
 
     private String text;

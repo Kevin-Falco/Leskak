@@ -49,6 +49,7 @@ public enum Interaction {
     ROCKET,
     RETURN_GAME,
     BUSH1,
+    BUSH2,
     CAT1,
     CAT2,
     FOX,
@@ -99,6 +100,9 @@ public enum Interaction {
         BUSH1.eventHandler = createSimpleButtonInteractionObject(Interaction.BUSH1, DialogConfig.BUSH1_BEFORE,
                 DialogConfig.BUSH1_AFTER, DialogConfig.BUSH1_BUTTON, Action.GIVE_OBJECT6, false,
                 Object.OBJ6);
+        BUSH2.eventHandler = createSimpleButtonInteractionObject(Interaction.BUSH2, DialogConfig.BUSH2_BEFORE,
+                DialogConfig.BUSH2_AFTER, DialogConfig.BUSH2_BUTTON, Action.GIVE_OBJECT4_2, false,
+                Object.OBJ4_2);
         CAT2.eventHandler = createSimpleButtonInteraction(Interaction.CAT2, DialogConfig.CAT2_BEFORE,
                 DialogConfig.CAT2_AFTER, DialogConfig.CAT2_BUTTON, Action.GIVE_MONEY_CAT);
 
@@ -248,6 +252,10 @@ public enum Interaction {
                         DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON4.getText(), Action.QUEST_DYNAMITE.getEventHandler());
                     else if(!Inventory.getINSTANCE().contains(Object.OBJ4)){
                         DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON3.getText(), Action.BUY_DYNAMITE.getEventHandler());
+                    }
+                    if(true /*Inventory.getINSTANCE().contains(Object.OBJ1) && Inventory.getINSTANCE().contains(Object.OBJ2_2) &&
+                            Inventory.getINSTANCE().contains(Object.OBJ3) && Inventory.getINSTANCE().contains(Object.OBJ5)*/){
+                        DialogLayout.getINSTANCE().addButton(DialogConfig.DEATH_STAR.getText(), Action.DEATH_STAR.getEventHandler());
                     }
                     DialogLayout.getINSTANCE().addReturnButton();
                 }
