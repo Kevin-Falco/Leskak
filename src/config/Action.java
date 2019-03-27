@@ -15,7 +15,6 @@ public enum Action {
     TELEPORT_COMMERCIAL_CENTER,
     GIVE_OBJECT1,
     GIVE_OBJECT2,
-    GIVE_OBJECT4,
     GIVE_OBJECT5,
     GIVE_OBJECT6,
     GIVE_OBJECT6_2,
@@ -41,6 +40,8 @@ public enum Action {
     CHICKEN2,
     CHICKEN3,
     BUY_DYNAMITE,
+    QUEST_DYNAMITE,
+    USE_DYNAMITE,
     PACKAGE_REPAIR,
     PACMANSKIP,
     TEST1,
@@ -53,6 +54,7 @@ public enum Action {
         TELEPORT_PLANET3.eventHandler = createTeleportAction(Planet.PLANET3.getMaps().get(0));
         TELEPORT_PLANET4.eventHandler = createTeleportAction(Planet.PLANET4.getMaps().get(0));
         TELEPORT_COMMERCIAL_CENTER.eventHandler = createTeleportAction(Planet.COMMERCIAL_CENTER.getMaps().get(0));
+        GIVE_OBJECT5.eventHandler = createGiveObjectAction(Interaction.PNJ20, Object.OBJ5, DialogConfig.PNJ20_AFTER);
         GIVE_OBJECT6.eventHandler = createGiveObjectAction(Interaction.BUSH1, Object.OBJ6, DialogConfig.BUSH1_AFTER);
         GIVE_OBJECT6_2.eventHandler = createGiveObjectAction(Interaction.PNJ3_2, Object.OBJ6, DialogConfig.PNJ3_2_AFTER);
         GIVE_OBJECT6_3.eventHandler = createGiveObjectAction(Interaction.PNJ5_2, Object.OBJ6_2, DialogConfig.PNJ5_2_AFTER);
@@ -80,6 +82,37 @@ public enum Action {
             Movement.setMoved(true);
         });
 
+        USE_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            Inventory.getINSTANCE().remove(Object.OBJ5);
+            Movement.resumeMovement();
+            for(Cell cell : Movement.getMap().getCells()){
+                if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null &&
+                        ((BlockingCell) cell).getInteraction().equals(Interaction.ROCK)){
+                    Movement.getMap().remove(cell);
+                }
+            }
+            Interaction.ROCK.setInteractionDone(true);
+            DialogLayout.getINSTANCE().removeContent();
+            Movement.setMoved(true);
+        });
+
+        QUEST_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            DialogLayout.getINSTANCE().removeContent();
+            if(Player.getINSTANCE().getCurrentSkin() == 2){
+                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_QUEST_AFTER.getText());
+                Inventory.getINSTANCE().add(Object.OBJ4);
+                Interaction.PNJ10.setInteractionDone(true);
+            }
+            else if(Player.getINSTANCE().getSkinAvailables().contains(2)){
+                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_QUEST_BETWEEN.getText());
+            }
+            else{
+                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_QUEST_BEFORE.getText());
+            }
+            Movement.resumeMovement();
+            Movement.setMoved(true);
+        });
+
         PACMANSKIP.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             Interaction.PACMAN_IN.setInteractionDone(true);
             DialogLayout.getINSTANCE().removeContent();
@@ -90,7 +123,7 @@ public enum Action {
             Movement.resumeMovement();
         });
 
-            CHICKEN1.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
+        CHICKEN1.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
             Inventory.getINSTANCE().add(Object.OBJ7_1);
             Pair<Integer, Integer> p = Player.getINSTANCE().getPosition();
             switch (Player.getINSTANCE().getDirection()){

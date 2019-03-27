@@ -59,6 +59,7 @@ public enum Interaction {
     CHICKEN3,
     FOX1,
     STATUE,
+    ROCK,
     MOVEMENT;
 
     static {
@@ -124,8 +125,20 @@ public enum Interaction {
         SPACESHIP.eventHandler = createSimpleButtonInteraction(Interaction.SPACESHIP, DialogConfig.SPACESHIP_BEFORE,
                 DialogConfig.SPACESHIP_AFTER, DialogConfig.SPACESHIP_BUTTON, Action.GIVE_OBJECT2);
 
+        PNJ20.eventHandler = createSimpleButtonInteractionObject(Interaction.PNJ20, DialogConfig.PNJ20_BEFORE,
+                DialogConfig.PNJ20_AFTER, DialogConfig.PNJ20_BUTTON, Action.GIVE_OBJECT1, false,
+                Object.OBJ1);
 
-
+        ROCK.eventHandler = ((EventHandler<KeyEvent>) event -> {
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
+                Movement.setMoved(false);
+                if(Inventory.getINSTANCE().contains(Object.OBJ5)){
+                    DialogLayout.getINSTANCE().addButton(DialogConfig.ROCK_BUTTON.getText(), Action.USE_DYNAMITE.getEventHandler());
+                    DialogLayout.getINSTANCE().addReturnButton();
+                }
+            }
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, ROCK.getEventHandler());
+        });
 
         PNJ14.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
@@ -200,6 +213,7 @@ public enum Interaction {
                 MapConfig.getINSTANCE().setupMap(10);
                 PacMan.setPacmanMovement(true);
                 MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(2), new Pair<>(15, 7));
+                MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_IN.getEventHandler());
             }
         });
         PACMAN_OUT.eventHandler = ((EventHandler<KeyEvent>) event -> {
@@ -230,7 +244,9 @@ public enum Interaction {
                     if(!Player.getINSTANCE().getSkinAvailables().contains(2)){
                         DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON2.getText(), Action.BUY_SKIN.getEventHandler());
                     }
-                    if(!Inventory.getINSTANCE().contains(Object.OBJ4)){
+                    if(Interaction.PNJ18.isInteractionDone() && !Interaction.PNJ10.isInteractionDone())
+                        DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON4.getText(), Action.QUEST_DYNAMITE.getEventHandler());
+                    else if(!Inventory.getINSTANCE().contains(Object.OBJ4)){
                         DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON3.getText(), Action.BUY_DYNAMITE.getEventHandler());
                     }
                     DialogLayout.getINSTANCE().addReturnButton();
@@ -256,6 +272,9 @@ public enum Interaction {
                 if(!Planet.PLANET4.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ3)){
                     DialogLayout.getINSTANCE().addButton(Planet.PLANET4.getName(), Action.TELEPORT_PLANET4.getEventHandler());
                 }
+                DialogLayout.getINSTANCE().addButton(Planet.PLANET4.getName(), Action.TELEPORT_PLANET4.getEventHandler());
+                DialogLayout.getINSTANCE().addButton(Planet.COMMERCIAL_CENTER.getName(), Action.TELEPORT_COMMERCIAL_CENTER.getEventHandler());
+                DialogLayout.getINSTANCE().addButton(Planet.PLANET3.getName(), Action.TELEPORT_PLANET3.getEventHandler());
 
                 DialogLayout.getINSTANCE().addReturnButton();
             }

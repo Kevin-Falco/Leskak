@@ -119,10 +119,13 @@ public enum DialogConfig {
     PNJ19_BUTTON1("A CHANGER : mauvaise réponse"),
     PNJ19_BUTTON2("A CHANGER : bonne réponse"),
     PNJ19_BUTTON3("A CHANGER : mauvaise réponse"),
-    PNJ20("A CHANGER : Tiens le rayon laser"),
+    PNJ20_BEFORE("A CHANGER : Tiens le rayon laser"),
+    PNJ20_AFTER("A CHANGER : Je t'ai donné le rayon laser"),
+    PNJ20_BUTTON("A CHANGER : Prendre le rayon laser"),
     PACMAN_WON("A CHANGER : Gagné, nouveau skin et panneau de controle"),
     PACMAN_LOSE("A CHANGER : Perdu"),
     PACMAN_BUTTON("A CHANGER : Voulez-vous passer le PAC-MAN et recevoir les récompenses ?"),
+    ROCK_BUTTON("A CHANGER : Tout faire péter"),
     ;
 
     private String text;
