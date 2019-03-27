@@ -35,6 +35,9 @@ public enum Action {
     CHEST_HIDDEN,
     CHEST_CLOSED,
     BUY_SKIN,
+    CHICKEN1,
+    CHICKEN2,
+    CHICKEN3,
     BUY_DYNAMITE,
     PACKAGE_REPAIR,
     TEST1,
@@ -73,9 +76,118 @@ public enum Action {
             Movement.setMoved(true);
         });
 
+        CHICKEN1.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
+            Inventory.getINSTANCE().add(Object.OBJ7_1);
+            Pair<Integer, Integer> p = Player.getINSTANCE().getPosition();
+            switch (Player.getINSTANCE().getDirection()){
+                case UP:
+                    p = new Pair<>( p.getKey(), p.getValue() - 1);
+                    break;
+                case DOWN:
+                    p = new Pair<>( p.getKey(), p.getValue() + 1);
+
+                    break;
+                case RIGHT:
+                    p = new Pair<>( p.getKey() + 1, p.getValue());
+                    break;
+                case LEFT:
+
+                    p = new Pair<>( p.getKey() - 1, p.getValue());
+                    break;
+            }
+            Cell cell = MapConfig.getLastCell( 9, p.getKey(), p.getValue());
+            BlockingCell blockingCell = null;
+            System.out.println(Player.getINSTANCE().getPosition());
+            System.out.println(cell.getPosition() );
+            System.out.println(cell.getSprite() );
+            if(cell instanceof BlockingCell){
+                System.out.println("OK");
+                blockingCell = (BlockingCell) cell;
+                blockingCell.getInteraction().setInteractionDone(true);
+            }
+
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.CHICKEN_AFTER.getText());
+            Movement.resumeMovement();
+        });
+        CHICKEN2.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
+            Inventory.getINSTANCE().remove(Object.OBJ7_1);
+            Inventory.getINSTANCE().add(Object.OBJ7_2);
+            Pair<Integer, Integer> p = Player.getINSTANCE().getPosition();
+            switch (Player.getINSTANCE().getDirection()){
+                case UP:
+                    p = new Pair<>( p.getKey(), p.getValue() - 1);
+                    break;
+                case DOWN:
+                    p = new Pair<>( p.getKey(), p.getValue() + 1);
+
+                    break;
+                case RIGHT:
+                    p = new Pair<>( p.getKey() + 1, p.getValue());
+                    break;
+                case LEFT:
+
+                    p = new Pair<>( p.getKey() - 1, p.getValue());
+                    break;
+            }
+            Cell cell = MapConfig.getLastCell( 9, p.getKey(), p.getValue());
+            BlockingCell blockingCell = null;
+            System.out.println(Player.getINSTANCE().getPosition());
+            System.out.println(cell.getPosition() );
+            System.out.println(cell.getSprite() );
+            if(cell instanceof BlockingCell){
+                System.out.println("OK");
+                blockingCell = (BlockingCell) cell;
+                blockingCell.getInteraction().setInteractionDone(true);
+            }
+
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.CHICKEN_AFTER.getText());
+            Movement.resumeMovement();
+        });
+        CHICKEN3.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
+            Inventory.getINSTANCE().remove(Object.OBJ7_2);
+            Inventory.getINSTANCE().add(Object.OBJ7_3);
+            Pair<Integer, Integer> p = Player.getINSTANCE().getPosition();
+            switch (Player.getINSTANCE().getDirection()){
+                case UP:
+                    p = new Pair<>( p.getKey(), p.getValue() - 1);
+                    break;
+                case DOWN:
+                    p = new Pair<>( p.getKey(), p.getValue() + 1);
+
+                    break;
+                case RIGHT:
+                    p = new Pair<>( p.getKey() + 1, p.getValue());
+                    break;
+                case LEFT:
+
+                    p = new Pair<>( p.getKey() - 1, p.getValue());
+                    break;
+            }
+            Cell cell = MapConfig.getLastCell( 9, p.getKey(), p.getValue());
+            BlockingCell blockingCell = null;
+            System.out.println(Player.getINSTANCE().getPosition());
+            System.out.println(cell.getPosition() );
+            System.out.println(cell.getSprite() );
+            if(cell instanceof BlockingCell){
+                System.out.println("OK");
+                blockingCell = (BlockingCell) cell;
+                blockingCell.getInteraction().setInteractionDone(true);
+            }
+
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.CHICKEN_AFTER.getText());
+            Movement.resumeMovement();
+        });
+
         GIVE_SKIN.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
             Player.getINSTANCE().getSkinAvailables().add(1);
             Interaction.PNJ14_2.setInteractionDone(true);
+            Inventory.getINSTANCE().remove(Object.OBJ7_3);
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ14_2_AFTER.getText());
+            Movement.resumeMovement();
         });
         BUY_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             if(DialogLayout.getINSTANCE().getMoney() < 10000){

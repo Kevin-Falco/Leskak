@@ -23,6 +23,9 @@ public enum SpriteSet {
     WATER2_SET(new ArrayList<>(Arrays.asList(Sprite.WATER2, Sprite.WATER2_UP, Sprite.WATER2_DOWN, Sprite.WATER2_RIGHT, Sprite.WATER2_LEFT,
             Sprite.WATER2_UP_RIGHT, Sprite.WATER2_UP_LEFT, Sprite.WATER2_UP_LEFT_RIGHT, Sprite.WATER2_DOWN_RIGHT, Sprite.WATER2_DOWN_LEFT,
             Sprite.WATER2_DOWN_LEFT_RIGHT, Sprite.WATER2_RIGHT_UP_DOWN, Sprite.WATER2_LEFT_UP_DOWN, Sprite.WATER2_UP_DOWN, Sprite.WATER2_LEFT_RIGHT ))),
+    CAVE_SET(new ArrayList<>(Arrays.asList(Sprite.CAVE, Sprite.CAVE_UP, Sprite.CAVE_DOWN, Sprite.CAVE_RIGHT, Sprite.CAVE_LEFT,
+            Sprite.CAVE_UP_RIGHT, Sprite.CAVE_UP_LEFT, Sprite.CAVE_UP_LEFT_RIGHT, Sprite.CAVE_DOWN_RIGHT, Sprite.CAVE_DOWN_LEFT,
+            Sprite.CAVE_DOWN_LEFT_RIGHT, Sprite.CAVE_RIGHT_UP_DOWN, Sprite.CAVE_LEFT_UP_DOWN, Sprite.CAVE_UP_DOWN, Sprite.CAVE_LEFT_RIGHT ))),
     ;
     private List<Sprite> sprites;
 
