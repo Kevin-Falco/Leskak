@@ -126,13 +126,13 @@ public enum Interaction {
                 DialogConfig.SPACESHIP_AFTER, DialogConfig.SPACESHIP_BUTTON, Action.GIVE_OBJECT2);
 
         PNJ20.eventHandler = createSimpleButtonInteractionObject(Interaction.PNJ20, DialogConfig.PNJ20_BEFORE,
-                DialogConfig.PNJ20_AFTER, DialogConfig.PNJ20_BUTTON, Action.GIVE_OBJECT1, false,
-                Object.OBJ1);
+                DialogConfig.PNJ20_AFTER, DialogConfig.PNJ20_BUTTON, Action.GIVE_OBJECT5, false,
+                Object.OBJ5);
 
         ROCK.eventHandler = ((EventHandler<KeyEvent>) event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
-                if(Inventory.getINSTANCE().contains(Object.OBJ5)){
+                if(Inventory.getINSTANCE().contains(Object.OBJ4)){
                     DialogLayout.getINSTANCE().addButton(DialogConfig.ROCK_BUTTON.getText(), Action.USE_DYNAMITE.getEventHandler());
                     DialogLayout.getINSTANCE().addReturnButton();
                 }
