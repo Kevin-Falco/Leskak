@@ -98,7 +98,8 @@ public enum DialogConfig {
     PNJ17_BEFORE("A CHANGER : Il fait beau aujourd'hui. Ah non  c'est une planète de glace lol. Puis la map elle est moche en plus ptdr Keke t'es nul. Et c'est pas Yaël qui le dit c'est moi, la map est symetrique de ouf et l'eau on dirait juste des rochers lol. Va apprendre à faire des sprites gros naaaaze."),
     PNJ17_AFTER("A CHANGER : J'en veux pas de ton colis pourri"),
     PNJ18("A CHANGER : Il faut de la dynamite"),
-    PNJ19("A CHANGER : Tiens le rayon laser"),
+    PNJ19("A CHANGER : Je suis le panda"),
+    PNJ20("A CHANGER : Tiens le rayon laser"),
     PACMAN_WON("A CHANGER : Gagné, nouveau skin et panneau de controle"),
     PACMAN_LOSE("A CHANGER : Perdu"),
     ;

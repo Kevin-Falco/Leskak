@@ -195,7 +195,7 @@ public enum Interaction {
                     if(Inventory.getINSTANCE().contains(Object.OBJ2)){
                         DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON1.getText(), Action.RETURN_OBJECT2.getEventHandler());
                     }
-                    if(!Player.getINSTANCE().getSkinAvailables().contains(1)){
+                    if(!Player.getINSTANCE().getSkinAvailables().contains(2)){
                         DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON2.getText(), Action.BUY_SKIN.getEventHandler());
                     }
                     if(!Inventory.getINSTANCE().contains(Object.OBJ4)){
