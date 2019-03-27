@@ -1254,8 +1254,8 @@ public class MapConfig {
             for (int i = 1; i <= 1; ++i) m.add(addBlockingCell(Sprite.ROCKET_DOWN, new Pair<>(i, 8), Interaction.ROCKET));
 
             for (int i = 2; i <= 2; ++i) m.add(addBlockingCell(Sprite.PNJ17_DOWN, new Pair<>(i, 4), Interaction.PNJ17));
-            for (int i = 8; i <= 8; ++i) m.add(addBlockingCell(Sprite.PNJ18_DOWN, new Pair<>(i, 5), Interaction.PNJ18));
-            for (int i = 21; i <= 21; ++i) m.add(addBlockingCell(Sprite.PNJ19_LEFT, new Pair<>(i, 6), Interaction.PNJ19));
+            for (int i = 21; i <= 21; ++i) m.add(addBlockingCell(Sprite.PNJ18_LEFT, new Pair<>(i, 5), Interaction.PNJ18));
+            for (int i = 5; i <= 5; ++i) m.add(addBlockingCell(Sprite.PNJ19_LEFT, new Pair<>(i, 10), Interaction.PNJ19));
 
             createBuilding(m, "HOUSE4_", 2, 2, new Pair<>(4, 8), null);
 
