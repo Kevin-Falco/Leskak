@@ -1239,6 +1239,8 @@ public class MapConfig {
             for (int i = 28; i <= 28; ++i) m.add(addCell(Sprite.BUSH3, new Pair<>(i, 3)));
             for (int i = 25; i <= 25; ++i) m.add(addCell(Sprite.BUSH3, new Pair<>(i, 4)));
 
+            for (int i = 12; i <= 12; ++i) m.add(addBlockingCell(Sprite.ROCK, new Pair<>(i, 1), Interaction.SNAKE));
+
             for (int i = 21; i <= 23; ++i) m.add(addCell(Sprite.BRIDGE, new Pair<>(i, 3)));
             for (int i = 21; i <= 23; ++i) m.add(addCell(Sprite.BRIDGE, new Pair<>(i, 4)));
             for (int i = 7; i <= 9; ++i) m.add(addCell(Sprite.BRIDGE, new Pair<>(i, 5)));
@@ -1289,6 +1291,8 @@ public class MapConfig {
             for (int i = 15; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 10)));
             for (int i = 0; i <= 11; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 11)));
             for (int i = 13; i <= 31; ++i) m.add(addBlockingCell(Sprite.CAVE, new Pair<>(i, 11)));
+
+            for (int i = 13; i <= 13; ++i) m.add(addBlockingCell(Sprite.PNJ1_DOWN, new Pair<>(i, 6), Interaction.SNAKE));
 
             updateSpritesOf(12, SpriteSet.CAVE_SET);
         }
