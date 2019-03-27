@@ -30,7 +30,7 @@ public enum DialogConfig {
     CAT2_BEFORE("Ce chat a une bourse dans la gueule. Voulez-vous la prendre ?"),
     CAT2_AFTER("MIAOOOOU ! Il n'est pas content de ne plus avoir sa bourse ! Le paaauvre."),
     CAT2_BUTTON("Lui prendre sa bourse"),
-    CHICKEN("Côôôt côt côt"),
+    CHICKEN("Côôôt ! Côt ! Côt !"),
     FOX("What does the fox say ? \"Wa-pa-pa-pa-pa-pa-pow!\""),
     FOX_BEFORE("Je vais vous raconter une petite histoire ...\n" +
             "       Maître Corbeau, sur un arbre perché,\n" +
@@ -60,7 +60,7 @@ public enum DialogConfig {
     PNJ7("Je me suis perdue dans cet immense labyrinthe et je crois que je ne pourrais jamais trouver la sortie...\n" +
             "Si jamais tu y arrives étranger, saches que j'ai enterré un coffre au trésor derrière la maison d'un ermite sur Jansen.\n" +
             "Peut être trouveras-tu ton bonheur à l'intérieur"),
-    CHEST_BEFORE_HIDDEN("La terre semble molle à cet endroit. Il est préférrable de ne pas marcher ici."),
+    CHEST_BEFORE_HIDDEN("La terre semble molle à cet endroit. Il est préférable de ne pas marcher ici."),
     CHEST_HIDDEN("Avec plus d'attention, il semble bien que la terre a été retournée à cet endroit..."),
     CHEST_HIDDEN_BUTTON("Creuser"),
     CHEST_CLOSED("Il y avait bien un coffre là dessous !"),
@@ -91,7 +91,7 @@ public enum DialogConfig {
     PNJ12("Les coordonnées de la planète Longstar ?! Répare déjà tes réacteurs avant que je t'en dise plus."),
     PNJ12_2("Ooooh des réacteurs neufs ! Tu pourrais aller sur Longstar avec ça ! Elle se situe en Latitude:43.51715 et Longitude: 5.456508 dans le secteur NeufTroisQuart !"),
     PNJ13("Hulk pas content !  Hulk vouloir tout casser !"),
-    PNJ14_BEFORE("Salut c'est Captain ! Ici nous sommes sur Longstar, où il régne un toujours un temps très automnal, à l'inverse de la planète Kavi où habite mon frère ! Il fait un froid de canard là bas."),
+    PNJ14_BEFORE("Salut c'est Captain ! Ici nous sommes sur Longstar, où il régne toujours un temps très automnal, à l'inverse de la planète Kavi où habite mon frère ! Il fait un froid de canard là bas."),
     PNJ14_AFTER("*Ouvre le colis* Beurk ! J'aime pas du tout la couleur de ce costume ! Tu pourrais aller me chercher quelques plumes de poulets ? Histoire que j'améliore tout ça."),
     PNJ14_2_BEFORE("Ramène moi quelques plumes de poulet, s'il te plait ! Je n'aime vraiment pas la couleur du costume !"),
     PNJ14_2_BUTTON("Rendre les 3 plumes"),
@@ -100,7 +100,7 @@ public enum DialogConfig {
             "Voilà c'est terminé ! Par contre j'ai remarqué un petit détail... Il y a écrit Leskak sur l'étiquette. Je crois qu'il s'agit de ton colis depuis le début mon cher... du coup je te la donne !" +
             " Appuie sur " + Key.CHANGE_SKIN.getKeyCode().getName() + " pour changer de tenue."),
     PNJ15_BEFORE("J'ai hâte de recevoir mon colis plein de produits super high-tech !"),
-    PNJ15_AFTER("Moi qui était si content d'avoir enfin reçu... et il m'a explosé dans les mains ! Nom d'un Stark ! J'espère que ça ne va arriver à personne d'autres..."),
+    PNJ15_AFTER("Moi qui étais si content d'avoir enfin reçu... et il m'a explosé dans les mains ! Nom d'un Stark ! J'espère que ça ne va arriver à personne d'autres..."),
     PNJ16("BRING ME THANOOOOOOOOOOOS !"),
     PNJ17_BEFORE("ICIIII, C'EST KAVIIIII ! Ah bah non, on a encore perdu en Ligue des Champions..."),
     PNJ17_AFTER("C'est quoi ce colis ? C'est mon père qui t'envoie ? Mais j'en veux pas de ton truc là ! Amène le à mon frangin plutôt, il habite sur Longstar."),
