@@ -253,8 +253,8 @@ public enum Interaction {
                     else if(!Inventory.getINSTANCE().contains(Object.OBJ4)){
                         DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON3.getText(), Action.BUY_DYNAMITE.getEventHandler());
                     }
-                    if(true /*Inventory.getINSTANCE().contains(Object.OBJ1) && Inventory.getINSTANCE().contains(Object.OBJ2_2) &&
-                            Inventory.getINSTANCE().contains(Object.OBJ3) && Inventory.getINSTANCE().contains(Object.OBJ5)*/){
+                    if(Inventory.getINSTANCE().contains(Object.OBJ1) && Inventory.getINSTANCE().contains(Object.OBJ2_2) &&
+                            Inventory.getINSTANCE().contains(Object.OBJ3) && Inventory.getINSTANCE().contains(Object.OBJ5)){
                         DialogLayout.getINSTANCE().addButton(DialogConfig.DEATH_STAR.getText(), Action.DEATH_STAR.getEventHandler());
                     }
                     DialogLayout.getINSTANCE().addReturnButton();
@@ -280,9 +280,7 @@ public enum Interaction {
                 if(!Planet.PLANET4.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ3)){
                     DialogLayout.getINSTANCE().addButton(Planet.PLANET4.getName(), Action.TELEPORT_PLANET4.getEventHandler());
                 }
-                DialogLayout.getINSTANCE().addButton(Planet.PLANET4.getName(), Action.TELEPORT_PLANET4.getEventHandler());
-                DialogLayout.getINSTANCE().addButton(Planet.COMMERCIAL_CENTER.getName(), Action.TELEPORT_COMMERCIAL_CENTER.getEventHandler());
-                DialogLayout.getINSTANCE().addButton(Planet.PLANET3.getName(), Action.TELEPORT_PLANET3.getEventHandler());
+
 
                 DialogLayout.getINSTANCE().addReturnButton();
             }
