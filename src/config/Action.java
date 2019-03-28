@@ -369,7 +369,7 @@ public enum Action {
     private EventHandler eventHandler;
 
     /**
-     * Constructeur vide d'une action
+     * Constructeur vide d'une action.
      */
     Action() {}
 

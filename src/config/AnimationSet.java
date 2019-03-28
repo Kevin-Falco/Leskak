@@ -1,7 +1,12 @@
 package config;
 
+/**
+ * Enumération de l'ensemble des animations du jeu, c'est à dire toutes celles de Leskak et de ses différents skins, de tous
+ * les animaux et pnj du jeu ainsi que du pacman et des fantômes dans celui-ci.
+ */
 public enum AnimationSet {
 
+    // Tenues que peut avoir Leskak + Pacman + Panda
     PLAYER_MOVE_RIGHT(Sprite.PLAYER_UP_MOVE_RIGHT, Sprite.PLAYER_DOWN_MOVE_RIGHT, Sprite.PLAYER_RIGHT_MOVE_RIGHT, Sprite.PLAYER_LEFT_MOVE_RIGHT),
     PLAYER_STOP2(Sprite.PLAYER_UP_STOP, Sprite.PLAYER_DOWN_STOP, Sprite.PLAYER_RIGHT_STOP, Sprite.PLAYER_LEFT_STOP),
     PLAYER_MOVE_LEFT(Sprite.PLAYER_UP_MOVE_LEFT, Sprite.PLAYER_DOWN_MOVE_LEFT, Sprite.PLAYER_RIGHT_MOVE_LEFT, Sprite.PLAYER_LEFT_MOVE_LEFT),
@@ -27,6 +32,7 @@ public enum AnimationSet {
     PANDA_MOVE_LEFT(Sprite.PANDA_UP_MOVE_LEFT, Sprite.PANDA_DOWN_MOVE_LEFT, Sprite.PANDA_RIGHT_MOVE_LEFT, Sprite.PANDA_LEFT_MOVE_LEFT),
     PANDA_STOP(Sprite.PANDA_UP_STOP, Sprite.PANDA_DOWN_STOP, Sprite.PANDA_RIGHT_STOP, Sprite.PANDA_LEFT_STOP),
 
+    // Sprites des 20 personnages non jouables du jeu
     PNJ1(Sprite.PNJ1_UP, Sprite.PNJ1_DOWN, Sprite.PNJ1_RIGHT, Sprite.PNJ1_LEFT),
     PNJ2(Sprite.PNJ2_UP, Sprite.PNJ2_DOWN, Sprite.PNJ2_RIGHT, Sprite.PNJ2_LEFT),
     PNJ3(Sprite.PNJ3_UP, Sprite.PNJ3_DOWN, Sprite.PNJ3_RIGHT, Sprite.PNJ3_LEFT),
@@ -48,6 +54,7 @@ public enum AnimationSet {
     PNJ19(Sprite.PNJ19_UP, Sprite.PNJ19_DOWN, Sprite.PNJ19_RIGHT, Sprite.PNJ19_LEFT),
     PNJ20(Sprite.PNJ20_UP, Sprite.PNJ20_DOWN, Sprite.PNJ20_RIGHT, Sprite.PNJ20_LEFT),
 
+    // Sprites des différents animaux du jeu
     WHITE_CAT(Sprite.WHITE_CAT_UP, Sprite.WHITE_CAT_DOWN, Sprite.WHITE_CAT_RIGHT, Sprite.WHITE_CAT_LEFT),
     GREY_CAT(Sprite.GREY_CAT_UP, Sprite.GREY_CAT_DOWN, Sprite.GREY_CAT_RIGHT, Sprite.GREY_CAT_LEFT),
     BLACK_CAT(Sprite.BLACK_CAT_UP, Sprite.BLACK_CAT_DOWN, Sprite.BLACK_CAT_RIGHT, Sprite.BLACK_CAT_LEFT),
@@ -55,20 +62,50 @@ public enum AnimationSet {
     FOX(Sprite.FOX_UP, Sprite.FOX_DOWN, Sprite.FOX_RIGHT, Sprite.FOX_LEFT),
     CHICKEN(Sprite.CHICKEN_UP, Sprite.CHICKEN_DOWN, Sprite.CHICKEN_RIGHT, Sprite.CHICKEN_LEFT),
 
+    // Sprites des fantômes du Pacman
     BLUE_GHOST(Sprite.BLUE_GHOST_UP, Sprite.BLUE_GHOST_DOWN, Sprite.BLUE_GHOST_RIGHT, Sprite.BLUE_GHOST_LEFT),
     ORANGE_GHOST(Sprite.ORANGE_GHOST_UP, Sprite.ORANGE_GHOST_DOWN, Sprite.ORANGE_GHOST_RIGHT, Sprite.ORANGE_GHOST_LEFT),
     PINK_GHOST(Sprite.PINK_GHOST_UP, Sprite.PINK_GHOST_DOWN, Sprite.PINK_GHOST_RIGHT, Sprite.PINK_GHOST_LEFT),
     RED_GHOST(Sprite.RED_GHOST_UP, Sprite.RED_GHOST_DOWN, Sprite.RED_GHOST_RIGHT, Sprite.RED_GHOST_LEFT),
     ;
 
+    /**
+     * Sprite pointant vers le haut.
+     */
     private Sprite up;
+
+    /**
+     * Sprite pointant vers le bas.
+     */
     private Sprite down;
+
+    /**
+     * Sprite pointant vers ka droite.
+     */
     private Sprite right;
+
+    /**
+     * Sprite pointant vers la gauche.
+     */
     private Sprite left;
 
+    /**
+     * Nombre d'animations de base d'un sprite animé.
+     */
     private static int nbAnim = 0;
-    private static final int nbMaxAnim = 4;
 
+    /**
+     * Nombre maximal d'animations d'un sprite animé dans une direction.
+     */
+    private static final int NB_MAX_ANIM = 4;
+
+    /**
+     * Constructeur d'AnimationSet permettant de définir tous les sprites d'un éléments animé dans toutes les directions.
+     * @param up Sprite pointant vers le haut
+     * @param down Sprite pointant vers le bas
+     * @param right Sprite pointant vers la droite
+     * @param left Sprite pointant vers la gauche
+     */
     AnimationSet(Sprite up, Sprite down, Sprite right, Sprite left) {
         this.up = up;
         this.down = down;
@@ -76,27 +113,53 @@ public enum AnimationSet {
         this.left = left;
     }
 
+    /**
+     * Getter du sprite pointant vers le haut.
+     * @return Sprite
+     */
     public Sprite getUp() {
-        return up;
+        return this.up;
     }
 
+    /**
+     * Getter du sprite pointant vers le bas.
+     * @return Sprite
+     */
     public Sprite getDown() {
-        return down;
+        return this.down;
     }
 
+    /**
+     * Getter du sprite pointant vers la droite.
+     * @return Sprite
+     */
     public Sprite getRight() {
-        return right;
+        return this.right;
     }
 
+    /**
+     * Getter du sprite pointant vers la gauche.
+     * @return Sprite
+     */
     public Sprite getLeft() {
-        return left;
+        return this.left;
     }
 
+    /**
+     * Renvoie le numéro de l'interaction que doit faire le personnage.
+     * @param nbAnimSet animation actuelle du personnage
+     * @return int
+     */
     public static int getNbAnim(int nbAnimSet) {
-        nbAnim = (nbAnim % nbMaxAnim == nbMaxAnim - 1) ? 0 : ++nbAnim;
-        return nbAnimSet*nbMaxAnim + nbAnim;
+        AnimationSet.nbAnim = (AnimationSet.nbAnim % AnimationSet.NB_MAX_ANIM == AnimationSet.NB_MAX_ANIM - 1) ? 0 : ++AnimationSet.nbAnim;
+        return nbAnimSet * AnimationSet.NB_MAX_ANIM + AnimationSet.nbAnim;
     }
 
+    /**
+     *
+     * @param nb
+     * @return
+     */
     public static AnimationSet getSpriteSet(int nb){
         if(nb < 0 || nb >= Sprite.values().length)
             return null;
@@ -104,7 +167,7 @@ public enum AnimationSet {
     }
 
     public AnimationSet getStopSpriteSet(){
-        return AnimationSet.values()[Math.floorDiv(this.ordinal(),nbMaxAnim)*nbMaxAnim + 1];
+        return AnimationSet.values()[Math.floorDiv(this.ordinal(), NB_MAX_ANIM)* NB_MAX_ANIM + 1];
     }
 
     public boolean contains(Sprite sprite){
