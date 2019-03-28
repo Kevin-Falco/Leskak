@@ -14,9 +14,9 @@ import javafx.util.Pair;
 public class Movement {
     private static Map map = new Map();
     private static boolean moved = false;
-    private static EventHandler setupEventHandler;
-    private static EventHandler automaticEventHandler;
-    private static EventHandler stopEventHandler;
+    private static EventHandler<KeyEvent> setupEventHandler;
+    private static EventHandler<KeyEvent> automaticEventHandler;
+    private static EventHandler<KeyEvent> stopEventHandler;
 
     private static Key lastKeyTyped;
     private static Key automaticLastKey;
@@ -312,7 +312,7 @@ public class Movement {
         return stoped;
     }
 
-    public static EventHandler getStopEventHandler() {
+    public static EventHandler<KeyEvent> getStopEventHandler() {
         return stopEventHandler;
     }
 

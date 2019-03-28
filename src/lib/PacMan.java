@@ -74,11 +74,11 @@ public class PacMan {
             DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_WON.getText());
             Inventory.getINSTANCE().add(Object.OBJ3);
             Player.getINSTANCE().getSkinAvailables().add(3);
-            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMANSKIP.getEventHandler());
+            MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_SKIP.getEventHandler());
         }
         else{
             DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_LOSE.getText());
-            MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMANSKIP.getEventHandler());
+            MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_SKIP.getEventHandler());
         }
         MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(1), new Pair<>(20, 5));
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
