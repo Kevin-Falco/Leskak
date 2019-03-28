@@ -1,7 +1,12 @@
 package config;
 
-
+/**
+ * Enumération comprenant l'ensemble des dialogues du jeu, c'est à dire ceux des animaux, des personnages non-jouables, des
+ * énigmes, quêtes et du personnage en lui-même.
+ */
 public enum DialogConfig {
+
+    // Planète 1
     PNJ1("Felicity\n\n    Salut étranger ! Ici nous sommes sur la planète Jansen. Cette planète est couverte d'arbres et de plaines verdoyantes ! Le temps est toujours printanier ici."),
     PNJ2("Oliver (Objectif principal)\n\n    Tu t'appelles Leskak ? Et tu cherches une plaque de tôle ? Il y a un ermite à l'Est qui a refait sa maison il y a peu. Il doit posséder ce que tu cherches."),
     PNJ3_BEFORE("Facteur (Quête du colis)\n\n    Etranger ! Etranger ! Je dois me rendre sur Hibliss dans moins d'une heure et je ne trouve plus le colis que je devais livrer là bas ! J'ai du le perdre dans les hautes herbes au Nord en m'enfuyant face aux serpents sauvages tout à l'heure. S'il te plait, aide moi à le retrouver !"),
@@ -32,6 +37,8 @@ public enum DialogConfig {
     FOX_BUTTON1("Subjuguée"),
     FOX_BUTTON2("Alléchée"),
     FOX_BUTTON3("Emoustillée"),
+
+    // Planète 2
     PNJ5_BEFORE("William (Quête du colis)\n\n    Bienvenue étranger ! En effet, vous êtes bien sur la planète Hibliss, là où les pilotes peu aguerris perdent leurs vaisseaux !\n" +
             "    Si tu cherches des réacteurs en bon état, n'hésite pas à t'aventurer sur cette planète qui est un vrai labyrinthe !\n" +
             "    Par ailleurs mon ami, aurais-tu vu un livreur sur la planète Jansen ? Il a mon colis et j'aimerais le récupérer au plus vite..."),
@@ -62,6 +69,8 @@ public enum DialogConfig {
     SPACESHIP_BEFORE("(Objectif principal)\n\n    C'est un vaisseau écrasé ! Il y a même une bourse pleine à l'intérieur ! Mais ces réacteurs sont en piteux état... "),
     SPACESHIP_BUTTON("Prendre les réacteurs endommagés"),
     SPACESHIP_AFTER("Leskak (Objectif principal)\n\n    Peut être qu'en allant au centre commercial, je trouverais un moyen de réparer ces réacteurs..."),
+
+    // Centre commercial
     PNJ8("Albus Dumbledore\n\n    Ma baguette magique a été faite avec du CRAIN DE LICORNE, Monsieur!"),
     PNJ9("Tom Jedusor\n\n    Ma baguette magique a été faite avec un VENTRICULE DE DRAGON, Monsieur !"),
     PNJ10("Vendeur\n\n    Bienvenue au point de vente intergalactique ! Nous réparons et vendons de nombreux articles. Faites-vous plaisir !"),
@@ -83,6 +92,8 @@ public enum DialogConfig {
             "    Pourrais-tu m'aider à retrouver une bague que j'ai perdu là bas ? Elle est très préciseuse et vaut très cher. Je te donnerais un petit quelque chose en échange."),
     PNJ11_AFTER("Rokhan (Objectif secondaire)\n\n    Ohhh ! Tu as retrouvé ma bague ! Merci beaucoup ! Comme convenu, je te donne un peu d'argent pour t'aider dans ta quête !"),
     PNJ11_BUTTON("Donner la bague"),
+
+    // Planète 3
     PNJ12("Tony Stark (Objectif principal)\n\n    Les coordonnées de la planète Longstar ?! Répare déjà tes réacteurs avant que je t'en dise plus."),
     PNJ12_2("Tony Stark (Objectif principal)\n\n    Ooooh des réacteurs neufs ! Et de chez Stark Industries en plus ! Tu pourrais aller sur Longstar avec ça ! Elle se situe en Latitude:43.51715 et Longitude: 5.456508 dans le secteur NeufTroisQuart !"),
     STATUE_BEFORE("Statue (Objectif secondaire)\n\n    Qui est le créateur du Java ? Petit indice : il s'agit du plus beau des Gosling !"),
@@ -104,6 +115,8 @@ public enum DialogConfig {
     PNJ15_BEFORE("Tony Stark\n\n    J'ai hâte de recevoir mon colis plein de produits super high-tech !"),
     PNJ15_AFTER("Tony Stark (Quête du colis)\n\n    Moi qui étais si content d'avoir enfin reçu... et il m'a explosé dans les mains ! Nom d'un Stark ! J'espère que ça ne va pas arriver à quelqu'un d'autres..."),
     PNJ16("Thor\n\n    BRING ME THANOOOOOOOOOOOS !"),
+
+    // Planète 4
     PNJ17_BEFORE("Ethan, fils de William\n\n    ICIIII, C'EST KAVIIIII ! Ah bah non, on a encore perdu en Ligue des Champions..."),
     PNJ17_AFTER("Ethan, fils de William (Quête du colis)\n\n    C'est quoi ce colis ? C'est mon père qui t'envoie ? Mais j'en veux pas de ton truc là ! Amène le à mon frangin plutôt, il habite sur Longstar."),
     CHICKEN("Poulet\n\n    Côôôt ! Côt ! Côt !"),
@@ -133,13 +146,24 @@ public enum DialogConfig {
     BUSH2_BUTTON("Prendre la bague"),
     ;
 
+    /**
+     * Dialogue qui sera affiché dans la boîte de dialogue.
+     */
     private String text;
 
+    /**
+     * Constructeur de DialogConfig avec en paramètre le texte du dialogue à afficher dans la boîte de dialogue.
+     * @param text texte du dialogue à afficher
+     */
     DialogConfig(String text) {
         this.text = text;
     }
 
+    /**
+     * Getter du texte du dialogue pour pouvoir l'afficher dans la boîte de dialogue.
+     * @return String
+     */
     public String getText() {
-        return text;
+        return this.text;
     }
 }
