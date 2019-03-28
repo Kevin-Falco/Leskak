@@ -47,7 +47,7 @@ public class DialogLayout {
         GridPane.setConstraints(pane1, 1, 1 );
 
         this.buttons = new VBox();
-        this.buttons.setSpacing(10);
+        this.buttons.setSpacing(1);
         this.buttons.setAlignment(Pos.CENTER);
         GridPane.setConstraints(this.buttons, 1, 0 );
 
@@ -88,6 +88,8 @@ public class DialogLayout {
     public void addButton(String name, EventHandler eventHandler){
         Button button = new Button(name);
         button.setOnAction(eventHandler);
+        button.setScaleY(0.8);
+        button.setScaleX(0.8);
         button.getStyleClass().add("interact_button");
         button.focusedProperty().addListener((observable, oldValue, newValue) -> button.setStyle(observable.getValue() ? "-fx-background-color: lightgrey;" : ""));
 
@@ -104,6 +106,8 @@ public class DialogLayout {
         if(this.buttons.getChildren().isEmpty())
             return;
         Button button = new Button("Retour");
+        button.setScaleY(0.8);
+        button.setScaleX(0.8);
         button.setOnAction(Action.RETURN.getEventHandler());
         button.setCancelButton(true);
         button.getStyleClass().add("interact_button");
