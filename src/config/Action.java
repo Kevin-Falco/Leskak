@@ -105,7 +105,7 @@ public enum Action {
         });
         GIVE_SKIN2.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
             Player.getINSTANCE().getSkinAvailables().add(4);
-            Interaction.PNJ14_2.setInteractionDone(true);
+            Interaction.PNJ19.setInteractionDone(true);
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ19_SUCCESS.getText());
             Movement.resumeMovement();

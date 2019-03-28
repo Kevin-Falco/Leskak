@@ -294,8 +294,6 @@ public enum Interaction {
                 if(!Planet.PLANET4.getMaps().contains(Movement.getMap()) && Inventory.getINSTANCE().contains(Object.OBJ3)){
                     DialogLayout.getINSTANCE().addButton(Planet.PLANET4.getName(), Action.TELEPORT_PLANET4.getEventHandler());
                 }
-
-
                 DialogLayout.getINSTANCE().addReturnButton();
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.ROCKET.getEventHandler());

@@ -125,8 +125,7 @@ public enum DialogConfig {
     PACMAN_WON("Leskak (Objectif principal)\n\n    Holàlà c'était quoi cet endroit ! J'était devenu une boule toute jaune ! Bon , je m'en suis sorti, c'est le principal ! Et j'ai même réussi à arracher le panneau de commande que je recherchais de ce foutu jeu !\n" +
             "    En le bidouillant un peu, je pourrais avoir accès aux coordonnées du rayon laser le plus proche... Et il semblerait que ce soit sur la planète Kavi !\n" +
             "    Il semblerait que j'ai gagné une nouvelle tenue aussi... Appuie sur " + Key.CHANGE_SKIN.getKeyCode().getName() + " pour changer de tenue."),
-    PACMAN_LOSE("Leskak (Objectif principal)\n\n    C'est plus compliqué que prévu ! Peut être que je pourrais passer ça..."),
-    PACMAN_BUTTON("Passer le Pacman ?"),
+    PACMAN_LOSE("Leskak (Objectif principal)\n\n    C'est plus compliqué que prévu ! Peut être que je pourrais passer ça... ( Appuyer sur P pour passer le PacMan)"),
     ROCK_BUTTON("Faire tout péter !"),
     DEATH_STAR("Assembler les 4 éléments"),
     BUSH2_BEFORE("(Objectif secondaire)\n\n    Il y a une bague dans ces hautes herbes. Souhaitez-vous la prendre ?"),
