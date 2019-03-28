@@ -371,11 +371,6 @@ public enum Action {
     private EventHandler eventHandler;
 
     /**
-     * Constructeur vide d'une action.
-     */
-    Action() {}
-
-    /**
      * Permet de récupérer l'événément rattaché à chacune des actions.
      * @return EventHandler
      */

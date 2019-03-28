@@ -83,7 +83,7 @@ public class PacMan {
         MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(1), new Pair<>(20, 5));
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
         Player.getINSTANCE().setCurrentSkin(0);
-        Movement.setAnimationSet(AnimationSet.getSpriteSet(Player.getINSTANCE().getCurrentSkin()*4).getStopSpriteSet());
+        Movement.setAnimationSet(AnimationSet.getAnimationSet(Player.getINSTANCE().getCurrentSkin()*4).getStopAnimationSet());
         Player.getINSTANCE().setSprite(Movement.getAnimationSet().getSpriteDirection(Player.getINSTANCE().getDirection()));
         Movement.setLastKeyReleased(true);
         PacMan.setPacmanMovement(false);

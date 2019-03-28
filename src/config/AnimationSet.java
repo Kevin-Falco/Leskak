@@ -146,7 +146,7 @@ public enum AnimationSet {
     }
 
     /**
-     * Renvoie le numéro de l'interaction que doit faire le personnage.
+     * Renvoie le numéro de l'interaction que doit faire le personnage après l'animation actuelle.
      * @param nbAnimSet animation actuelle du personnage
      * @return int
      */
@@ -156,26 +156,29 @@ public enum AnimationSet {
     }
 
     /**
-     *
-     * @param nb
-     * @return
+     * Renvoie l'AnimationSet à l'indice nb.
+     * @param nb indice de l'animationSet
+     * @return AnimationSet
      */
-    public static AnimationSet getSpriteSet(int nb){
-        if(nb < 0 || nb >= Sprite.values().length)
+    public static AnimationSet getAnimationSet(int nb){
+        if(nb < 0 || nb >= AnimationSet.values().length)
             return null;
         return AnimationSet.values()[nb];
     }
 
-    public AnimationSet getStopSpriteSet(){
-        return AnimationSet.values()[Math.floorDiv(this.ordinal(), NB_MAX_ANIM)* NB_MAX_ANIM + 1];
+    /**
+     * Renvoie l'AnimationSet d'arrêt correspondant au sprite et à la direction actuelle du personnage.
+     * @return AnimationSet
+     */
+    public AnimationSet getStopAnimationSet(){
+        return AnimationSet.values()[Math.floorDiv(this.ordinal(), AnimationSet.NB_MAX_ANIM) * AnimationSet.NB_MAX_ANIM + 1];
     }
 
-    public boolean contains(Sprite sprite){
-        if(sprite.equals(this.up) || sprite.equals(this.down) || sprite.equals(this.left) || sprite.equals(this.right))
-            return true;
-        return false;
-    }
-
+    /**
+     * Renvoie la direction d'un sprite d'une AnimationSet.
+     * @param sprite sprite recherché
+     * @return Direction
+     */
     public Direction getDirection(Sprite sprite){
         if(sprite.equals(this.up))
             return Direction.UP;
@@ -188,6 +191,11 @@ public enum AnimationSet {
         return null;
     }
 
+    /**
+     * Renvoie le sprite correspondant à la direction mise en paramètre.
+     * @param direction direction du sprite voulu
+     * @return Sprite
+     */
     public Sprite getSpriteDirection(Direction direction){
         switch (direction){
             case UP:
@@ -202,12 +210,27 @@ public enum AnimationSet {
         return null;
     }
 
+    /**
+     * Renvoie true si un sprite existe dans un AnimationSet, sinon false.
+     * @param sprite sprite recherché
+     * @return boolean
+     *
+     * @see config.AnimationSet#getAnimationSetThatHave(Sprite)
+     */
+    private boolean contains(Sprite sprite){
+        return sprite.equals(this.up) || sprite.equals(this.down) || sprite.equals(this.left) || sprite.equals(this.right);
+    }
+
+    /**
+     * Parcourt l'ensemble des AnimationSet et vérifie si le sprite exite, puis renvoie l'AnimationSet qui le contient.
+     * @param sprite sprite recherché
+     * @return AnimationSet
+     */
     public static AnimationSet getAnimationSetThatHave(Sprite sprite){
         for(int i = 0; i < AnimationSet.values().length; ++i){
-            if(AnimationSet.values()[i].contains(sprite)) return AnimationSet.values()[i];
+            if(AnimationSet.values()[i].contains(sprite))
+                return AnimationSet.values()[i];
         }
         return null;
     }
-
-
 }
