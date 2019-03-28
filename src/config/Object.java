@@ -9,14 +9,14 @@ public enum Object {
     OBJ2("Réacteurs endommagés", new ImageView("sprite/object/reactors.png"), new Pair<>(1,0)),
     OBJ2_2("Réacteurs", new ImageView("sprite/object/reactors.png"), new Pair<>(1,0)),
     OBJ3("Panneau de commande", new ImageView("sprite/object/command_panel.png"), new Pair<>(0,1)),
-    OBJ4("Dynamite", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(2,0)),
-    OBJ4_2("Bague de Rohkan", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(2,0)),
-    OBJ5("Rayon laser", new ImageView("sprite/player/player_down_stop.png"), new Pair<>(1,1)),
+    OBJ4("Dynamite", new ImageView("sprite/object/dynamite.png"), new Pair<>(2,0)),
+    OBJ4_2("Bague de Rohkan", new ImageView("sprite/object/ring.png"), new Pair<>(2,0)),
+    OBJ5("Rayon laser", new ImageView("sprite/object/laser.png"), new Pair<>(1,1)),
     OBJ6("Colis", new ImageView("sprite/object/package.png"), new Pair<>(2,1)),
     OBJ6_2("Colis dangeureux", new ImageView("sprite/object/package.png"), new Pair<>(2,1)),
-    OBJ7_1("1 Plume", new ImageView("sprite/animal/fox_up.png"), new Pair<>(2,1)),
-    OBJ7_2("2 Plumes", new ImageView("sprite/animal/fox_down.png"), new Pair<>(2,1)),
-    OBJ7_3("3 Plumes", new ImageView("sprite/animal/fox_left.png"), new Pair<>(2,1));
+    OBJ7_1("1 Plume", new ImageView("sprite/object/feather.png"), new Pair<>(2,1)),
+    OBJ7_2("2 Plumes", new ImageView("sprite/object/feather2.png"), new Pair<>(2,1)),
+    OBJ7_3("3 Plumes", new ImageView("sprite/object/feather3.png"), new Pair<>(2,1));
 
     private String name;
     private ImageView imageView;
