@@ -305,12 +305,12 @@ public enum Interaction {
         MOVEMENT.eventHandler = Movement.setupMovementEvent();
     }
 
-    private EventHandler eventHandler;
+    private EventHandler<KeyEvent> eventHandler;
     private boolean interactionDone = false;
 
     Interaction() {}
 
-    public EventHandler getEventHandler() {
+    public EventHandler<KeyEvent> getEventHandler() {
         return eventHandler;
     }
 

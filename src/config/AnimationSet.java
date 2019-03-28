@@ -228,7 +228,8 @@ public enum AnimationSet {
      */
     public static AnimationSet getAnimationSetThatHave(Sprite sprite){
         for(int i = 0; i < AnimationSet.values().length; ++i){
-            if(AnimationSet.values()[i].contains(sprite)) return AnimationSet.values()[i];
+            if(AnimationSet.values()[i].contains(sprite))
+                return AnimationSet.values()[i];
         }
         return null;
     }
