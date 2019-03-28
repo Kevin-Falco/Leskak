@@ -20,7 +20,7 @@ public enum DialogConfig {
     CAT2_BEFORE("Chat\n\n    Ce chat a une bourse dans la gueule. Voulez-vous la prendre ?"),
     CAT2_AFTER("Chat\n\n    MIAOOOOU ! Il n'est pas content de ne plus avoir sa bourse ! Le paaauvre."),
     CAT2_BUTTON("Lui prendre sa bourse"),
-    SNAKE("Ssssssssssss !"),
+    SNAKE("Serpent\n\n    Ssssssssssss !"),
     FOX("Renard\n\n    What does the fox say ? \"Wa-pa-pa-pa-pa-pa-pow!\""),
     FOX_BEFORE("Maître Renard (Objectif secondaire)\n\n    Je vais vous raconter une petite histoire ...\n" +
             "       Maître Corbeau, sur un arbre perché,\n" +
