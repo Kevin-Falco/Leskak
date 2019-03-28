@@ -61,6 +61,7 @@ public enum Interaction {
     FOX1,
     STATUE,
     ROCK,
+    PACMANSKIP,
     MOVEMENT;
 
     static {
@@ -142,6 +143,19 @@ public enum Interaction {
                 }
             }
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, ROCK.getEventHandler());
+        });
+
+        PACMANSKIP.eventHandler = ((EventHandler<KeyEvent>) (event) -> {
+            if(event.getCode().equals(KeyCode.P) && Movement.isStoped()){
+                Interaction.PACMAN_IN.setInteractionDone(true);
+                DialogLayout.getINSTANCE().removeContent();
+                DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_WON.getText());
+                Inventory.getINSTANCE().add(Object.OBJ3);
+                Player.getINSTANCE().getSkinAvailables().add(3);
+                Movement.setMoved(true);
+                Movement.resumeMovement();
+                MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, PACMANSKIP.getEventHandler());
+            }
         });
 
         PNJ14.eventHandler = ((EventHandler<KeyEvent>) event -> {

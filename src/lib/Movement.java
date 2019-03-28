@@ -18,7 +18,6 @@ public class Movement {
     private static EventHandler automaticEventHandler;
     private static EventHandler stopEventHandler;
 
-    private static EventHandler backToGame;
     private static Key lastKeyTyped;
     private static Key automaticLastKey;
     private static boolean stoped = true;
@@ -28,10 +27,10 @@ public class Movement {
     private static int delay = 250;
 
     public static void configPlayerEventHandler(Scene scene) {
-        KeyboardConfig k = KeyboardConfig.ENTER;
-        KeyboardConfig k1 = KeyboardConfig.ESCAPE;
-        KeyboardConfig k2 = KeyboardConfig.TELEPORT;
-        KeyboardConfig k3 = KeyboardConfig.CHANGE_SKIN;
+        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, KeyboardConfig.ENTER.getEventHandler());
+        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, KeyboardConfig.ESCAPE.getEventHandler());
+        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, KeyboardConfig.TELEPORT.getEventHandler());
+        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, KeyboardConfig.CHANGE_SKIN.getEventHandler());
         Movement.setupEventHandler = Movement.setupMovementEvent();
         Movement.automaticEventHandler = Movement.automaticMovementEvent();
         Movement.stopEventHandler = ((EventHandler<KeyEvent>) event -> {
@@ -43,12 +42,6 @@ public class Movement {
         scene.removeEventHandler(KeyEvent.KEY_PRESSED ,Movement.setupEventHandler);
         scene.removeEventHandler(KeyEvent.KEY_PRESSED ,Movement.automaticEventHandler);
         scene.addEventHandler(KeyEvent.KEY_PRESSED ,Movement.setupEventHandler);
-        Movement.backToGame = ((EventHandler<KeyEvent>) (key) -> {
-            if (key.getCode() == Key.BACK_SPACE.getKeyCode()){
-                scene.addEventHandler(KeyEvent.KEY_PRESSED, Movement.setupEventHandler);
-                scene.removeEventHandler(KeyEvent.KEY_PRESSED, Movement.backToGame);
-            }
-        });
         scene.addEventHandler(KeyEvent.KEY_RELEASED, stopEventHandler);
     }
 
@@ -283,13 +276,11 @@ public class Movement {
     public static void removeMovement(){
         GameLayout.getINSTANCE().getPane().setFocusTraversable(false);
         MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.setupEventHandler);
-        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Movement.backToGame);
     }
 
     public static void resumeMovement(){
         GameLayout.getINSTANCE().getPane().setFocusTraversable(true);
         GameLayout.getINSTANCE().getPane().requestFocus();
-        MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.backToGame);
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Movement.setupEventHandler);
     }
 

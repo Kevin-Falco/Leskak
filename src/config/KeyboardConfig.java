@@ -1,7 +1,9 @@
 package config;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import lib.*;
 
@@ -58,16 +60,22 @@ public enum KeyboardConfig {
             player.setSprite(Movement.getAnimationSet().getSpriteDirection(player.getDirection()));
         }
     }),
+
     ;
 
     private Key key;
+    private EventHandler eventHandler;
 
     KeyboardConfig(Key key, EventHandler eventHandler) {
         this.key = key;
-        MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, eventHandler);
+        this.eventHandler = eventHandler;
     }
 
     public Key getKey() {
         return key;
+    }
+
+    public EventHandler getEventHandler() {
+        return eventHandler;
     }
 }

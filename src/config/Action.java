@@ -127,15 +127,7 @@ public enum Action {
             Movement.setMoved(true);
         });
 
-        PACMANSKIP.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Interaction.PACMAN_IN.setInteractionDone(true);
-            DialogLayout.getINSTANCE().removeContent();
-            DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_WON.getText());
-            Inventory.getINSTANCE().add(Object.OBJ3);
-            Player.getINSTANCE().getSkinAvailables().add(3);
-            Movement.setMoved(true);
-            Movement.resumeMovement();
-        });
+
 
         CHICKEN1.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
             Inventory.getINSTANCE().add(Object.OBJ7_1);
