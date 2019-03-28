@@ -207,9 +207,6 @@ public enum Action {
             }
             Cell cell = MapConfig.getLastCell( 9, p.getKey(), p.getValue());
             BlockingCell blockingCell;
-            System.out.println(Player.getINSTANCE().getPosition());
-            System.out.println(cell.getPosition() );
-            System.out.println(cell.getSprite() );
             if(cell instanceof BlockingCell){
                 System.out.println("OK");
                 blockingCell = (BlockingCell) cell;
@@ -242,9 +239,6 @@ public enum Action {
             }
             Cell cell = MapConfig.getLastCell( 9, p.getKey(), p.getValue());
             BlockingCell blockingCell;
-            System.out.println(Player.getINSTANCE().getPosition());
-            System.out.println(cell.getPosition() );
-            System.out.println(cell.getSprite() );
             if(cell instanceof BlockingCell){
                 System.out.println("OK");
                 blockingCell = (BlockingCell) cell;
@@ -277,9 +271,6 @@ public enum Action {
             }
             Cell cell = MapConfig.getLastCell( 9, p.getKey(), p.getValue());
             BlockingCell blockingCell;
-            System.out.println(Player.getINSTANCE().getPosition());
-            System.out.println(cell.getPosition() );
-            System.out.println(cell.getSprite() );
             if(cell instanceof BlockingCell){
                 System.out.println("OK");
                 blockingCell = (BlockingCell) cell;
@@ -290,7 +281,7 @@ public enum Action {
             DialogLayout.getINSTANCE().setText(DialogConfig.CHICKEN_AFTER.getText());
             Movement.resumeMovement();
         });
-
+        
         BUY_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             if(DialogLayout.getINSTANCE().getMoney() < 10000){
                 DialogLayout.getINSTANCE().removeContent();

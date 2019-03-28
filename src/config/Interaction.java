@@ -250,7 +250,7 @@ public enum Interaction {
                     }
                     if(Interaction.PNJ18.isInteractionDone() && !Interaction.PNJ10.isInteractionDone())
                         DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON4.getText(), Action.QUEST_DYNAMITE.getEventHandler());
-                    else if(!Inventory.getINSTANCE().contains(Object.OBJ4)){
+                    else if(!Inventory.getINSTANCE().contains(Object.OBJ4) && !Interaction.ROCK.isInteractionDone()){
                         DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_BUTTON3.getText(), Action.BUY_DYNAMITE.getEventHandler());
                     }
                     if(Inventory.getINSTANCE().contains(Object.OBJ1) && Inventory.getINSTANCE().contains(Object.OBJ2_2) &&
