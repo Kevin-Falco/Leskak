@@ -22,7 +22,7 @@ public enum DialogConfig {
     CAT2_BUTTON("Lui prendre sa bourse"),
     SNAKE("Serpent\n\n    Ssssssssssss !"),
     FOX("Renard\n\n    What does the fox say ? \"Wa-pa-pa-pa-pa-pa-pow!\""),
-    FOX_BEFORE("Maître Renard (Objectif secondaire)\n\n    Je vais vous raconter une petite histoire ...\n" +
+    FOX_BEFORE("Maître Renard (Objectif secondaire)\n\n    Je vais vous raconter une petite histoire ...\n\n" +
             "       Maître Corbeau, sur un arbre perché,\n" +
             "       Tenait en son bec un fromage.\n" +
             "       Maître Renard, par l'odeur ... "),
@@ -51,7 +51,7 @@ public enum DialogConfig {
     PNJ6_BUTTON3("BIIIIEN !"),
     PNJ7("Mia (Quête du coffre)\n\n    Je me suis perdue dans cet immense labyrinthe et je crois que je ne pourrais jamais trouver la sortie...\n" +
             "    Si jamais tu y arrives étranger, saches que j'ai enterré un coffre au trésor derrière la maison d'un ermite sur Jansen.\n" +
-            "    Peut être trouveras-tu ton bonheur à l'intérieur"),
+            "    Peut être trouveras-tu ton bonheur à l'intérieur..."),
     CHEST_BEFORE_HIDDEN("(Quête du coffre)\n\n    La terre semble molle à cet endroit. Il est préférable de ne pas marcher ici."),
     CHEST_HIDDEN("(Quête du coffre)\n\n    Avec plus d'attention, il semble bien que la terre a été retournée à cet endroit..."),
     CHEST_HIDDEN_BUTTON("Creuser"),
@@ -65,7 +65,7 @@ public enum DialogConfig {
     PNJ8("Albus Dumbledore\n\n    Ma baguette magique a été faite avec du CRAIN DE LICORNE, Monsieur!"),
     PNJ9("Tom Jedusor\n\n    Ma baguette magique a été faite avec un VENTRICULE DE DRAGON, Monsieur !"),
     PNJ10("Vendeur\n\n    Bienvenue au point de vente intergalactique ! Nous réparons et vendons de nombreux articles. Faites-vous plaisir !"),
-    PNJ10_PACKAGE_BEFORE("Vendeur (Quête du colis)\n\n    Oh merci ! Tu nous ramènes un colis parmi ceux qui étaient endommagés"),
+    PNJ10_PACKAGE_BEFORE("Vendeur (Quête du colis)\n\n    Oh merci ! Tu nous ramènes un colis parmi ceux qui étaient endommagés ! En plus il est sous garantie."),
     PNJ10_PACKAGE_AFTER("Vendeur (Quête du colis)\n\n    Ca y est ton colis est tout neuf !  Tu peux le remettre à son propriétaire, sur la planète Kavi si je ne dis pas de bêtise !"),
     PNJ10_PACKAGE_BUTTON("Faire réparer le colis"),
     PNJ10_BUTTON1("Réparer les réacteurs (500€)"),
@@ -77,7 +77,7 @@ public enum DialogConfig {
             "    Quoi ?! Tu cherches à aller sur Longstar ? Vas voir M. Stark près des bureaux, il possède un carnet avec les coordonnées de nombreuses planètes."),
     PNJ10_SKIN_BUYED("Vendeur (Objectif secondaire)\n\n    Voilà une nouvelle tenue pour ta collection ! Appuie sur " + Key.CHANGE_SKIN.getKeyCode().getName() + " pour en changer !"),
     PNJ10_QUEST_BEFORE("Vendeur (Objectif principal)\n\n    J'aimerais bien voir un panda... Il y en a un qui vit sur Kavi à ce qu'il parait."),
-    PNJ10_QUEST_BETWEEN("Vendeur (Objectif principal)\n\n    Oh ! Tu peux te transofrmer en panda ?! Change d'apparence avec la touche " + Key.CHANGE_SKIN.getKeyCode().getName() + " et reviens me parler s'il te plait !" ),
+    PNJ10_QUEST_BETWEEN("Vendeur (Objectif principal)\n\n    Oh ! Tu peux te transformer en panda ?! Change d'apparence avec la touche " + Key.CHANGE_SKIN.getKeyCode().getName() + " et reviens me parler s'il te plait !" ),
     PNJ10_QUEST_AFTER("Vendeur (Objectif principal)\n\n    Un panda ?! Comme dans mes rêves les plus fous ! Ah oui, tu voulais de la dynamite ! Tiens, prends la !"),
     PNJ11_BEFORE("Rokhan (Objectif secondaire)\n\n    Salut toi !  Je viens du planète lointaine du nom de Kavi. Mais je ne peux désormais plus y retourner à cause de mes problèmes de dos...\n" +
             "    Pourrais-tu m'aider à retrouver une bague que j'ai perdu là bas ? Elle est très préciseuse et vaut très cher. Je te donnerais un petit quelque chose en échange."),
