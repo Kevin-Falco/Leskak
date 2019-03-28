@@ -7,12 +7,20 @@ import javafx.scene.input.KeyEvent;
 import javafx.util.Pair;
 import lib.*;
 
+/**
+ * Enumération de toutes les actions disponibles dans le jeu, que ce soit pour recevoir de l'argent ou en donner, récupérer
+ * un objet ou encore se téléporter au spawn de la planète.
+ */
 public enum Action {
+
+    // Téléportation au point de spawn de chaque planète
     TELEPORT_PLANET1,
     TELEPORT_PLANET2,
     TELEPORT_PLANET3,
     TELEPORT_PLANET4,
     TELEPORT_COMMERCIAL_CENTER,
+
+    // Récupération des différents objets sur chaque planète
     GIVE_OBJECT1,
     GIVE_OBJECT2,
     GIVE_OBJECT4_2,
@@ -20,47 +28,90 @@ public enum Action {
     GIVE_OBJECT6,
     GIVE_OBJECT6_2,
     GIVE_OBJECT6_3,
+
+    // Récupération des skins pour changer d'apparence à la suite d'objectifs secondaires
     GIVE_SKIN,
     GIVE_SKIN2,
+
+    // Récupération d'argent suite à des objectifs secondaires et erreurs correspondantes
     GIVE_MONEY_CAT,
     GIVE_MONEY_FOX,
     GIVE_MONEY_STATUE,
-    ERROR_FOX,
     GIVE_MONEY_PNJ6,
-    ERROR_PNJ6,
+
+    ERROR_FOX,
     ERROR_STATUE,
+    ERROR_PNJ6,
     ERROR_PNJ19,
+
+    // Récupération des objets par leurs propriétaires initiaux
     RETURN_OBJECT2,
     RETURN_OBJECT6,
     RETURN_OBJECT4_2,
     RETURN_OBJECT6_2,
+
+    // Actions de la quête du coffre caché
     CHEST_HIDDEN,
     CHEST_CLOSED,
+
+    // Achats au marchand
     BUY_SKIN,
+    BUY_DYNAMITE,
+    PACKAGE_REPAIR,
+    QUEST_DYNAMITE,
+    DEATH_STAR,
+
+    // Récupération des plumes de poulet sur la planète 3
     CHICKEN1,
     CHICKEN2,
     CHICKEN3,
-    BUY_DYNAMITE,
-    QUEST_DYNAMITE,
-    USE_DYNAMITE,
-    PACKAGE_REPAIR,
+
+    // Pemet de passer le pacman sur la planète 3
     PACMANSKIP,
-    TEST1,
-    DEATH_STAR,
+
+    // Utilisation de la dynamite pour débloquer le reste de la planète 4
+    USE_DYNAMITE,
+
+    // Action du bouton Retour
     RETURN,
     ;
 
-    static{
+    static {
+
+        // Téléportation au point de spawn de chaque planète
         TELEPORT_PLANET1.eventHandler = createTeleportAction(Planet.PLANET1.getMaps().get(0));
         TELEPORT_PLANET2.eventHandler = createTeleportAction(Planet.PLANET2.getMaps().get(0));
         TELEPORT_PLANET3.eventHandler = createTeleportAction(Planet.PLANET3.getMaps().get(0));
         TELEPORT_PLANET4.eventHandler = createTeleportAction(Planet.PLANET4.getMaps().get(0));
         TELEPORT_COMMERCIAL_CENTER.eventHandler = createTeleportAction(Planet.COMMERCIAL_CENTER.getMaps().get(0));
+
+        // Récupération des différents objets sur chaque planète
+        GIVE_OBJECT1.eventHandler = createGiveObjectAction(Interaction.PNJ4, Object.OBJ1, DialogConfig.PNJ4_AFTER);
+        GIVE_OBJECT2.eventHandler = createGiveObjectAndMoneyAction(Interaction.SPACESHIP, Object.OBJ2, DialogConfig.SPACESHIP_AFTER ,250);
         GIVE_OBJECT4_2.eventHandler = createGiveObjectAction(Interaction.BUSH2, Object.OBJ4_2, DialogConfig.BUSH2_AFTER);
         GIVE_OBJECT5.eventHandler = createGiveObjectAction(Interaction.PNJ20, Object.OBJ5, DialogConfig.PNJ20_AFTER);
         GIVE_OBJECT6.eventHandler = createGiveObjectAction(Interaction.BUSH1, Object.OBJ6, DialogConfig.BUSH1_AFTER);
         GIVE_OBJECT6_2.eventHandler = createGiveObjectAction(Interaction.PNJ3_2, Object.OBJ6, DialogConfig.PNJ3_2_AFTER);
         GIVE_OBJECT6_3.eventHandler = createGiveObjectAction(Interaction.PNJ5_2, Object.OBJ6_2, DialogConfig.PNJ5_2_AFTER);
+
+        // Récupération des skins pour changer d'apparence à la suite d'objectifs secondaires
+        GIVE_SKIN.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
+            Player.getINSTANCE().getSkinAvailables().add(1);
+            Interaction.PNJ14_2.setInteractionDone(true);
+            Inventory.getINSTANCE().remove(Object.OBJ7_3);
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ14_2_AFTER.getText());
+            Movement.resumeMovement();
+        });
+        GIVE_SKIN2.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
+            Player.getINSTANCE().getSkinAvailables().add(4);
+            Interaction.PNJ14_2.setInteractionDone(true);
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ19_SUCCESS.getText());
+            Movement.resumeMovement();
+        });
+
+        // Récupération d'argent suite à des objectifs secondaires et erreurs correspondantes
         GIVE_MONEY_CAT.eventHandler = createGiveMoneyAction(Interaction.CAT2, 500, DialogConfig.CAT2_AFTER);
         GIVE_MONEY_FOX.eventHandler = createGiveMoneyAction(Interaction.FOX, 500,DialogConfig.FOX_SUCCESS);
         CHEST_HIDDEN.eventHandler = createInteractionAndSpriteChange(Interaction.CHEST_HIDDEN, DialogConfig.CHEST_CLOSED, 1,
@@ -69,8 +120,6 @@ public enum Action {
                 Interaction.CHEST_CLOSED, Interaction.CHEST_OPENED, Sprite.CHEST_OPENED, 2000);
         GIVE_MONEY_PNJ6.eventHandler = createGiveMoneyAction(Interaction.PNJ6, 500,DialogConfig.PNJ6_SUCCESS);
         GIVE_MONEY_STATUE.eventHandler = createGiveMoneyAction(Interaction.STATUE, 500,DialogConfig.STATUE_SUCCESS);
-        GIVE_OBJECT1.eventHandler = createGiveObjectAction(Interaction.PNJ4, Object.OBJ1, DialogConfig.PNJ4_AFTER);
-        GIVE_OBJECT2.eventHandler = createGiveObjectAndMoneyAction(Interaction.SPACESHIP, Object.OBJ2, DialogConfig.SPACESHIP_AFTER ,250);
 
         ERROR_FOX.eventHandler = createRiddleErrorAction(DialogConfig.FOX_ERROR);
         ERROR_PNJ19.eventHandler = createRiddleErrorAction(DialogConfig.PNJ19_ERROR);
@@ -242,21 +291,6 @@ public enum Action {
             Movement.resumeMovement();
         });
 
-        GIVE_SKIN.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
-            Player.getINSTANCE().getSkinAvailables().add(1);
-            Interaction.PNJ14_2.setInteractionDone(true);
-            Inventory.getINSTANCE().remove(Object.OBJ7_3);
-            DialogLayout.getINSTANCE().removeContent();
-            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ14_2_AFTER.getText());
-            Movement.resumeMovement();
-        });
-        GIVE_SKIN2.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
-            Player.getINSTANCE().getSkinAvailables().add(4);
-            Interaction.PNJ14_2.setInteractionDone(true);
-            DialogLayout.getINSTANCE().removeContent();
-            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ19_SUCCESS.getText());
-            Movement.resumeMovement();
-        });
         BUY_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             if(DialogLayout.getINSTANCE().getMoney() < 10000){
                 DialogLayout.getINSTANCE().removeContent();
@@ -335,10 +369,7 @@ public enum Action {
             MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.DEATH_STAR.getEventHandler());
             KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
         });
-        TEST1.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.TEST1.getEventHandler());
-            KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
-        });
+
 
         RETURN.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             DialogLayout.getINSTANCE().removeContent();
