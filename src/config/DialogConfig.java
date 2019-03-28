@@ -110,7 +110,7 @@ public enum DialogConfig {
     CHICKEN_BEFORE("Poulet (Quête du colis)\n\n    Voulez-vous arracher une plume à ce pauvre poulet ?"),
     CHICKEN_AFTER("Leskak\n\n    Ca a eu l'air plutôt douloureux. LE PAAAUVRE !"),
     CHICKEN_BUTTON("Arracher une plume"),
-    PNJ18("Yaël (Objectif principal)\n\n Un avalanche a déposé ces cailloux sur ce pont, bloquant ainsi le passage menant à la grotte... Peut-être que de la dynamite, venant du centre commercial, pourrait arranger ça ?"),
+    PNJ18("Yaëlle (Objectif principal)\n\n Un avalanche a déposé ces cailloux sur ce pont, bloquant ainsi le passage menant à la grotte... Peut-être que de la dynamite, venant du centre commercial, pourrait arranger ça ?"),
     PNJ19_BEFORE("Kévin (Objectif principal)\n\n    Tu connais le jeu World of Warcraft ? C'est gééénial ! Mais quelle est la meilleure zone de ce jeu ?\n" +
             "    Petit incide : je suis un panda !"),
     PNJ19_AFTER("Kévin\n\n    En tant que panda, je trouve que la Pandarie est une zone ma-gni-fique !"),
