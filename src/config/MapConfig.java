@@ -52,7 +52,8 @@ public class MapConfig {
                 }
                 this.updateProgress(100, 100);
 
-                Platform.runLater(() -> configMap(Planet.PLANET1.getMaps().get(0)));
+                Platform.runLater(() -> configMap(Planet.PLANET3.getMaps().get(0)));
+
             }
         };
         GameLayout.getINSTANCE().setGameHasBegun(true);

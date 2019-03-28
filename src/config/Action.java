@@ -105,7 +105,7 @@ public enum Action {
         });
         GIVE_SKIN2.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
             Player.getINSTANCE().getSkinAvailables().add(4);
-            Interaction.PNJ14_2.setInteractionDone(true);
+            Interaction.PNJ19.setInteractionDone(true);
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ19_SUCCESS.getText());
             Movement.resumeMovement();
@@ -228,10 +228,12 @@ public enum Action {
             Movement.resumeMovement();
             Movement.setMoved(true);
         });
+
         DEATH_STAR.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.DEATH_STAR.getEventHandler());
             KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
         });
+
 
         // Récupération des plumes de poulet sur la planète 3
         CHICKEN1.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
