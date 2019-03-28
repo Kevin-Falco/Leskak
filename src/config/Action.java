@@ -114,51 +114,104 @@ public enum Action {
         // Récupération d'argent suite à des objectifs secondaires et erreurs correspondantes
         GIVE_MONEY_CAT.eventHandler = createGiveMoneyAction(Interaction.CAT2, 500, DialogConfig.CAT2_AFTER);
         GIVE_MONEY_FOX.eventHandler = createGiveMoneyAction(Interaction.FOX, 500,DialogConfig.FOX_SUCCESS);
+        GIVE_MONEY_STATUE.eventHandler = createGiveMoneyAction(Interaction.STATUE, 500,DialogConfig.STATUE_SUCCESS);
+        GIVE_MONEY_PNJ6.eventHandler = createGiveMoneyAction(Interaction.PNJ6, 500,DialogConfig.PNJ6_SUCCESS);
+
+        ERROR_FOX.eventHandler = createRiddleErrorAction(DialogConfig.FOX_ERROR);
+        ERROR_STATUE.eventHandler = createRiddleErrorAction(DialogConfig.STATUE_ERROR);
+        ERROR_PNJ6.eventHandler = createRiddleErrorAction(DialogConfig.PNJ6_ERROR);
+        ERROR_PNJ19.eventHandler = createRiddleErrorAction(DialogConfig.PNJ19_ERROR);
+
+        // Récupération des objets par leurs propriétaires initiaux
+        RETURN_OBJECT2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            if(DialogLayout.getINSTANCE().getMoney() < 500){
+                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
+                Movement.setMoved(true);
+                Movement.resumeMovement();
+                return;
+            }
+            DialogLayout.getINSTANCE().removeMoney(500);
+            Inventory.getINSTANCE().remove(Object.OBJ2);
+            Inventory.getINSTANCE().add(Object.OBJ2_2);
+            for(Cell cell : MapConfig.getINSTANCE().getMaps().get(7).getCells()){
+                if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null &&
+                        ((BlockingCell) cell).getInteraction().equals(Interaction.PNJ12)){
+                    ((BlockingCell) cell).setInteraction(Interaction.PNJ12_2);
+                }
+            }
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_REACTORS_REPARED.getText());
+            Movement.setMoved(true);
+            Movement.resumeMovement();
+        });
+        RETURN_OBJECT6.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            if(!MapConfig.getINSTANCE().swapCells(0, new Pair<>(22, 5), new Pair<>(22, 6))){
+                MapConfig.getINSTANCE().movePlayer(new Pair<>(21, 6));
+                MapConfig.getINSTANCE().swapCells(0, new Pair<>(22, 5), new Pair<>(22, 6));
+            }
+            DialogLayout.getINSTANCE().addMoney(250);
+            Interaction.PNJ3.setInteractionDone(true);
+            Inventory.getINSTANCE().remove(Object.OBJ6);
+            DialogLayout.getINSTANCE().removeContent();
+            Movement.setMoved(true);
+            Movement.resumeMovement();
+        });
+        RETURN_OBJECT4_2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            Interaction.PNJ11.setInteractionDone(true);
+            Inventory.getINSTANCE().remove(Object.OBJ4_2);
+            DialogLayout.getINSTANCE().addMoney(1000);
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ11_AFTER.getText());
+            Movement.setMoved(true);
+            Movement.resumeMovement();
+        });
+        RETURN_OBJECT6_2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            Interaction.PNJ5.setInteractionDone(true);
+            Inventory.getINSTANCE().remove(Object.OBJ6);
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ5_AFTER.getText());
+            Movement.setMoved(true);
+            Movement.resumeMovement();
+        });
+
+        // Actions de la quête du coffre caché
         CHEST_HIDDEN.eventHandler = createInteractionAndSpriteChange(Interaction.CHEST_HIDDEN, DialogConfig.CHEST_CLOSED, 1,
                 Interaction.CHEST_HIDDEN, Interaction.CHEST_CLOSED, Sprite.CHEST_CLOSED);
         CHEST_CLOSED.eventHandler = createInteractionAndSpriteChangeAndGiveMoney(Interaction.CHEST_CLOSED, DialogConfig.CHEST_OPENED, 1,
                 Interaction.CHEST_CLOSED, Interaction.CHEST_OPENED, Sprite.CHEST_OPENED, 2000);
-        GIVE_MONEY_PNJ6.eventHandler = createGiveMoneyAction(Interaction.PNJ6, 500,DialogConfig.PNJ6_SUCCESS);
-        GIVE_MONEY_STATUE.eventHandler = createGiveMoneyAction(Interaction.STATUE, 500,DialogConfig.STATUE_SUCCESS);
 
-        ERROR_FOX.eventHandler = createRiddleErrorAction(DialogConfig.FOX_ERROR);
-        ERROR_PNJ19.eventHandler = createRiddleErrorAction(DialogConfig.PNJ19_ERROR);
-        ERROR_PNJ6.eventHandler = createRiddleErrorAction(DialogConfig.PNJ6_ERROR);
-        ERROR_STATUE.eventHandler = createRiddleErrorAction(DialogConfig.STATUE_ERROR);
-        PACKAGE_REPAIR.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Inventory.getINSTANCE().remove(Object.OBJ6_2);
-            Inventory.getINSTANCE().add(Object.OBJ6);
-            Movement.resumeMovement();
-            DialogLayout.getINSTANCE().removeContent();
-            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_PACKAGE_AFTER.getText());
-            Movement.setMoved(true);
-        });
-
-        PACKAGE_REPAIR.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Inventory.getINSTANCE().remove(Object.OBJ6_2);
-            Inventory.getINSTANCE().add(Object.OBJ6);
-            Movement.resumeMovement();
-            DialogLayout.getINSTANCE().removeContent();
-            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_PACKAGE_AFTER.getText());
-            Movement.setMoved(true);
-        });
-
-        USE_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Inventory.getINSTANCE().remove(Object.OBJ4);
-            Movement.resumeMovement();
-            Cell toRemove = null;
-            for(Cell cell : Movement.getMap().getCells()){
-                if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null &&
-                        ((BlockingCell) cell).getInteraction().equals(Interaction.ROCK)){
-                    toRemove = cell;
-                }
+        // Achats au marchand
+        BUY_SKIN.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            if(DialogLayout.getINSTANCE().getMoney() < 5000){
+                DialogLayout.getINSTANCE().removeContent();
+                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
+                Movement.setMoved(true);
+                Movement.resumeMovement();
+                return;
             }
-            Movement.getMap().remove(toRemove);
-            Interaction.ROCK.setInteractionDone(true);
+            DialogLayout.getINSTANCE().removeMoney(5000);
+            Player.getINSTANCE().getSkinAvailables().add(2);
             DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_SKIN_BUYED.getText());
+            Movement.setMoved(true);
+            Movement.resumeMovement();
+        });
+        BUY_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            if(DialogLayout.getINSTANCE().getMoney() < 10000){
+                DialogLayout.getINSTANCE().removeContent();
+                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
+                Movement.setMoved(true);
+                Movement.resumeMovement();
+            }
+        });
+        PACKAGE_REPAIR.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            Inventory.getINSTANCE().remove(Object.OBJ6_2);
+            Inventory.getINSTANCE().add(Object.OBJ6);
+            Movement.resumeMovement();
+            DialogLayout.getINSTANCE().removeContent();
+            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_PACKAGE_AFTER.getText());
             Movement.setMoved(true);
         });
-
         QUEST_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             DialogLayout.getINSTANCE().removeContent();
             if(Player.getINSTANCE().getCurrentSkin() == 4){
@@ -175,17 +228,12 @@ public enum Action {
             Movement.resumeMovement();
             Movement.setMoved(true);
         });
-
-        PACMANSKIP.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Interaction.PACMAN_IN.setInteractionDone(true);
-            DialogLayout.getINSTANCE().removeContent();
-            DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_WON.getText());
-            Inventory.getINSTANCE().add(Object.OBJ3);
-            Player.getINSTANCE().getSkinAvailables().add(3);
-            Movement.setMoved(true);
-            Movement.resumeMovement();
+        DEATH_STAR.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.DEATH_STAR.getEventHandler());
+            KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
         });
 
+        // Récupération des plumes de poulet sur la planète 3
         CHICKEN1.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
             Inventory.getINSTANCE().add(Object.OBJ7_1);
             Pair<Integer, Integer> p = Player.getINSTANCE().getPosition();
@@ -281,87 +329,36 @@ public enum Action {
             DialogLayout.getINSTANCE().setText(DialogConfig.CHICKEN_AFTER.getText());
             Movement.resumeMovement();
         });
-        
-        BUY_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            if(DialogLayout.getINSTANCE().getMoney() < 10000){
-                DialogLayout.getINSTANCE().removeContent();
-                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
-                Movement.setMoved(true);
-                Movement.resumeMovement();
-                return;
-            }
-        });
-        BUY_SKIN.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            if(DialogLayout.getINSTANCE().getMoney() < 5000){
-                DialogLayout.getINSTANCE().removeContent();
-                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
-                Movement.setMoved(true);
-                Movement.resumeMovement();
-                return;
-            }
-            DialogLayout.getINSTANCE().removeMoney(5000);
-            Player.getINSTANCE().getSkinAvailables().add(2);
+
+        // Pemet de passer le pacman sur la planète 3
+        PACMANSKIP.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            Interaction.PACMAN_IN.setInteractionDone(true);
             DialogLayout.getINSTANCE().removeContent();
-            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_SKIN_BUYED.getText());
+            DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_WON.getText());
+            Inventory.getINSTANCE().add(Object.OBJ3);
+            Player.getINSTANCE().getSkinAvailables().add(3);
             Movement.setMoved(true);
             Movement.resumeMovement();
         });
-        RETURN_OBJECT2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            if(DialogLayout.getINSTANCE().getMoney() < 500){
-                DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
-                Movement.setMoved(true);
-                Movement.resumeMovement();
-                return;
-            }
-            DialogLayout.getINSTANCE().removeMoney(500);
-            Inventory.getINSTANCE().remove(Object.OBJ2);
-            Inventory.getINSTANCE().add(Object.OBJ2_2);
-            for(Cell cell : MapConfig.getINSTANCE().getMaps().get(7).getCells()){
+
+        // Utilisation de la dynamite pour débloquer le reste de la planète 4
+        USE_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
+            Inventory.getINSTANCE().remove(Object.OBJ4);
+            Movement.resumeMovement();
+            Cell toRemove = null;
+            for(Cell cell : Movement.getMap().getCells()){
                 if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null &&
-                        ((BlockingCell) cell).getInteraction().equals(Interaction.PNJ12)){
-                    ((BlockingCell) cell).setInteraction(Interaction.PNJ12_2);
+                        ((BlockingCell) cell).getInteraction().equals(Interaction.ROCK)){
+                    toRemove = cell;
                 }
             }
-            DialogLayout.getINSTANCE().removeContent();
-            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_REACTORS_REPARED.getText());
-            Movement.setMoved(true);
-            Movement.resumeMovement();
-        });
-        RETURN_OBJECT6.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            if(!MapConfig.getINSTANCE().swapCells(0, new Pair<>(22, 5), new Pair<>(22, 6))){
-                MapConfig.getINSTANCE().movePlayer(new Pair<>(21, 6));
-                MapConfig.getINSTANCE().swapCells(0, new Pair<>(22, 5), new Pair<>(22, 6));
-            }
-            DialogLayout.getINSTANCE().addMoney(250);
-            Interaction.PNJ3.setInteractionDone(true);
-            Inventory.getINSTANCE().remove(Object.OBJ6);
+            Movement.getMap().remove(toRemove);
+            Interaction.ROCK.setInteractionDone(true);
             DialogLayout.getINSTANCE().removeContent();
             Movement.setMoved(true);
-            Movement.resumeMovement();
-        });
-        RETURN_OBJECT4_2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Interaction.PNJ11.setInteractionDone(true);
-            Inventory.getINSTANCE().remove(Object.OBJ4_2);
-            DialogLayout.getINSTANCE().addMoney(1000);
-            DialogLayout.getINSTANCE().removeContent();
-            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ11_AFTER.getText());
-            Movement.setMoved(true);
-            Movement.resumeMovement();
-        });
-        RETURN_OBJECT6_2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            Interaction.PNJ5.setInteractionDone(true);
-            Inventory.getINSTANCE().remove(Object.OBJ6);
-            DialogLayout.getINSTANCE().removeContent();
-            DialogLayout.getINSTANCE().setText(DialogConfig.PNJ5_AFTER.getText());
-            Movement.setMoved(true);
-            Movement.resumeMovement();
-        });
-        DEATH_STAR.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.DEATH_STAR.getEventHandler());
-            KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
         });
 
-
+        // Action du bouton Retour
         RETURN.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             DialogLayout.getINSTANCE().removeContent();
             Movement.resumeMovement();
@@ -369,14 +366,29 @@ public enum Action {
         });
     }
 
+    /**
+     * Evénement rattaché à chacune des actions.
+     */
     private EventHandler eventHandler;
 
+    /**
+     * Constructeur vide d'une action
+     */
     Action() {}
 
+    /**
+     * Permet de récupérer l'événément rattaché à chacune des actions.
+     * @return EventHandler
+     */
     public EventHandler getEventHandler() {
         return eventHandler;
     }
 
+    /**
+     * Permet de créer un événement de téléportation pour faire revenir Leskak au spawn de la planète où il est.
+     * @param map Carte de départ de la planète
+     * @return EventHandler
+     */
     public static EventHandler createTeleportAction(Map map){
         return ((EventHandler<ActionEvent>) (action) ->{
             Movement.getMap().getGridPane().getChildren().remove(Player.getINSTANCE().getImage());
@@ -389,6 +401,13 @@ public enum Action {
         });
     }
 
+    /**
+     * Permet de créer un événement pour que Leskak puisse récupérer un objet.
+     * @param interaction Définit avec qui Leskak doit intégir pour récupérer l'objet
+     * @param object L'objet que va récupérer Leskak
+     * @param dialogConfig Le dialogue qui va s'afficher avec cette action
+     * @return EventHandler
+     */
     public static EventHandler createGiveObjectAction(Interaction interaction, Object object, DialogConfig dialogConfig){
         return ((EventHandler<ActionEvent>) (action) -> {
             Inventory.getINSTANCE().add(object);
@@ -400,6 +419,13 @@ public enum Action {
         });
     }
 
+    /**
+     * Permet de créer un événement pour que Leskak puisse récupérer de l'argent.
+     * @param interaction Définit avec qui Leskak doit intégir pour récupérer l'objet
+     * @param money L'argent que va récupérer Leskak
+     * @param dialogConfig Le dialogue qui va s'afficher avec cette action
+     * @return EventHandler
+     */
     public static EventHandler createGiveMoneyAction(Interaction interaction, int money, DialogConfig dialogConfig){
         return ((EventHandler<ActionEvent>) (action) -> {
             DialogLayout.getINSTANCE().addMoney(money);
@@ -411,6 +437,14 @@ public enum Action {
         });
     }
 
+    /**
+     * Permet de créer un événement pour que Leskak puisse récupérer de l'argent ainsi qu'un objet.
+     * @param interaction Définit avec qui Leskak doit intégir pour récupérer l'objet et l'argent
+     * @param object L'objet que va récupérer Leskak
+     * @param dialogConfig Le dialogue qui va s'afficher avec cette action
+     * @param money L'argent que va récupérer Leskak
+     * @return EventHandler
+     */
     public static EventHandler createGiveObjectAndMoneyAction(Interaction interaction, Object object, DialogConfig dialogConfig, int money){
         return ((EventHandler<ActionEvent>) (action) -> {
             Inventory.getINSTANCE().add(object);
@@ -423,6 +457,11 @@ public enum Action {
         });
     }
 
+    /**
+     * Permet de créer un événement permettant de définir le message d'erreur suite à une mauvaise réponse sur l'énigme.
+     * @param dialogError Le dialogue qui doit apparaître en cas d'erreur
+     * @return EventHandler
+     */
     public static EventHandler createRiddleErrorAction(DialogConfig dialogError){
         return ((EventHandler<ActionEvent>) (action) -> {
             DialogLayout.getINSTANCE().removeContent();
@@ -434,6 +473,16 @@ public enum Action {
         });
     }
 
+    /**
+     * Permet de créer un événénement permettant d'intéragir avec un objet et de faire changer son sprite.
+     * @param interaction Définit avec qui Leskak doit intégir pour récupérer l'objet
+     * @param dialogConfig Dialogue à afficher lors de l'intéraction
+     * @param nbMap Carte sur laquelle se déroule l'intéraction
+     * @param toRemove Intéraction à enlever à la suite de cette intéraction
+     * @param toAdd Intéraction à mettre en place à la suite de cette intéraction
+     * @param sprite Sprite de l'objet une fois que l'intéraction est faites
+     * @return EventHandler
+     */
     public  static  EventHandler createInteractionAndSpriteChange(Interaction interaction,DialogConfig dialogConfig,
                                                                   int nbMap, Interaction toRemove, Interaction toAdd, Sprite sprite){
         return ((EventHandler<ActionEvent>) (action) -> {
@@ -451,6 +500,17 @@ public enum Action {
         });
     }
 
+    /**
+     * Permet de créer un événénement permettant d'intéragir avec un objet et de faire changer son sprite, ainsi que de donner de l'argent à Leskak.
+     * @param interaction Définit avec qui Leskak doit intégir pour récupérer l'objet
+     * @param dialogConfig Dialogue à afficher lors de l'intéraction
+     * @param nbMap Carte sur laquelle se déroule l'intéraction
+     * @param toRemove Intéraction à enlever à la suite de cette intéraction
+     * @param toAdd Intéraction à mettre en place à la suite de cette intéraction
+     * @param sprite Sprite de l'objet une fois que l'intéraction est faites
+     * @param money Somme à ajouter à la bourse de Leskak
+     * @return EventHandler
+     */
     public  static  EventHandler createInteractionAndSpriteChangeAndGiveMoney(Interaction interaction,DialogConfig dialogConfig,
                                                                   int nbMap, Interaction toRemove, Interaction toAdd, Sprite sprite, int money){
         return ((EventHandler<ActionEvent>) (action) -> {
