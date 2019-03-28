@@ -54,7 +54,7 @@ public enum KeyboardConfig {
         if(event.getCode() == Key.CHANGE_SKIN.getKeyCode() && GameLayout.getINSTANCE().getPane().isFocused() && Movement.isStoped()){
             Player player = Player.getINSTANCE();
             player.setCurrentSkin(Player.getINSTANCE().getNextSkinAvailable());
-            Movement.setAnimationSet(AnimationSet.getSpriteSet(player.getCurrentSkin()*4).getStopSpriteSet());
+            Movement.setAnimationSet(AnimationSet.getAnimationSet(player.getCurrentSkin()*4).getStopAnimationSet());
             player.setSprite(Movement.getAnimationSet().getSpriteDirection(player.getDirection()));
         }
     }),
