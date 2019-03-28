@@ -344,7 +344,7 @@ public enum Interaction {
      * @param dialogConfig dialogue à afficher
      * @return EventHandler
      */
-    public  static EventHandler<KeyEvent> createSimpleDialog(Interaction interaction, DialogConfig dialogConfig){
+    private static EventHandler<KeyEvent> createSimpleDialog(Interaction interaction, DialogConfig dialogConfig){
         return (event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
@@ -360,7 +360,7 @@ public enum Interaction {
      * @param interaction l'événement rattaché
      * @return EventHandler
      */
-    public  static EventHandler<KeyEvent> chickenInteraction(Interaction interaction){
+    private static EventHandler<KeyEvent> chickenInteraction(Interaction interaction){
         return (event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
@@ -404,7 +404,7 @@ public enum Interaction {
      * @param action action quand tu appuies sur le bouton
      * @return EventHandler
      */
-    public  static EventHandler<KeyEvent> createSimpleButtonInteraction(Interaction interaction, DialogConfig dialogConfigBefore, DialogConfig dialogConfigAfter, DialogConfig dialogConfigButton, Action action){
+    private static EventHandler<KeyEvent> createSimpleButtonInteraction(Interaction interaction, DialogConfig dialogConfigBefore, DialogConfig dialogConfigAfter, DialogConfig dialogConfigButton, Action action){
         return (event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
@@ -432,7 +432,7 @@ public enum Interaction {
      * @param object l'objet nécessaire ou non
      * @return EventHandler
      */
-    public  static EventHandler<KeyEvent> createSimpleButtonInteractionObject(Interaction interaction, DialogConfig dialogConfigBefore, DialogConfig dialogConfigAfter, DialogConfig dialogConfigButton, Action action, boolean contains, Object object){
+    private static EventHandler<KeyEvent> createSimpleButtonInteractionObject(Interaction interaction, DialogConfig dialogConfigBefore, DialogConfig dialogConfigAfter, DialogConfig dialogConfigButton, Action action, boolean contains, Object object){
         return (event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
@@ -461,7 +461,7 @@ public enum Interaction {
      * @param sprite sprite à de remplacement
      * @return EventHandler
      */
-    public  static EventHandler<KeyEvent> createSimpleDialogWithInteractionAndSpriteChange(Interaction interaction, DialogConfig dialogConfig, int nbMap, Interaction toRemove, Interaction toAdd, Sprite sprite){
+    private static EventHandler<KeyEvent> createSimpleDialogWithInteractionAndSpriteChange(Interaction interaction, DialogConfig dialogConfig, int nbMap, Interaction toRemove, Interaction toAdd, Sprite sprite){
         return (event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
@@ -492,7 +492,7 @@ public enum Interaction {
      * @param toAdd intéraction de remplacement
      * @return EventHandler
      */
-    public  static EventHandler<KeyEvent> createSimpleButtonInteractionObjectWithInteractionChange(Interaction interaction, DialogConfig dialogConfigBefore, DialogConfig dialogConfigAfter, DialogConfig dialogConfigButton, Action action, boolean contains, Object object, int nbMap, Interaction toRemove, Interaction toAdd){
+    private static EventHandler<KeyEvent> createSimpleButtonInteractionObjectWithInteractionChange(Interaction interaction, DialogConfig dialogConfigBefore, DialogConfig dialogConfigAfter, DialogConfig dialogConfigButton, Action action, boolean contains, Object object, int nbMap, Interaction toRemove, Interaction toAdd){
         return (event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 Movement.setMoved(false);
@@ -527,7 +527,7 @@ public enum Interaction {
      * @param actionSuccess action (dialogue) en cas de bonne réponse
      * @return EventHandler
      */
-    public static EventHandler<KeyEvent> createRiddleInteraction(Interaction interaction, DialogConfig dialogBefore, DialogConfig dialogAfter, DialogConfig dialogButton1, DialogConfig dialogButton2, DialogConfig dialogButton3, Action actionError, Action actionSuccess){
+    private static EventHandler<KeyEvent> createRiddleInteraction(Interaction interaction, DialogConfig dialogBefore, DialogConfig dialogAfter, DialogConfig dialogButton1, DialogConfig dialogButton2, DialogConfig dialogButton3, Action actionError, Action actionSuccess){
         return (event -> {
             if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
                 if(!interaction.isInteractionDone()){

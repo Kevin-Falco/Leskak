@@ -4,6 +4,7 @@ package config;
  * Enumération des directions possibles pour le joueur (soit haut, bas, gauche, droite).
  */
 public enum Direction {
+
     UP(Key.UP),
     DOWN(Key.DOWN),
     RIGHT(Key.RIGHT),
