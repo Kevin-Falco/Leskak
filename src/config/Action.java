@@ -256,7 +256,6 @@ public enum Action {
             Cell cell = MapConfig.getLastCell( 9, p.getKey(), p.getValue());
             BlockingCell blockingCell;
             if(cell instanceof BlockingCell){
-                System.out.println("OK");
                 blockingCell = (BlockingCell) cell;
                 blockingCell.getInteraction().setInteractionDone(true);
             }
@@ -288,7 +287,6 @@ public enum Action {
             Cell cell = MapConfig.getLastCell( 9, p.getKey(), p.getValue());
             BlockingCell blockingCell;
             if(cell instanceof BlockingCell){
-                System.out.println("OK");
                 blockingCell = (BlockingCell) cell;
                 blockingCell.getInteraction().setInteractionDone(true);
             }
@@ -320,7 +318,6 @@ public enum Action {
             Cell cell = MapConfig.getLastCell( 9, p.getKey(), p.getValue());
             BlockingCell blockingCell;
             if(cell instanceof BlockingCell){
-                System.out.println("OK");
                 blockingCell = (BlockingCell) cell;
                 blockingCell.getInteraction().setInteractionDone(true);
             }
