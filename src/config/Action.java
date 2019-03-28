@@ -158,9 +158,6 @@ public enum Action {
             }
             Cell cell = MapConfig.getLastCell( 9, p.getKey(), p.getValue());
             BlockingCell blockingCell;
-            System.out.println(Player.getINSTANCE().getPosition());
-            System.out.println(cell.getPosition() );
-            System.out.println(cell.getSprite() );
             if(cell instanceof BlockingCell){
                 System.out.println("OK");
                 blockingCell = (BlockingCell) cell;
@@ -193,9 +190,6 @@ public enum Action {
             }
             Cell cell = MapConfig.getLastCell( 9, p.getKey(), p.getValue());
             BlockingCell blockingCell;
-            System.out.println(Player.getINSTANCE().getPosition());
-            System.out.println(cell.getPosition() );
-            System.out.println(cell.getSprite() );
             if(cell instanceof BlockingCell){
                 System.out.println("OK");
                 blockingCell = (BlockingCell) cell;
@@ -228,9 +222,6 @@ public enum Action {
             }
             Cell cell = MapConfig.getLastCell( 9, p.getKey(), p.getValue());
             BlockingCell blockingCell;
-            System.out.println(Player.getINSTANCE().getPosition());
-            System.out.println(cell.getPosition() );
-            System.out.println(cell.getSprite() );
             if(cell instanceof BlockingCell){
                 System.out.println("OK");
                 blockingCell = (BlockingCell) cell;
@@ -252,7 +243,7 @@ public enum Action {
         });
         GIVE_SKIN2.eventHandler = ((EventHandler<ActionEvent>) (action) ->{
             Player.getINSTANCE().getSkinAvailables().add(4);
-            Interaction.PNJ14_2.setInteractionDone(true);
+            Interaction.PNJ19.setInteractionDone(true);
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ19_SUCCESS.getText());
             Movement.resumeMovement();
