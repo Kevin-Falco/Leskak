@@ -1,13 +1,14 @@
 package config;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import lib.*;
 
-
+/**
+ * Enumération des événements attachés aux touches présentes dans Key à part celle de mouvements et celle du pacman qui
+ * est un cas particulier.
+ */
 public enum KeyboardConfig {
 
     ENTER(Key.ENTER, (EventHandler<KeyEvent>) event -> {
@@ -60,22 +61,41 @@ public enum KeyboardConfig {
             player.setSprite(Movement.getAnimationSet().getSpriteDirection(player.getDirection()));
         }
     }),
-
     ;
 
+    /**
+     * Touche attachée à chaque événement.
+     */
     private Key key;
+
+    /**
+     * Evénement attaché à chaque touche.
+     */
     private EventHandler eventHandler;
 
+    /**
+     * Constructeur de KeyboardConfig avec en paramètre la touche et l'événement rattaché.
+     * @param key touche où il y aura un événement
+     * @param eventHandler événement attaché à la touche
+     */
     KeyboardConfig(Key key, EventHandler eventHandler) {
         this.key = key;
         this.eventHandler = eventHandler;
     }
 
+    /**
+     * Getter de la touche de l'événement.
+     * @return Key
+     */
     public Key getKey() {
-        return key;
+        return this.key;
     }
 
+    /**
+     * Getter de l'événement lié à la touche.
+     * @return EventHandler
+     */
     public EventHandler getEventHandler() {
-        return eventHandler;
+        return this.eventHandler;
     }
 }
