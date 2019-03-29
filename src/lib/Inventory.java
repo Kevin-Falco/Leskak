@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
- * Classe représentant l'inventaire de Leskak avec ses six emplacements. C'est classe est un singleton.
+ * Classe représentant l'inventaire de Leskak avec ses six emplacements. Cette classe est un singleton.
  */
 public class Inventory {
 

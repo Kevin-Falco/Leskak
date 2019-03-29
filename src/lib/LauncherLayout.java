@@ -7,7 +7,6 @@ import javafx.beans.property.StringProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
-import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -24,10 +23,25 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-
+/**
+ * Classe représentant le lanceur du jeu "L'aventure de Leskak", permettant l'accès au jeu, aux options et aux crédits.
+ * Cette classe est un singleton.
+ */
 public class LauncherLayout {
+
+    /**
+     * VBox contenant les boutons du lanceur du jeu.
+     */
     private static VBox vBox;
+
+    /**
+     * Vbox contenant les boutons des options, permettant de changer les touches du jeu.
+     */
     private static VBox options;
+
+    /**
+     * 
+     */
     private static Service<Void> testService;
     private static Stage loadingStage;
     private static boolean isButtonChanging = false;
@@ -35,6 +49,7 @@ public class LauncherLayout {
     private static final Integer WIDTH= 300;//1200;
     private static final Integer HEIGHT = 600;//675;
     private static final Scene SCENE= new Scene(new Parent(){}, LauncherLayout.WIDTH, LauncherLayout.HEIGHT);
+
     private static LauncherLayout INSTANCE = new LauncherLayout();
 
     private LauncherLayout() {
