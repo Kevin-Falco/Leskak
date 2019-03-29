@@ -30,13 +30,10 @@ public enum CinematicConfig {
 
     static {
 
-
-
         // Configuration des cinématiques de départ
         CINEMATIC3.eventHandler = createCinematicEventHandler(CINEMATIC3, Sprite.CINEMATIC3, Interaction.RETURN_GAME.getEventHandler());
         CINEMATIC2.eventHandler = createCinematicEventHandler(CINEMATIC2, Sprite.CINEMATIC2, CINEMATIC3.getEventHandler());
         CINEMATIC1.eventHandler = createCinematicEventHandler(CINEMATIC1, Sprite.CINEMATIC, CINEMATIC2.getEventHandler());
-
 
         // Configuration de la sortie du jeu
         END_GAME.eventHandler = (event -> {
@@ -46,14 +43,9 @@ public enum CinematicConfig {
             }
         });
 
-
-
         // Configuration des cinématiques de fin
-
         DEATH_STAR1.eventHandler = createCinematicEventHandler(DEATH_STAR1, Sprite.CINEMATIC4, END_GAME.getEventHandler());
         DEATH_STAR2.eventHandler = createCinematicEventHandler(DEATH_STAR2, Sprite.CINEMATIC5, END_GAME.getEventHandler());
-
-
     }
 
     /**
@@ -77,6 +69,13 @@ public enum CinematicConfig {
         KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
     }
 
+    /**
+     * Permet de mettre en place une cinématique et de déterminer quelle sera le prochain événement (nouvelle cinématique ou retour au jeu).
+     * @param cinematicConfig cinématique à enlever
+     * @param sprite cinématique à ajouter
+     * @param eventHandler prochaine action après avoir cliquer sur la touche pour passer la cinémtique
+     * @return EventHandler
+     */
     private static EventHandler<KeyEvent> createCinematicEventHandler(CinematicConfig cinematicConfig, Sprite sprite, EventHandler<KeyEvent> eventHandler){
         PauseTransition pt = new PauseTransition();
         pt.setDuration(Duration.millis(1));
@@ -95,6 +94,5 @@ public enum CinematicConfig {
                 });
             }
         });
-
     }
 }

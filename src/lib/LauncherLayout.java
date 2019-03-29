@@ -40,7 +40,7 @@ public class LauncherLayout {
     private static VBox options;
 
     /**
-     * 
+     *
      */
     private static Service<Void> testService;
     private static Stage loadingStage;
