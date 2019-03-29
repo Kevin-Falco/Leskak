@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enumération des sprites qui peuvent être adaptables, c'est à dire où il existe plusieurs versions du même sprite selon
+ * la direction qu'il doit avoir.
+ */
 public enum SpriteSet {
     TREE_SET(new ArrayList<>(Arrays.asList(Sprite.TREE, Sprite.TREE_UP, Sprite.TREE_DOWN, Sprite.TREE_RIGHT, Sprite.TREE_LEFT,
             Sprite.TREE_UP_RIGHT, Sprite.TREE_UP_LEFT, Sprite.TREE_UP_LEFT_RIGHT, Sprite.TREE_DOWN_RIGHT, Sprite.TREE_DOWN_LEFT,
@@ -27,31 +31,111 @@ public enum SpriteSet {
             Sprite.CAVE_UP_RIGHT, Sprite.CAVE_UP_LEFT, Sprite.CAVE_UP_LEFT_RIGHT, Sprite.CAVE_DOWN_RIGHT, Sprite.CAVE_DOWN_LEFT,
             Sprite.CAVE_DOWN_LEFT_RIGHT, Sprite.CAVE_RIGHT_UP_DOWN, Sprite.CAVE_LEFT_UP_DOWN, Sprite.CAVE_UP_DOWN, Sprite.CAVE_LEFT_RIGHT ))),
     ;
+
+    /**
+     * Liste de tous les sprites d'un même élément.
+     */
     private List<Sprite> sprites;
 
+    /**
+     * Constructeur du SpriteSet avec en paramètre la liste des sprites du même élément.
+     * @param sprites liste des sprites
+     */
     SpriteSet(List<Sprite> sprites) {
         this.sprites = sprites;
     }
 
+    /**
+     * Renvoie true si l sprite est contenu par le SpriteSet, sinon false.
+     * @param sprite sprite à chercher
+     * @return boolean
+     */
     public boolean contains(Sprite sprite){
         if(sprite == null) return false;
-        return sprites.contains(sprite);
+        return this.sprites.contains(sprite);
     }
 
-    public Sprite getCenter(){ return sprites.get(0); }
-    public Sprite getUp(){ return sprites.get(1); }
-    public Sprite getDown(){ return sprites.get(2); }
-    public Sprite getRight(){ return sprites.get(3); }
-    public Sprite getLeft(){ return sprites.get(4); }
-    public Sprite getUpRight(){ return sprites.get(5); }
-    public Sprite getUpLeft(){ return sprites.get(6); }
-    public Sprite getUpLeftRight(){ return sprites.get(7); }
-    public Sprite getDownRight(){ return sprites.get(8); }
-    public Sprite getDownLeft(){ return sprites.get(9); }
-    public Sprite getDownLeftRight(){ return sprites.get(10); }
-    public Sprite getRightUpDown(){ return sprites.get(11); }
-    public Sprite getLeftUpDown(){ return sprites.get(12); }
-    public Sprite getUpDown(){ return sprites.get(13); }
-    public Sprite getLeftRight(){ return sprites.get(14); }
+    /**
+     * Getter du sprite pointé vers le haut.
+     * @return Sprite
+     */
+    public Sprite getUp(){ return this.sprites.get(1); }
 
+    /**
+     * Getter du sprite pointé vers le bas.
+     * @return Sprite
+     */
+    public Sprite getDown(){ return this.sprites.get(2); }
+
+    /**
+     * Getter du sprite pointé vers la droite.
+     * @return Sprite
+     */
+    public Sprite getRight(){ return this.sprites.get(3); }
+
+    /**
+     * Getter du sprite pointé vers la gauche.
+     * @return Sprite
+     */
+    public Sprite getLeft(){ return this.sprites.get(4); }
+
+    /**
+     * Getter du sprite pointé vers le haut et la droite.
+     * @return Sprite
+     */
+    public Sprite getUpRight(){ return this.sprites.get(5); }
+
+    /**
+     * Getter du sprite pointé vers le haut et la gauche.
+     * @return Sprite
+     */
+    public Sprite getUpLeft(){ return this.sprites.get(6); }
+
+    /**
+     * Getter du sprite pointé vers le haut, la droite et la gauche.
+     * @return Sprite
+     */
+    public Sprite getUpLeftRight(){ return this.sprites.get(7); }
+
+    /**
+     * Getter du sprite pointé vers le bas et la droite.
+     * @return Sprite
+     */
+    public Sprite getDownRight(){ return this.sprites.get(8); }
+
+    /**
+     * Getter du sprite pointé vers le bas et la gauche.
+     * @return Sprite
+     */
+    public Sprite getDownLeft(){ return this.sprites.get(9); }
+
+    /**
+     * Getter du sprite pointé vers le bas, la droite et la gauche.
+     * @return Sprite
+     */
+    public Sprite getDownLeftRight(){ return this.sprites.get(10); }
+
+    /**
+     * Getter du sprite pointé vers la droite, le haut et le bas.
+     * @return Sprite
+     */
+    public Sprite getRightUpDown(){ return this.sprites.get(11); }
+
+    /**
+     * Getter du sprite pointé vers la gauche, le haut et le bas.
+     * @return Sprite
+     */
+    public Sprite getLeftUpDown(){ return this.sprites.get(12); }
+
+    /**
+     * Getter du sprite pointé vers le haut et le bas.
+     * @return Sprite
+     */
+    public Sprite getUpDown(){ return this.sprites.get(13); }
+
+    /**
+     * Getter du sprite pointé vers la droite et la gauche.
+     * @return Sprite
+     */
+    public Sprite getLeftRight(){ return this.sprites.get(14); }
 }
