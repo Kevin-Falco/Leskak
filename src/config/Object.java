@@ -3,6 +3,9 @@ package config;
 import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 
+/**
+ * Enumération des objets disponibles dans l'inventaire, de la position qu'ils auront dans celui-ci et de leurs sprites.
+ */
 public enum Object {
     OBJ1("Plaque de tôle", new ImageView("sprite/object/sheet_metal_plate.png"), new Pair<>(0,0)),
     OBJ2("Réacteurs endommagés", new ImageView("sprite/object/reactors.png"), new Pair<>(1,0)),
@@ -17,26 +20,55 @@ public enum Object {
     OBJ7_2("2 Plumes", new ImageView("sprite/object/feather2.png"), new Pair<>(2,1)),
     OBJ7_3("3 Plumes", new ImageView("sprite/object/feather3.png"), new Pair<>(2,1));
 
+    /**
+     * Nom de l'objet.
+     */
     private String name;
+
+    /**
+     * ImageView formée grâce au chemin .png de l'image du sprite de l'objet.
+     */
     private ImageView imageView;
+
+    /**
+     * Position de l'objet dans l'inventaire.
+     */
     private Pair<Integer, Integer> inventoryPosition;
 
+    /**
+     * Constructeur de l'objet avec en paramètre son nom, sa position dans l'inventaire et son sprite.
+     * @param name nom de l'objet
+     * @param imageView ImageView de l'objet (son sprite)
+     * @param inventoryPosition position dans l'inventaire
+     */
     Object(String name, ImageView imageView, Pair<Integer, Integer> inventoryPosition) {
         this.name = name;
         this.imageView = imageView;
-        imageView.setPreserveRatio(true);
-        imageView.setFitWidth(100);
+        this.imageView.setPreserveRatio(true);
+        this.imageView.setFitWidth(100);
         this.inventoryPosition = inventoryPosition;
     }
 
+    /**
+     * Getter du nom de l'objet.
+     * @return String
+     */
     public String getName() {
-        return name;
+        return this.name;
     }
 
+    /**
+     * Getter de l'ImageView de l'objet formée grâce au sprite de celui-ci.
+     * @return ImageView
+     */
     public ImageView getImageView() {
-        return imageView;
+        return this.imageView;
     }
 
+    /**
+     * Getter de la position de l'ojbjet dans l'inventaire.
+     * @return Pair
+     */
     public Pair<Integer, Integer> getInventoryPosition() {
         return inventoryPosition;
     }
