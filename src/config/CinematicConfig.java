@@ -21,7 +21,8 @@ public enum CinematicConfig {
     CINEMATIC3,
 
     // Configuration des cinématiques de fin
-    DEATH_STAR,
+    DEATH_STAR1,
+    DEATH_STAR2,
 
     // Configuration de la sortie du jeu
     END_GAME,
@@ -29,78 +30,13 @@ public enum CinematicConfig {
 
     static {
 
-        PauseTransition pt = new PauseTransition();
-        pt.setDuration(Duration.millis(1));
+
 
         // Configuration des cinématiques de départ
-        CINEMATIC1.eventHandler = (event -> {
-            Movement.removeMovement();
-            Pane pane = new Pane();
-            ImageView imageView = new ImageView(Sprite.CINEMATIC.getSpritePath());
-            imageView.setPreserveRatio(true);
-            imageView.setFitWidth(MainLayout.getWIDTH());
-            pane.getChildren().add(imageView);
-            MainLayout.getSCENE().setRoot(pane);
-            pt.play();
-            pt.setOnFinished(event1 -> {
-                MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CINEMATIC2.getEventHandler());
-                MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, CINEMATIC1.getEventHandler());
-            });
-        });
+        CINEMATIC3.eventHandler = createCinematicEventHandler(CINEMATIC3, Sprite.CINEMATIC3, Interaction.RETURN_GAME.getEventHandler());
+        CINEMATIC2.eventHandler = createCinematicEventHandler(CINEMATIC2, Sprite.CINEMATIC2, CINEMATIC3.getEventHandler());
+        CINEMATIC1.eventHandler = createCinematicEventHandler(CINEMATIC1, Sprite.CINEMATIC, CINEMATIC2.getEventHandler());
 
-        CINEMATIC2.eventHandler = (event -> {
-            if(event.getCode() == Key.SPACE.getKeyCode()) {
-                Pane pane = new Pane();
-                ImageView imageView = new ImageView(Sprite.CINEMATIC2.getSpritePath());
-                imageView.setPreserveRatio(true);
-                imageView.setFitWidth(MainLayout.getWIDTH());
-                pane.getChildren().add(imageView);
-                MainLayout.getSCENE().setRoot(pane);
-                pt.play();
-                pt.setOnFinished(event1 -> {
-                    MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CINEMATIC3.getEventHandler());
-                    MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, CINEMATIC2.getEventHandler());
-                });
-            }
-        });
-
-        CINEMATIC3.eventHandler = (event -> {
-            if(event.getCode() == Key.SPACE.getKeyCode()) {
-                Pane pane = new Pane();
-                ImageView imageView = new ImageView(Sprite.CINEMATIC3.getSpritePath());
-                imageView.setPreserveRatio(true);
-                imageView.setFitWidth(MainLayout.getWIDTH());
-                pane.getChildren().add(imageView);
-                MainLayout.getSCENE().setRoot(pane);
-                pt.play();
-                pt.setOnFinished(event1 -> {
-                    MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Interaction.RETURN_GAME.getEventHandler());
-                    MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, CINEMATIC3.getEventHandler());
-                });
-
-            }
-        });
-
-        // Configuration des cinématiques de fin
-        DEATH_STAR.eventHandler = (event -> {
-            if(event.getCode() == Key.SPACE.getKeyCode()) {
-                Pane pane = new Pane();
-                ImageView imageView;
-                if(Player.getINSTANCE().getSkinAvailables().size() == 5)
-                    imageView = new ImageView(Sprite.CINEMATIC4.getSpritePath());
-                else
-                    imageView = new ImageView(Sprite.CINEMATIC5.getSpritePath());
-                imageView.setPreserveRatio(true);
-                imageView.setFitWidth(MainLayout.getWIDTH());
-                pane.getChildren().add(imageView);
-                MainLayout.getSCENE().setRoot(pane);
-                pt.play();
-                pt.setOnFinished(event1 -> {
-                    MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, END_GAME.getEventHandler());
-                    MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, DEATH_STAR.getEventHandler());
-                });
-            }
-        });
 
         // Configuration de la sortie du jeu
         END_GAME.eventHandler = (event -> {
@@ -109,6 +45,15 @@ public enum CinematicConfig {
                 Main.getStage().close();
             }
         });
+
+
+
+        // Configuration des cinématiques de fin
+
+        DEATH_STAR1.eventHandler = createCinematicEventHandler(DEATH_STAR1, Sprite.CINEMATIC4, END_GAME.getEventHandler());
+        DEATH_STAR2.eventHandler = createCinematicEventHandler(DEATH_STAR2, Sprite.CINEMATIC5, END_GAME.getEventHandler());
+
+
     }
 
     /**
@@ -129,6 +74,27 @@ public enum CinematicConfig {
      */
     public static void setupGame(){
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.CINEMATIC1.getEventHandler());
-        KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.ENTER.getKeyCode(), false, false, false, false) );
+        KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
+    }
+
+    private static EventHandler<KeyEvent> createCinematicEventHandler(CinematicConfig cinematicConfig, Sprite sprite, EventHandler<KeyEvent> eventHandler){
+        PauseTransition pt = new PauseTransition();
+        pt.setDuration(Duration.millis(1));
+        return (event -> {
+            if(event.getCode() == Key.SPACE.getKeyCode()) {
+                Pane pane = new Pane();
+                ImageView imageView = new ImageView(sprite.getSpritePath());
+                imageView.setPreserveRatio(true);
+                imageView.setFitWidth(MainLayout.getWIDTH());
+                pane.getChildren().add(imageView);
+                MainLayout.getSCENE().setRoot(pane);
+                pt.play();
+                pt.setOnFinished(event1 -> {
+                    MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, eventHandler);
+                    MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, cinematicConfig.getEventHandler());
+                });
+            }
+        });
+
     }
 }
