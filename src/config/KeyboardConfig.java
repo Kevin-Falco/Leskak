@@ -49,12 +49,12 @@ public enum KeyboardConfig {
         }
     }),
     TELEPORT(Key.TELEPORT, (EventHandler<KeyEvent>) event -> {
-        if(event.getCode() == Key.TELEPORT.getKeyCode() && GameLayout.getINSTANCE().getPane().isFocused() && Movement.isStoped()){
+        if(event.getCode() == Key.TELEPORT.getKeyCode() && GameLayout.getINSTANCE().getPane().isFocused() && Movement.isStopped()){
             MapConfig.getINSTANCE().configMap(Planet.getPlanetOfMap(Movement.getMap()).getMaps().get(0));
         }
     }),
     CHANGE_SKIN(Key.CHANGE_SKIN, (EventHandler<KeyEvent>) event -> {
-        if(event.getCode() == Key.CHANGE_SKIN.getKeyCode() && GameLayout.getINSTANCE().getPane().isFocused() && Movement.isStoped()){
+        if(event.getCode() == Key.CHANGE_SKIN.getKeyCode() && GameLayout.getINSTANCE().getPane().isFocused() && Movement.isStopped()){
             Player player = Player.getINSTANCE();
             player.setCurrentSkin(Player.getINSTANCE().getNextSkinAvailable());
             Movement.setAnimationSet(AnimationSet.getAnimationSet(player.getCurrentSkin()*4).getStopAnimationSet());
@@ -71,14 +71,14 @@ public enum KeyboardConfig {
     /**
      * Evénement attaché à chaque touche.
      */
-    private EventHandler eventHandler;
+    private EventHandler<KeyEvent> eventHandler;
 
     /**
      * Constructeur de KeyboardConfig avec en paramètre la touche et l'événement rattaché.
      * @param key touche où il y aura un événement
      * @param eventHandler événement attaché à la touche
      */
-    KeyboardConfig(Key key, EventHandler eventHandler) {
+    KeyboardConfig(Key key, EventHandler<KeyEvent> eventHandler) {
         this.key = key;
         this.eventHandler = eventHandler;
     }
@@ -95,7 +95,7 @@ public enum KeyboardConfig {
      * Getter de l'événement lié à la touche.
      * @return EventHandler
      */
-    public EventHandler getEventHandler() {
+    public EventHandler<KeyEvent> getEventHandler() {
         return this.eventHandler;
     }
 }

@@ -1,6 +1,5 @@
 package lib;
 
-
 import config.Interaction;
 import config.Sprite;
 import javafx.scene.Parent;
@@ -12,17 +11,45 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 
-
+/**
+ * Classe représentant l'ensemble de la fenêtre de jeu (avec la zone de jeu, la boîte de dialogue et l'inventaire).
+ * Cette classe est un singleton.
+ */
 public class MainLayout {
+
+    /**
+     * Grille contenant les trois éléments nécessaires au jeu.
+     */
     private GridPane gridPane;
 
+    /**
+     * Largeur de la fenêtre de jeu.
+     */
+    private static final Integer WIDTH = 1600;
 
-    private static final Integer WIDTH= 1600;//1200;
-    private static final Integer HEIGHT = 900;//675;
+    /**
+     * Hauteur de la fenêtre de jeu.
+     */
+    private static final Integer HEIGHT = 900;
+
+    /**
+     * Scène contenant les trois éléments nécessaires au jeu.
+     */
     private static final Scene SCENE= new Scene(new Parent(){}, MainLayout.WIDTH, MainLayout.HEIGHT);
+
+    /**
+     * Stage du MainLayout.
+     */
     private static final Stage STAGE = new Stage();
+
+    /**
+     * Instance de MainLayout, permet à la classe d'être un singleton.
+     */
     private static final MainLayout INSTANCE = new MainLayout();
 
+    /**
+     * Constructeur du MainLayout mettant en place le Stage, la Scène et la grille.
+     */
     private MainLayout() {
         MainLayout.STAGE.setScene(MainLayout.SCENE);
         MainLayout.getSCENE().getStylesheets().add("config/style.css");
@@ -30,17 +57,27 @@ public class MainLayout {
         this.gridPane = mainLayout();
     }
 
+    /**
+     * Renvoie la grille du main.
+     * @return GridPane
+     */
     public GridPane getGridPane() {
         MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.RETURN_GAME.getEventHandler());
-        return gridPane;
+        return this.gridPane;
     }
 
+    /**
+     * Renvoie l'instance du MainLayout pour permettre que cette classe soit un singleton.
+     * @return MainLayout
+     */
     public static MainLayout getINSTANCE() {
-        return INSTANCE;
+        return MainLayout.INSTANCE;
     }
 
-
-
+    /**
+     * Met en place de la grille du Main.
+     * @return GridPane
+     */
     private static GridPane mainLayout(){
         GridPane gridPane = new GridPane();
         GridPane inventoryLayout = MainLayout.inventoryLayout();
@@ -57,26 +94,50 @@ public class MainLayout {
         return gridPane;
     }
 
-    public static GridPane inventoryLayout(){
+    /**
+     * Renvoie la disposition (grille) de l'inventaire.
+     * @return GridPane
+     */
+    private static GridPane inventoryLayout(){
         return Inventory.getINSTANCE().getGridPane();
     }
 
-    public static GridPane dialogLayout(){
+    /**
+     * Renvoie la disposition (grille) de la boîte de dialogue.
+     * @return GridPane
+     */
+    private static GridPane dialogLayout(){
         return DialogLayout.getINSTANCE().getGridPane();
     }
 
+    /**
+     * Renvoie la largeur de la fenêtre du Main.
+     * @return int
+     */
     public static Integer getWIDTH() {
         return MainLayout.WIDTH;
     }
 
+    /**
+     * Renvoie la hauteur de la fenêtre du Main.
+     * @return int
+     */
     public static Integer getHEIGHT() {
         return MainLayout.HEIGHT;
     }
 
+    /**
+     * Renvoie la scène du Main.
+     * @return Scene
+     */
     public static Scene getSCENE() {
         return MainLayout.SCENE;
     }
 
+    /**
+     * Renvoie le Stage du Main.
+     * @return Stage
+     */
     public static Stage getSTAGE() {
         return STAGE;
     }

@@ -20,7 +20,7 @@ public class Movement {
 
     private static Key lastKeyTyped;
     private static Key automaticLastKey;
-    private static boolean stoped = true;
+    private static boolean stopped = true;
     private static boolean directionChanged = false;
     private static boolean lastKeyReleased = true;
     private static AnimationSet animationSet = AnimationSet.PLAYER_STOP;
@@ -62,7 +62,7 @@ public class Movement {
             if(lastKeyReleased){
                 animationSet = animationSet.getStopAnimationSet();
                 Player.getINSTANCE().setSprite(animationSet.getSpriteDirection(Player.getINSTANCE().getDirection()));
-                stoped = true;
+                stopped = true;
                 return;
             }
             else {
@@ -72,9 +72,9 @@ public class Movement {
         });
         return key -> {
 
-            if(!stoped && !Movement.automaticLastKey.equals(Movement.lastKeyTyped)){
+            if(!stopped && !Movement.automaticLastKey.equals(Movement.lastKeyTyped)){
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
-                stoped = false;
+                stopped = false;
                 animationSet = AnimationSet.getAnimationSet(AnimationSet.getNbAnim(Math.floorDiv(
                         AnimationSet.getAnimationSetThatHave( Player.getINSTANCE().getSprite()).ordinal(), 4)));
                 directionChanged = true;
@@ -86,7 +86,7 @@ public class Movement {
             animationSet = AnimationSet.getAnimationSet(AnimationSet.getNbAnim(Math.floorDiv(
                     AnimationSet.getAnimationSetThatHave( Player.getINSTANCE().getSprite()).ordinal(), 4)));
             movePlayer(key);
-            stoped = false;
+            stopped = false;
 
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
             pt.play();
@@ -103,7 +103,7 @@ public class Movement {
         return key -> {
             if(!Movement.isMovementKey(key) ) return;
             lastKeyTyped = Key.getKeyofKeyCode(key.getCode());
-            if(Movement.automaticLastKey != null && Movement.automaticLastKey.equals(Movement.lastKeyTyped) && !stoped) return;
+            if(Movement.automaticLastKey != null && Movement.automaticLastKey.equals(Movement.lastKeyTyped) && !stopped) return;
 
             if(lastKeyReleased)
                 lastKeyReleased = false;
@@ -308,8 +308,8 @@ public class Movement {
         Movement.animationSet = animationSet;
     }
 
-    public static boolean isStoped() {
-        return stoped;
+    public static boolean isStopped() {
+        return stopped;
     }
 
     public static EventHandler<KeyEvent> getStopEventHandler() {

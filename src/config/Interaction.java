@@ -291,7 +291,7 @@ public enum Interaction {
             }
         });
         PACMAN_SKIP.eventHandler = (event -> {
-            if(event.getCode().equals(KeyCode.P) && Movement.isStoped()){
+            if(event.getCode().equals(KeyCode.P) && Movement.isStopped()){
                 Interaction.PACMAN_IN.setInteractionDone(true);
                 DialogLayout.getINSTANCE().removeContent();
                 DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_WON.getText());
