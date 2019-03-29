@@ -12,13 +12,32 @@ import lib.*;
 
 import java.util.ArrayList;
 
-
+/**
+ * Classe permettant la mise en place de la position d'apparition de Leskak dans le jeu et sur chaque planète. Elle possède
+ * une donnée membre de type Task permettant d'exécuter la création de chacune des cartes dans le chargement du jeu (et
+ * donc de faire une véritable barre de chargement au lancement du jeu). De plus, MapConfig est un Singleton.
+ */
 public class MapConfig {
+
+    /**
+     * Instance de MapConfig (nécéssaire pour créer un Singleton).
+     */
     private static final MapConfig INSTANCE = new MapConfig();
 
+    /**
+     * Liste statique de toutes les cartes du jeu.
+     */
     private static ArrayList<Map> maps;
+
+    /**
+     * Tâche permettant de créer, en tâche de fond, l'ensemble des cartes du jeu.
+     */
     private  static Task<Void> task;
 
+    /**
+     * Constructeur de MapConfig permettant de mettre toutes les ColumnConstraints et RowConstraints ainsi que la création
+     * de la tâche de fond.
+     */
     private MapConfig() {
         MapConfig.maps = new ArrayList<>();
         for(Planet planet : Planet.values()){
@@ -34,11 +53,10 @@ public class MapConfig {
                 MapConfig.maps.add(map);
             }
         }
-        task = new Task<Void>() {
+        MapConfig.task = new Task<Void>() {
             @Override
             protected Void call() {
                 Movement.configPlayerEventHandler(MainLayout.getSCENE());
-                MapConfig.getINSTANCE();
                 this.updateMapProgress();
                 return null;
             }
@@ -51,26 +69,40 @@ public class MapConfig {
                     MapConfig.getINSTANCE().setupMap(i);
                 }
                 this.updateProgress(100, 100);
-
-                Platform.runLater(() -> configMap(Planet.PLANET3.getMaps().get(0)));
-
+                Platform.runLater(() -> configMap(Planet.PLANET1.getMaps().get(0)));
             }
         };
         GameLayout.getINSTANCE().setGameHasBegun(true);
     }
 
-    public ArrayList<Map> getMaps() {
-        return maps;
-    }
-
+    /**
+     * Getter de l'instance de MapConfig
+     * @return MapConfig
+     */
     public static MapConfig getINSTANCE() {
         return INSTANCE;
     }
 
+    /**
+     * Getter de la liste des cartes du jeu.
+     * @return ArrayList
+     */
+    public ArrayList<Map> getMaps() {
+        return maps;
+    }
+
+    /**
+     * Getter de la tâche de fond.
+     * @return Task
+     */
     public static Task<Void> getTask() {
         return task;
     }
 
+    /**
+     * Configure le lieu d'apparition de Leskak selon la planète.
+     * @param map carte sur laquelle se trouve Leskak
+     */
     public void configMap(Map map){
         Planet planet = Planet.getPlanetOfMap(map);
         if(planet.equals(Planet.PLANET1)){
@@ -90,9 +122,13 @@ public class MapConfig {
         }
     }
 
+    /**
+     * Configure le lieu d'apparition de Leskak selon la planète et la position à laquelle il sera.
+     * @param map carte sur laquelle faire apparaître Leskak
+     * @param position position à laquelle il doit apparaitre
+     */
     public void configMap(Map map,Pair<Integer, Integer> position){
         Movement.setMap(map);
-
         Player player = Player.getINSTANCE();
 
         player.setPosition(position);
@@ -116,6 +152,10 @@ public class MapConfig {
         GameLayout.getINSTANCE().setGridPane(map.getGridPane());
     }
 
+    /**
+     * Permet de générer la bonne carte en fonction du numéro mis en paramètre de la fonction.
+     * @param nbMap numéro de la carte à générer
+     */
     public void setupMap(int nbMap){
         if(nbMap == 0){
             MapSetup.setupMap0();
@@ -158,7 +198,7 @@ public class MapConfig {
         }
     }
 
-    public static Cell getFirstCell(int nbMap, Integer col, Integer row){
+    private static Cell getFirstCell(int nbMap, Integer col, Integer row){
         Map m = getINSTANCE().getMaps().get(nbMap);
         for (Cell cell : m
         ) {
@@ -199,7 +239,6 @@ public class MapConfig {
         Player player = Player.getINSTANCE();
         double x = (player.getPosition().getKey() - targetPosition.getKey()) * 50;
         double y = (player.getPosition().getValue() - targetPosition.getValue()) * 50;
-        //sysSystem.out.println(player.getPosition() + " : " + targetPosition + x);
 
         Player.getINSTANCE().setPosition(targetPosition);
 
@@ -252,32 +291,86 @@ public class MapConfig {
         return true;
     }
 
+    /**
+     * Classe interne permettant la mise en place, sprite par sprite, de chacune des cartes de chaque planète. Elle permet
+     *  la création des cellules sur lesquelles Leskak peut marcher, être bloqué, de transition ou encore intéragir.
+     */
     private static class MapSetup{
 
+        /**
+         * Crée une cellule bloquante qui empêche Leskak de marcher dessus.
+         * @param sprite sprite de la cellule bloquante
+         * @param position position de la cellule bloquante
+         * @return BlockingCell
+         */
         private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position){
             return new BlockingCell(sprite, position);
         }
 
+        /**
+         * Crée une cellule bloquante qui empêche Leskak de marcher dessus mais avec laquelle il peut intéragir.
+         * @param sprite sprite de la cellule bloquante
+         * @param position position de la cellule bloquante
+         * @param interaction intéraction de la cellule bloquante
+         * @return BlockingCell
+         */
         private static BlockingCell addBlockingCell(Sprite sprite, Pair<Integer, Integer> position, Interaction interaction){
             return new BlockingCell(sprite, position, interaction);
         }
 
+        /**
+         * Crée une cellule de transition qui permet à Leskak de changer de carte.
+         * @param sprite sprite de la cellule de transition
+         * @param position position de la cellule de transition
+         * @param direction direction dans laquelle Leskak doit aller afin de changer de carte
+         * @return TransitionCell
+         */
         private static TransitionCell addTransitionCell(Sprite sprite, Pair<Integer, Integer> position, Direction direction){
             return new TransitionCell(sprite, position, direction);
         }
 
+        /**
+         * Crée une cellule classique sur laquelle Leskak peut marcher.
+         * @param sprite sprite de la cellule
+         * @param position position de la cellule
+         * @return Cell
+         */
         private static Cell addCell(Sprite sprite, Pair<Integer, Integer> position){
             return new Cell(sprite, position);
         }
+
+        /**
+         * Crée un rectangle de BlockingCell en fonction du paramètre str permettant de savoir sur quel type de "bâtiment"
+         * on travaille. Par exemple, cette fonction est très utile pour le centre commercial, où il faut placer de nombreux
+         * rectangles comme des buildings, voitures... étant des BlockingCell.
+         * @param m carte sur laquelle on travaille
+         * @param str chaîne de caractère permettant de savoir sur quels sprites on travaille
+         * @param col nombre de colones du building
+         * @param row nombre de lignes du building
+         * @param position poisition de départ (en haut à gauche) du building
+         * @param interaction intéraction avec celui-ci si elle existe
+         */
+        private static void createBuilding(Map m, String str, int col, int row, Pair<Integer, Integer> position, Interaction interaction){
+            for(int i = 0; i < row; ++i){
+                for(int j = 0; j < col; ++j){
+                    if(interaction == null)
+                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*col + j))), new Pair<>(position.getKey() + j, position.getValue() + i)));
+                    else
+                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*col + j))), new Pair<>(position.getKey() + j, position.getValue() + i), interaction));
+                }
+            }
+        }
+
+        /**
+         * Génère l'ensemble de la première carte de la planète 1.
+         */
         private static void setupMap0(){
             Map m = maps.get(0);
 
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.GRASS, new Pair<>(i, j)));
 
             for (int i = 12; i <= 14; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 0), Direction.UP));
-            for (int i = 31; i <= 31; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 2), Direction.RIGHT));
-            for (int i = 31; i <= 31; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 3), Direction.RIGHT));
-            for (int i = 31; i <= 31; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 4), Direction.RIGHT));
+            for (int j = 2; j <= 4; ++j) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(31, j), Direction.RIGHT));
 
             for (int i = 0; i <= 11; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 0)));
             for (int i = 15; i <= 21; ++i) m.add(addBlockingCell(Sprite.TREE, new Pair<>(i, 0)));
@@ -357,14 +450,15 @@ public class MapConfig {
             updateSpritesOf(0, SpriteSet.WATER_SET);
         }
 
+        /**
+         * Génère l'ensemble de la deuxième carte de la planète 1.
+         */
         private static void setupMap1() {
             Map m = maps.get(1);
 
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.GRASS, new Pair<>(i, j)));
 
-            for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 2), Direction.LEFT));
-            for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 3), Direction.LEFT));
-            for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(i, 4), Direction.LEFT));
+            for (int j = 2; j <= 4; ++j) m.add(addTransitionCell(Sprite.GRASS, new Pair<>(0, j), Direction.LEFT));
 
             for (int i = 30; i <= 30; ++i) m.add(addBlockingCell(Sprite.GRASS, new Pair<>(i, 5), Interaction.CHEST_BEFORE_HIDDEN));
 
@@ -410,9 +504,11 @@ public class MapConfig {
             updateSpritesOf(1, SpriteSet.TREE_SET);
         }
 
+        /**
+         * Génère l'ensemble de la troisième carte de la planète 1.
+         */
         private static void setupMap2(){
             Map m = maps.get(2);
-
 
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.GRASS, new Pair<>(i, j)));
 
@@ -492,6 +588,9 @@ public class MapConfig {
             updateSpritesOf(2, SpriteSet.WATER_SET);
         }
 
+        /**
+         * Génère l'ensemble de la première carte de la planète 2.
+         */
         private static void setupMap3(){
             Map m = maps.get(3);
 
@@ -600,10 +699,12 @@ public class MapConfig {
             updateSpritesOf(3, SpriteSet.TREE2_SET);
 
             m.setFogOfWar(true);
-
             for (int i = 0; i <= 14; ++i) for(int j = 4; j <= 11; ++j) m.removeFogCell(i,j);
         }
 
+        /**
+         * Génère l'ensemble de la deuxième carte de la planète 2.
+         */
         private static void setupMap4(){
             Map m = maps.get(4);
 
@@ -699,6 +800,9 @@ public class MapConfig {
             m.setFogOfWar(true);
         }
 
+        /**
+         * Génère l'ensemble de la troisième carte de la planète 2.
+         */
         private static void setupMap5(){
             Map m = maps.get(5);
 
@@ -810,6 +914,9 @@ public class MapConfig {
             m.setFogOfWar(true);
         }
 
+        /**
+         * Génère l'ensemble de la quatrième carte de la planète 2.
+         */
         private static void setupMap6(){
             Map m = maps.get(6);
 
@@ -886,6 +993,9 @@ public class MapConfig {
             m.setFogOfWar(true);
         }
 
+        /**
+         * Génère l'ensemble du centre commercial.
+         */
         private static void setupMap7(){
             Map m = maps.get(7);
 
@@ -937,13 +1047,15 @@ public class MapConfig {
             createBuilding(m, "BUILDING2_", 4, 4, new Pair<>(17, 5), null);
         }
 
+        /**
+         * Génère l'ensemble de la première carte de la planète 3.
+         */
         private static void setupMap8() {
             Map m = maps.get(8);
 
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.SPACE, new Pair<>(i, j)));
 
-            for (int i = 31; i <= 31; ++i) m.add(addTransitionCell(Sprite.SPACE, new Pair<>(i, 5), Direction.RIGHT));
-            for (int i = 31; i <= 31; ++i) m.add(addTransitionCell(Sprite.SPACE, new Pair<>(i, 6), Direction.RIGHT));
+            for (int j = 5; j <= 6; ++j) m.add(addTransitionCell(Sprite.SPACE, new Pair<>(31, j), Direction.RIGHT));
 
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 0)));
             for (int i = 0; i <= 9; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 1)));
@@ -996,13 +1108,15 @@ public class MapConfig {
             updateSpritesOf(8, SpriteSet.TREE3_SET);
         }
 
+        /**
+         * Génère l'ensemble de la deuxième carte de la planète 3.
+         */
         private static void setupMap9() {
             Map m = maps.get(9);
 
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.SPACE, new Pair<>(i, j)));
 
-            for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SPACE, new Pair<>(i, 5), Direction.LEFT));
-            for (int i = 0; i <= 0; ++i) m.add(addTransitionCell(Sprite.SPACE, new Pair<>(i, 6), Direction.LEFT));
+            for (int j = 5; j <= 6; ++j) m.add(addTransitionCell(Sprite.SPACE, new Pair<>(0, j), Direction.LEFT));
 
             for (int i = 0; i <= 31; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 0)));
             for (int i = 0; i <= 18; ++i) m.add(addBlockingCell(Sprite.TREE3, new Pair<>(i, 1)));
@@ -1057,6 +1171,9 @@ public class MapConfig {
             updateSpritesOf(9, SpriteSet.TREE3_SET);
         }
 
+        /**
+         * Génère l'ensemble de la carte du pacman personnalisé
+         */
         private static void setupMap10() {
             Map m = maps.get(10);
 
@@ -1154,12 +1271,15 @@ public class MapConfig {
             createBuilding(m, "LETTER_", 8, 1, new Pair<>(12, 0), null);
         }
 
+        /**
+         * Génère l'ensemble de la première carte de la planète 4.
+         */
         private static void setupMap11() {
             Map m = maps.get(11);
 
             for (int i = 0; i <= 31; ++i) for (int j = 0; j <= 11; ++j) m.add(addCell(Sprite.SNOW, new Pair<>(i, j)));
-            for (int i = 12; i <= 12; ++i) m.add(addCell(Sprite.TREE4, new Pair<>(i, 0)));
 
+            for (int i = 12; i <= 12; ++i) m.add(addCell(Sprite.TREE4, new Pair<>(i, 0)));
             for (int i = 12; i <= 12; ++i) m.add(addTransitionCell(Sprite.CAVE_ENTRANCE, new Pair<>(i, 0), Direction.UP));
 
             for (int i = 0; i <= 4; ++i) m.add(addBlockingCell(Sprite.TREE4, new Pair<>(i, 0)));
@@ -1263,6 +1383,9 @@ public class MapConfig {
             updateSpritesOf(11, SpriteSet.WATER2_SET);
         }
 
+        /**
+         * Génère l'ensemble de la deuxième carte de la planète 4.
+         */
         private static void setupMap12() {
             Map m = maps.get(12);
 
@@ -1299,6 +1422,13 @@ public class MapConfig {
             updateSpritesOf(12, SpriteSet.CAVE_SET);
         }
 
+        /**
+         * Permet de déterminer, en analysant chacun des sprites entourant un élément, le sprite à placer pour un élément,
+         * comme l'arbre ou l'eau (savoir s'il s'agissait du dernier arbre de la ligne et placer le sprite adapté par
+         * exemple).
+         * @param nbMap carte sur laquelle l'algorithme doit être appliqué
+         * @param spriteSet le type de sprite qui doit être adapté à son environnement
+         */
         private static void updateSpritesOf(int nbMap, SpriteSet spriteSet){
             for(int i = 0; i <= 31; i++){
                 for(int j = 0; j <= 11; ++j){
@@ -1390,27 +1520,6 @@ public class MapConfig {
                                 currentCell.setSprite(spriteSet.getLeftUpDown());
                             }
                         }
-                    }
-                }
-            }
-        }
-
-        private static void createBuilding(Map m, String str, int col, int row, Pair<Integer, Integer> position, Interaction interaction){
-            for(int i = 0; i < row; ++i){
-                for(int j = 0; j < col; ++j){
-                    if(interaction == null)
-                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*col + j))), new Pair<>(position.getKey() + j, position.getValue() + i)));
-                    else
-                        m.add(addBlockingCell(Sprite.valueOf(str.concat(String.valueOf(i*col + j))), new Pair<>(position.getKey() + j, position.getValue() + i), interaction));
-                }
-            }
-        }
-
-        private static void placeFloor(Map m, String str, int col,  int row){
-            for(int k = 0; k < 12*32; k+=2){
-                for(int i = 0; i < row; ++i){
-                    for(int j = 0; j < col; ++j){
-                        m.add(addCell(Sprite.valueOf(str.concat(String.valueOf(i*col + j))), new Pair<>(k%32 + j, k%12 + i)));
                     }
                 }
             }
