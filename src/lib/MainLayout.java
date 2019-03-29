@@ -35,7 +35,7 @@ public class MainLayout {
     /**
      * Scène contenant les trois éléments nécessaires au jeu.
      */
-    private static final Scene SCENE= new Scene(new Parent(){}, MainLayout.WIDTH, MainLayout.HEIGHT);
+    private static final Scene SCENE = new Scene(new Parent(){}, MainLayout.WIDTH, MainLayout.HEIGHT);
 
     /**
      * Stage du MainLayout.
@@ -139,6 +139,6 @@ public class MainLayout {
      * @return Stage
      */
     public static Stage getSTAGE() {
-        return STAGE;
+        return MainLayout.STAGE;
     }
 }
