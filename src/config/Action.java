@@ -379,8 +379,8 @@ public enum Action {
     }
 
     /**
-     * Permet de créer un événement de téléportation pour faire revenir Leskak au spawn de la planète où il est.
-     * @param map Carte de départ de la planète
+     * Permet de créer un événement de téléportation sur la fusée afin de permettre à Leskak de changer de planète.
+     * @param map Carte sur laquelle Leskak souhaite se téléporter
      * @return EventHandler
      */
     public static EventHandler createTeleportAction(Map map){
