@@ -40,7 +40,7 @@ public class GameLayout {
     private static final GameLayout INSTANCE = new GameLayout();
 
     /**
-     * Constructeur du Gamelayout initialisant sa mise en forme, ses contraintes...
+     * Constructeur du GameLayout initialisant sa mise en forme, ses contraintes...
      */
     private GameLayout(){
         this.nbColumns = 32;

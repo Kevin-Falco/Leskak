@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
-        primaryStage.setTitle("LESKAK");
+        primaryStage.setTitle("Leskak");
         Scene scene = LauncherLayout.getSCENE();
         scene.setRoot(LauncherLayout.getINSTANCE().getvBox());
         primaryStage.setScene(scene);
