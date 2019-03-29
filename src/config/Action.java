@@ -368,13 +368,13 @@ public enum Action {
     /**
      * Evénement rattaché à chacune des actions.
      */
-    private EventHandler eventHandler;
+    private EventHandler<ActionEvent> eventHandler;
 
     /**
      * Permet de récupérer l'événément rattaché à chacune des actions.
      * @return EventHandler
      */
-    public EventHandler getEventHandler() {
+    public EventHandler<ActionEvent> getEventHandler() {
         return eventHandler;
     }
 
