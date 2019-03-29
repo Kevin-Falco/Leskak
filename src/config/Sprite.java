@@ -1,7 +1,12 @@
 package config;
 
+/**
+ * Enumération contenant l'ensemble des sprites du jeu, ainsi que les images du lanceur du jeu, des cinématiques et du
+ * temps de chargement.
+ */
 public enum Sprite {
 
+    // Liste des sprites (animés) du joueur
     PLAYER_UP_STOP("sprite/player/player_up_stop.png"),
     PLAYER_UP_MOVE_RIGHT("sprite/player/player_up_move_right.png"),
     PLAYER_UP_MOVE_LEFT("sprite/player/player_up_move_left.png"),
@@ -39,6 +44,7 @@ public enum Sprite {
     PLAYER3_LEFT_MOVE_RIGHT("sprite/player/player3_left_move_right.png"),
     PLAYER3_LEFT_MOVE_LEFT("sprite/player/player3_left_move_left.png"),
 
+    // Liste des sprites dans les quatre directions de tous les personnages non jouables
     PNJ1_UP("sprite/pnj/pnj1_up.png"),
     PNJ1_DOWN("sprite/pnj/pnj1_down.png"),
     PNJ1_RIGHT("sprite/pnj/pnj1_right.png"),
@@ -120,6 +126,7 @@ public enum Sprite {
     PNJ20_RIGHT("sprite/pnj/pnj20_right.png"),
     PNJ20_LEFT("sprite/pnj/pnj20_left.png"),
 
+    // Liste de tous les sprites des animaux dans les quatre directions ainsi que du panda, qui est incarnable par le joueur
     WHITE_CAT_UP("sprite/animal/white_cat_up.png"),
     WHITE_CAT_DOWN("sprite/animal/white_cat_down.png"),
     WHITE_CAT_RIGHT("sprite/animal/white_cat_right.png"),
@@ -158,6 +165,7 @@ public enum Sprite {
     PANDA_LEFT_MOVE_RIGHT("sprite/animal/panda_left_move_right.png"),
     PANDA_LEFT_MOVE_LEFT("sprite/animal/panda_left_move_left.png"),
 
+    // Liste des sprites des vaisseaux spatiaux du jeu
     ROCKET_UP("sprite/rocket/rocket_up.png"),
     ROCKET_DOWN("sprite/rocket/rocket_down.png"),
     SPACESHIP_0("sprite/rocket/spaceship_0.png"),
@@ -171,10 +179,12 @@ public enum Sprite {
     SPACESHIP_8("sprite/rocket/spaceship_8.png"),
     SPACESHIP_9("sprite/rocket/spaceship_9.png"),
 
+    // Liste des sprites de l'unique coffre du jeu
     CHEST_HIDDEN("sprite/chest/chest_hidden.png"),
     CHEST_CLOSED("sprite/chest/chest_closed.png"),
     CHEST_OPENED("sprite/chest/chest_opened.png"),
 
+    // Liste des sprites liés à l'environnement du jeu
     GRASS("sprite/env/grass.png"),
     BUSH("sprite/env/bush.png"),
     BUSH2("sprite/env/bush2.png"),
@@ -209,6 +219,7 @@ public enum Sprite {
     CAVE_ENTRANCE("sprite/env/cave_entrance.png"),
     CAVE_FLOOR("sprite/env/cave_floor.png"),
 
+    // Liste des sprites permettant de générer la grotte de la planète 4, étant adaptables
     CAVE("sprite/cave/cave.png"),
     CAVE_UP("sprite/cave/cave_up.png"),
     CAVE_UP_LEFT("sprite/cave/cave_up_left.png"),
@@ -225,6 +236,7 @@ public enum Sprite {
     CAVE_RIGHT("sprite/cave/cave_right.png"),
     CAVE_RIGHT_UP_DOWN("sprite/cave/cave_right_up_down.png"),
 
+    // Liste des quatre types d'arbres des quatre planètes (représentant les quatre saisons), étant adaptables
     TREE("sprite/tree/tree.png"),
     TREE_UP("sprite/tree/tree_up.png"),
     TREE_UP_LEFT("sprite/tree/tree_up_left.png"),
@@ -286,6 +298,7 @@ public enum Sprite {
     TREE4_RIGHT("sprite/tree/tree4_right.png"),
     TREE4_RIGHT_UP_DOWN("sprite/tree/tree4_right_up_down.png"),
 
+    // Liste des sprites de l'eau (gelée ou non) étant adaptables
     WATER("sprite/water/water.png"),
     WATER_UP("sprite/water/water_up.png"),
     WATER_UP_LEFT("sprite/water/water_up_left.png"),
@@ -317,6 +330,7 @@ public enum Sprite {
     WATER2_RIGHT("sprite/water/water2_right.png"),
     WATER2_RIGHT_UP_DOWN("sprite/water/water2_right_up_down.png"),
 
+    // Liste des maisons disponibles dans le jeu (quatre types pour les quatre saisons)
     HOUSE1_0("sprite/house/house1_0.png"),
     HOUSE1_1("sprite/house/house1_1.png"),
     HOUSE1_2("sprite/house/house1_2.png"),
@@ -334,6 +348,7 @@ public enum Sprite {
     HOUSE4_2("sprite/house/house4_2.png"),
     HOUSE4_3("sprite/house/house4_3.png"),
 
+    // Liste de tous les sprites des buildings du centre commercial
     BUILDING_0("sprite/shopping_center/building_0.png"),
     BUILDING_1("sprite/shopping_center/building_1.png"),
     BUILDING_2("sprite/shopping_center/building_2.png"),
@@ -424,6 +439,7 @@ public enum Sprite {
     CAR_6("sprite/shopping_center/car_6.png"),
     CAR_7("sprite/shopping_center/car_7.png"),
 
+    // Liste des sprites utilisables par le pacman
     PACMAN_UP_STOP("sprite/pacman/pacman_up_stop.png"),
     PACMAN_UP_MOVE_RIGHT("sprite/pacman/pacman_up_move_right.png"),
     PACMAN_UP_MOVE_LEFT("sprite/pacman/pacman_up_move_left.png"),
@@ -468,22 +484,37 @@ public enum Sprite {
     LETTER_6("sprite/pacman/letter_6.png"),
     LETTER_7("sprite/pacman/letter_7.png"),
 
+    // Liste des cinématiques disponibles
     CINEMATIC("sprite/cinematic/eevolution1.jpg"),
     CINEMATIC2("sprite/cinematic/eevolution2.jpg"),
     CINEMATIC3("sprite/cinematic/eevolution3.jpg"),
+    CINEMATIC4("sprite/cinematic/eevolution3.jpg"),
+    CINEMATIC5("sprite/cinematic/eevolution3.jpg"),
 
+    // Images de fond du chargement et du lanceur
     LOAD("sprite/app/load.jpg"),
     BACKGROUND_LAUNCHER("sprite/app/background_launcher.jpg"),
     BACKGROUND_OPTIONS("sprite/app/background_options.jpg"),
     BACKGROUND_CREDITS("sprite/app/background_credits.jpg"),
     ;
 
+    /**
+     * Chemin menant vers le sprite de chaque élément.
+     */
     private String spritePath;
 
+    /**
+     * Constructeur du sprite grâce au chemin de l'image le représentant.
+     * @param spritePath chemin vers le fichier de l'image .png
+     */
     Sprite(String spritePath) {
         this.spritePath = spritePath;
     }
 
+    /**
+     * Getter du chemin de l'image le représentant.
+     * @return String
+     */
     public String getSpritePath() {
         return this.spritePath;
     }

@@ -87,9 +87,9 @@ public enum CinematicConfig {
                 Pane pane = new Pane();
                 ImageView imageView;
                 if(Player.getINSTANCE().getSkinAvailables().size() == 5)
-                    imageView = new ImageView(Sprite.CINEMATIC2.getSpritePath());
+                    imageView = new ImageView(Sprite.CINEMATIC4.getSpritePath());
                 else
-                    imageView = new ImageView(Sprite.CINEMATIC.getSpritePath());
+                    imageView = new ImageView(Sprite.CINEMATIC5.getSpritePath());
                 imageView.setPreserveRatio(true);
                 imageView.setFitWidth(MainLayout.getWIDTH());
                 pane.getChildren().add(imageView);
