@@ -485,11 +485,18 @@ public enum Sprite {
     LETTER_7("sprite/pacman/letter_7.png"),
 
     // Liste des cinématiques disponibles
-    CINEMATIC("sprite/cinematic/cinematic1.png"),
+    CINEMATIC1("sprite/cinematic/cinematic1.png"),
     CINEMATIC2("sprite/cinematic/cinematic2.png"),
     CINEMATIC3("sprite/cinematic/cinematic3.png"),
     CINEMATIC4("sprite/cinematic/cinematic4.png"),
     CINEMATIC5("sprite/cinematic/cinematic5.png"),
+    CINEMATIC6("sprite/cinematic/cinematic6.png"),
+    CINEMATIC7("sprite/cinematic/cinematic7.png"),
+    CINEMATIC8("sprite/cinematic/cinematic8.png"),
+    CINEMATIC9("sprite/cinematic/cinematic9.png"),
+    CINEMATIC10("sprite/cinematic/cinematic10.png"),
+    CINEMATIC11("sprite/cinematic/cinematic11.png"),
+    CINEMATIC12("sprite/cinematic/cinematic12.png"),
 
     // Images de fond du chargement et du lanceur
     LOAD("sprite/app/load.jpg"),

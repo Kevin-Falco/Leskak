@@ -19,22 +19,24 @@ public enum CinematicConfig {
     CINEMATIC1,
     CINEMATIC2,
     CINEMATIC3,
+    CINEMATIC4,
+    CINEMATIC5,
+    CINEMATIC6,
 
     // Configuration des cinématiques de fin
-    DEATH_STAR1,
-    DEATH_STAR2,
+    CINEMATIC7,
+    CINEMATIC8,
+    CINEMATIC9,
+
+    CINEMATIC10,
+    CINEMATIC11,
+    CINEMATIC12,
 
     // Configuration de la sortie du jeu
     END_GAME,
     ;
 
     static {
-
-        // Configuration des cinématiques de départ
-        CINEMATIC3.eventHandler = createCinematicEventHandler(CINEMATIC3, Sprite.CINEMATIC3, Interaction.RETURN_GAME.getEventHandler());
-        CINEMATIC2.eventHandler = createCinematicEventHandler(CINEMATIC2, Sprite.CINEMATIC2, CINEMATIC3.getEventHandler());
-        CINEMATIC1.eventHandler = createCinematicEventHandler(CINEMATIC1, Sprite.CINEMATIC, CINEMATIC2.getEventHandler());
-
         // Configuration de la sortie du jeu
         END_GAME.eventHandler = (event -> {
             if(event.getCode() == Key.SPACE.getKeyCode()) {
@@ -43,9 +45,22 @@ public enum CinematicConfig {
             }
         });
 
+        // Configuration des cinématiques de départ
+        CINEMATIC6.eventHandler = createCinematicEventHandler(CinematicConfig.CINEMATIC6, Sprite.CINEMATIC6, Interaction.RETURN_GAME.getEventHandler());
+        CINEMATIC5.eventHandler = createCinematicEventHandler(CinematicConfig.CINEMATIC5, Sprite.CINEMATIC5, CinematicConfig.CINEMATIC6.getEventHandler());
+        CINEMATIC4.eventHandler = createCinematicEventHandler(CinematicConfig.CINEMATIC4, Sprite.CINEMATIC4, CinematicConfig.CINEMATIC5.getEventHandler());
+        CINEMATIC3.eventHandler = createCinematicEventHandler(CinematicConfig.CINEMATIC3, Sprite.CINEMATIC3, CinematicConfig.CINEMATIC4.getEventHandler());
+        CINEMATIC2.eventHandler = createCinematicEventHandler(CinematicConfig.CINEMATIC2, Sprite.CINEMATIC2, CinematicConfig.CINEMATIC3.getEventHandler());
+        CINEMATIC1.eventHandler = createCinematicEventHandler(CinematicConfig.CINEMATIC1, Sprite.CINEMATIC1, CinematicConfig.CINEMATIC2.getEventHandler());
+
         // Configuration des cinématiques de fin
-        DEATH_STAR1.eventHandler = createCinematicEventHandler(DEATH_STAR1, Sprite.CINEMATIC4, END_GAME.getEventHandler());
-        DEATH_STAR2.eventHandler = createCinematicEventHandler(DEATH_STAR2, Sprite.CINEMATIC5, END_GAME.getEventHandler());
+        CINEMATIC9.eventHandler = createCinematicEventHandler(CinematicConfig.CINEMATIC9, Sprite.CINEMATIC9, CinematicConfig.END_GAME.getEventHandler());
+        CINEMATIC8.eventHandler = createCinematicEventHandler(CinematicConfig.CINEMATIC8, Sprite.CINEMATIC8, CinematicConfig.CINEMATIC9.getEventHandler());
+        CINEMATIC7.eventHandler = createCinematicEventHandler(CinematicConfig.CINEMATIC7, Sprite.CINEMATIC7, CinematicConfig.CINEMATIC8.getEventHandler());
+
+        CINEMATIC12.eventHandler = createCinematicEventHandler(CinematicConfig.CINEMATIC12, Sprite.CINEMATIC12, CinematicConfig.END_GAME.getEventHandler());
+        CINEMATIC11.eventHandler = createCinematicEventHandler(CinematicConfig.CINEMATIC11, Sprite.CINEMATIC11, CinematicConfig.CINEMATIC12.getEventHandler());
+        CINEMATIC10.eventHandler = createCinematicEventHandler(CinematicConfig.CINEMATIC10, Sprite.CINEMATIC10, CinematicConfig.CINEMATIC11.getEventHandler());
     }
 
     /**
