@@ -33,7 +33,7 @@ public class Movement {
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, KeyboardConfig.CHANGE_SKIN.getEventHandler());
         Movement.setupEventHandler = Movement.setupMovementEvent();
         Movement.automaticEventHandler = Movement.automaticMovementEvent();
-        Movement.stopEventHandler = ((EventHandler<KeyEvent>) event -> {
+        Movement.stopEventHandler = (event -> {
             if(lastKeyTyped != null && event.getCode().equals(lastKeyTyped.getKeyCode())){
                 lastKeyReleased = true;
             }
@@ -45,7 +45,7 @@ public class Movement {
         scene.addEventHandler(KeyEvent.KEY_RELEASED, stopEventHandler);
     }
 
-    public static EventHandler<KeyEvent> automaticMovementEvent(){
+    private static EventHandler<KeyEvent> automaticMovementEvent(){
 
         PauseTransition pt = new PauseTransition();
         pt.setDuration(Duration.millis(Movement.delay));
@@ -93,7 +93,7 @@ public class Movement {
         };
     }
 
-    public static EventHandler<KeyEvent> setupMovementEvent(){
+    private static EventHandler<KeyEvent> setupMovementEvent(){
         PauseTransition pt = new PauseTransition();
         pt.setDuration(Duration.millis(10));
         pt.setOnFinished(event -> {
@@ -252,16 +252,6 @@ public class Movement {
         return false;
     }
 
-    public static ImageView getSprite(Integer col, Integer row){
-        for (Cell cell : Movement.map
-             ) {
-            if(cell.getPosition().getKey().equals(col) && cell.getPosition().getValue().equals(row)){
-                return cell.getImage();
-            }
-        }
-        return null;
-    }
-
     private static TransitionCell getTransitionCell(Integer col, Integer row){
         for (Cell cell : Movement.map
         ) {
@@ -314,10 +304,6 @@ public class Movement {
 
     public static EventHandler<KeyEvent> getStopEventHandler() {
         return stopEventHandler;
-    }
-
-    public static Key getLastKeyTyped() {
-        return lastKeyTyped;
     }
 
     public static void setLastKeyReleased(boolean lastKeyReleased) {
