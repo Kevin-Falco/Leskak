@@ -3,7 +3,6 @@ package config;
 import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 
-
 public enum Object {
     OBJ1("Plaque de tôle", new ImageView("sprite/object/sheet_metal_plate.png"), new Pair<>(0,0)),
     OBJ2("Réacteurs endommagés", new ImageView("sprite/object/reactors.png"), new Pair<>(1,0)),

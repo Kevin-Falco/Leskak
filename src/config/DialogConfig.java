@@ -78,7 +78,7 @@ public enum DialogConfig {
     PNJ10_PACKAGE_AFTER("Vendeur (Quête du colis)\n\n    Ca y est ton colis est tout neuf !  Tu peux le remettre à son propriétaire, sur la planète Kavi si je ne dis pas de bêtise !"),
     PNJ10_PACKAGE_BUTTON("Faire réparer le colis"),
     PNJ10_BUTTON1("Réparer les réacteurs (500€)"),
-    PNJ10_BUTTON2("Tenue blanche (5.000€)"),
+    PNJ10_BUTTON2("Tenue noire (5.000€)"),
     PNJ10_BUTTON3("Dynamite (10.000€)"),
     PNJ10_BUTTON4("Dynamite"),
     PNJ10_NOT_ENOUGH_MONEY("Vendeur\n\n    Il semblerait que vous n'ayez pas assez d'argent pour cet article."),
@@ -132,8 +132,8 @@ public enum DialogConfig {
     PNJ19_BUTTON1("Outreterre"),
     PNJ19_BUTTON2("Pandarie"),
     PNJ19_BUTTON3("Norfendre"),
-    PNJ20_BEFORE("Polia (Objectif principal)\n\n    Qui va là ?! Oh mon dieu, mais qui es-tu ? Comment m'as-tu trouvé ? Ne révèle à personne ma position s'il te plait ! Je t'offre mon rayon laser en échange de ton silence !"),
-    PNJ20_AFTER("Polia\n\n    Pars loin je t'ai dit, je ne veux plus jamais te voir !"),
+    PNJ20_BEFORE("Polia (Objectif principal)\n\n    Qui va là ?! Oh mon dieu, mais qui es-tu ? Comment m'as-tu trouvé ? Ne révèle à personne ma position s'il te plait ! Je t'offre mon rayon laser en échange de ton silence ! Avec ça tu devrais pouvoir former ce que tu désires auprès du vendeur au centre commercial."),
+    PNJ20_AFTER("Polia (Objectif principal)\n\n    Pars loin je t'ai dit, je ne veux plus jamais te voir ! Va faire tes affaires au centre commercial !"),
     PNJ20_BUTTON("Prendre le rayon laser"),
     PACMAN_WON("Leskak (Objectif principal)\n\n    Holàlà c'était quoi cet endroit ! J'était devenu une boule toute jaune ! Bon , je m'en suis sorti, c'est le principal ! Et j'ai même réussi à arracher le panneau de commande que je recherchais de ce foutu jeu !\n" +
             "    En le bidouillant un peu, je pourrais avoir accès aux coordonnées du rayon laser le plus proche... Et il semblerait que ce soit sur la planète Kavi !\n" +
