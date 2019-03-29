@@ -230,7 +230,12 @@ public enum Action {
         });
 
         DEATH_STAR.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
-            MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.DEATH_STAR.getEventHandler());
+            if(Player.getINSTANCE().getSkinAvailables().size() == 5){
+                MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.DEATH_STAR1.getEventHandler());
+            }
+            else {
+                MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, CinematicConfig.DEATH_STAR2.getEventHandler());
+            }
             KeyEvent.fireEvent(MainLayout.getSCENE(),new KeyEvent(KeyEvent.KEY_PRESSED, " ", " ", Key.SPACE.getKeyCode(), false, false, false, false) );
         });
 
