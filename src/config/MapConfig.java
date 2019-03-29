@@ -198,6 +198,13 @@ public class MapConfig {
         }
     }
 
+    /**
+     * Renvoie la première cellule de la grille à telle position (donc le sol à cette case).
+     * @param nbMap carte sur laquelle on travaille
+     * @param col indice de la colonne
+     * @param row indice de la ligne
+     * @return Cell
+     */
     private static Cell getFirstCell(int nbMap, Integer col, Integer row){
         Map m = getINSTANCE().getMaps().get(nbMap);
         for (Cell cell : m
@@ -209,6 +216,13 @@ public class MapConfig {
         return null;
     }
 
+    /**
+     * Renvoie la seconde cellule de la grille à telle position (arbre, caillou, eau...)
+     * @param nbMap carte sur laquelle on travaille
+     * @param col indice de la colonne
+     * @param row indice de la ligne
+     * @return Cell
+     */
     public static Cell getSecondCell(int nbMap, Integer col, Integer row){
         Map m = getINSTANCE().getMaps().get(nbMap);
         int nb = 0;
@@ -222,6 +236,13 @@ public class MapConfig {
         return null;
     }
 
+    /**
+     * Renvoie la dernière cellule de la grille à telle position.
+     * @param nbMap carte sur laquelle on travaille
+     * @param col indice de la colonne
+     * @param row indice de la ligne
+     * @return Cell
+     */
     public static Cell getLastCell(int nbMap, Integer col, Integer row){
         Map m = getINSTANCE().getMaps().get(nbMap);
         Cell toReturn = null;
@@ -234,7 +255,10 @@ public class MapConfig {
         return toReturn;
     }
 
-
+    /**
+     * Permet de déplacer le joueur à une position de donnée.
+     * @param targetPosition nouvelle position pour le joueur
+     */
     public void movePlayer(Pair<Integer, Integer> targetPosition){
         Player player = Player.getINSTANCE();
         double x = (player.getPosition().getKey() - targetPosition.getKey()) * 50;
@@ -250,6 +274,13 @@ public class MapConfig {
         GridPane.setConstraints(imageView, player.getPosition().getKey(), player.getPosition().getValue());
     }
 
+    /**
+     * Permet d'échanger deux cellules sur une carte.
+     * @param nbMap carte sur laquelle on travaille
+     * @param positionCell1 position de la première cellule à échanger
+     * @param positionCell2 position de la deuxième cellule à échanger
+     * @return boolean
+     */
     public boolean swapCells(int nbMap, Pair<Integer, Integer> positionCell1, Pair<Integer, Integer> positionCell2){
         if(Player.getINSTANCE().getPosition().equals(positionCell1) || Player.getINSTANCE().getPosition().equals(positionCell2)){
             return false;
