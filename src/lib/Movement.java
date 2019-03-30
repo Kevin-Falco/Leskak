@@ -11,21 +11,75 @@ import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import javafx.util.Pair;
 
+/**
+ * Classe servant à gérer les mouvements du joueur, ses déplacements sur la grille de jeu.
+ */
 public class Movement {
+
+    /**
+     * La carte où se déplace le joueur.
+     */
     private static Map map = new Map();
-    private static boolean moved = false;
+
+    /**
+     * Si true, le joueur peut effectuer une intéraction, sinon false.
+     */
+    private static boolean interactionAllowed = false;
+
+    /**
+     * Définit le premier déplacement du joueur et quand on change de direction.
+     */
     private static EventHandler<KeyEvent> setupEventHandler;
+
+    /**
+     * Tant que la touche n'est pas relâchée, on applique cet événement pour les déplacements, afin d'éviter de cliquer plusieurs fois dans la même direction.
+     */
     private static EventHandler<KeyEvent> automaticEventHandler;
+
+    /**
+     * Evénement qui définit la fin du déplacement.
+     */
     private static EventHandler<KeyEvent> stopEventHandler;
 
+    /**
+     * Dernière touche sur laquelle l'utilisateur a appuyé.
+     */
     private static Key lastKeyTyped;
+
+    /**
+     * Dernière touche qui a été retenue par l'automaticEventHandler.
+     */
     private static Key automaticLastKey;
+
+    /**
+     * Vaut true si le Leskak ne bouge pas, false sinon.
+     */
     private static boolean stopped = true;
+
+    /**
+     * Vaut true quand Leskak change de direction, false sinon.
+     */
     private static boolean directionChanged = false;
-    private static boolean lastKeyReleased = true;
+
+    /**
+     * Vaut true si on a relâchée la dernière touche appuyée, false sinon.
+     */
+    private static boolean isLastKeyTypedReleased = true;
+
+    /**
+     * AnimationSet de Leskak.
+     */
     private static AnimationSet animationSet = AnimationSet.PLAYER_STOP;
+
+    /**
+     * Délai de déplacement entre deux mouvements.
+     */
     private static int delay = 250;
 
+    /**
+     * Configure, en ajoutant les événements qu'il faut, les déplacements du joueur.
+     * @param scene scene sur laquelle se trouve Leskak
+     */
     public static void configPlayerEventHandler(Scene scene) {
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, KeyboardConfig.ENTER.getEventHandler());
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, KeyboardConfig.ESCAPE.getEventHandler());
@@ -35,7 +89,7 @@ public class Movement {
         Movement.automaticEventHandler = Movement.automaticMovementEvent();
         Movement.stopEventHandler = (event -> {
             if(lastKeyTyped != null && event.getCode().equals(lastKeyTyped.getKeyCode())){
-                lastKeyReleased = true;
+                isLastKeyTypedReleased = true;
             }
         });
 
@@ -45,6 +99,10 @@ public class Movement {
         scene.addEventHandler(KeyEvent.KEY_RELEASED, stopEventHandler);
     }
 
+    /**
+     * Définit l'événement lorsqu'on maintient une touche appuyée.
+     * @return EventHandler
+     */
     private static EventHandler<KeyEvent> automaticMovementEvent(){
 
         PauseTransition pt = new PauseTransition();
@@ -59,7 +117,7 @@ public class Movement {
                 return;
             }
 
-            if(lastKeyReleased){
+            if(isLastKeyTypedReleased){
                 animationSet = animationSet.getStopAnimationSet();
                 Player.getINSTANCE().setSprite(animationSet.getSpriteDirection(Player.getINSTANCE().getDirection()));
                 stopped = true;
@@ -93,6 +151,10 @@ public class Movement {
         };
     }
 
+    /**
+     * Définit l'événement lorsqu'on commence à appuyer sur une touche.
+     * @return EventHandler
+     */
     private static EventHandler<KeyEvent> setupMovementEvent(){
         PauseTransition pt = new PauseTransition();
         pt.setDuration(Duration.millis(10));
@@ -105,8 +167,8 @@ public class Movement {
             lastKeyTyped = Key.getKeyofKeyCode(key.getCode());
             if(Movement.automaticLastKey != null && Movement.automaticLastKey.equals(Movement.lastKeyTyped) && !stopped) return;
 
-            if(lastKeyReleased)
-                lastKeyReleased = false;
+            if(isLastKeyTypedReleased)
+                isLastKeyTypedReleased = false;
 
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.automaticEventHandler);
             MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.setupEventHandler);
@@ -116,6 +178,10 @@ public class Movement {
         };
     }
 
+    /**
+     * Permet le déplacement du joueur selon la touche qui a été mise en paramètre.
+     * @param key touche sur laquelle l'utilisateur a appuyé
+     */
     private static void movePlayer(KeyEvent key){
         Player player = Player.getINSTANCE();
         TranslateTransition tt = new TranslateTransition(Duration.millis(Movement.delay));
@@ -137,7 +203,7 @@ public class Movement {
                             || !isAccessibleCell(player.getPosition().getKey(), player.getPosition().getValue() - 1)) ?
                             player.getPosition().getValue() : player.getPosition().getValue() - 1)));
             player.setDirection(Direction.UP);
-            Movement.moved = true;
+            Movement.interactionAllowed = true;
         }
         if (key.getCode() == Key.DOWN.getKeyCode()) {
             y = (player.getPosition().getValue() == GameLayout.getINSTANCE().getNbRows() - 1
@@ -148,7 +214,7 @@ public class Movement {
                             || !isAccessibleCell(player.getPosition().getKey(), player.getPosition().getValue() + 1) ?
                             player.getPosition().getValue() : player.getPosition().getValue() + 1));
             player.setDirection(Direction.DOWN);
-            Movement.moved = true;
+            Movement.interactionAllowed = true;
         }
         if (key.getCode() == Key.RIGHT.getKeyCode()) {
             x = (player.getPosition().getKey() == GameLayout.getINSTANCE().getNbColumns() - 1
@@ -159,7 +225,7 @@ public class Movement {
                             player.getPosition().getKey() : player.getPosition().getKey() + 1,
                     player.getPosition().getValue()));
             player.setDirection(Direction.RIGHT);
-            Movement.moved = true;
+            Movement.interactionAllowed = true;
         }
         if (key.getCode() == Key.LEFT.getKeyCode()) {
             x = (player.getPosition().getKey() == 0
@@ -170,7 +236,7 @@ public class Movement {
                             player.getPosition().getKey() : player.getPosition().getKey() - 1,
                     player.getPosition().getValue()));
             player.setDirection(Direction.LEFT);
-            Movement.moved = true;
+            Movement.interactionAllowed = true;
         }
         if (key.getCode() != Key.ENTER.getKeyCode()) {
             DialogLayout.getINSTANCE().removeContent();
@@ -207,6 +273,9 @@ public class Movement {
         }
     }
 
+    /**
+     * Permet de changer la direction du sprite du joueur lorsque l'utilisateur fait changer de direction à Leskak.
+     */
     private static void refreshPlayerSprite(){
         Player player = Player.getINSTANCE();
         switch (player.getDirection()){
@@ -225,11 +294,22 @@ public class Movement {
         }
     }
 
+    /**
+     * Renvoie true si la touche entrée par l'utilisateur est une touche de déplacement, false sinon.
+     * @param key touche sur laquelle l'utilisateur a appuyé
+     * @return boolean
+     */
     private static boolean isMovementKey(KeyEvent key){
         return key.getCode() == Key.UP.getKeyCode() || key.getCode() == Key.DOWN.getKeyCode() ||
                 key.getCode() == Key.RIGHT.getKeyCode() || key.getCode() == Key.LEFT.getKeyCode();
     }
 
+    /**
+     * Renvoie true si la case sur laquelle veut aller Leskak est accessible, false sinon.
+     * @param col indice de la colonne de la cellule
+     * @param row indice de la ligne de la cellule
+     * @return boolean
+     */
     private static boolean isAccessibleCell(Integer col, Integer row){
         while(Movement.map.getBlockingCellIterator().hasNext()){
             BlockingCell blockingCell = Movement.map.getBlockingCellIterator().next();
@@ -241,6 +321,12 @@ public class Movement {
         return true;
     }
 
+    /**
+     * Renvoie true si la cellule sur laquelle veut aller Leskak est une cellule de transition false sinon.
+     * @param col indice de la colonne de la cellule
+     * @param row indice de la ligne de la cellule
+     * @return boolean
+     */
     private static boolean isTransitionCell(Integer col, Integer row){
         while(Movement.map.getTransitionCellIterator().hasNext()){
             TransitionCell transitionCell = Movement.map.getTransitionCellIterator().next();
@@ -252,6 +338,12 @@ public class Movement {
         return false;
     }
 
+    /**
+     * Renvoie la cellule de transition à une position donnée en paramètre.
+     * @param col indice de la colonne de la cellule de transition
+     * @param row indice de la ligne de la cellule de transition
+     * @return TransitionCell
+     */
     private static TransitionCell getTransitionCell(Integer col, Integer row){
         for (Cell cell : Movement.map
         ) {
@@ -263,54 +355,100 @@ public class Movement {
         return null;
     }
 
+    /**
+     * Empêche le joueur d'effectuer un mouvement (par exemple lorsque le joueur doit répondre à un pnj).
+     */
     public static void removeMovement(){
         GameLayout.getINSTANCE().getPane().setFocusTraversable(false);
         MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Movement.setupEventHandler);
     }
 
+    /**
+     * Autorise de nouveau à Leskak d'effectuer des mouvements.
+     */
     public static void resumeMovement(){
         GameLayout.getINSTANCE().getPane().setFocusTraversable(true);
         GameLayout.getINSTANCE().getPane().requestFocus();
         MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_PRESSED, Movement.setupEventHandler);
     }
 
+    /**
+     * Getter de la carte sur laquelle se déplace Leskak.
+     * @return Map
+     */
     public static Map getMap() {
-        return map;
+        return Movement.map;
     }
 
+    /**
+     * Setter de la carte sur laquelle va se déplacer Leskak.
+     * @param map carte sur va se déplacer Leskak
+     */
     public static void setMap(Map map) {
         Movement.map = map;
     }
 
-    public static boolean isMoved() {
-        return moved;
+    /**
+     * Getter du booléen permettant de savoir si Leskak peut intégir ou non.
+     * @return boolean
+     */
+    public static boolean isInteractionAllowed() {
+        return Movement.interactionAllowed;
     }
 
-    public static void setMoved(boolean moved) {
-        Movement.moved = moved;
+    /**
+     * Setter du booléen permettant de savoir si Leskak peut intégir ou non.
+     * @param interactionAllowed true si Leskak peut intéragir, false sinon
+     */
+    public static void setInteractionAllowed(boolean interactionAllowed) {
+        Movement.interactionAllowed = interactionAllowed;
     }
 
+    /**
+     * Getter de l'AnimationSet de Leskak.
+     * @return AnimationSet
+     */
     public static AnimationSet getAnimationSet() {
-        return animationSet;
+        return Movement.animationSet;
     }
 
+    /**
+     * Setter de l'AnimationSet de Leskak.
+     * @param animationSet nouvel AnimationSet de Leskak
+     */
     public static void setAnimationSet(AnimationSet animationSet) {
         Movement.animationSet = animationSet;
     }
 
+    /**
+     * Getter du booléen permettant de savoir si Leskak est en mouvement ou non.
+     * @return boolean
+     */
     public static boolean isStopped() {
-        return stopped;
+        return Movement.stopped;
     }
 
+    /**
+     * Getter de l'événement qui définit la fin du déplacement.
+     * @return EventHandler
+     */
     public static EventHandler<KeyEvent> getStopEventHandler() {
-        return stopEventHandler;
+        return Movement.stopEventHandler;
     }
 
-    public static void setLastKeyReleased(boolean lastKeyReleased) {
-        Movement.lastKeyReleased = lastKeyReleased;
+    /**
+     * Setter permettant de savoir si la dernière touche a été relâchée.
+     * @param isLastKeyTypedReleased true si elle a été relâchée, false sinon
+     */
+    public static void setIsLastKeyTypedReleased(boolean isLastKeyTypedReleased) {
+        Movement.isLastKeyTypedReleased = isLastKeyTypedReleased;
     }
 
+    /**
+     * Getter du délai de déplacement entre deux mouvements.
+     * @return int
+     */
     public static int getDelay() {
-        return delay;
+        return Movement.delay;
     }
 }

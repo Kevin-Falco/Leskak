@@ -128,8 +128,8 @@ public enum Interaction {
 
         // Intéraction du vendeur
         PNJ10.eventHandler = (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Movement.setMoved(false);
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
+                Movement.setInteractionAllowed(false);
                 if(Inventory.getINSTANCE().contains(Object.OBJ6_2)){
                     DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_PACKAGE_BEFORE.getText());
                     DialogLayout.getINSTANCE().addButton(DialogConfig.PNJ10_PACKAGE_BUTTON.getText(), Action.PACKAGE_REPAIR.getEventHandler());
@@ -160,8 +160,8 @@ public enum Interaction {
 
         // Intéraction de Captain America (Quête du colis -> fin)
         PNJ14.eventHandler = (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Movement.setMoved(false);
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
+                Movement.setInteractionAllowed(false);
                 if(!PNJ17.isInteractionDone()){
                     DialogLayout.getINSTANCE().setText(DialogConfig.PNJ14_BEFORE.getText());
                 }
@@ -182,8 +182,8 @@ public enum Interaction {
 
         // Interaction d'Iron Man (Quête du colis -> milieu)
         PNJ15.eventHandler = (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Movement.setMoved(false);
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
+                Movement.setInteractionAllowed(false);
                 if(Interaction.PNJ15.isInteractionDone() )
                     DialogLayout.getINSTANCE().setText(DialogConfig.PNJ15_AFTER.getText());
                 else if(!Inventory.getINSTANCE().contains(Object.OBJ6) && Interaction.PNJ5.isInteractionDone() ){
@@ -203,8 +203,8 @@ public enum Interaction {
 
         // Intéraction du fils de William (Quête du colis -> milieu)
         PNJ17.eventHandler = (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Movement.setMoved(false);
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
+                Movement.setInteractionAllowed(false);
                 if(Inventory.getINSTANCE().contains(Object.OBJ6) && Interaction.PNJ5_2.isInteractionDone() ){
                     DialogLayout.getINSTANCE().setText(DialogConfig.PNJ17_AFTER.getText());
                     PNJ17.setInteractionDone(true);
@@ -218,8 +218,8 @@ public enum Interaction {
 
         // Intéraction du caillou pouvant être détruit à la dynamite (changement du type de cell en fonction d'un objet)
         ROCK.eventHandler = (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Movement.setMoved(false);
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
+                Movement.setInteractionAllowed(false);
                 if(Inventory.getINSTANCE().contains(Object.OBJ4)){
                     DialogLayout.getINSTANCE().addButton(DialogConfig.ROCK_BUTTON.getText(), Action.USE_DYNAMITE.getEventHandler());
                     DialogLayout.getINSTANCE().addReturnButton();
@@ -230,8 +230,8 @@ public enum Interaction {
 
         // Intéraction de la fusée permettant de changer de planète
         ROCKET.eventHandler = (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Movement.setMoved(false);
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
+                Movement.setInteractionAllowed(false);
                 if(!Planet.PLANET1.getMaps().contains(Movement.getMap())){
                     DialogLayout.getINSTANCE().addButton(Planet.PLANET1.getName(), Action.TELEPORT_PLANET1.getEventHandler());
                 }
@@ -262,7 +262,7 @@ public enum Interaction {
 
         // Intéractions du Pacman
         PACMAN_IN.eventHandler = (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
                 if(PACMAN_IN.isInteractionDone()) return;
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
                 Player.getINSTANCE().setCurrentSkin(3);
@@ -279,13 +279,13 @@ public enum Interaction {
             }
         });
         PACMAN_OUT.eventHandler = (event -> {
-            if(event.getCode() == KeyCode.P && Movement.isMoved()){
+            if(event.getCode() == KeyCode.P && Movement.isInteractionAllowed()){
                 MapConfig.getINSTANCE().configMap(Planet.PLANET3.getMaps().get(1), new Pair<>(20, 5));
                 MainLayout.getSCENE().addEventHandler(KeyEvent.KEY_RELEASED, Movement.getStopEventHandler());
                 Player.getINSTANCE().setCurrentSkin(0);
                 Movement.setAnimationSet(AnimationSet.getAnimationSet(Player.getINSTANCE().getCurrentSkin()*4).getStopAnimationSet());
                 Player.getINSTANCE().setSprite(Movement.getAnimationSet().getSpriteDirection(Player.getINSTANCE().getDirection()));
-                Movement.setLastKeyReleased(true);
+                Movement.setIsLastKeyTypedReleased(true);
                 PacMan.setPacmanMovement(false);
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_OUT.getEventHandler());
             }
@@ -297,7 +297,7 @@ public enum Interaction {
                 DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_WON.getText());
                 Inventory.getINSTANCE().add(Object.OBJ3);
                 Player.getINSTANCE().getSkinAvailables().add(3);
-                Movement.setMoved(true);
+                Movement.setInteractionAllowed(true);
                 Movement.resumeMovement();
                 MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_SKIP.getEventHandler());
             }
@@ -346,8 +346,8 @@ public enum Interaction {
      */
     private static EventHandler<KeyEvent> createSimpleDialog(Interaction interaction, DialogConfig dialogConfig){
         return (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Movement.setMoved(false);
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
+                Movement.setInteractionAllowed(false);
                 DialogLayout.getINSTANCE().setText(dialogConfig.getText());
                 interaction.setInteractionDone(true);
             }
@@ -362,8 +362,8 @@ public enum Interaction {
      */
     private static EventHandler<KeyEvent> chickenInteraction(Interaction interaction){
         return (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Movement.setMoved(false);
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
+                Movement.setInteractionAllowed(false);
                 if(!interaction.isInteractionDone()){
                     DialogLayout.getINSTANCE().setText(DialogConfig.CHICKEN.getText());
                     if(PNJ14.isInteractionDone()){
@@ -406,8 +406,8 @@ public enum Interaction {
      */
     private static EventHandler<KeyEvent> createSimpleButtonInteraction(Interaction interaction, DialogConfig dialogConfigBefore, DialogConfig dialogConfigAfter, DialogConfig dialogConfigButton, Action action){
         return (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Movement.setMoved(false);
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
+                Movement.setInteractionAllowed(false);
                 if(!interaction.isInteractionDone()){
                     DialogLayout.getINSTANCE().setText(dialogConfigBefore.getText());
                     DialogLayout.getINSTANCE().addButton(dialogConfigButton.getText(), action.getEventHandler());
@@ -434,8 +434,8 @@ public enum Interaction {
      */
     private static EventHandler<KeyEvent> createSimpleButtonInteractionObject(Interaction interaction, DialogConfig dialogConfigBefore, DialogConfig dialogConfigAfter, DialogConfig dialogConfigButton, Action action, boolean contains, Object object){
         return (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Movement.setMoved(false);
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
+                Movement.setInteractionAllowed(false);
                 if(!interaction.isInteractionDone()){
                     DialogLayout.getINSTANCE().setText(dialogConfigBefore.getText());
                     if(contains == Inventory.getINSTANCE().contains(object)){
@@ -463,8 +463,8 @@ public enum Interaction {
      */
     private static EventHandler<KeyEvent> createSimpleDialogWithInteractionAndSpriteChange(Interaction interaction, DialogConfig dialogConfig, int nbMap, Interaction toRemove, Interaction toAdd, Sprite sprite){
         return (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Movement.setMoved(false);
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
+                Movement.setInteractionAllowed(false);
                 DialogLayout.getINSTANCE().setText(dialogConfig.getText());
                 for(Cell cell : MapConfig.getINSTANCE().getMaps().get(nbMap).getCells()){
                     if(cell instanceof BlockingCell && ((BlockingCell) cell).getInteraction() != null && ((BlockingCell) cell).getInteraction().equals(toRemove)){
@@ -494,8 +494,8 @@ public enum Interaction {
      */
     private static EventHandler<KeyEvent> createSimpleButtonInteractionObjectWithInteractionChange(Interaction interaction, DialogConfig dialogConfigBefore, DialogConfig dialogConfigAfter, DialogConfig dialogConfigButton, Action action, boolean contains, Object object, int nbMap, Interaction toRemove, Interaction toAdd){
         return (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
-                Movement.setMoved(false);
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
+                Movement.setInteractionAllowed(false);
                 if(!interaction.isInteractionDone()){
                     DialogLayout.getINSTANCE().setText(dialogConfigBefore.getText());
                     if(contains == Inventory.getINSTANCE().contains(object)){
@@ -529,7 +529,7 @@ public enum Interaction {
      */
     private static EventHandler<KeyEvent> createRiddleInteraction(Interaction interaction, DialogConfig dialogBefore, DialogConfig dialogAfter, DialogConfig dialogButton1, DialogConfig dialogButton2, DialogConfig dialogButton3, Action actionError, Action actionSuccess){
         return (event -> {
-            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isMoved()){
+            if(event.getCode() == KeyboardConfig.ENTER.getKey().getKeyCode() && Movement.isInteractionAllowed()){
                 if(!interaction.isInteractionDone()){
                     DialogLayout.getINSTANCE().setText(dialogBefore.getText());
                     DialogLayout.getINSTANCE().addButton(dialogButton1.getText(), actionError.getEventHandler());

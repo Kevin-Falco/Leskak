@@ -184,6 +184,7 @@ public class LauncherLayout {
     private static VBox getCredits(){
         VBox vBox = new VBox();
         Text text = new Text("L'equipe projet est composée de :\n\n Kévin Falco\nAntoine Hourdeau\n Benjamin Guerin\nHugo Desuert\n\n De plus un grand merci à Yaël Hoaurau pour l'aide apportée lors du développement du jeu et à Ophélie Trawka pour la création des sprites.");
+        text.setWrappingWidth(300);
         vBox.getChildren().add(text);
         vBox.getChildren().add(LauncherLayout.getReturnButon());
         vBox.getChildren().forEach((child) -> child.setTranslateY(100));

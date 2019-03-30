@@ -126,7 +126,7 @@ public enum Action {
         RETURN_OBJECT2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             if(DialogLayout.getINSTANCE().getMoney() < 500){
                 DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
-                Movement.setMoved(true);
+                Movement.setInteractionAllowed(true);
                 Movement.resumeMovement();
                 return;
             }
@@ -141,7 +141,7 @@ public enum Action {
             }
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_REACTORS_REPARED.getText());
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
             Movement.resumeMovement();
         });
         RETURN_OBJECT6.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
@@ -153,7 +153,7 @@ public enum Action {
             Interaction.PNJ3.setInteractionDone(true);
             Inventory.getINSTANCE().remove(Object.OBJ6);
             DialogLayout.getINSTANCE().removeContent();
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
             Movement.resumeMovement();
         });
         RETURN_OBJECT4_2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
@@ -162,7 +162,7 @@ public enum Action {
             DialogLayout.getINSTANCE().addMoney(1000);
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ11_AFTER.getText());
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
             Movement.resumeMovement();
         });
         RETURN_OBJECT6_2.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
@@ -170,7 +170,7 @@ public enum Action {
             Inventory.getINSTANCE().remove(Object.OBJ6);
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ5_AFTER.getText());
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
             Movement.resumeMovement();
         });
 
@@ -185,7 +185,7 @@ public enum Action {
             if(DialogLayout.getINSTANCE().getMoney() < 5000){
                 DialogLayout.getINSTANCE().removeContent();
                 DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
-                Movement.setMoved(true);
+                Movement.setInteractionAllowed(true);
                 Movement.resumeMovement();
                 return;
             }
@@ -193,14 +193,14 @@ public enum Action {
             Player.getINSTANCE().getSkinAvailables().add(2);
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_SKIN_BUYED.getText());
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
             Movement.resumeMovement();
         });
         BUY_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             if(DialogLayout.getINSTANCE().getMoney() < 10000){
                 DialogLayout.getINSTANCE().removeContent();
                 DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_NOT_ENOUGH_MONEY.getText());
-                Movement.setMoved(true);
+                Movement.setInteractionAllowed(true);
                 Movement.resumeMovement();
             }
         });
@@ -210,7 +210,7 @@ public enum Action {
             Movement.resumeMovement();
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_PACKAGE_AFTER.getText());
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
         });
         QUEST_DYNAMITE.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             DialogLayout.getINSTANCE().removeContent();
@@ -226,7 +226,7 @@ public enum Action {
                 DialogLayout.getINSTANCE().setText(DialogConfig.PNJ10_QUEST_BEFORE.getText());
             }
             Movement.resumeMovement();
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
         });
 
         DEATH_STAR.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
@@ -341,7 +341,7 @@ public enum Action {
             DialogLayout.getINSTANCE().setText(DialogConfig.PACMAN_WON.getText());
             Inventory.getINSTANCE().add(Object.OBJ3);
             Player.getINSTANCE().getSkinAvailables().add(3);
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
             Movement.resumeMovement();
         });
 
@@ -359,14 +359,14 @@ public enum Action {
             Movement.getMap().remove(toRemove);
             Interaction.ROCK.setInteractionDone(true);
             DialogLayout.getINSTANCE().removeContent();
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
         });
 
         // Action du bouton Retour
         RETURN.eventHandler = ((EventHandler<ActionEvent>) (action) -> {
             DialogLayout.getINSTANCE().removeContent();
             Movement.resumeMovement();
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
         });
     }
 
@@ -395,7 +395,7 @@ public enum Action {
             DialogLayout.getINSTANCE().removeContent();
             Node node = (Node) action.getSource();
             node.setFocusTraversable(false);
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
             Movement.resumeMovement();
         });
     }
@@ -414,7 +414,7 @@ public enum Action {
             Movement.resumeMovement();
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(dialogConfig.getText());
-            Movement.setMoved(false);
+            Movement.setInteractionAllowed(false);
         });
     }
 
@@ -432,7 +432,7 @@ public enum Action {
             Movement.resumeMovement();
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(dialogConfig.getText());
-            Movement.setMoved(false);
+            Movement.setInteractionAllowed(false);
         });
     }
 
@@ -452,7 +452,7 @@ public enum Action {
             Movement.resumeMovement();
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(dialogConfig.getText());
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
         });
     }
 
@@ -467,7 +467,7 @@ public enum Action {
             DialogLayout.getINSTANCE().setText(dialogError.getText());
             Node node = (Node) action.getSource();
             node.setFocusTraversable(false);
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
             Movement.resumeMovement();
         });
     }
@@ -495,7 +495,7 @@ public enum Action {
             Movement.resumeMovement();
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(dialogConfig.getText());
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
         });
     }
 
@@ -524,7 +524,7 @@ public enum Action {
             Movement.resumeMovement();
             DialogLayout.getINSTANCE().removeContent();
             DialogLayout.getINSTANCE().setText(dialogConfig.getText());
-            Movement.setMoved(true);
+            Movement.setInteractionAllowed(true);
         });
     }
 }

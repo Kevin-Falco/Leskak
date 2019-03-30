@@ -144,7 +144,7 @@ public class PacMan {
         Player.getINSTANCE().setCurrentSkin(0);
         Movement.setAnimationSet(AnimationSet.getAnimationSet(Player.getINSTANCE().getCurrentSkin()*4).getStopAnimationSet());
         Player.getINSTANCE().setSprite(Movement.getAnimationSet().getSpriteDirection(Player.getINSTANCE().getDirection()));
-        Movement.setLastKeyReleased(true);
+        Movement.setIsLastKeyTypedReleased(true);
         PacMan.setPacmanMovement(false);
         MainLayout.getSCENE().removeEventHandler(KeyEvent.KEY_PRESSED, Interaction.PACMAN_IN.getEventHandler());
     }
