@@ -21,6 +21,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -183,11 +184,13 @@ public class LauncherLayout {
      */
     private static VBox getCredits(){
         VBox vBox = new VBox();
-        Text text = new Text("L'equipe projet est composée de :\n\n Kévin Falco\nAntoine Hourdeau\n Benjamin Guerin\nHugo Desuert\n\n De plus un grand merci à Yaël Hoaurau pour l'aide apportée lors du développement du jeu et à Ophélie Trawka pour la création des sprites.");
+        Text text = new Text("L'equipe projet est composée de :\n\nKévin Falco\nAntoine Hourdeau\nBenjamin Guerin\nHugo Desuert\n\n De plus un grand merci à Yaël Hoaurau pour l'aide apportée lors du développement du jeu et à Ophélie Trawka pour la création des sprites.");
         text.setWrappingWidth(300);
+        text.setFill(Color.WHITE);
+        text.setTextAlignment(TextAlignment.CENTER);
         vBox.getChildren().add(text);
         vBox.getChildren().add(LauncherLayout.getReturnButon());
-        vBox.getChildren().forEach((child) -> child.setTranslateY(100));
+        vBox.getChildren().forEach((child) -> child.setTranslateY(200));
         vBox.setAlignment(Pos.TOP_CENTER);
         vBox.setSpacing(10);
         vBox.setBackground(new Background(new BackgroundImage(new Image(Sprite.BACKGROUND_CREDITS.getSpritePath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
@@ -205,11 +208,13 @@ public class LauncherLayout {
         pt1.setDuration(Duration.millis(100));
         LauncherLayout.options = new VBox();
         Text text = new Text("Chagement de touches");
+        text.setFill(Color.WHITE);
         LauncherLayout.options.getChildren().add(text);
         for(int i = 0; i < Key.values().length; ++i){
             HBox hBox = new HBox();
             Key currentKey = Key.values()[i] ;
             Text name = new Text(currentKey.name() + " : " + currentKey.getKeyCode().getName());
+            name.setFill(Color.WHITE);
             Button button = new Button("Changer" );
             button.setScaleY(0.8);
             button.setScaleX(0.8);
@@ -241,12 +246,13 @@ public class LauncherLayout {
             hBox.setAlignment(Pos.CENTER);
             hBox.setSpacing(10);
 
+
             LauncherLayout.options.getChildren().add(hBox);
         }
         LauncherLayout.options.getChildren().add(LauncherLayout.getReturnButon());
         LauncherLayout.options.setAlignment(Pos.CENTER);
         LauncherLayout.options.setSpacing(1);
-        LauncherLayout.options.getChildren().forEach((child) -> child.setTranslateY(-100));
+        LauncherLayout.options.getChildren().forEach((child) -> child.setTranslateY(50));
         LauncherLayout.options.setBackground(new Background(new BackgroundImage(new Image(Sprite.BACKGROUND_OPTIONS.getSpritePath()),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         return LauncherLayout.options;

@@ -16,7 +16,6 @@ public enum Key {
     ESCAPE(KeyCode.ESCAPE),
     TELEPORT(KeyCode.R),
     CHANGE_SKIN(KeyCode.F),
-    PACMAN_SKIP(KeyCode.P),
     ;
 
     /**
