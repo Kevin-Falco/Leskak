@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Enumération de l'ensemble des intéractions possibles avec d'autres éléments du jeu, les événements qui y sont rattachés.
+ */
 public enum Interaction {
 
     // Interactions des pnj de toutes les planètes
