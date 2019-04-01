@@ -23,7 +23,7 @@ See also the list of [contributors](https://github.com/Kevin-Falco/Leskak/contri
 
 ## Versioning
 
-* Still no versioning
+* Release 1.0
 
 ## License
 
